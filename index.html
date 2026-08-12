@@ -253,10 +253,35 @@ button,input,select{font:inherit}
   flex-wrap:wrap
 }
 
+/* TOKEN NAME + SYMBOL */
+.token-title{
+  display:flex;
+  align-items:baseline;
+  gap:5px;
+  min-width:0;
+  max-width:100%
+}
+
+.token-name{
+  font-weight:750;
+  font-size:.91rem;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  max-width:150px
+}
+
+.token-symbol{
+  font-size:.62rem;
+  font-weight:650;
+  color:var(--muted);
+  white-space:nowrap
+}
+
 .symbol{
   font-weight:750;
   font-size:.91rem;
-  max-width:110px;
+  max-width:150px;
   overflow:hidden;
   text-overflow:ellipsis
 }
@@ -573,108 +598,289 @@ button,input,select{font:inherit}
 
 <div class="header">
   <div class="header-top">
+
     <div class="brand">
+
       <div class="brand-icon">◈</div>
+
       <div>
+
         <h1>Noventra Signal</h1>
-        <span>TON · Fast Scan · AI Signals</span>
+
+        <span>
+          TON · Fast Scan · AI Signals
+        </span>
+
       </div>
+
     </div>
 
-    <button class="icon-btn" id="refreshBtn" title="Yenile">↻</button>
+    <button
+      class="icon-btn"
+      id="refreshBtn"
+      title="Yenile"
+    >↻</button>
+
   </div>
 
   <div class="tabs" id="mainTabs">
-    <div class="tab active" data-tab="gainers">Yükselen</div>
-    <div class="tab" data-tab="losers">Düşen</div>
-    <div class="tab" data-tab="volume">Hacim</div>
-    <div class="tab" data-tab="signals">Sinyal</div>
+
+    <div
+      class="tab active"
+      data-tab="gainers"
+    >
+      Yükselen
+    </div>
+
+    <div
+      class="tab"
+      data-tab="losers"
+    >
+      Düşen
+    </div>
+
+    <div
+      class="tab"
+      data-tab="volume"
+    >
+      Hacim
+    </div>
+
+    <div
+      class="tab"
+      data-tab="signals"
+    >
+      Sinyal
+    </div>
+
   </div>
+
 </div>
 
-<div class="alert-banner" id="alertBanner"></div>
+<div
+  class="alert-banner"
+  id="alertBanner"
+></div>
 
-<div class="filters" id="filters">
-  <div class="chip active" data-tf="h1">1 Saat</div>
-  <div class="chip" data-tf="h6">6 Saat</div>
-  <div class="chip" data-tf="h24">24 Saat</div>
-  <div class="chip active" data-vol="all">Tüm</div>
-  <div class="chip" data-vol="high">Yüksek Hacim</div>
-  <div class="chip" data-vol="dedust">DeDust</div>
+<div
+  class="filters"
+  id="filters"
+>
+
+  <div
+    class="chip active"
+    data-tf="h1"
+  >
+    1 Saat
+  </div>
+
+  <div
+    class="chip"
+    data-tf="h6"
+  >
+    6 Saat
+  </div>
+
+  <div
+    class="chip"
+    data-tf="h24"
+  >
+    24 Saat
+  </div>
+
+  <div
+    class="chip active"
+    data-vol="all"
+  >
+    Tüm
+  </div>
+
+  <div
+    class="chip"
+    data-vol="high"
+  >
+    Yüksek Hacim
+  </div>
+
+  <div
+    class="chip"
+    data-vol="dedust"
+  >
+    DeDust
+  </div>
+
 </div>
 
 <div class="status-bar">
-  <span id="statusText">Hazırlanıyor...</span>
+
+  <span id="statusText">
+    Hazırlanıyor...
+  </span>
+
   <span id="countText"></span>
+
 </div>
 
-<div class="page active" id="page-market">
+<div
+  class="page active"
+  id="page-market"
+>
+
   <div id="content">
+
     <div class="loading">
+
       <div class="loader"></div>
+
       TON piyasası taranıyor...
+
     </div>
+
   </div>
+
 </div>
 
-<div class="page" id="page-favorites">
+<div
+  class="page"
+  id="page-favorites"
+>
+
   <div id="favContent">
+
     <div class="fav-empty">
+
       <div class="big">★</div>
+
       Henüz favori yok.<br>
+
       Kartlardaki ★ ile ekle.
+
     </div>
+
   </div>
+
 </div>
 
-<div class="page" id="page-alerts">
+<div
+  class="page"
+  id="page-alerts"
+>
+
   <div id="alertContent">
+
     <div class="fav-empty">
+
       <div class="big">🔔</div>
+
       Aktif alarm yok.<br>
+
       Kartlardaki 🔔 ile alarm kur.
+
     </div>
+
   </div>
+
 </div>
 
 <div class="bottom-nav">
-  <div class="nav-item active" data-page="market">
-    <span class="ico">📊</span>
+
+  <div
+    class="nav-item active"
+    data-page="market"
+  >
+
+    <span class="ico">
+      📊
+    </span>
+
     Piyasa
+
   </div>
 
-  <div class="nav-item" data-page="favorites">
-    <span class="ico">★</span>
+  <div
+    class="nav-item"
+    data-page="favorites"
+  >
+
+    <span class="ico">
+      ★
+    </span>
+
     Favoriler
+
   </div>
 
-  <div class="nav-item" data-page="alerts">
-    <span class="ico">🔔</span>
+  <div
+    class="nav-item"
+    data-page="alerts"
+  >
+
+    <span class="ico">
+      🔔
+    </span>
+
     Alarmlar
+
   </div>
+
 </div>
 
 <!-- ALERT MODAL -->
-<div class="modal-bg" id="alertModal">
+
+<div
+  class="modal-bg"
+  id="alertModal"
+>
+
   <div class="modal">
 
     <h3>
-      <span>Alarm Kur</span>
-      <span id="modalClose" style="font-size:1.2rem;cursor:pointer;color:var(--muted)">✕</span>
+
+      <span>
+        Alarm Kur
+      </span>
+
+      <span
+        id="modalClose"
+        style="font-size:1.2rem;cursor:pointer;color:var(--muted)"
+      >
+        ✕
+      </span>
+
     </h3>
 
-    <div id="modalSymbol" style="font-size:.85rem;color:var(--cyan);margin-bottom:8px"></div>
+    <div
+      id="modalSymbol"
+      style="font-size:.85rem;color:var(--cyan);margin-bottom:8px"
+    ></div>
 
-    <label>Alarm Tipi</label>
+    <label>
+      Alarm Tipi
+    </label>
 
     <select id="alertType">
-      <option value="pct_up">Yüzde yükselince (%)</option>
-      <option value="pct_down">Yüzde düşünce (%)</option>
-      <option value="price_above">Fiyat üstüne çıkınca ($)</option>
-      <option value="price_below">Fiyat altına inince ($)</option>
+
+      <option value="pct_up">
+        Yüzde yükselince (%)
+      </option>
+
+      <option value="pct_down">
+        Yüzde düşünce (%)
+      </option>
+
+      <option value="price_above">
+        Fiyat üstüne çıkınca ($)
+      </option>
+
+      <option value="price_below">
+        Fiyat altına inince ($)
+      </option>
+
     </select>
 
-    <label>Değer</label>
+    <label>
+      Değer
+    </label>
 
     <input
       type="number"
@@ -685,65 +891,138 @@ button,input,select{font:inherit}
     >
 
     <div class="modal-actions">
-      <button class="btn btn-ghost" id="modalCancel">İptal</button>
-      <button class="btn btn-primary" id="modalSave">Kaydet</button>
+
+      <button
+        class="btn btn-ghost"
+        id="modalCancel"
+      >
+        İptal
+      </button>
+
+      <button
+        class="btn btn-primary"
+        id="modalSave"
+      >
+        Kaydet
+      </button>
+
     </div>
 
   </div>
+
 </div>
 
 <!-- AI MODAL -->
-<div class="modal-bg" id="aiModal">
+
+<div
+  class="modal-bg"
+  id="aiModal"
+>
+
   <div class="modal">
 
     <h3>
-      <span>🤖 AI Analiz</span>
-      <span id="aiModalClose" style="font-size:1.2rem;cursor:pointer;color:var(--muted)">✕</span>
+
+      <span>
+        🤖 AI Analiz
+      </span>
+
+      <span
+        id="aiModalClose"
+        style="font-size:1.2rem;cursor:pointer;color:var(--muted)"
+      >
+        ✕
+      </span>
+
     </h3>
 
-    <div class="ai-body" id="aiBody"></div>
+    <div
+      class="ai-body"
+      id="aiBody"
+    ></div>
 
     <div class="modal-actions">
-      <button class="btn btn-primary" id="aiModalOk">Tamam</button>
+
+      <button
+        class="btn btn-primary"
+        id="aiModalOk"
+      >
+        Tamam
+      </button>
+
     </div>
 
   </div>
+
 </div>
 
 <script>
+
 /* =========================================================
    TELEGRAM
 ========================================================= */
 
-const tg = window.Telegram?.WebApp || null;
+const tg =
+  window.Telegram?.WebApp || null;
 
 if (tg) {
+
   tg.ready();
+
   tg.expand();
 
   try {
-    const tp = tg.themeParams || {};
+
+    const tp =
+      tg.themeParams || {};
 
     if (tp.bg_color) {
-      document.documentElement.style.setProperty("--bg", tp.bg_color);
+
+      document.documentElement.style.setProperty(
+        "--bg",
+        tp.bg_color
+      );
+
     }
 
     if (tp.secondary_bg_color) {
-      document.documentElement.style.setProperty("--card", tp.secondary_bg_color);
+
+      document.documentElement.style.setProperty(
+        "--card",
+        tp.secondary_bg_color
+      );
+
     }
 
     if (tp.text_color) {
-      document.documentElement.style.setProperty("--text", tp.text_color);
+
+      document.documentElement.style.setProperty(
+        "--text",
+        tp.text_color
+      );
+
     }
 
     if (tp.hint_color) {
-      document.documentElement.style.setProperty("--muted", tp.hint_color);
+
+      document.documentElement.style.setProperty(
+        "--muted",
+        tp.hint_color
+      );
+
     }
 
     if (tp.button_color) {
-      document.documentElement.style.setProperty("--blue", tp.button_color);
+
+      document.documentElement.style.setProperty(
+        "--blue",
+        tp.button_color
+      );
+
     }
+
   } catch (_) {}
+
 }
 
 
@@ -751,50 +1030,104 @@ if (tg) {
    STORAGE
 ========================================================= */
 
-const STORAGE_FAV = "noventra_favs_v6";
-const STORAGE_ALERTS = "noventra_alerts_v6";
+const STORAGE_FAV =
+  "noventra_favs_v7";
 
-function loadJSON(key, defaultValue = []) {
+const STORAGE_ALERTS =
+  "noventra_alerts_v7";
+
+
+function loadJSON(
+  key,
+  defaultValue = []
+) {
+
   try {
-    const value = JSON.parse(localStorage.getItem(key));
-    return Array.isArray(value) ? value : defaultValue;
+
+    const value =
+      JSON.parse(
+        localStorage.getItem(key)
+      );
+
+    return Array.isArray(value)
+      ? value
+      : defaultValue;
+
   } catch (_) {
+
     return defaultValue;
+
   }
+
 }
 
-function saveJSON(key, value) {
+
+function saveJSON(
+  key,
+  value
+) {
+
   try {
-    localStorage.setItem(key, JSON.stringify(value));
+
+    localStorage.setItem(
+      key,
+      JSON.stringify(value)
+    );
+
   } catch (_) {}
+
 }
 
-let favorites = loadJSON(STORAGE_FAV);
-let alerts = loadJSON(STORAGE_ALERTS);
+
+let favorites =
+  loadJSON(STORAGE_FAV);
+
+let alerts =
+  loadJSON(STORAGE_ALERTS);
 
 let pairs = [];
 
-let currentTab = "gainers";
-let currentTf = "h1";
-let volFilter = "all";
-let currentPage = "market";
+let currentTab =
+  "gainers";
 
-let isLoading = false;
-let alertTarget = null;
+let currentTf =
+  "h1";
+
+let volFilter =
+  "all";
+
+let currentPage =
+  "market";
+
+let isLoading =
+  false;
+
+let alertTarget =
+  null;
 
 
 /* =========================================================
    CONFIG
 ========================================================= */
 
-const MIN_VOL = 800;
-const MIN_LIQ = 400;
-const HIGH_VOL = 20000;
+const MIN_VOL =
+  800;
 
-const REFRESH_MS = 75000;
-const MAX_RESULTS = 120;
+const MIN_LIQ =
+  400;
+
+const HIGH_VOL =
+  20000;
+
+const REFRESH_MS =
+  75000;
+
+const MAX_RESULTS =
+  120;
+
 
 const QUERIES = [
+
   "TON",
   "USDT",
   "USDC",
@@ -847,6 +1180,7 @@ const QUERIES = [
   "GOLD",
   "DIAMOND",
   "BULL"
+
 ];
 
 
@@ -855,27 +1189,82 @@ const QUERIES = [
 ========================================================= */
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+
+  return new Promise(
+    resolve =>
+      setTimeout(
+        resolve,
+        ms
+      )
+  );
+
 }
 
-function clamp(value, min, max) {
-  return Math.max(min, Math.min(max, value));
+
+function clamp(
+  value,
+  min,
+  max
+) {
+
+  return Math.max(
+    min,
+    Math.min(
+      max,
+      value
+    )
+  );
+
 }
+
 
 function escapeHTML(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+
+  return String(
+    value ?? ""
+  )
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
 }
 
+
 function escapeAttr(value) {
-  return String(value ?? "")
-    .replace(/\\/g, "\\\\")
-    .replace(/'/g, "\\'")
-    .replace(/"/g, "&quot;");
+
+  return String(
+    value ?? ""
+  )
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+    .replace(
+      /'/g,
+      "\\'"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    );
+
 }
 
 
@@ -883,64 +1272,124 @@ function escapeAttr(value) {
    API
 ========================================================= */
 
-async function fetchQuery(query, attempt = 0) {
+async function fetchQuery(
+  query,
+  attempt = 0
+) {
 
   try {
 
-    const response = await fetch(
-      "https://api.dexscreener.com/latest/dex/search?q=" +
-      encodeURIComponent(query),
-      {
-        cache: "no-store"
-      }
-    );
+    const response =
+      await fetch(
+        "https://api.dexscreener.com/latest/dex/search?q=" +
+        encodeURIComponent(query),
+        {
+          cache:
+            "no-store"
+        }
+      );
 
-    if (response.status === 429 && attempt < 2) {
 
-      await sleep(500 * (attempt + 1));
+    if (
+      response.status === 429 &&
+      attempt < 2
+    ) {
 
-      return fetchQuery(query, attempt + 1);
+      await sleep(
+        500 *
+        (attempt + 1)
+      );
+
+      return fetchQuery(
+        query,
+        attempt + 1
+      );
+
     }
+
 
     if (!response.ok) {
+
       return [];
+
     }
 
-    const data = await response.json();
 
-    return Array.isArray(data.pairs)
+    const data =
+      await response.json();
+
+
+    return Array.isArray(
+      data.pairs
+    )
       ? data.pairs
       : [];
+
 
   } catch (_) {
 
     return [];
+
   }
+
 }
 
 
-async function fetchInBatches(queries, size = 8) {
+async function fetchInBatches(
+  queries,
+  size = 8
+) {
 
   const output = [];
 
-  for (let i = 0; i < queries.length; i += size) {
 
-    const batch = queries.slice(i, i + size);
+  for (
+    let i = 0;
+    i < queries.length;
+    i += size
+  ) {
 
-    const results = await Promise.all(
-      batch.map(fetchQuery)
-    );
+    const batch =
+      queries.slice(
+        i,
+        i + size
+      );
 
-    for (const result of results) {
-      output.push(...result);
+
+    const results =
+      await Promise.all(
+        batch.map(
+          fetchQuery
+        )
+      );
+
+
+    for (
+      const result
+      of results
+    ) {
+
+      output.push(
+        ...result
+      );
+
     }
 
-    if (i + size < queries.length) {
+
+    if (
+      i + size <
+      queries.length
+    ) {
+
       await sleep(60);
+
     }
+
   }
 
+
   return output;
+
 }
 
 
@@ -948,75 +1397,240 @@ async function fetchInBatches(queries, size = 8) {
    NORMALIZE
 ========================================================= */
 
-function normalizePair(pair) {
+function normalizePair(
+  pair
+) {
 
-  if (!pair) return null;
+  if (!pair) {
 
-  if (pair.chainId !== "ton") {
     return null;
+
   }
 
-  if (!pair.pairAddress) {
+
+  if (
+    pair.chainId !==
+    "ton"
+  ) {
+
     return null;
+
   }
 
-  const volume = Number(pair.volume?.h24 || 0);
-  const liquidity = Number(pair.liquidity?.usd || 0);
 
-  if (volume < MIN_VOL) {
+  if (
+    !pair.pairAddress
+  ) {
+
     return null;
+
   }
 
-  if (liquidity < MIN_LIQ) {
+
+  const volume =
+    Number(
+      pair.volume?.h24 ||
+      0
+    );
+
+
+  const liquidity =
+    Number(
+      pair.liquidity?.usd ||
+      0
+    );
+
+
+  if (
+    volume <
+    MIN_VOL
+  ) {
+
     return null;
+
   }
 
-  const dex = String(pair.dexId || "").toLowerCase();
+
+  if (
+    liquidity <
+    MIN_LIQ
+  ) {
+
+    return null;
+
+  }
+
+
+  const dex =
+    String(
+      pair.dexId ||
+      ""
+    ).toLowerCase();
+
+
+  /*
+    TOKEN NAME FIX
+
+    Öncelik:
+    1. baseToken.name
+    2. baseToken.symbol
+    3. Unknown Token
+  */
+
+  const rawName =
+    String(
+      pair.baseToken?.name ||
+      ""
+    ).trim();
+
+
+  const rawSymbol =
+    String(
+      pair.baseToken?.symbol ||
+      ""
+    ).trim();
+
+
+  const baseName =
+    (
+      rawName ||
+      rawSymbol ||
+      "Unknown Token"
+    ).slice(
+      0,
+      32
+    );
+
+
+  const baseSymbol =
+    (
+      rawSymbol ||
+      rawName ||
+      "???"
+    ).slice(
+      0,
+      15
+    );
+
+
+  const baseAddress =
+    String(
+      pair.baseToken?.address ||
+      ""
+    );
+
+
+  const quoteSymbol =
+    String(
+      pair.quoteToken?.symbol ||
+      ""
+    )
+      .trim()
+      .slice(
+        0,
+        12
+      );
+
 
   return {
 
-    pairAddress: pair.pairAddress,
+    pairAddress:
+      pair.pairAddress,
 
-    url: pair.url || "",
+    url:
+      pair.url ||
+      "",
 
-    dexId: pair.dexId || "Unknown",
+    dexId:
+      pair.dexId ||
+      "Unknown",
 
-    isDedust: dex.includes("dedust"),
+    isDedust:
+      dex.includes(
+        "dedust"
+      ),
 
-    isSton: dex.includes("ston"),
+    isSton:
+      dex.includes(
+        "ston"
+      ),
 
-    baseSymbol: String(
-      pair.baseToken?.symbol || "???"
-    ).slice(0, 15),
 
-    quoteSymbol: String(
-      pair.quoteToken?.symbol || ""
-    ).slice(0, 12),
+    /* TOKEN DATA */
 
-    priceUsd: Number(pair.priceUsd || 0),
+    baseName:
+      baseName,
+
+    baseSymbol:
+      baseSymbol,
+
+    baseAddress:
+      baseAddress,
+
+    quoteSymbol:
+      quoteSymbol,
+
+
+    priceUsd:
+      Number(
+        pair.priceUsd ||
+        0
+      ),
+
 
     change: {
 
-      m5: Number(pair.priceChange?.m5 || 0),
+      m5:
+        Number(
+          pair.priceChange?.m5 ||
+          0
+        ),
 
-      h1: Number(pair.priceChange?.h1 || 0),
+      h1:
+        Number(
+          pair.priceChange?.h1 ||
+          0
+        ),
 
-      h6: Number(pair.priceChange?.h6 || 0),
+      h6:
+        Number(
+          pair.priceChange?.h6 ||
+          0
+        ),
 
-      h24: Number(pair.priceChange?.h24 || 0)
+      h24:
+        Number(
+          pair.priceChange?.h24 ||
+          0
+        )
 
     },
+
 
     volume: {
-      h24: volume
+
+      h24:
+        volume
+
     },
 
-    liquidity,
+
+    liquidity:
+      liquidity,
+
 
     txns:
-      Number(pair.txns?.h24?.buys || 0) +
-      Number(pair.txns?.h24?.sells || 0)
+      Number(
+        pair.txns?.h24?.buys ||
+        0
+      ) +
+      Number(
+        pair.txns?.h24?.sells ||
+        0
+      )
+
   };
+
 }
 
 
@@ -1024,70 +1638,130 @@ function normalizePair(pair) {
    NOVENTRA SIGNAL ENGINE
 ========================================================= */
 
-function calculateSignal(pair) {
+function calculateSignal(
+  pair
+) {
 
-  const c = pair.change;
+  const c =
+    pair.change;
 
-  const momentum = clamp(
-    c.h1 * 1.8 +
-    c.h6 * 0.9 +
-    c.h24 * 0.35,
-    -100,
-    100
-  );
 
-  const acceleration = clamp(
-    (c.h1 - c.m5) * 0.8,
-    -30,
-    30
-  );
+  const momentum =
+    clamp(
+      c.h1 * 1.8 +
+      c.h6 * 0.9 +
+      c.h24 * 0.35,
+      -100,
+      100
+    );
 
-  const volumeFactor = clamp(
-    Math.log10(
-      Math.max(pair.volume.h24, 1000)
-    ) / 6,
-    0.5,
-    1.25
-  );
 
-  let liquidityFactor = clamp(
-    Math.log10(
-      Math.max(pair.liquidity, 1000)
-    ) / 6,
-    0.5,
-    1.2
-  );
+  const acceleration =
+    clamp(
+      (
+        c.h1 -
+        c.m5
+      ) * 0.8,
+      -30,
+      30
+    );
 
-  if (pair.liquidity < 2500) {
-    liquidityFactor *= 0.72;
+
+  const volumeFactor =
+    clamp(
+      Math.log10(
+        Math.max(
+          pair.volume.h24,
+          1000
+        )
+      ) / 6,
+      0.5,
+      1.25
+    );
+
+
+  let liquidityFactor =
+    clamp(
+      Math.log10(
+        Math.max(
+          pair.liquidity,
+          1000
+        )
+      ) / 6,
+      0.5,
+      1.2
+    );
+
+
+  if (
+    pair.liquidity <
+    2500
+  ) {
+
+    liquidityFactor *=
+      0.72;
+
   }
+
 
   let consistency = 1;
 
+
   if (
-    (c.h1 > 0 && c.h6 > 0) ||
-    (c.h1 < 0 && c.h6 < 0)
+    (
+      c.h1 > 0 &&
+      c.h6 > 0
+    ) ||
+    (
+      c.h1 < 0 &&
+      c.h6 < 0
+    )
   ) {
 
-    consistency = 1.12;
+    consistency =
+      1.12;
 
   } else if (
-    (c.h1 > 3 && c.h6 < -2) ||
-    (c.h1 < -3 && c.h6 > 2)
+    (
+      c.h1 > 3 &&
+      c.h6 < -2
+    ) ||
+    (
+      c.h1 < -3 &&
+      c.h6 > 2
+    )
   ) {
 
-    consistency = 0.82;
+    consistency =
+      0.82;
+
   }
+
 
   let spikeBonus = 1;
 
-  if (pair.volume.h24 > 50000) {
-    spikeBonus = 1.08;
+
+  if (
+    pair.volume.h24 >
+    50000
+  ) {
+
+    spikeBonus =
+      1.08;
+
   }
 
-  if (pair.volume.h24 > 150000) {
-    spikeBonus = 1.15;
+
+  if (
+    pair.volume.h24 >
+    150000
+  ) {
+
+    spikeBonus =
+      1.15;
+
   }
+
 
   let score =
     (
@@ -1099,9 +1773,18 @@ function calculateSignal(pair) {
     consistency *
     spikeBonus;
 
-  score = clamp(score, -100, 100);
 
-  let signal = "neutral";
+  score =
+    clamp(
+      score,
+      -100,
+      100
+    );
+
+
+  let signal =
+    "neutral";
+
 
   if (
     score >= 55 &&
@@ -1109,14 +1792,16 @@ function calculateSignal(pair) {
     c.h6 >= 1.5
   ) {
 
-    signal = "strong-buy";
+    signal =
+      "strong-buy";
 
   } else if (
     score >= 25 &&
     c.h1 >= 1.5
   ) {
 
-    signal = "buy";
+    signal =
+      "buy";
 
   } else if (
     score <= -55 &&
@@ -1124,85 +1809,168 @@ function calculateSignal(pair) {
     c.h6 <= -1.5
   ) {
 
-    signal = "strong-sell";
+    signal =
+      "strong-sell";
 
   } else if (
     score <= -25 &&
     c.h1 <= -1.5
   ) {
 
-    signal = "sell";
+    signal =
+      "sell";
+
   }
 
-  let confidence = 48;
 
-  confidence += Math.min(
-    Math.abs(score) * 0.35,
+  let confidence =
+    48;
+
+
+  confidence +=
+    Math.min(
+      Math.abs(score) *
+      0.35,
+      30
+    );
+
+
+  if (
+    pair.volume.h24 >
+    25000
+  ) {
+
+    confidence +=
+      8;
+
+  }
+
+
+  if (
+    pair.liquidity >
+    8000
+  ) {
+
+    confidence +=
+      7;
+
+  }
+
+
+  if (
+    consistency > 1
+  ) {
+
+    confidence +=
+      5;
+
+  }
+
+
+  if (
+    pair.liquidity <
+    2500
+  ) {
+
+    confidence -=
+      14;
+
+  }
+
+
+  if (
+    Math.abs(c.h1) >
     30
-  );
+  ) {
 
-  if (pair.volume.h24 > 25000) {
-    confidence += 8;
+    confidence -=
+      10;
+
   }
 
-  if (pair.liquidity > 8000) {
-    confidence += 7;
-  }
 
-  if (consistency > 1) {
-    confidence += 5;
-  }
+  confidence =
+    clamp(
+      confidence,
+      12,
+      94
+    );
 
-  if (pair.liquidity < 2500) {
-    confidence -= 14;
-  }
-
-  if (Math.abs(c.h1) > 30) {
-    confidence -= 10;
-  }
-
-  confidence = clamp(
-    confidence,
-    12,
-    94
-  );
 
   const warnings = [];
 
-  if (c.h1 > 30) {
-    warnings.push("Aşırı ısınmış");
-  }
-
-  if (c.h1 < -30) {
-    warnings.push("Aşırı satılmış");
-  }
-
-  if (pair.liquidity < 2500) {
-    warnings.push("Düşük likidite");
-  }
 
   if (
-    pair.volume.h24 > 100000 &&
-    Math.abs(c.h1) > 12
+    c.h1 > 30
   ) {
 
-    warnings.push("Yüksek hacimli hareket");
+    warnings.push(
+      "Aşırı ısınmış"
+    );
+
   }
+
 
   if (
-    Math.abs(c.h1) > 8 &&
-    pair.volume.h24 < 5000
+    c.h1 < -30
   ) {
 
-    warnings.push("Hacimsiz hareket");
+    warnings.push(
+      "Aşırı satılmış"
+    );
+
   }
+
+
+  if (
+    pair.liquidity <
+    2500
+  ) {
+
+    warnings.push(
+      "Düşük likidite"
+    );
+
+  }
+
+
+  if (
+    pair.volume.h24 >
+      100000 &&
+    Math.abs(c.h1) >
+      12
+  ) {
+
+    warnings.push(
+      "Yüksek hacimli hareket"
+    );
+
+  }
+
+
+  if (
+    Math.abs(c.h1) >
+      8 &&
+    pair.volume.h24 <
+      5000
+  ) {
+
+    warnings.push(
+      "Hacimsiz hareket"
+    );
+
+  }
+
 
   return {
+
     score,
     signal,
     confidence,
     warnings
+
   };
+
 }
 
 
@@ -1212,69 +1980,145 @@ function calculateSignal(pair) {
 
 async function loadData() {
 
-  if (isLoading) {
+  if (
+    isLoading
+  ) {
+
     return;
+
   }
 
-  isLoading = true;
+
+  isLoading =
+    true;
+
 
   document
-    .getElementById("refreshBtn")
-    .classList.add("spin");
+    .getElementById(
+      "refreshBtn"
+    )
+    .classList.add(
+      "spin"
+    );
 
-  setStatus("Taranıyor...");
+
+  setStatus(
+    "Taranıyor..."
+  );
+
 
   try {
 
-    const raw = await fetchInBatches(
-      QUERIES,
-      8
-    );
+    const raw =
+      await fetchInBatches(
+        QUERIES,
+        8
+      );
 
-    const seen = new Set();
-    const collected = [];
 
-    for (const rawPair of raw) {
+    const seen =
+      new Set();
 
-      const pair = normalizePair(rawPair);
+
+    const collected =
+      [];
+
+
+    for (
+      const rawPair
+      of raw
+    ) {
+
+      const pair =
+        normalizePair(
+          rawPair
+        );
+
 
       if (!pair) {
+
         continue;
+
       }
 
-      if (seen.has(pair.pairAddress)) {
+
+      if (
+        seen.has(
+          pair.pairAddress
+        )
+      ) {
+
         continue;
+
       }
 
-      seen.add(pair.pairAddress);
 
-      const signal = calculateSignal(pair);
+      seen.add(
+        pair.pairAddress
+      );
 
-      pair.score = signal.score;
-      pair.signal = signal.signal;
-      pair.confidence = signal.confidence;
-      pair.warnings = signal.warnings;
 
-      collected.push(pair);
+      const signal =
+        calculateSignal(
+          pair
+        );
+
+
+      pair.score =
+        signal.score;
+
+      pair.signal =
+        signal.signal;
+
+      pair.confidence =
+        signal.confidence;
+
+      pair.warnings =
+        signal.warnings;
+
+
+      collected.push(
+        pair
+      );
+
     }
 
+
     collected.sort(
-      (a, b) =>
-        Math.abs(b.score) -
-        Math.abs(a.score)
+      (
+        a,
+        b
+      ) =>
+        Math.abs(
+          b.score
+        ) -
+        Math.abs(
+          a.score
+        )
     );
 
-    pairs = collected;
+
+    pairs =
+      collected;
+
 
     setStatus(
       "Güncelleme: " +
-      new Date().toLocaleTimeString("tr-TR")
+      new Date()
+        .toLocaleTimeString(
+          "tr-TR"
+        )
     );
 
-    document.getElementById(
-      "countText"
-    ).textContent =
-      pairs.length + " çift";
+
+    document
+      .getElementById(
+        "countText"
+      )
+      .textContent =
+      pairs.length +
+      " çift";
+
 
     checkAlerts();
 
@@ -1284,28 +2128,49 @@ async function loadData() {
 
     renderAlertsPage();
 
+
   } catch (error) {
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     setStatus(
       "Veri alınamadı — yenile"
     );
 
+
   } finally {
 
-    isLoading = false;
+    isLoading =
+      false;
+
 
     document
-      .getElementById("refreshBtn")
-      .classList.remove("spin");
+      .getElementById(
+        "refreshBtn"
+      )
+      .classList.remove(
+        "spin"
+      );
+
   }
+
 }
 
-function setStatus(text) {
-  document.getElementById(
-    "statusText"
-  ).textContent = text;
+
+function setStatus(
+  text
+) {
+
+  document
+    .getElementById(
+      "statusText"
+    )
+    .textContent =
+    text;
+
 }
 
 
@@ -1313,99 +2178,214 @@ function setStatus(text) {
    FORMATTING
 ========================================================= */
 
-function fmtPct(value) {
+function fmtPct(
+  value
+) {
 
-  value = Number(value || 0);
+  value =
+    Number(
+      value || 0
+    );
 
-  if (Math.abs(value) < 0.05) {
+
+  if (
+    Math.abs(value) <
+    0.05
+  ) {
+
     return "0.0%";
+
   }
 
+
   return (
-    (value > 0 ? "+" : "") +
+    (
+      value > 0
+        ? "+"
+        : ""
+    ) +
     value.toFixed(1) +
     "%"
   );
+
 }
 
 
-function fmtMoney(value) {
+function fmtMoney(
+  value
+) {
 
-  value = Number(value || 0);
+  value =
+    Number(
+      value || 0
+    );
 
-  if (value >= 1e9) {
-    return "$" +
-      (value / 1e9).toFixed(1) +
-      "B";
+
+  if (
+    value >= 1e9
+  ) {
+
+    return (
+      "$" +
+      (
+        value / 1e9
+      ).toFixed(1) +
+      "B"
+    );
+
   }
 
-  if (value >= 1e6) {
-    return "$" +
-      (value / 1e6).toFixed(1) +
-      "M";
+
+  if (
+    value >= 1e6
+  ) {
+
+    return (
+      "$" +
+      (
+        value / 1e6
+      ).toFixed(1) +
+      "M"
+    );
+
   }
 
-  if (value >= 1e3) {
-    return "$" +
-      (value / 1e3).toFixed(1) +
-      "K";
+
+  if (
+    value >= 1e3
+  ) {
+
+    return (
+      "$" +
+      (
+        value / 1e3
+      ).toFixed(1) +
+      "K"
+    );
+
   }
 
-  return "$" +
-    Math.round(value);
+
+  return (
+    "$" +
+    Math.round(
+      value
+    )
+  );
+
 }
 
 
-function formatPrice(value) {
+function formatPrice(
+  value
+) {
 
-  value = Number(value || 0);
+  value =
+    Number(
+      value || 0
+    );
+
 
   if (!value) {
+
     return "0";
+
   }
 
-  if (value < 1e-6) {
-    return value.toExponential(2);
+
+  if (
+    value < 1e-6
+  ) {
+
+    return value
+      .toExponential(2);
+
   }
 
-  if (value < 0.01) {
-    return value.toFixed(6);
+
+  if (
+    value < 0.01
+  ) {
+
+    return value
+      .toFixed(6);
+
   }
 
-  if (value < 1) {
-    return value.toFixed(4);
+
+  if (
+    value < 1
+  ) {
+
+    return value
+      .toFixed(4);
+
   }
 
-  if (value < 100) {
-    return value.toFixed(3);
+
+  if (
+    value < 100
+  ) {
+
+    return value
+      .toFixed(3);
+
   }
 
-  return value.toFixed(2);
+
+  return value
+    .toFixed(2);
+
 }
 
 
-function cls(value) {
+function cls(
+  value
+) {
 
-  if (value > 0.25) {
+  if (
+    value > 0.25
+  ) {
+
     return "up";
+
   }
 
-  if (value < -0.25) {
+
+  if (
+    value < -0.25
+  ) {
+
     return "down";
+
   }
+
 
   return "neu";
+
 }
 
 
-function signalLabel(signal) {
+function signalLabel(
+  signal
+) {
 
   return {
-    "strong-buy": "GÜÇLÜ AL",
-    "buy": "AL",
-    "strong-sell": "GÜÇLÜ SAT",
-    "sell": "SAT"
+
+    "strong-buy":
+      "GÜÇLÜ AL",
+
+    "buy":
+      "AL",
+
+    "strong-sell":
+      "GÜÇLÜ SAT",
+
+    "sell":
+      "SAT"
+
   }[signal] || "";
+
 }
 
 
@@ -1413,20 +2393,33 @@ function signalLabel(signal) {
    AI ANALYSIS
 ========================================================= */
 
-function generateAIAnalysis(pair) {
+function generateAIAnalysis(
+  pair
+) {
 
-  const c = pair.change;
+  const c =
+    pair.change;
 
-  const score = pair.score || 0;
+
+  const score =
+    pair.score || 0;
+
 
   const confidence =
-    pair.confidence || 50;
+    pair.confidence ||
+    50;
+
 
   const signal =
-    signalLabel(pair.signal) || "Nötr";
+    signalLabel(
+      pair.signal
+    ) ||
+    "Nötr";
+
 
   const volume =
     pair.volume.h24;
+
 
   const liquidity =
     pair.liquidity;
@@ -1434,42 +2427,59 @@ function generateAIAnalysis(pair) {
 
   let trendText;
 
-  if (score >= 70) {
+
+  if (
+    score >= 70
+  ) {
 
     trendText =
       "Çok güçlü kısa vadeli alım baskısı. Momentum net şekilde yukarı.";
 
-  } else if (score >= 55) {
+  } else if (
+    score >= 55
+  ) {
 
     trendText =
       "Güçlü yükseliş momentumu var; alıcılar kontrolde.";
 
-  } else if (score >= 35) {
+  } else if (
+    score >= 35
+  ) {
 
     trendText =
       "Olumlu momentum, alıcılar hafif önde.";
 
-  } else if (score >= 15) {
+  } else if (
+    score >= 15
+  ) {
 
     trendText =
       "Hafif pozitif eğilim, henüz net kırılım yok.";
 
-  } else if (score > -15) {
+  } else if (
+    score > -15
+  ) {
 
     trendText =
       "Yatay / belirsiz bölge. Net yön oluşmamış.";
 
-  } else if (score > -35) {
+  } else if (
+    score > -35
+  ) {
 
     trendText =
       "Hafif satış baskısı hissediliyor.";
 
-  } else if (score > -55) {
+  } else if (
+    score > -55
+  ) {
 
     trendText =
       "Satıcılar önde, zayıf görünüm.";
 
-  } else if (score > -70) {
+  } else if (
+    score > -70
+  ) {
 
     trendText =
       "Güçlü düşüş momentumu; satıcılar baskın.";
@@ -1478,27 +2488,37 @@ function generateAIAnalysis(pair) {
 
     trendText =
       "Çok sert satış baskısı. Kısa vadede zayıf tablo.";
+
   }
 
 
   let volumeText;
 
-  if (volume >= 200000) {
+
+  if (
+    volume >= 200000
+  ) {
 
     volumeText =
       `Çok yüksek hacim (${fmtMoney(volume)}) — hareket geniş katılımla destekleniyor.`;
 
-  } else if (volume >= 50000) {
+  } else if (
+    volume >= 50000
+  ) {
 
     volumeText =
       `Yüksek hacim (${fmtMoney(volume)}) — trend daha güvenilir.`;
 
-  } else if (volume >= 15000) {
+  } else if (
+    volume >= 15000
+  ) {
 
     volumeText =
       `Orta hacim (${fmtMoney(volume)}) — makul destek var.`;
 
-  } else if (volume >= 5000) {
+  } else if (
+    volume >= 5000
+  ) {
 
     volumeText =
       `Düşük-orta hacim (${fmtMoney(volume)}) — hareket kırılgan olabilir.`;
@@ -1507,27 +2527,37 @@ function generateAIAnalysis(pair) {
 
     volumeText =
       `Çok düşük hacim (${fmtMoney(volume)}) — manipülasyon ve ani tersine dönüş riski yüksek.`;
+
   }
 
 
   let liquidityText;
 
-  if (liquidity >= 100000) {
+
+  if (
+    liquidity >= 100000
+  ) {
 
     liquidityText =
       `Güçlü likidite (${fmtMoney(liquidity)}) — kayma riski daha düşük.`;
 
-  } else if (liquidity >= 20000) {
+  } else if (
+    liquidity >= 20000
+  ) {
 
     liquidityText =
       `Yeterli likidite (${fmtMoney(liquidity)}).`;
 
-  } else if (liquidity >= 5000) {
+  } else if (
+    liquidity >= 5000
+  ) {
 
     liquidityText =
       `Orta likidite (${fmtMoney(liquidity)}) — büyük emirlerde kayma olabilir.`;
 
-  } else if (liquidity >= 1500) {
+  } else if (
+    liquidity >= 1500
+  ) {
 
     liquidityText =
       `Zayıf likidite (${fmtMoney(liquidity)}) — dikkatli ol.`;
@@ -1536,28 +2566,51 @@ function generateAIAnalysis(pair) {
 
     liquidityText =
       `Kritik düşük likidite (${fmtMoney(liquidity)}) — yüksek kayma riski.`;
+
   }
 
 
   let timeframeText;
 
+
   const upCount =
-    [c.m5, c.h1, c.h6, c.h24]
-      .filter(value => value > 1)
+    [
+      c.m5,
+      c.h1,
+      c.h6,
+      c.h24
+    ]
+      .filter(
+        value =>
+          value > 1
+      )
       .length;
+
 
   const downCount =
-    [c.m5, c.h1, c.h6, c.h24]
-      .filter(value => value < -1)
+    [
+      c.m5,
+      c.h1,
+      c.h6,
+      c.h24
+    ]
+      .filter(
+        value =>
+          value < -1
+      )
       .length;
 
 
-  if (upCount >= 3) {
+  if (
+    upCount >= 3
+  ) {
 
     timeframeText =
       "Çoklu zaman diliminde yükseliş uyumu var.";
 
-  } else if (downCount >= 3) {
+  } else if (
+    downCount >= 3
+  ) {
 
     timeframeText =
       "Çoklu zaman diliminde düşüş uyumu var.";
@@ -1582,33 +2635,43 @@ function generateAIAnalysis(pair) {
 
     timeframeText =
       "Zaman dilimleri karışık; net konsensüs yok.";
+
   }
 
 
   const risks = [];
 
 
-  if (c.h1 > 25) {
+  if (
+    c.h1 > 25
+  ) {
 
     risks.push(
       `1 saatte %${c.h1.toFixed(0)} yükseliş — aşırı ısınma ve kâr realizasyonu riski.`
     );
+
   }
 
 
-  if (c.h1 < -25) {
+  if (
+    c.h1 < -25
+  ) {
 
     risks.push(
       `1 saatte %${Math.abs(c.h1).toFixed(0)} düşüş — panik satış riski.`
     );
+
   }
 
 
-  if (liquidity < 2500) {
+  if (
+    liquidity < 2500
+  ) {
 
     risks.push(
       "Düşük likidite: büyük emir fiyatı kolay bozabilir."
     );
+
   }
 
 
@@ -1620,6 +2683,7 @@ function generateAIAnalysis(pair) {
     risks.push(
       "Hacimsiz sert hareket — güvenilirlik zayıf."
     );
+
   }
 
 
@@ -1631,6 +2695,7 @@ function generateAIAnalysis(pair) {
     risks.push(
       "Orta vade hâlâ negatifken kısa vade yükseliyor — tuzak olabilir."
     );
+
   }
 
 
@@ -1642,14 +2707,18 @@ function generateAIAnalysis(pair) {
     risks.push(
       "Orta vade güçlüyken kısa vade düşüyor — düzeltme veya trend kırılımı."
     );
+
   }
 
 
-  if (!risks.length) {
+  if (
+    !risks.length
+  ) {
 
     risks.push(
       "Ekstra kırmızı bayrak yok; yine de pozisyon boyutunu sınırla."
     );
+
   }
 
 
@@ -1657,7 +2726,8 @@ function generateAIAnalysis(pair) {
 
 
   if (
-    pair.signal === "strong-buy" &&
+    pair.signal ===
+      "strong-buy" &&
     confidence >= 70 &&
     liquidity >= 5000
   ) {
@@ -1666,14 +2736,16 @@ function generateAIAnalysis(pair) {
       "Güçlü alım sinyali + yeterli likidite. Kademeli giriş ve stop ile değerlendirilebilir.";
 
   } else if (
-    pair.signal === "strong-buy"
+    pair.signal ===
+    "strong-buy"
   ) {
 
     advice =
       "Güçlü al sinyali var ama likidite/güven sınırlı. Çok küçük pay veya bekle.";
 
   } else if (
-    pair.signal === "buy" &&
+    pair.signal ===
+      "buy" &&
     confidence >= 60
   ) {
 
@@ -1681,14 +2753,16 @@ function generateAIAnalysis(pair) {
       "Alım yönlü momentum mevcut. Küçük pay ile takip mantıklı olabilir.";
 
   } else if (
-    pair.signal === "buy"
+    pair.signal ===
+    "buy"
   ) {
 
     advice =
       "Hafif alım eğilimi var; teyit için hacim ve 1s/6s uyumunu izle.";
 
   } else if (
-    pair.signal === "strong-sell" &&
+    pair.signal ===
+      "strong-sell" &&
     confidence >= 70
   ) {
 
@@ -1696,21 +2770,24 @@ function generateAIAnalysis(pair) {
       "Güçlü satış sinyali. Long’dan uzak dur; varsa kademeli çıkış düşün.";
 
   } else if (
-    pair.signal === "strong-sell"
+    pair.signal ===
+    "strong-sell"
   ) {
 
     advice =
       "Satış baskısı belirgin. Long açmak riskli.";
 
   } else if (
-    pair.signal === "sell"
+    pair.signal ===
+    "sell"
   ) {
 
     advice =
       "Zayıf görünüm. Yeni long için uygun değil.";
 
   } else if (
-    Math.abs(score) < 15
+    Math.abs(score) <
+    15
   ) {
 
     advice =
@@ -1720,27 +2797,44 @@ function generateAIAnalysis(pair) {
 
     advice =
       "İzlemede kal; sinyal ve hacim netleşsin.";
+
   }
 
 
   const warnings =
     pair.warnings?.length
-      ? pair.warnings.join(" · ")
+      ? pair.warnings.join(
+          " · "
+        )
       : "Yok";
 
 
   const price =
-    formatPrice(pair.priceUsd);
+    formatPrice(
+      pair.priceUsd
+    );
 
 
   const signedScore =
     score > 0
-      ? "+" + score.toFixed(0)
+      ? "+" +
+        score.toFixed(0)
       : score.toFixed(0);
 
 
+  const displayName =
+    pair.baseName ||
+    pair.baseSymbol ||
+    "Unknown Token";
+
+
+  const displaySymbol =
+    pair.baseSymbol ||
+    "???";
+
+
   return `
-<b>${escapeHTML(pair.baseSymbol)} — Noventra AI Analiz</b>
+<b>${escapeHTML(displayName)} (${escapeHTML(displaySymbol)}) — Noventra AI Analiz</b>
 
 <b>Fiyat:</b> $${escapeHTML(price)}
 <b>Genel:</b> ${trendText}
@@ -1766,15 +2860,21 @@ function generateAIAnalysis(pair) {
 
 <i>Noventra Signal teknik verileri üzerinden otomatik analiz üretir. Yatırım tavsiyesi değildir.</i>
 `;
+
 }
 
 
-function openAIAnalysis(address) {
+function openAIAnalysis(
+  address
+) {
 
   const pair =
     pairs.find(
-      p => p.pairAddress === address
+      p =>
+        p.pairAddress ===
+        address
     );
+
 
   if (!pair) {
 
@@ -1783,24 +2883,39 @@ function openAIAnalysis(address) {
     );
 
     return;
+
   }
+
 
   document.getElementById(
     "aiBody"
   ).innerHTML =
-    generateAIAnalysis(pair);
+    generateAIAnalysis(
+      pair
+    );
+
 
   document
-    .getElementById("aiModal")
-    .classList.add("show");
+    .getElementById(
+      "aiModal"
+    )
+    .classList.add(
+      "show"
+    );
+
 }
 
 
 function closeAIModal() {
 
   document
-    .getElementById("aiModal")
-    .classList.remove("show");
+    .getElementById(
+      "aiModal"
+    )
+    .classList.remove(
+      "show"
+    );
+
 }
 
 
@@ -1812,66 +2927,112 @@ function checkAlerts() {
 
   const hits = [];
 
-  for (const alert of alerts) {
+
+  for (
+    const alert
+    of alerts
+  ) {
 
     const pair =
       pairs.find(
-        p => p.pairAddress === alert.pairAddress
+        p =>
+          p.pairAddress ===
+          alert.pairAddress
       );
 
+
     if (!pair) {
+
       continue;
+
     }
 
-    let triggered = false;
+
+    let triggered =
+      false;
+
 
     if (
-      alert.type === "pct_up" &&
-      pair.change.h1 >= alert.value
+      alert.type ===
+        "pct_up" &&
+      pair.change.h1 >=
+        alert.value
     ) {
 
-      triggered = true;
+      triggered =
+        true;
+
     }
+
 
     if (
-      alert.type === "pct_down" &&
-      pair.change.h1 <= -alert.value
+      alert.type ===
+        "pct_down" &&
+      pair.change.h1 <=
+        -alert.value
     ) {
 
-      triggered = true;
+      triggered =
+        true;
+
     }
+
 
     if (
-      alert.type === "price_above" &&
-      pair.priceUsd >= alert.value
+      alert.type ===
+        "price_above" &&
+      pair.priceUsd >=
+        alert.value
     ) {
 
-      triggered = true;
+      triggered =
+        true;
+
     }
+
 
     if (
-      alert.type === "price_below" &&
-      pair.priceUsd <= alert.value
+      alert.type ===
+        "price_below" &&
+      pair.priceUsd <=
+        alert.value
     ) {
 
-      triggered = true;
+      triggered =
+        true;
+
     }
 
-    if (triggered) {
-      hits.push(alert);
+
+    if (
+      triggered
+    ) {
+
+      hits.push(
+        alert
+      );
+
     }
+
   }
 
 
   const banner =
-    document.getElementById("alertBanner");
+    document.getElementById(
+      "alertBanner"
+    );
 
 
-  if (!hits.length) {
+  if (
+    !hits.length
+  ) {
 
-    banner.classList.remove("show");
+    banner.classList.remove(
+      "show"
+    );
 
     return;
+
   }
 
 
@@ -1880,13 +3041,19 @@ function checkAlerts() {
       .map(
         hit =>
           "🔔 <b>" +
-          escapeHTML(hit.symbol) +
+          escapeHTML(
+            hit.symbol
+          ) +
           "</b> alarmı tetiklendi!"
       )
-      .join("<br>");
+      .join(
+        "<br>"
+      );
 
 
-  banner.classList.add("show");
+  banner.classList.add(
+    "show"
+  );
 
 
   try {
@@ -1896,24 +3063,33 @@ function checkAlerts() {
     );
 
   } catch (_) {}
+
 }
 
 
-function isFav(address) {
+function isFav(
+  address
+) {
 
   return favorites.some(
     favorite =>
-      favorite.pairAddress === address
+      favorite.pairAddress ===
+      address
   );
+
 }
 
 
-function hasAlert(address) {
+function hasAlert(
+  address
+) {
 
   return alerts.some(
     alert =>
-      alert.pairAddress === address
+      alert.pairAddress ===
+      address
   );
+
 }
 
 
@@ -1921,9 +3097,15 @@ function hasAlert(address) {
    FAVORITES
 ========================================================= */
 
-function toggleFav(pair) {
+function toggleFav(
+  pair
+) {
 
-  if (isFav(pair.pairAddress)) {
+  if (
+    isFav(
+      pair.pairAddress
+    )
+  ) {
 
     favorites =
       favorites.filter(
@@ -1942,12 +3124,22 @@ function toggleFav(pair) {
       symbol:
         pair.baseSymbol,
 
+      name:
+        pair.baseName ||
+        pair.baseSymbol,
+
+      baseAddress:
+        pair.baseAddress ||
+        "",
+
       dexId:
         pair.dexId,
 
       url:
         pair.url
+
     });
+
   }
 
 
@@ -1956,9 +3148,11 @@ function toggleFav(pair) {
     favorites
   );
 
+
   render();
 
   renderFavorites();
+
 }
 
 
@@ -1966,48 +3160,78 @@ function toggleFav(pair) {
    ALERT MODAL
 ========================================================= */
 
-function openAlertModal(pair) {
+function openAlertModal(
+  pair
+) {
 
-  alertTarget = pair;
+  alertTarget =
+    pair;
+
 
   document.getElementById(
     "modalSymbol"
   ).textContent =
+    (
+      pair.baseName ||
+      pair.baseSymbol
+    ) +
+    " (" +
     pair.baseSymbol +
+    ")" +
     " · $" +
-    formatPrice(pair.priceUsd);
+    formatPrice(
+      pair.priceUsd
+    );
 
 
   document.getElementById(
     "alertValue"
-  ).value = "";
+  ).value =
+    "";
 
 
   document.getElementById(
     "alertType"
-  ).value = "pct_up";
+  ).value =
+    "pct_up";
 
 
   document
-    .getElementById("alertModal")
-    .classList.add("show");
+    .getElementById(
+      "alertModal"
+    )
+    .classList.add(
+      "show"
+    );
+
 }
 
 
 function closeModal() {
 
   document
-    .getElementById("alertModal")
-    .classList.remove("show");
+    .getElementById(
+      "alertModal"
+    )
+    .classList.remove(
+      "show"
+    );
 
-  alertTarget = null;
+
+  alertTarget =
+    null;
+
 }
 
 
 function saveAlert() {
 
-  if (!alertTarget) {
+  if (
+    !alertTarget
+  ) {
+
     return;
+
   }
 
 
@@ -2026,7 +3250,9 @@ function saveAlert() {
 
 
   if (
-    !Number.isFinite(value) ||
+    !Number.isFinite(
+      value
+    ) ||
     value <= 0
   ) {
 
@@ -2035,6 +3261,7 @@ function saveAlert() {
     );
 
     return;
+
   }
 
 
@@ -2044,7 +3271,8 @@ function saveAlert() {
         !(
           alert.pairAddress ===
             alertTarget.pairAddress &&
-          alert.type === type
+          alert.type ===
+            type
         )
     );
 
@@ -2052,12 +3280,18 @@ function saveAlert() {
   alerts.push({
 
     id:
-      Date.now().toString(36),
+      Date.now().toString(
+        36
+      ),
 
     pairAddress:
       alertTarget.pairAddress,
 
     symbol:
+      alertTarget.baseSymbol,
+
+    name:
+      alertTarget.baseName ||
       alertTarget.baseSymbol,
 
     type,
@@ -2069,6 +3303,7 @@ function saveAlert() {
 
     created:
       Date.now()
+
   });
 
 
@@ -2088,19 +3323,25 @@ function saveAlert() {
 
   renderAlertsPage();
 
+
   showPopup(
     "Alarm Kaydedildi",
     symbol +
     " için alarm oluşturuldu."
   );
+
 }
 
 
-function removeAlert(id) {
+function removeAlert(
+  id
+) {
 
   alerts =
     alerts.filter(
-      alert => alert.id !== id
+      alert =>
+        alert.id !==
+        id
     );
 
 
@@ -2115,6 +3356,7 @@ function removeAlert(id) {
   render();
 
   checkAlerts();
+
 }
 
 
@@ -2124,78 +3366,124 @@ function removeAlert(id) {
 
 function getFiltered() {
 
-  let list = [...pairs];
+  let list =
+    [...pairs];
 
 
-  if (volFilter === "high") {
-
-    list =
-      list.filter(
-        pair =>
-          pair.volume.h24 >= HIGH_VOL
-      );
-  }
-
-
-  if (volFilter === "dedust") {
-
-    list =
-      list.filter(
-        pair => pair.isDedust
-      );
-  }
-
-
-  if (currentTab === "gainers") {
-
-    list =
-      list.filter(
-        pair =>
-          pair.change[currentTf] > 1
-      );
-
-    list.sort(
-      (a, b) =>
-        b.change[currentTf] -
-        a.change[currentTf]
-    );
-
-  } else if (
-    currentTab === "losers"
+  if (
+    volFilter ===
+    "high"
   ) {
 
     list =
       list.filter(
         pair =>
-          pair.change[currentTf] < -1
+          pair.volume.h24 >=
+          HIGH_VOL
       );
 
+  }
+
+
+  if (
+    volFilter ===
+    "dedust"
+  ) {
+
+    list =
+      list.filter(
+        pair =>
+          pair.isDedust
+      );
+
+  }
+
+
+  if (
+    currentTab ===
+    "gainers"
+  ) {
+
+    list =
+      list.filter(
+        pair =>
+          pair.change[
+            currentTf
+          ] > 1
+      );
+
+
     list.sort(
-      (a, b) =>
-        a.change[currentTf] -
-        b.change[currentTf]
+      (
+        a,
+        b
+      ) =>
+        b.change[
+          currentTf
+        ] -
+        a.change[
+          currentTf
+        ]
     );
 
   } else if (
-    currentTab === "volume"
+    currentTab ===
+    "losers"
+  ) {
+
+    list =
+      list.filter(
+        pair =>
+          pair.change[
+            currentTf
+          ] < -1
+      );
+
+
+    list.sort(
+      (
+        a,
+        b
+      ) =>
+        a.change[
+          currentTf
+        ] -
+        b.change[
+          currentTf
+        ]
+    );
+
+  } else if (
+    currentTab ===
+    "volume"
   ) {
 
     list.sort(
-      (a, b) =>
+      (
+        a,
+        b
+      ) =>
         b.volume.h24 -
         a.volume.h24
     );
 
   } else if (
-    currentTab === "signals"
+    currentTab ===
+    "signals"
   ) {
 
     const order = {
+
       "strong-buy": 0,
+
       "buy": 1,
+
       "strong-sell": 2,
+
       "sell": 3,
+
       "neutral": 9
+
     };
 
 
@@ -2208,16 +3496,28 @@ function getFiltered() {
 
 
     list.sort(
-      (a, b) =>
+      (
+        a,
+        b
+      ) =>
         (
-          order[a.signal] -
-          order[b.signal]
+          order[
+            a.signal
+          ] -
+          order[
+            b.signal
+          ]
         ) ||
         (
-          Math.abs(b.score) -
-          Math.abs(a.score)
+          Math.abs(
+            b.score
+          ) -
+          Math.abs(
+            a.score
+          )
         )
     );
+
   }
 
 
@@ -2225,6 +3525,7 @@ function getFiltered() {
     0,
     MAX_RESULTS
   );
+
 }
 
 
@@ -2232,45 +3533,74 @@ function getFiltered() {
    CARD
 ========================================================= */
 
-function cardHTML(pair, index) {
+function cardHTML(
+  pair,
+  index
+) {
 
   const change =
-    pair.change[currentTf];
+    pair.change[
+      currentTf
+    ];
+
 
   const isUp =
     change >= 0;
 
+
   const favorite =
-    isFav(pair.pairAddress);
+    isFav(
+      pair.pairAddress
+    );
+
 
   const alarm =
-    hasAlert(pair.pairAddress);
+    hasAlert(
+      pair.pairAddress
+    );
 
 
-  let dexClass = "other";
+  let dexClass =
+    "other";
+
 
   let dexLabel =
     String(
-      pair.dexId || "DEX"
-    ).slice(0, 8);
+      pair.dexId ||
+      "DEX"
+    ).slice(
+      0,
+      8
+    );
 
 
-  if (pair.isDedust) {
+  if (
+    pair.isDedust
+  ) {
 
-    dexClass = "dedust";
+    dexClass =
+      "dedust";
 
-    dexLabel = "DeDust";
+    dexLabel =
+      "DeDust";
 
-  } else if (pair.isSton) {
+  } else if (
+    pair.isSton
+  ) {
 
-    dexClass = "ston";
+    dexClass =
+      "ston";
 
-    dexLabel = "Ston.fi";
+    dexLabel =
+      "Ston.fi";
+
   }
 
 
   const signal =
-    signalLabel(pair.signal);
+    signalLabel(
+      pair.signal
+    );
 
 
   const signalHTML =
@@ -2285,13 +3615,19 @@ function cardHTML(pair, index) {
 
   const scoreWidth =
     Math.min(
-      Math.abs(pair.score || 0),
+      Math.abs(
+        pair.score ||
+        0
+      ),
       100
     );
 
 
   const scoreColor =
-    (pair.score || 0) >= 0
+    (
+      pair.score ||
+      0
+    ) >= 0
       ? "var(--green)"
       : "var(--red)";
 
@@ -2305,78 +3641,168 @@ function cardHTML(pair, index) {
   const confidence =
     pair.confidence != null
       ? " · %" +
-        pair.confidence.toFixed(0)
+        pair.confidence.toFixed(
+          0
+        )
       : "";
 
 
+  const tokenName =
+    pair.baseName ||
+    pair.baseSymbol ||
+    "Unknown Token";
+
+
+  const tokenSymbol =
+    pair.baseSymbol ||
+    "???";
+
+
   return `
-<div class="card ${favorite ? "fav" : ""} ${alarm ? "alert-hit" : ""}">
+
+<div class="card ${
+    favorite
+      ? "fav"
+      : ""
+  } ${
+    alarm
+      ? "alert-hit"
+      : ""
+  }">
 
   <div class="card-top">
 
-    <div class="rank ${index < 3 ? "top" : ""}">
+    <div class="rank ${
+      index < 3
+        ? "top"
+        : ""
+    }">
       ${index + 1}
     </div>
+
 
     <div class="info">
 
       <div class="sym-row">
 
-        <span class="symbol">
-          ${escapeHTML(pair.baseSymbol)}
+        <div class="token-title">
+
+          <span class="token-name">
+            ${escapeHTML(
+              tokenName
+            )}
+          </span>
+
+          <span class="token-symbol">
+            ${escapeHTML(
+              tokenSymbol
+            )}
+          </span>
+
+        </div>
+
+
+        <span
+          class="dex ${dexClass}"
+        >
+          ${escapeHTML(
+            dexLabel
+          )}
         </span>
 
-        <span class="dex ${dexClass}">
-          ${escapeHTML(dexLabel)}
-        </span>
 
         ${signalHTML}
 
       </div>
 
+
       <div class="meta">
-        ${fmtMoney(pair.liquidity)} liq
+
+        ${fmtMoney(
+          pair.liquidity
+        )}
+        liq
+
         ·
-        ${fmtMoney(pair.volume.h24)} vol
-        ${pair.quoteSymbol
-          ? " · " +
-            escapeHTML(pair.quoteSymbol)
-          : ""}
+
+        ${fmtMoney(
+          pair.volume.h24
+        )}
+        vol
+
+        ${
+          pair.quoteSymbol
+            ? " · " +
+              escapeHTML(
+                pair.quoteSymbol
+              )
+            : ""
+        }
+
       </div>
 
     </div>
 
+
     <div class="right">
 
-      <div class="chg ${isUp ? "up" : "down"}">
-        ${fmtPct(change)}
+      <div class="chg ${
+        isUp
+          ? "up"
+          : "down"
+      }">
+
+        ${fmtPct(
+          change
+        )}
+
       </div>
+
 
       <div class="actions">
 
         <button
-          class="act-btn ${favorite ? "on" : ""}"
+          class="act-btn ${
+            favorite
+              ? "on"
+              : ""
+          }"
           onclick="event.stopPropagation();toggleFavByAddr('${address}')"
           title="Favori"
-        >★</button>
+        >
+          ★
+        </button>
+
 
         <button
-          class="act-btn ${alarm ? "alert-on" : ""}"
+          class="act-btn ${
+            alarm
+              ? "alert-on"
+              : ""
+          }"
           onclick="event.stopPropagation();openAlertByAddr('${address}')"
           title="Alarm"
-        >🔔</button>
+        >
+          🔔
+        </button>
+
 
         <button
           class="act-btn"
           onclick="event.stopPropagation();openAIAnalysis('${address}')"
           title="AI Analiz"
-        >🤖</button>
+        >
+          🤖
+        </button>
+
 
         <button
           class="act-btn"
           onclick="event.stopPropagation();openPair('${escapeAttr(pair.url || "")}')"
           title="DEX"
-        >↗</button>
+        >
+          ↗
+        </button>
 
       </div>
 
@@ -2388,31 +3814,86 @@ function cardHTML(pair, index) {
   <div class="tf-row">
 
     <div class="tf">
-      <div class="lbl">5dk</div>
-      <div class="v ${cls(pair.change.m5)}">
-        ${fmtPct(pair.change.m5)}
+
+      <div class="lbl">
+        5dk
       </div>
+
+      <div class="v ${
+        cls(
+          pair.change.m5
+        )
+      }">
+
+        ${fmtPct(
+          pair.change.m5
+        )}
+
+      </div>
+
     </div>
 
-    <div class="tf">
-      <div class="lbl">1s</div>
-      <div class="v ${cls(pair.change.h1)}">
-        ${fmtPct(pair.change.h1)}
-      </div>
-    </div>
 
     <div class="tf">
-      <div class="lbl">6s</div>
-      <div class="v ${cls(pair.change.h6)}">
-        ${fmtPct(pair.change.h6)}
+
+      <div class="lbl">
+        1s
       </div>
+
+      <div class="v ${
+        cls(
+          pair.change.h1
+        )
+      }">
+
+        ${fmtPct(
+          pair.change.h1
+        )}
+
+      </div>
+
     </div>
 
+
     <div class="tf">
-      <div class="lbl">24s</div>
-      <div class="v ${cls(pair.change.h24)}">
-        ${fmtPct(pair.change.h24)}
+
+      <div class="lbl">
+        6s
       </div>
+
+      <div class="v ${
+        cls(
+          pair.change.h6
+        )
+      }">
+
+        ${fmtPct(
+          pair.change.h6
+        )}
+
+      </div>
+
+    </div>
+
+
+    <div class="tf">
+
+      <div class="lbl">
+        24s
+      </div>
+
+      <div class="v ${
+        cls(
+          pair.change.h24
+        )
+      }">
+
+        ${fmtPct(
+          pair.change.h24
+        )}
+
+      </div>
+
     </div>
 
   </div>
@@ -2425,25 +3906,45 @@ function cardHTML(pair, index) {
     </span>
 
     <span class="score-value">
-      ${(pair.score || 0) > 0 ? "+" : ""}
-      ${(pair.score || 0).toFixed(0)}
+
+      ${
+        (
+          pair.score ||
+          0
+        ) > 0
+          ? "+"
+          : ""
+      }
+
+      ${
+        (
+          pair.score ||
+          0
+        ).toFixed(0)
+      }
+
       ${confidence}
+
     </span>
 
   </div>
 
 
   <div class="bar">
+
     <div
       style="
         width:${scoreWidth}%;
         background:${scoreColor};
       "
     ></div>
+
   </div>
 
 </div>
+
 `;
+
 }
 
 
@@ -2453,8 +3954,13 @@ function cardHTML(pair, index) {
 
 function render() {
 
-  if (currentPage !== "market") {
+  if (
+    currentPage !==
+    "market"
+  ) {
+
     return;
+
   }
 
 
@@ -2468,33 +3974,47 @@ function render() {
     );
 
 
-  if (!list.length) {
+  if (
+    !list.length
+  ) {
 
     element.innerHTML = `
+
       <div class="empty">
+
         Bu filtrede sonuç yok.<br>
+
         <small>
           Yenile veya filtre değiştir.
         </small>
+
       </div>
+
     `;
 
     return;
+
   }
 
 
   element.innerHTML =
     '<div class="list">' +
+
     list
       .map(
-        (pair, index) =>
+        (
+          pair,
+          index
+        ) =>
           cardHTML(
             pair,
             index
           )
       )
       .join("") +
+
     "</div>";
+
 }
 
 
@@ -2510,86 +4030,129 @@ function renderFavorites() {
     );
 
 
-  if (!favorites.length) {
+  if (
+    !favorites.length
+  ) {
 
     element.innerHTML = `
+
       <div class="fav-empty">
-        <div class="big">★</div>
+
+        <div class="big">
+          ★
+        </div>
+
         Henüz favori yok.<br>
+
         Piyasa sekmesinden ★ ile ekle.
+
       </div>
+
     `;
 
     return;
+
   }
 
 
   const items =
-    favorites.map(favorite => {
+    favorites.map(
+      favorite => {
 
-      const live =
-        pairs.find(
-          pair =>
-            pair.pairAddress ===
-            favorite.pairAddress
+        const live =
+          pairs.find(
+            pair =>
+              pair.pairAddress ===
+              favorite.pairAddress
+          );
+
+
+        return (
+          live ||
+          {
+
+            pairAddress:
+              favorite.pairAddress,
+
+            baseSymbol:
+              favorite.symbol,
+
+            baseName:
+              favorite.name ||
+              favorite.symbol,
+
+            baseAddress:
+              favorite.baseAddress ||
+              "",
+
+            dexId:
+              favorite.dexId,
+
+            url:
+              favorite.url,
+
+            priceUsd:
+              0,
+
+            change: {
+
+              m5: 0,
+
+              h1: 0,
+
+              h6: 0,
+
+              h24: 0
+
+            },
+
+            volume: {
+
+              h24: 0
+
+            },
+
+            liquidity:
+              0,
+
+            score:
+              0,
+
+            signal:
+              "neutral",
+
+            confidence:
+              0,
+
+            warnings:
+              []
+
+          }
+
         );
 
-
-      return (
-        live || {
-
-          pairAddress:
-            favorite.pairAddress,
-
-          baseSymbol:
-            favorite.symbol,
-
-          dexId:
-            favorite.dexId,
-
-          url:
-            favorite.url,
-
-          priceUsd: 0,
-
-          change: {
-            m5: 0,
-            h1: 0,
-            h6: 0,
-            h24: 0
-          },
-
-          volume: {
-            h24: 0
-          },
-
-          liquidity: 0,
-
-          score: 0,
-
-          signal:
-            "neutral",
-
-          confidence: 0,
-
-          warnings: []
-        }
-      );
-    });
+      }
+    );
 
 
   element.innerHTML =
     '<div class="list">' +
+
     items
       .map(
-        (pair, index) =>
+        (
+          pair,
+          index
+        ) =>
           cardHTML(
             pair,
             index
           )
       )
       .join("") +
+
     "</div>";
+
 }
 
 
@@ -2605,17 +4168,28 @@ function renderAlertsPage() {
     );
 
 
-  if (!alerts.length) {
+  if (
+    !alerts.length
+  ) {
 
     element.innerHTML = `
+
       <div class="fav-empty">
-        <div class="big">🔔</div>
+
+        <div class="big">
+          🔔
+        </div>
+
         Aktif alarm yok.<br>
+
         Kartlardaki 🔔 ile kur.
+
       </div>
+
     `;
 
     return;
+
   }
 
 
@@ -2632,6 +4206,7 @@ function renderAlertsPage() {
 
     price_below:
       "Fiyat ≤"
+
   };
 
 
@@ -2639,31 +4214,41 @@ function renderAlertsPage() {
     '<div class="list">' +
 
     alerts
-      .map(alert => {
+      .map(
+        alert => {
 
-        const live =
-          pairs.find(
-            pair =>
-              pair.pairAddress ===
-              alert.pairAddress
-          );
-
-
-        const price =
-          live
-            ? formatPrice(
-                live.priceUsd
-              )
-            : "—";
+          const live =
+            pairs.find(
+              pair =>
+                pair.pairAddress ===
+                alert.pairAddress
+            );
 
 
-        const suffix =
-          alert.type.startsWith("pct")
-            ? "%"
-            : "$";
+          const price =
+            live
+              ? formatPrice(
+                  live.priceUsd
+                )
+              : "—";
 
 
-        return `
+          const suffix =
+            alert.type.startsWith(
+              "pct"
+            )
+              ? "%"
+              : "$";
+
+
+          const displayName =
+            alert.name ||
+            alert.symbol ||
+            "Unknown Token";
+
+
+          return `
+
 <div class="card">
 
   <div class="card-top">
@@ -2672,19 +4257,47 @@ function renderAlertsPage() {
 
       <div class="sym-row">
 
-        <span class="symbol">
-          ${escapeHTML(alert.symbol)}
-        </span>
+        <div class="token-title">
+
+          <span class="token-name">
+
+            ${escapeHTML(
+              displayName
+            )}
+
+          </span>
+
+          <span class="token-symbol">
+
+            ${escapeHTML(
+              alert.symbol ||
+              "???"
+            )}
+
+          </span>
+
+        </div>
 
       </div>
 
+
       <div class="meta">
-        ${typeLabel[alert.type] || alert.type}
+
+        ${
+          typeLabel[
+            alert.type
+          ] ||
+          alert.type
+        }
+
         ${alert.value}${suffix}
+
         · Şu an: $${price}
+
       </div>
 
     </div>
+
 
     <button
       class="btn btn-danger"
@@ -2697,11 +4310,15 @@ function renderAlertsPage() {
   </div>
 
 </div>
+
 `;
-      })
+
+        }
+      )
       .join("") +
 
     "</div>";
+
 }
 
 
@@ -2709,21 +4326,28 @@ function renderAlertsPage() {
    ACTIONS
 ========================================================= */
 
-function openPair(url) {
+function openPair(
+  url
+) {
 
   if (!url) {
+
     return;
+
   }
 
 
   try {
 
-    if (tg?.openLink) {
+    if (
+      tg?.openLink
+    ) {
 
       tg.openLink(
         url,
         {
-          try_instant_view: false
+          try_instant_view:
+            false
         }
       );
 
@@ -2734,6 +4358,7 @@ function openPair(url) {
         "_blank",
         "noopener,noreferrer"
       );
+
     }
 
   } catch (_) {
@@ -2742,26 +4367,43 @@ function openPair(url) {
       url,
       "_blank"
     );
+
   }
+
 }
 
 
-function showAlert(message) {
+function showAlert(
+  message
+) {
 
-  if (tg?.showAlert) {
+  if (
+    tg?.showAlert
+  ) {
 
-    tg.showAlert(message);
+    tg.showAlert(
+      message
+    );
 
   } else {
 
-    alert(message);
+    alert(
+      message
+    );
+
   }
+
 }
 
 
-function showPopup(title, message) {
+function showPopup(
+  title,
+  message
+) {
 
-  if (tg?.showPopup) {
+  if (
+    tg?.showPopup
+  ) {
 
     tg.showPopup({
 
@@ -2771,7 +4413,8 @@ function showPopup(title, message) {
 
       buttons: [
         {
-          type: "ok"
+          type:
+            "ok"
         }
       ]
 
@@ -2784,7 +4427,9 @@ function showPopup(title, message) {
       "\n\n" +
       message
     );
+
   }
+
 }
 
 
@@ -2793,7 +4438,9 @@ function showPopup(title, message) {
 ========================================================= */
 
 window.toggleFavByAddr =
-  function(address) {
+  function(
+    address
+  ) {
 
     const pair =
       pairs.find(
@@ -2813,9 +4460,12 @@ window.toggleFavByAddr =
 
     if (pair) {
 
-      toggleFav(pair);
+      toggleFav(
+        pair
+      );
 
       return;
+
     }
 
 
@@ -2829,18 +4479,31 @@ window.toggleFavByAddr =
         baseSymbol:
           favorite.symbol,
 
+        baseName:
+          favorite.name ||
+          favorite.symbol,
+
+        baseAddress:
+          favorite.baseAddress ||
+          "",
+
         dexId:
           favorite.dexId,
 
         url:
           favorite.url
+
       });
+
     }
+
   };
 
 
 window.openAlertByAddr =
-  function(address) {
+  function(
+    address
+  ) {
 
     const pair =
       pairs.find(
@@ -2852,22 +4515,28 @@ window.openAlertByAddr =
 
     if (pair) {
 
-      openAlertModal(pair);
+      openAlertModal(
+        pair
+      );
 
     } else {
 
       showAlert(
         "Bu token şu an listede değil."
       );
+
     }
+
   };
 
 
 window.openAIAnalysis =
   openAIAnalysis;
 
+
 window.removeAlert =
   removeAlert;
+
 
 window.openPair =
   openPair;
@@ -2881,36 +4550,41 @@ document
   .querySelectorAll(
     "#mainTabs .tab"
   )
-  .forEach(tab => {
+  .forEach(
+    tab => {
 
-    tab.addEventListener(
-      "click",
-      () => {
+      tab.addEventListener(
+        "click",
+        () => {
 
-        document
-          .querySelectorAll(
-            "#mainTabs .tab"
-          )
-          .forEach(item =>
-            item.classList.remove(
-              "active"
+          document
+            .querySelectorAll(
+              "#mainTabs .tab"
             )
+            .forEach(
+              item =>
+                item.classList.remove(
+                  "active"
+                )
+            );
+
+
+          tab.classList.add(
+            "active"
           );
 
 
-        tab.classList.add(
-          "active"
-        );
+          currentTab =
+            tab.dataset.tab;
 
 
-        currentTab =
-          tab.dataset.tab;
+          render();
 
+        }
+      );
 
-        render();
-      }
-    );
-  });
+    }
+  );
 
 
 /* =========================================================
@@ -2918,63 +4592,77 @@ document
 ========================================================= */
 
 document
-  .querySelectorAll(".chip")
-  .forEach(chip => {
+  .querySelectorAll(
+    ".chip"
+  )
+  .forEach(
+    chip => {
 
-    chip.addEventListener(
-      "click",
-      () => {
+      chip.addEventListener(
+        "click",
+        () => {
 
-        if (chip.dataset.tf) {
+          if (
+            chip.dataset.tf
+          ) {
 
-          document
-            .querySelectorAll(
-              "[data-tf]"
-            )
-            .forEach(item =>
-              item.classList.remove(
-                "active"
+            document
+              .querySelectorAll(
+                "[data-tf]"
               )
+              .forEach(
+                item =>
+                  item.classList.remove(
+                    "active"
+                  )
+              );
+
+
+            chip.classList.add(
+              "active"
             );
 
 
-          chip.classList.add(
-            "active"
-          );
+            currentTf =
+              chip.dataset.tf;
+
+          }
 
 
-          currentTf =
-            chip.dataset.tf;
-        }
+          if (
+            chip.dataset.vol
+          ) {
 
-
-        if (chip.dataset.vol) {
-
-          document
-            .querySelectorAll(
-              "[data-vol]"
-            )
-            .forEach(item =>
-              item.classList.remove(
-                "active"
+            document
+              .querySelectorAll(
+                "[data-vol]"
               )
+              .forEach(
+                item =>
+                  item.classList.remove(
+                    "active"
+                  )
+              );
+
+
+            chip.classList.add(
+              "active"
             );
 
 
-          chip.classList.add(
-            "active"
-          );
+            volFilter =
+              chip.dataset.vol;
+
+          }
 
 
-          volFilter =
-            chip.dataset.vol;
+          render();
+
         }
+      );
 
-
-        render();
-      }
-    );
-  });
+    }
+  );
 
 
 /* =========================================================
@@ -2982,100 +4670,114 @@ document
 ========================================================= */
 
 document
-  .querySelectorAll(".nav-item")
-  .forEach(item => {
+  .querySelectorAll(
+    ".nav-item"
+  )
+  .forEach(
+    item => {
 
-    item.addEventListener(
-      "click",
-      () => {
+      item.addEventListener(
+        "click",
+        () => {
 
-        document
-          .querySelectorAll(
-            ".nav-item"
-          )
-          .forEach(nav =>
-            nav.classList.remove(
-              "active"
+          document
+            .querySelectorAll(
+              ".nav-item"
             )
-          );
+            .forEach(
+              nav =>
+                nav.classList.remove(
+                  "active"
+                )
+            );
 
 
-        item.classList.add(
-          "active"
-        );
-
-
-        currentPage =
-          item.dataset.page;
-
-
-        document
-          .querySelectorAll(".page")
-          .forEach(page =>
-            page.classList.remove(
-              "active"
-            )
-          );
-
-
-        document
-          .getElementById(
-            "page-" +
-            currentPage
-          )
-          .classList.add(
+          item.classList.add(
             "active"
           );
 
 
-        const market =
-          currentPage === "market";
+          currentPage =
+            item.dataset.page;
 
 
-        document.getElementById(
-          "filters"
-        ).style.display =
-          market
-            ? "flex"
-            : "none";
+          document
+            .querySelectorAll(
+              ".page"
+            )
+            .forEach(
+              page =>
+                page.classList.remove(
+                  "active"
+                )
+            );
 
 
-        document.getElementById(
-          "mainTabs"
-        ).style.display =
-          market
-            ? "flex"
-            : "none";
+          document
+            .getElementById(
+              "page-" +
+              currentPage
+            )
+            .classList.add(
+              "active"
+            );
 
 
-        if (
-          currentPage ===
-          "favorites"
-        ) {
+          const market =
+            currentPage ===
+            "market";
 
-          renderFavorites();
+
+          document.getElementById(
+            "filters"
+          ).style.display =
+            market
+              ? "flex"
+              : "none";
+
+
+          document.getElementById(
+            "mainTabs"
+          ).style.display =
+            market
+              ? "flex"
+              : "none";
+
+
+          if (
+            currentPage ===
+            "favorites"
+          ) {
+
+            renderFavorites();
+
+          }
+
+
+          if (
+            currentPage ===
+            "alerts"
+          ) {
+
+            renderAlertsPage();
+
+          }
+
+
+          if (
+            currentPage ===
+            "market"
+          ) {
+
+            render();
+
+          }
+
         }
+      );
 
-
-        if (
-          currentPage ===
-          "alerts"
-        ) {
-
-          renderAlertsPage();
-        }
-
-
-        if (
-          currentPage ===
-          "market"
-        ) {
-
-          render();
-        }
-      }
-    );
-  });
+    }
+  );
 
 
 /* =========================================================
@@ -3083,7 +4785,9 @@ document
 ========================================================= */
 
 document
-  .getElementById("refreshBtn")
+  .getElementById(
+    "refreshBtn"
+  )
   .addEventListener(
     "click",
     loadData
@@ -3091,7 +4795,9 @@ document
 
 
 document
-  .getElementById("modalClose")
+  .getElementById(
+    "modalClose"
+  )
   .addEventListener(
     "click",
     closeModal
@@ -3099,7 +4805,9 @@ document
 
 
 document
-  .getElementById("modalCancel")
+  .getElementById(
+    "modalCancel"
+  )
   .addEventListener(
     "click",
     closeModal
@@ -3107,7 +4815,9 @@ document
 
 
 document
-  .getElementById("modalSave")
+  .getElementById(
+    "modalSave"
+  )
   .addEventListener(
     "click",
     saveAlert
@@ -3115,7 +4825,9 @@ document
 
 
 document
-  .getElementById("alertModal")
+  .getElementById(
+    "alertModal"
+  )
   .addEventListener(
     "click",
     event => {
@@ -3126,13 +4838,17 @@ document
       ) {
 
         closeModal();
+
       }
+
     }
   );
 
 
 document
-  .getElementById("aiModalClose")
+  .getElementById(
+    "aiModalClose"
+  )
   .addEventListener(
     "click",
     closeAIModal
@@ -3140,7 +4856,9 @@ document
 
 
 document
-  .getElementById("aiModalOk")
+  .getElementById(
+    "aiModalOk"
+  )
   .addEventListener(
     "click",
     closeAIModal
@@ -3148,7 +4866,9 @@ document
 
 
 document
-  .getElementById("aiModal")
+  .getElementById(
+    "aiModal"
+  )
   .addEventListener(
     "click",
     event => {
@@ -3159,7 +4879,9 @@ document
       ) {
 
         closeAIModal();
+
       }
+
     }
   );
 
@@ -3171,8 +4893,12 @@ document
 setInterval(
   () => {
 
-    if (!isLoading) {
+    if (
+      !isLoading
+    ) {
+
       loadData();
+
     }
 
   },
