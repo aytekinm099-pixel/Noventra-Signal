@@ -6,37 +6,17 @@
 <title>Noventra Signal</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-:root {
-  --bg:#070b14; --card:#0f1623; --card2:#151e2e; --text:#e8eef7; --muted:#6b7a94;
-  --blue:#3b82f6; --cyan:#22d3ee; --green:#10b981; --red:#f43f5e; --orange:#f59e0b;
-  --border:rgba(59,130,246,.12); --glow:rgba(59,130,246,.25);
-}
+:root{--bg:#070b14;--card:#0f1623;--card2:#151e2e;--text:#e8eef7;--muted:#6b7a94;--blue:#3b82f6;--cyan:#22d3ee;--green:#10b981;--red:#f43f5e;--orange:#f59e0b;--border:rgba(59,130,246,.12);--glow:rgba(59,130,246,.25)}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;
-  background:radial-gradient(circle at 50% -20%,rgba(37,99,235,.13),transparent 40%),var(--bg);
-  color:var(--text);min-height:100vh;padding-bottom:76px;line-height:1.4;
-}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;background:radial-gradient(circle at 50% -20%,rgba(37,99,235,.13),transparent 40%),var(--bg);color:var(--text);min-height:100vh;padding-bottom:76px;line-height:1.4}
 button,input,select{font:inherit}
-.header{
-  padding:15px 14px 10px;background:linear-gradient(180deg,rgba(12,18,32,.98),rgba(7,11,20,.96));
-  position:sticky;top:0;z-index:40;border-bottom:1px solid var(--border);backdrop-filter:blur(18px);
-}
+.header{padding:15px 14px 10px;background:linear-gradient(180deg,rgba(12,18,32,.98),rgba(7,11,20,.96));position:sticky;top:0;z-index:40;border-bottom:1px solid var(--border);backdrop-filter:blur(18px)}
 .header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .brand{display:flex;align-items:center;gap:10px}
-.brand-icon{
-  width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#1d4ed8,#7c3aed);
-  display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 0 18px var(--glow);
-}
-.brand h1{
-  font-size:1.08rem;font-weight:800;letter-spacing:-.4px;
-  background:linear-gradient(90deg,#e0e7ff,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
+.brand-icon{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#1d4ed8,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 0 18px var(--glow)}
+.brand h1{font-size:1.08rem;font-weight:800;letter-spacing:-.4px;background:linear-gradient(90deg,#e0e7ff,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .brand span{display:block;font-size:.61rem;color:var(--muted);font-weight:500;margin-top:1px}
-.icon-btn{
-  width:35px;height:35px;border-radius:10px;border:1px solid var(--border);background:var(--card);
-  color:var(--text);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;
-}
+.icon-btn{width:35px;height:35px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .icon-btn.spin{animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .tabs{display:flex;gap:4px;background:var(--card);padding:3px;border-radius:12px}
@@ -44,30 +24,18 @@ button,input,select{font:inherit}
 .tab.active{background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;box-shadow:0 2px 12px rgba(37,99,235,.35)}
 .filters{display:flex;gap:6px;padding:10px 14px 0;overflow-x:auto;scrollbar-width:none}
 .filters::-webkit-scrollbar{display:none}
-.chip{
-  flex-shrink:0;padding:6px 11px;border-radius:20px;font-size:.69rem;font-weight:550;
-  background:var(--card);color:var(--muted);border:1px solid var(--border);cursor:pointer;
-}
+.chip{flex-shrink:0;padding:6px 11px;border-radius:20px;font-size:.69rem;font-weight:550;background:var(--card);color:var(--muted);border:1px solid var(--border);cursor:pointer}
 .chip.active{background:rgba(59,130,246,.18);border-color:#3b82f6;color:#93c5fd}
 .status-bar{display:flex;justify-content:space-between;padding:8px 14px 4px;font-size:.65rem;color:var(--muted)}
-.alert-banner{
-  margin:8px 12px 0;padding:10px 12px;border-radius:10px;background:rgba(245,158,11,.12);
-  border:1px solid rgba(245,158,11,.3);color:#fbbf24;font-size:.76rem;display:none;
-}
+.alert-banner{margin:8px 12px 0;padding:10px 12px;border-radius:10px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:#fbbf24;font-size:.76rem;display:none}
 .alert-banner.show{display:block}
 .page{display:none}.page.active{display:block}
 .list{padding:4px 12px 18px;display:flex;flex-direction:column;gap:8px}
-.card{
-  background:linear-gradient(145deg,rgba(15,22,35,.98),rgba(12,19,31,.98));
-  border-radius:14px;padding:12px 13px;border:1px solid var(--border);position:relative;
-}
+.card{background:linear-gradient(145deg,rgba(15,22,35,.98),rgba(12,19,31,.98));border-radius:14px;padding:12px 13px;border:1px solid var(--border)}
 .card.fav{border-color:rgba(129,140,248,.38)}
 .card.alert-hit{border-color:var(--orange);box-shadow:0 0 14px rgba(245,158,11,.18)}
 .card-top{display:flex;align-items:center;gap:9px}
-.rank{
-  width:23px;height:23px;border-radius:7px;background:rgba(255,255,255,.04);
-  display:flex;align-items:center;justify-content:center;font-size:.67rem;font-weight:750;color:var(--muted);flex-shrink:0;
-}
+.rank{width:23px;height:23px;border-radius:7px;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;font-size:.67rem;font-weight:750;color:var(--muted);flex-shrink:0}
 .rank.top{background:rgba(59,130,246,.2);color:#93c5fd}
 .info{flex:1;min-width:0}
 .sym-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
@@ -83,13 +51,9 @@ button,input,select{font:inherit}
 .signal.sell{background:rgba(244,63,94,.12);color:#fda4af}
 .meta{font-size:.62rem;color:var(--muted);margin-top:3px}
 .right{text-align:right;min-width:78px}
-.chg{font-weight:750;font-size:.97rem}
-.chg.up{color:var(--green)}.chg.down{color:var(--red)}
+.chg{font-weight:750;font-size:.97rem}.chg.up{color:var(--green)}.chg.down{color:var(--red)}
 .actions{display:flex;gap:4px;margin-top:3px;justify-content:flex-end}
-.act-btn{
-  width:26px;height:26px;border-radius:7px;border:1px solid var(--border);background:var(--card2);
-  color:var(--muted);font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;
-}
+.act-btn{width:26px;height:26px;border-radius:7px;border:1px solid var(--border);background:var(--card2);color:var(--muted);font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .act-btn.on{color:#a5b4fc;border-color:#6366f1;background:rgba(99,102,241,.15)}
 .act-btn.alert-on{color:var(--orange);border-color:var(--orange);background:rgba(245,158,11,.08)}
 .tf-row{display:flex;gap:5px;margin-top:9px}
@@ -100,35 +64,23 @@ button,input,select{font:inherit}
 .score-value{color:#93c5fd;font-weight:700}
 .bar{height:3px;background:rgba(255,255,255,.05);border-radius:2px;margin-top:3px;overflow:hidden}
 .bar>div{height:100%;border-radius:2px}
-.bottom-nav{
-  position:fixed;bottom:0;left:0;right:0;background:rgba(12,18,32,.96);border-top:1px solid var(--border);
-  display:flex;z-index:50;padding:6px 8px calc(6px + env(safe-area-inset-bottom));backdrop-filter:blur(18px);
-}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(12,18,32,.96);border-top:1px solid var(--border);display:flex;z-index:50;padding:6px 8px calc(6px + env(safe-area-inset-bottom));backdrop-filter:blur(18px)}
 .nav-item{flex:1;text-align:center;padding:6px 2px;font-size:.64rem;color:var(--muted);cursor:pointer}
 .nav-item.active{color:#93c5fd}
 .nav-item .ico{font-size:16px;display:block;margin-bottom:2px}
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:100;display:none;align-items:flex-end;justify-content:center}
 .modal-bg.show{display:flex}
-.modal{
-  background:#111827;width:100%;max-width:420px;border-radius:18px 18px 0 0;padding:18px 16px 28px;
-  border-top:1px solid var(--border);max-height:85vh;overflow-y:auto;
-}
+.modal{background:#111827;width:100%;max-width:420px;border-radius:18px 18px 0 0;padding:18px 16px 28px;border-top:1px solid var(--border);max-height:85vh;overflow-y:auto}
 .modal h3{font-size:1rem;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
 .modal label{display:block;font-size:.74rem;color:var(--muted);margin-bottom:5px;margin-top:10px}
-.modal input,.modal select{
-  width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--border);
-  background:var(--card);color:var(--text);font-size:.94rem;outline:none;
-}
+.modal input,.modal select{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:.94rem;outline:none}
 .modal-actions{display:flex;gap:8px;margin-top:16px}
 .btn{flex:1;padding:12px;border-radius:11px;font-weight:650;font-size:.88rem;cursor:pointer;border:none}
 .btn-primary{background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff}
 .btn-ghost{background:var(--card);color:var(--muted);border:1px solid var(--border)}
 .btn-danger{background:rgba(244,63,94,.15);color:#fb7185;border:1px solid rgba(244,63,94,.3)}
 .empty,.loading{text-align:center;padding:48px 20px;color:var(--muted);font-size:.86rem}
-.loader{
-  width:24px;height:24px;margin:0 auto 10px;border:2px solid rgba(255,255,255,.08);
-  border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;
-}
+.loader{width:24px;height:24px;margin:0 auto 10px;border:2px solid rgba(255,255,255,.08);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
 .fav-empty{text-align:center;padding:42px 20px;color:var(--muted)}
 .fav-empty .big{font-size:2rem;margin-bottom:8px}
 .ai-body{font-size:.82rem;line-height:1.55;color:#dbe4f5;white-space:pre-wrap}
@@ -140,10 +92,7 @@ button,input,select{font:inherit}
   <div class="header-top">
     <div class="brand">
       <div class="brand-icon">◈</div>
-      <div>
-        <h1>Noventra Signal</h1>
-        <span>TON · DeDust Auto-Discovery · AI</span>
-      </div>
+      <div><h1>Noventra Signal</h1><span>TON · Fast Scan · AI Signals</span></div>
     </div>
     <button class="icon-btn" id="refreshBtn" title="Yenile">↻</button>
   </div>
@@ -154,9 +103,7 @@ button,input,select{font:inherit}
     <div class="tab" data-tab="signals">Sinyal</div>
   </div>
 </div>
-
 <div class="alert-banner" id="alertBanner"></div>
-
 <div class="filters" id="filters">
   <div class="chip active" data-tf="h1">1 Saat</div>
   <div class="chip" data-tf="h6">6 Saat</div>
@@ -165,28 +112,15 @@ button,input,select{font:inherit}
   <div class="chip" data-vol="high">Yüksek Hacim</div>
   <div class="chip" data-vol="dedust">DeDust</div>
 </div>
-
-<div class="status-bar">
-  <span id="statusText">Hazırlanıyor...</span>
-  <span id="countText"></span>
-</div>
-
-<div class="page active" id="page-market">
-  <div id="content"><div class="loading"><div class="loader"></div>DeDust pool keşfi başlıyor...</div></div>
-</div>
-<div class="page" id="page-favorites">
-  <div id="favContent"><div class="fav-empty"><div class="big">★</div>Henüz favori yok.<br>Kartlardaki ★ ile ekle.</div></div>
-</div>
-<div class="page" id="page-alerts">
-  <div id="alertContent"><div class="fav-empty"><div class="big">🔔</div>Aktif alarm yok.<br>Kartlardaki 🔔 ile alarm kur.</div></div>
-</div>
-
+<div class="status-bar"><span id="statusText">Hazırlanıyor...</span><span id="countText"></span></div>
+<div class="page active" id="page-market"><div id="content"><div class="loading"><div class="loader"></div>TON piyasası taranıyor...</div></div></div>
+<div class="page" id="page-favorites"><div id="favContent"><div class="fav-empty"><div class="big">★</div>Henüz favori yok.<br>Kartlardaki ★ ile ekle.</div></div></div>
+<div class="page" id="page-alerts"><div id="alertContent"><div class="fav-empty"><div class="big">🔔</div>Aktif alarm yok.<br>Kartlardaki 🔔 ile alarm kur.</div></div></div>
 <div class="bottom-nav">
   <div class="nav-item active" data-page="market"><span class="ico">📊</span>Piyasa</div>
   <div class="nav-item" data-page="favorites"><span class="ico">★</span>Favoriler</div>
   <div class="nav-item" data-page="alerts"><span class="ico">🔔</span>Alarmlar</div>
 </div>
-
 <div class="modal-bg" id="alertModal">
   <div class="modal">
     <h3><span>Alarm Kur</span><span id="modalClose" style="font-size:1.2rem;cursor:pointer;color:var(--muted)">✕</span></h3>
@@ -206,7 +140,6 @@ button,input,select{font:inherit}
     </div>
   </div>
 </div>
-
 <div class="modal-bg" id="aiModal">
   <div class="modal">
     <h3><span>🤖 AI Analiz</span><span id="aiModalClose" style="font-size:1.2rem;cursor:pointer;color:var(--muted)">✕</span></h3>
@@ -214,13 +147,7 @@ button,input,select{font:inherit}
     <div class="modal-actions"><button class="btn btn-primary" id="aiModalOk">Tamam</button></div>
   </div>
 </div>
-
 <script>
-/* =========================================================
-   NOVENTRA SIGNAL — EXPERT BUILD
-   DeDust Auto-Discovery · Enhanced Engine · AI Analysis
-========================================================= */
-
 const tg = window.Telegram?.WebApp || null;
 if (tg) {
   tg.ready(); tg.expand();
@@ -231,250 +158,144 @@ if (tg) {
     if (tp.text_color) document.documentElement.style.setProperty("--text", tp.text_color);
     if (tp.hint_color) document.documentElement.style.setProperty("--muted", tp.hint_color);
     if (tp.button_color) document.documentElement.style.setProperty("--blue", tp.button_color);
-  } catch (_) {}
+  } catch(_){}
 }
 
-const STORAGE_FAV = "noventra_favs_v4";
-const STORAGE_ALERTS = "noventra_alerts_v4";
-
-function loadJSON(key, fallback = []) {
-  try {
-    const v = JSON.parse(localStorage.getItem(key));
-    return Array.isArray(v) ? v : fallback;
-  } catch { return fallback; }
-}
-function saveJSON(key, value) {
-  try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) {}
-}
+const STORAGE_FAV = "noventra_favs_v5";
+const STORAGE_ALERTS = "noventra_alerts_v5";
+function loadJSON(k, d=[]) { try { const v=JSON.parse(localStorage.getItem(k)); return Array.isArray(v)?v:d; } catch { return d; } }
+function saveJSON(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch(_){} }
 
 let favorites = loadJSON(STORAGE_FAV);
 let alerts = loadJSON(STORAGE_ALERTS);
 let pairs = [];
-let discoveredTokenCount = 0;
-let currentTab = "gainers";
-let currentTf = "h1";
-let volFilter = "all";
-let currentPage = "market";
-let isLoading = false;
-let alertTarget = null;
+let currentTab = "gainers", currentTf = "h1", volFilter = "all", currentPage = "market";
+let isLoading = false, alertTarget = null;
 
-const MIN_VOL = 1500;
-const MIN_LIQ = 800;
-const HIGH_VOL = 25000;
-const REFRESH_MS = 90000;
-const MAX_RESULTS = 100;
-const MAX_DEDUST_TOKENS = 400;
-const DEDUST_POOLS_API = "https://api.dedust.io/v2/pools";
+const MIN_VOL = 800, MIN_LIQ = 400, HIGH_VOL = 20000, REFRESH_MS = 75000, MAX_RESULTS = 120;
 
-const LEGACY_QUERIES = [
-  "TON","USDT","USDC","STON","DeDust","NOT","DOGS","HMSTR","CATI","MAJOR",
-  "GRAM","SCALE","ANON","FISH","REDO","MEME","AI","PUNK","DUST","KINGY",
-  "WALL","COFFEE","TIME","PROXY","JETTON","ARBUZ","LAVE","BOLT","STORM","ORACLE",
-  "GEMS","LUNA","PUFF","WOLF","MOON","PEPE","DOGE","SHIB","CAT","DOG",
-  "FROG","BEAR","BULL","GOLD","DIAMOND","INU","TOKEN","SWAP","FARM","YIELD",
-  "STAKE","LOCK","DAO","NFT","META","VERSE","CHAIN","BLOCK","NODE","LP",
-  "POOL","BRIDGE","WRAP","WTON","DEGEN","ALPHA","HODL","APE","MOONSHOT"
+/* Daha odaklı ve hızlı arama seti */
+const QUERIES = [
+  "TON","USDT","USDC","STON","dedust",
+  "NOT","DOGS","HMSTR","CATI","MAJOR","GRAM","SCALE","ANON","FISH","REDO",
+  "DUST","KINGY","JETTON","ARBUZ","LAVE","BOLT","STORM","ORACLE","GEMS",
+  "PUFF","WOLF","MOON","PEPE","DOGE","SHIB","CAT","DOG","FROG","BEAR",
+  "INU","MEME","AI","PUNK","DEGEN","ALPHA","HODL","APE","NFT","DAO",
+  "WALL","COFFEE","TIME","PROXY","LUNA","GOLD","DIAMOND","BULL"
 ];
 
-/* ---------- utils ---------- */
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
-function escapeHTML(v) {
-  return String(v ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
-}
-function escapeAttr(v) {
-  return String(v ?? "").replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/"/g,"&quot;");
-}
+function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
+function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+function escapeHTML(v){ return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"); }
+function escapeAttr(v){ return String(v??"").replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/"/g,"&quot;"); }
 
-/* ---------- DeDust discovery ---------- */
-function isNativeTON(asset) {
-  if (!asset) return false;
-  if (typeof asset === "string") {
-    const s = asset.toLowerCase();
-    return s === "native" || s === "ton";
-  }
-  const t = String(asset.type || asset.assetType || "").toLowerCase();
-  return t === "native" || t === "ton" || t === "native_coin";
-}
-
-function getAssetAddress(asset) {
-  if (!asset || isNativeTON(asset)) return null;
-  if (typeof asset === "string") return asset;
-  return asset.address || asset.jetton || asset.jettonAddress || asset.asset?.address || asset.id || null;
-}
-
-function getAssetSymbol(asset) {
-  if (!asset || typeof asset === "string") return "";
-  return asset.symbol || asset.metadata?.symbol || asset.jetton?.symbol || asset.asset?.symbol || "";
-}
-
-async function fetchAllDeDustPools(attempt = 0) {
+async function fetchQuery(q, attempt=0) {
   try {
-    const res = await fetch(DEDUST_POOLS_API, { cache: "no-store" });
-    if (res.status === 429 && attempt < 2) {
-      await sleep(1000 * (attempt + 1));
-      return fetchAllDeDustPools(attempt + 1);
-    }
-    if (!res.ok) return [];
-    const data = await res.json();
-    return Array.isArray(data) ? data : [];
-  } catch (e) {
-    console.error("DeDust pools:", e);
-    return [];
-  }
-}
-
-function extractDeDustTokens(pools) {
-  const map = new Map();
-  for (const pool of pools) {
-    if (!pool || !Array.isArray(pool.assets)) continue;
-    for (const asset of pool.assets) {
-      const address = getAssetAddress(asset);
-      if (!address) continue;
-      if (!map.has(address)) {
-        map.set(address, { address, symbol: getAssetSymbol(asset) || "UNKNOWN" });
-      }
-    }
-  }
-  return [...map.values()];
-}
-
-/* ---------- DexScreener ---------- */
-async function fetchQuery(query, attempt = 0) {
-  try {
-    const res = await fetch(
-      "https://api.dexscreener.com/latest/dex/search?q=" + encodeURIComponent(query),
-      { cache: "no-store" }
-    );
-    if (res.status === 429 && attempt < 2) {
-      await sleep(700 * (attempt + 1));
-      return fetchQuery(query, attempt + 1);
-    }
+    const res = await fetch("https://api.dexscreener.com/latest/dex/search?q="+encodeURIComponent(q), {cache:"no-store"});
+    if (res.status===429 && attempt<2) { await sleep(500*(attempt+1)); return fetchQuery(q, attempt+1); }
     if (!res.ok) return [];
     const data = await res.json();
     return Array.isArray(data.pairs) ? data.pairs : [];
   } catch { return []; }
 }
 
-async function fetchInBatches(queries, batchSize = 5) {
+async function fetchInBatches(queries, size=8) {
   const out = [];
-  for (let i = 0; i < queries.length; i += batchSize) {
-    const batch = queries.slice(i, i + batchSize);
+  for (let i=0; i<queries.length; i+=size) {
+    const batch = queries.slice(i, i+size);
     const results = await Promise.all(batch.map(fetchQuery));
     for (const r of results) out.push(...r);
-    if (i + batchSize < queries.length) await sleep(120);
+    if (i+size < queries.length) await sleep(60);
   }
   return out;
 }
 
 function normalizePair(p) {
-  if (!p || p.chainId !== "ton" || !p.pairAddress) return null;
-  const volume = Number(p.volume?.h24 || 0);
-  const liquidity = Number(p.liquidity?.usd || 0);
+  if (!p || p.chainId!=="ton" || !p.pairAddress) return null;
+  const volume = Number(p.volume?.h24||0);
+  const liquidity = Number(p.liquidity?.usd||0);
   if (volume < MIN_VOL || liquidity < MIN_LIQ) return null;
-  const dex = String(p.dexId || "unknown").toLowerCase();
+  const dex = String(p.dexId||"").toLowerCase();
   return {
     pairAddress: p.pairAddress,
-    url: p.url || "",
-    dexId: p.dexId || "Unknown",
+    url: p.url||"",
+    dexId: p.dexId||"Unknown",
     isDedust: dex.includes("dedust"),
     isSton: dex.includes("ston"),
-    baseSymbol: String(p.baseToken?.symbol || "???").slice(0, 15),
-    baseAddress: String(p.baseToken?.address || ""),
-    quoteSymbol: String(p.quoteToken?.symbol || "").slice(0, 12),
-    quoteAddress: String(p.quoteToken?.address || ""),
-    priceUsd: Number(p.priceUsd || 0),
+    baseSymbol: String(p.baseToken?.symbol||"???").slice(0,15),
+    quoteSymbol: String(p.quoteToken?.symbol||"").slice(0,12),
+    priceUsd: Number(p.priceUsd||0),
     change: {
-      m5: Number(p.priceChange?.m5 || 0),
-      h1: Number(p.priceChange?.h1 || 0),
-      h6: Number(p.priceChange?.h6 || 0),
-      h24: Number(p.priceChange?.h24 || 0)
+      m5: Number(p.priceChange?.m5||0),
+      h1: Number(p.priceChange?.h1||0),
+      h6: Number(p.priceChange?.h6||0),
+      h24: Number(p.priceChange?.h24||0)
     },
     volume: { h24: volume },
-    liquidity
+    liquidity,
+    txns: Number(p.txns?.h24?.buys||0) + Number(p.txns?.h24?.sells||0)
   };
 }
 
-/* ---------- Signal Engine ---------- */
 function calculateSignal(pair) {
   const c = pair.change;
-  const momentum = clamp(c.h1 * 1.8 + c.h6 * 0.9 + c.h24 * 0.35, -100, 100);
-  const acceleration = clamp((c.h1 - c.m5) * 0.8, -30, 30);
-  const volumeFactor = clamp(Math.log10(Math.max(pair.volume.h24, 1000)) / 6, 0.5, 1.25);
-  let liquidityFactor = clamp(Math.log10(Math.max(pair.liquidity, 1000)) / 6, 0.5, 1.2);
-  if (pair.liquidity < 3000) liquidityFactor *= 0.75;
+  const momentum = clamp(c.h1*1.8 + c.h6*0.9 + c.h24*0.35, -100, 100);
+  const acceleration = clamp((c.h1 - c.m5)*0.8, -30, 30);
+  const volumeFactor = clamp(Math.log10(Math.max(pair.volume.h24,1000))/6, 0.5, 1.25);
+  let liquidityFactor = clamp(Math.log10(Math.max(pair.liquidity,1000))/6, 0.5, 1.2);
+  if (pair.liquidity < 2500) liquidityFactor *= 0.72;
 
   let consistency = 1;
-  if ((c.h1 > 0 && c.h6 > 0) || (c.h1 < 0 && c.h6 < 0)) consistency = 1.12;
-  else if ((c.h1 > 3 && c.h6 < -2) || (c.h1 < -3 && c.h6 > 2)) consistency = 0.82;
+  if ((c.h1>0&&c.h6>0)||(c.h1<0&&c.h6<0)) consistency = 1.12;
+  else if ((c.h1>3&&c.h6<-2)||(c.h1<-3&&c.h6>2)) consistency = 0.82;
 
   let spikeBonus = 1;
-  if (pair.volume.h24 > 80000) spikeBonus = 1.08;
-  if (pair.volume.h24 > 200000) spikeBonus = 1.15;
+  if (pair.volume.h24 > 50000) spikeBonus = 1.08;
+  if (pair.volume.h24 > 150000) spikeBonus = 1.15;
 
-  let score = (momentum * 0.70 + acceleration * 0.20) * volumeFactor * liquidityFactor * consistency * spikeBonus;
+  let score = (momentum*0.70 + acceleration*0.20) * volumeFactor * liquidityFactor * consistency * spikeBonus;
   score = clamp(score, -100, 100);
 
   let signal = "neutral";
-  if (score >= 58 && c.h1 >= 5 && c.h6 >= 2) signal = "strong-buy";
-  else if (score >= 28 && c.h1 >= 2) signal = "buy";
-  else if (score <= -58 && c.h1 <= -5 && c.h6 <= -2) signal = "strong-sell";
-  else if (score <= -28 && c.h1 <= -2) signal = "sell";
+  if (score>=55 && c.h1>=4 && c.h6>=1.5) signal = "strong-buy";
+  else if (score>=25 && c.h1>=1.5) signal = "buy";
+  else if (score<=-55 && c.h1<=-4 && c.h6<=-1.5) signal = "strong-sell";
+  else if (score<=-25 && c.h1<=-1.5) signal = "sell";
 
-  let confidence = 50;
-  confidence += Math.min(Math.abs(score) * 0.35, 30);
-  if (pair.volume.h24 > 30000) confidence += 8;
-  if (pair.liquidity > 10000) confidence += 7;
+  let confidence = 48;
+  confidence += Math.min(Math.abs(score)*0.35, 30);
+  if (pair.volume.h24 > 25000) confidence += 8;
+  if (pair.liquidity > 8000) confidence += 7;
   if (consistency > 1) confidence += 5;
-  if (pair.liquidity < 3000) confidence -= 12;
-  if (Math.abs(c.h1) > 25) confidence -= 8;
-  confidence = clamp(confidence, 15, 95);
+  if (pair.liquidity < 2500) confidence -= 14;
+  if (Math.abs(c.h1) > 30) confidence -= 10;
+  confidence = clamp(confidence, 12, 94);
 
   const warnings = [];
-  if (c.h1 > 25) warnings.push("Aşırı ısınmış");
-  if (c.h1 < -25) warnings.push("Aşırı satılmış");
-  if (pair.liquidity < 3000) warnings.push("Düşük likidite");
-  if (pair.volume.h24 > 150000 && Math.abs(c.h1) > 10) warnings.push("Yüksek hacim hareketi");
+  if (c.h1 > 30) warnings.push("Aşırı ısınmış");
+  if (c.h1 < -30) warnings.push("Aşırı satılmış");
+  if (pair.liquidity < 2500) warnings.push("Düşük likidite");
+  if (pair.volume.h24 > 100000 && Math.abs(c.h1) > 12) warnings.push("Yüksek hacimli hareket");
+  if (Math.abs(c.h1) > 8 && pair.volume.h24 < 5000) warnings.push("Hacimsiz hareket");
 
   return { score, signal, confidence, warnings };
 }
 
-/* ---------- Load ---------- */
 async function loadData() {
   if (isLoading) return;
   isLoading = true;
   document.getElementById("refreshBtn").classList.add("spin");
-  setStatus("DeDust pool keşfi...");
+  setStatus("Taranıyor...");
 
   try {
-    // 1) DeDust all pools
-    const rawPools = await fetchAllDeDustPools();
-    const tokens = extractDeDustTokens(rawPools).slice(0, MAX_DEDUST_TOKENS);
-    discoveredTokenCount = tokens.length;
-    setStatus("DeDust: " + discoveredTokenCount + " token · DexScreener taranıyor...");
-
-    // 2) Legacy keyword search
-    const legacyRaw = await fetchInBatches(LEGACY_QUERIES, 6);
-
-    // 3) Address-based search for discovered tokens
-    const addresses = [...new Set(tokens.map(t => t.address).filter(Boolean))];
-    const discoveredRaw = await fetchInBatches(addresses, 5);
-
-    // 4) Merge + normalize
-    const allRaw = [...legacyRaw, ...discoveredRaw];
+    const raw = await fetchInBatches(QUERIES, 8);
     const seen = new Set();
     const collected = [];
-    const addressSet = new Set(addresses);
 
-    for (const raw of allRaw) {
-      const pair = normalizePair(raw);
+    for (const r of raw) {
+      const pair = normalizePair(r);
       if (!pair || seen.has(pair.pairAddress)) continue;
       seen.add(pair.pairAddress);
-
-      if (pair.isDedust || addressSet.has(pair.baseAddress) || addressSet.has(pair.quoteAddress)) {
-        pair.isDedust = true;
-      }
-
       const sig = calculateSignal(pair);
       pair.score = sig.score;
       pair.signal = sig.signal;
@@ -483,147 +304,113 @@ async function loadData() {
       collected.push(pair);
     }
 
-    collected.sort((a, b) => Math.abs(b.score) - Math.abs(a.score));
+    collected.sort((a,b) => Math.abs(b.score) - Math.abs(a.score));
     pairs = collected;
 
-    setStatus("DeDust: " + discoveredTokenCount + " token · " + new Date().toLocaleTimeString("tr-TR"));
+    setStatus("Güncelleme: " + new Date().toLocaleTimeString("tr-TR"));
     document.getElementById("countText").textContent = pairs.length + " çift";
-
     checkAlerts();
     render();
     renderFavorites();
     renderAlertsPage();
-  } catch (e) {
-    console.error("loadData:", e);
-    setStatus("Veri alınamadı");
+  } catch(e) {
+    console.error(e);
+    setStatus("Veri alınamadı — yenile");
   } finally {
     isLoading = false;
     document.getElementById("refreshBtn").classList.remove("spin");
   }
 }
 
-function setStatus(text) {
-  document.getElementById("statusText").textContent = text;
-}
+function setStatus(t){ document.getElementById("statusText").textContent = t; }
 
-/* ---------- Alerts ---------- */
-function checkAlerts() {
-  const hits = [];
-  for (const a of alerts) {
-    const p = pairs.find(x => x.pairAddress === a.pairAddress);
-    if (!p) continue;
-    let ok = false;
-    if (a.type === "pct_up" && p.change.h1 >= a.value) ok = true;
-    if (a.type === "pct_down" && p.change.h1 <= -a.value) ok = true;
-    if (a.type === "price_above" && p.priceUsd >= a.value) ok = true;
-    if (a.type === "price_below" && p.priceUsd <= a.value) ok = true;
-    if (ok) hits.push(a);
-  }
-  const banner = document.getElementById("alertBanner");
-  if (!hits.length) { banner.classList.remove("show"); return; }
-  banner.innerHTML = hits.map(h => "🔔 <b>" + escapeHTML(h.symbol) + "</b> alarmı tetiklendi!").join("<br>");
-  banner.classList.add("show");
-  try { tg?.HapticFeedback?.notificationOccurred("warning"); } catch (_) {}
-}
-
-function isFav(addr) { return favorites.some(f => f.pairAddress === addr); }
-function hasAlert(addr) { return alerts.some(a => a.pairAddress === addr); }
-
-function toggleFav(pair) {
-  if (isFav(pair.pairAddress)) {
-    favorites = favorites.filter(f => f.pairAddress !== pair.pairAddress);
-  } else {
-    favorites.push({
-      pairAddress: pair.pairAddress,
-      symbol: pair.baseSymbol,
-      dexId: pair.dexId,
-      url: pair.url
-    });
-  }
-  saveJSON(STORAGE_FAV, favorites);
-  render();
-  renderFavorites();
-}
-
-function openAlertModal(pair) {
-  alertTarget = pair;
-  document.getElementById("modalSymbol").textContent = pair.baseSymbol + " · $" + formatPrice(pair.priceUsd);
-  document.getElementById("alertValue").value = "";
-  document.getElementById("alertType").value = "pct_up";
-  document.getElementById("alertModal").classList.add("show");
-}
-function closeModal() {
-  document.getElementById("alertModal").classList.remove("show");
-  alertTarget = null;
-}
-function saveAlert() {
-  if (!alertTarget) return;
-  const type = document.getElementById("alertType").value;
-  const value = parseFloat(document.getElementById("alertValue").value);
-  if (!Number.isFinite(value) || value <= 0) { showAlert("Geçerli bir değer gir."); return; }
-  alerts = alerts.filter(a => !(a.pairAddress === alertTarget.pairAddress && a.type === type));
-  alerts.push({
-    id: Date.now().toString(36),
-    pairAddress: alertTarget.pairAddress,
-    symbol: alertTarget.baseSymbol,
-    type, value,
-    url: alertTarget.url,
-    created: Date.now()
-  });
-  saveJSON(STORAGE_ALERTS, alerts);
-  const sym = alertTarget.baseSymbol;
-  closeModal();
-  render();
-  renderAlertsPage();
-  showPopup("Alarm Kaydedildi", sym + " için alarm oluşturuldu.");
-}
-function removeAlert(id) {
-  alerts = alerts.filter(a => a.id !== id);
-  saveJSON(STORAGE_ALERTS, alerts);
-  renderAlertsPage();
-  render();
-  checkAlerts();
-}
-
-/* ---------- AI Analysis ---------- */
+/* ---- Daha çeşitli AI analiz ---- */
 function generateAIAnalysis(pair) {
   const c = pair.change;
   const score = pair.score || 0;
   const conf = pair.confidence || 50;
   const sig = signalLabel(pair.signal) || "Nötr";
+  const vol = pair.volume.h24;
+  const liq = pair.liquidity;
 
-  let trendText = "Yatay / belirsiz seyir.";
-  if (score >= 55) trendText = "Kısa vadede güçlü alım baskısı var.";
-  else if (score >= 25) trendText = "Alıcılar önde, momentum olumlu.";
-  else if (score <= -55) trendText = "Satıcılar baskın, düşüş momentumu güçlü.";
-  else if (score <= -25) trendText = "Satış baskısı hissediliyor.";
+  // Trend — daha fazla dallanma
+  let trendText;
+  if (score >= 70) trendText = "Çok güçlü kısa vadeli alım baskısı. Momentum net şekilde yukarı.";
+  else if (score >= 55) trendText = "Güçlü yükseliş momentumu var; alıcılar kontrolde.";
+  else if (score >= 35) trendText = "Olumlu momentum, alıcılar hafif önde.";
+  else if (score >= 15) trendText = "Hafif pozitif eğilim, henüz net kırılım yok.";
+  else if (score > -15) trendText = "Yatay / belirsiz bölge. Net yön oluşmamış.";
+  else if (score > -35) trendText = "Hafif satış baskısı hissediliyor.";
+  else if (score > -55) trendText = "Satıcılar önde, zayıf görünüm.";
+  else if (score > -70) trendText = "Güçlü düşüş momentumu; satıcılar baskın.";
+  else trendText = "Çok sert satış baskısı. Kısa vadede zayıf tablo.";
 
-  let volText = "Hacim normal seviyede.";
-  if (pair.volume.h24 > 100000) volText = "Hacim yüksek — hareket destekleniyor.";
-  else if (pair.volume.h24 < 5000) volText = "Hacim düşük — hareket kırılgan olabilir.";
+  // Hacim yorumu
+  let volText;
+  if (vol >= 200000) volText = `Çok yüksek hacim ($${fmtMoney(vol).slice(1)}) — hareket geniş katılımla destekleniyor.`;
+  else if (vol >= 50000) volText = `Yüksek hacim ($${fmtMoney(vol).slice(1)}) — trend daha güvenilir.`;
+  else if (vol >= 15000) volText = `Orta hacim ($${fmtMoney(vol).slice(1)}) — makul destek var.`;
+  else if (vol >= 5000) volText = `Düşük-orta hacim ($${fmtMoney(vol).slice(1)}) — hareket kırılgan olabilir.`;
+  else volText = `Çok düşük hacim ($${fmtMoney(vol).slice(1)}) — manipülasyon ve ani tersine dönüş riski yüksek.`;
 
-  let liqText = "Likidite yeterli görünüyor.";
-  if (pair.liquidity < 3000) liqText = "Likidite düşük — kayma ve rug riski daha yüksek.";
-  else if (pair.liquidity > 50000) liqText = "Likidite güçlü.";
+  // Likidite
+  let liqText;
+  if (liq >= 100000) liqText = `Güçlü likidite ($${fmtMoney(liq).slice(1)}) — kayma riski düşük.`;
+  else if (liq >= 20000) liqText = `Yeterli likidite ($${fmtMoney(liq).slice(1)}).`;
+  else if (liq >= 5000) liqText = `Orta likidite ($${fmtMoney(liq).slice(1)}) — büyük emirlerde kayma olabilir.`;
+  else if (liq >= 1500) liqText = `Zayıf likidite ($${fmtMoney(liq).slice(1)}) — dikkatli ol.`;
+  else liqText = `Kritik düşük likidite ($${fmtMoney(liq).slice(1)}) — yüksek rug / kayma riski.`;
 
+  // Timeframe uyumu
+  let tfText;
+  const upCount = [c.m5, c.h1, c.h6, c.h24].filter(x => x > 1).length;
+  const downCount = [c.m5, c.h1, c.h6, c.h24].filter(x => x < -1).length;
+  if (upCount >= 3) tfText = "Çoklu zaman diliminde yükseliş uyumu var.";
+  else if (downCount >= 3) tfText = "Çoklu zaman diliminde düşüş uyumu var.";
+  else if (c.h1 > 5 && c.h6 < -3) tfText = "Kısa vade yukarı, orta vade zayıf — çelişkili tablo.";
+  else if (c.h1 < -5 && c.h6 > 3) tfText = "Kısa vade aşağı, orta vade hâlâ pozitif — toparlanma veya dağıtım olabilir.";
+  else tfText = "Zaman dilimleri karışık; net konsensüs yok.";
+
+  // Riskler
   const risks = [];
-  if (c.h1 > 20) risks.push("Sert yükseliş sonrası kâr realizasyonu gelebilir.");
-  if (c.h1 < -20) risks.push("Sert düşüş sonrası tepki gelebilir ama trend bozulmuş olabilir.");
-  if (pair.liquidity < 3000) risks.push("Düşük likidite manipülasyona açık.");
-  if (Math.abs(c.h1) > 8 && pair.volume.h24 < 8000) risks.push("Hacimsiz hareket — güven zayıf.");
-  if (!risks.length) risks.push("Belirgin ek risk sinyali yok, pozisyon boyutuna dikkat.");
+  if (c.h1 > 25) risks.push(`1 saatte %${c.h1.toFixed(0)} yükseliş — aşırı ısınma ve kâr realizasyonu riski.`);
+  if (c.h1 < -25) risks.push(`1 saatte %${Math.abs(c.h1).toFixed(0)} düşüş — panik satış veya likidasyon izi olabilir.`);
+  if (liq < 2500) risks.push("Düşük likidite: büyük emir fiyatı kolay bozar.");
+  if (vol < 5000 && Math.abs(c.h1) > 8) risks.push("Hacimsiz sert hareket — güvenilirlik zayıf.");
+  if (c.h1 > 0 && c.h6 < -8) risks.push("Orta vade hâlâ negatifken kısa vade yükseliyor — tuzak olabilir.");
+  if (c.h1 < 0 && c.h6 > 10) risks.push("Orta vade güçlüyken kısa vade düşüyor — düzeltme veya trend kırılımı.");
+  if (!risks.length) risks.push("Ekstra kırmızı bayrak yok; yine de pozisyon boyutunu sınırla.");
 
-  let advice = "İzlemede kal, net yön bekleyebilirsin.";
-  if (pair.signal === "strong-buy") advice = "Trend alıcı lehine. Kademeli ve stop’lu yaklaş.";
-  else if (pair.signal === "buy") advice = "Olumlu momentum var. Küçük pay ile takip edilebilir.";
-  else if (pair.signal === "strong-sell") advice = "Satış baskısı güçlü. Long için erken.";
-  else if (pair.signal === "sell") advice = "Zayıf görünüm. Long’dan uzak durmak mantıklı olabilir.";
+  // Öneri — sinyal + güven + likiditeye göre
+  let advice;
+  if (pair.signal === "strong-buy" && conf >= 70 && liq >= 5000) {
+    advice = "Güçlü alım sinyali + yeterli likidite. Kademeli giriş ve stop ile düşünülebilir.";
+  } else if (pair.signal === "strong-buy") {
+    advice = "Güçlü al sinyali var ama likidite/güven sınırlı. Çok küçük pay veya bekle.";
+  } else if (pair.signal === "buy" && conf >= 60) {
+    advice = "Alım yönlü momentum mevcut. Küçük pay ile takip mantıklı olabilir.";
+  } else if (pair.signal === "buy") {
+    advice = "Hafif alım eğilimi var; teyit için hacim ve 1s/6s uyumunu izle.";
+  } else if (pair.signal === "strong-sell" && conf >= 70) {
+    advice = "Güçlü satış sinyali. Long’dan uzak dur; varsa kademeli çıkış düşün.";
+  } else if (pair.signal === "strong-sell") {
+    advice = "Satış baskısı belirgin. Long açmak riskli.";
+  } else if (pair.signal === "sell") {
+    advice = "Zayıf görünüm. Yeni long için uygun değil.";
+  } else if (Math.abs(score) < 15) {
+    advice = "Nötr bölge. Net kırılım veya hacim artışı bekle.";
+  } else {
+    advice = "İzlemede kal; sinyal ve hacim netleşsin.";
+  }
 
   const warnText = pair.warnings?.length ? pair.warnings.join(" · ") : "Yok";
+  const priceStr = formatPrice(pair.priceUsd);
 
   return `<b>${escapeHTML(pair.baseSymbol)} — Noventra AI Analiz</b>
 
+<b>Fiyat:</b> $${priceStr}
 <b>Genel:</b> ${trendText}
+<b>Zaman dilimleri:</b> ${tfText}
 
 <b>Teknik:</b>
 • 5dk: ${fmtPct(c.m5)}
@@ -631,7 +418,7 @@ function generateAIAnalysis(pair) {
 • 6s: ${fmtPct(c.h6)}
 • 24s: ${fmtPct(c.h24)}
 
-<b>Skor:</b> ${score > 0 ? "+" : ""}${score.toFixed(0)} (${sig})
+<b>Skor:</b> ${score>0?"+":""}${score.toFixed(0)} (${sig})
 <b>Güven:</b> %${conf.toFixed(0)}
 <b>Uyarılar:</b> ${warnText}
 
@@ -643,7 +430,7 @@ function generateAIAnalysis(pair) {
 
 <b>Özet:</b> ${advice}
 
-<i>Yatırım tavsiyesi değildir.</i>`;
+<i>Yatırım tavsiyesi değildir. Kendi araştırmanı yap.</i>`;
 }
 
 function openAIAnalysis(addr) {
@@ -652,57 +439,85 @@ function openAIAnalysis(addr) {
   document.getElementById("aiBody").innerHTML = generateAIAnalysis(pair);
   document.getElementById("aiModal").classList.add("show");
 }
-function closeAIModal() { document.getElementById("aiModal").classList.remove("show"); }
+function closeAIModal(){ document.getElementById("aiModal").classList.remove("show"); }
 
-/* ---------- Formatters ---------- */
-function fmtPct(v) {
-  v = Number(v || 0);
-  if (Math.abs(v) < 0.05) return "0.0%";
-  return (v > 0 ? "+" : "") + v.toFixed(1) + "%";
-}
-function fmtMoney(v) {
-  v = Number(v || 0);
-  if (v >= 1e9) return "$" + (v / 1e9).toFixed(1) + "B";
-  if (v >= 1e6) return "$" + (v / 1e6).toFixed(1) + "M";
-  if (v >= 1e3) return "$" + (v / 1e3).toFixed(1) + "K";
-  return "$" + Math.round(v);
-}
-function formatPrice(v) {
-  v = Number(v || 0);
-  if (!v) return "0";
-  if (v < 0.000001) return v.toExponential(2);
-  if (v < 0.01) return v.toFixed(6);
-  if (v < 1) return v.toFixed(4);
-  if (v < 100) return v.toFixed(3);
-  return v.toFixed(2);
-}
-function cls(v) {
-  if (v > 0.25) return "up";
-  if (v < -0.25) return "down";
-  return "neu";
-}
-function signalLabel(s) {
-  return ({ "strong-buy": "GÜÇLÜ AL", "buy": "AL", "strong-sell": "GÜÇLÜ SAT", "sell": "SAT" })[s] || "";
+function checkAlerts() {
+  const hits = [];
+  for (const a of alerts) {
+    const p = pairs.find(x => x.pairAddress === a.pairAddress);
+    if (!p) continue;
+    let ok = false;
+    if (a.type==="pct_up" && p.change.h1 >= a.value) ok = true;
+    if (a.type==="pct_down" && p.change.h1 <= -a.value) ok = true;
+    if (a.type==="price_above" && p.priceUsd >= a.value) ok = true;
+    if (a.type==="price_below" && p.priceUsd <= a.value) ok = true;
+    if (ok) hits.push(a);
+  }
+  const banner = document.getElementById("alertBanner");
+  if (!hits.length) { banner.classList.remove("show"); return; }
+  banner.innerHTML = hits.map(h => "🔔 <b>"+escapeHTML(h.symbol)+"</b> alarmı tetiklendi!").join("<br>");
+  banner.classList.add("show");
+  try { tg?.HapticFeedback?.notificationOccurred("warning"); } catch(_){}
 }
 
-/* ---------- Filter & Render ---------- */
+function isFav(a){ return favorites.some(f=>f.pairAddress===a); }
+function hasAlert(a){ return alerts.some(x=>x.pairAddress===a); }
+
+function toggleFav(pair) {
+  if (isFav(pair.pairAddress)) favorites = favorites.filter(f=>f.pairAddress!==pair.pairAddress);
+  else favorites.push({ pairAddress:pair.pairAddress, symbol:pair.baseSymbol, dexId:pair.dexId, url:pair.url });
+  saveJSON(STORAGE_FAV, favorites);
+  render(); renderFavorites();
+}
+
+function openAlertModal(pair) {
+  alertTarget = pair;
+  document.getElementById("modalSymbol").textContent = pair.baseSymbol + " · $" + formatPrice(pair.priceUsd);
+  document.getElementById("alertValue").value = "";
+  document.getElementById("alertType").value = "pct_up";
+  document.getElementById("alertModal").classList.add("show");
+}
+function closeModal(){ document.getElementById("alertModal").classList.remove("show"); alertTarget=null; }
+function saveAlert() {
+  if (!alertTarget) return;
+  const type = document.getElementById("alertType").value;
+  const value = parseFloat(document.getElementById("alertValue").value);
+  if (!Number.isFinite(value) || value<=0) { showAlert("Geçerli bir değer gir."); return; }
+  alerts = alerts.filter(a => !(a.pairAddress===alertTarget.pairAddress && a.type===type));
+  alerts.push({ id:Date.now().toString(36), pairAddress:alertTarget.pairAddress, symbol:alertTarget.baseSymbol, type, value, url:alertTarget.url, created:Date.now() });
+  saveJSON(STORAGE_ALERTS, alerts);
+  const sym = alertTarget.baseSymbol;
+  closeModal(); render(); renderAlertsPage();
+  showPopup("Alarm Kaydedildi", sym + " için alarm oluşturuldu.");
+}
+function removeAlert(id) {
+  alerts = alerts.filter(a=>a.id!==id);
+  saveJSON(STORAGE_ALERTS, alerts);
+  renderAlertsPage(); render(); checkAlerts();
+}
+
+function fmtPct(v){ v=Number(v||0); if(Math.abs(v)<0.05) return "0.0%"; return (v>0?"+":"")+v.toFixed(1)+"%"; }
+function fmtMoney(v){ v=Number(v||0); if(v>=1e9) return "$"+(v/1e9).toFixed(1)+"B"; if(v>=1e6) return "$"+(v/1e6).toFixed(1)+"M"; if(v>=1e3) return "$"+(v/1e3).toFixed(1)+"K"; return "$"+Math.round(v); }
+function formatPrice(v){ v=Number(v||0); if(!v) return "0"; if(v<1e-6) return v.toExponential(2); if(v<0.01) return v.toFixed(6); if(v<1) return v.toFixed(4); if(v<100) return v.toFixed(3); return v.toFixed(2); }
+function cls(v){ if(v>0.25) return "up"; if(v<-0.25) return "down"; return "neu"; }
+function signalLabel(s){ return ({ "strong-buy":"GÜÇLÜ AL","buy":"AL","strong-sell":"GÜÇLÜ SAT","sell":"SAT" })[s]||""; }
+
 function getFiltered() {
   let list = [...pairs];
-  if (volFilter === "high") list = list.filter(p => p.volume.h24 >= HIGH_VOL);
-  if (volFilter === "dedust") list = list.filter(p => p.isDedust === true);
-
-  if (currentTab === "gainers") {
-    list = list.filter(p => p.change[currentTf] > 1);
-    list.sort((a, b) => b.change[currentTf] - a.change[currentTf]);
-  } else if (currentTab === "losers") {
-    list = list.filter(p => p.change[currentTf] < -1);
-    list.sort((a, b) => a.change[currentTf] - b.change[currentTf]);
-  } else if (currentTab === "volume") {
-    list.sort((a, b) => b.volume.h24 - a.volume.h24);
-  } else if (currentTab === "signals") {
-    const order = { "strong-buy": 0, "buy": 1, "strong-sell": 2, "sell": 3, "neutral": 9 };
-    list = list.filter(p => p.signal !== "neutral");
-    list.sort((a, b) => (order[a.signal] - order[b.signal]) || (Math.abs(b.score) - Math.abs(a.score)));
+  if (volFilter==="high") list = list.filter(p=>p.volume.h24>=HIGH_VOL);
+  if (volFilter==="dedust") list = list.filter(p=>p.isDedust);
+  if (currentTab==="gainers") {
+    list = list.filter(p=>p.change[currentTf]>1);
+    list.sort((a,b)=>b.change[currentTf]-a.change[currentTf]);
+  } else if (currentTab==="losers") {
+    list = list.filter(p=>p.change[currentTf]<-1);
+    list.sort((a,b)=>a.change[currentTf]-b.change[currentTf]);
+  } else if (currentTab==="volume") {
+    list.sort((a,b)=>b.volume.h24-a.volume.h24);
+  } else if (currentTab==="signals") {
+    const order = {"strong-buy":0,"buy":1,"strong-sell":2,"sell":3,"neutral":9};
+    list = list.filter(p=>p.signal!=="neutral");
+    list.sort((a,b)=>(order[a.signal]-order[b.signal])||(Math.abs(b.score)-Math.abs(a.score)));
   }
   return list.slice(0, MAX_RESULTS);
 }
@@ -712,34 +527,34 @@ function cardHTML(pair, index) {
   const isUp = change >= 0;
   const fav = isFav(pair.pairAddress);
   const alrt = hasAlert(pair.pairAddress);
-  let dexClass = "other", dexLabel = String(pair.dexId || "DEX").slice(0, 8);
-  if (pair.isDedust) { dexClass = "dedust"; dexLabel = "DeDust"; }
-  else if (pair.isSton) { dexClass = "ston"; dexLabel = "Ston.fi"; }
+  let dexClass="other", dexLabel=String(pair.dexId||"DEX").slice(0,8);
+  if (pair.isDedust) { dexClass="dedust"; dexLabel="DeDust"; }
+  else if (pair.isSton) { dexClass="ston"; dexLabel="Ston.fi"; }
   const sig = signalLabel(pair.signal);
   const sigHTML = sig ? `<span class="signal ${pair.signal}">${sig}</span>` : "";
-  const scoreWidth = Math.min(Math.abs(pair.score || 0), 100);
-  const scoreColor = (pair.score || 0) >= 0 ? "var(--green)" : "var(--red)";
+  const scoreWidth = Math.min(Math.abs(pair.score||0),100);
+  const scoreColor = (pair.score||0)>=0 ? "var(--green)" : "var(--red)";
   const addr = escapeAttr(pair.pairAddress);
-  const conf = pair.confidence != null ? " · %" + pair.confidence.toFixed(0) : "";
+  const conf = pair.confidence!=null ? " · %"+pair.confidence.toFixed(0) : "";
 
-  return `<div class="card ${fav ? "fav" : ""} ${alrt ? "alert-hit" : ""}">
+  return `<div class="card ${fav?"fav":""} ${alrt?"alert-hit":""}">
   <div class="card-top">
-    <div class="rank ${index < 3 ? "top" : ""}">${index + 1}</div>
+    <div class="rank ${index<3?"top":""}">${index+1}</div>
     <div class="info">
       <div class="sym-row">
         <span class="symbol">${escapeHTML(pair.baseSymbol)}</span>
         <span class="dex ${dexClass}">${escapeHTML(dexLabel)}</span>
         ${sigHTML}
       </div>
-      <div class="meta">${fmtMoney(pair.liquidity)} liq · ${fmtMoney(pair.volume.h24)} vol${pair.quoteSymbol ? " · " + escapeHTML(pair.quoteSymbol) : ""}</div>
+      <div class="meta">${fmtMoney(pair.liquidity)} liq · ${fmtMoney(pair.volume.h24)} vol${pair.quoteSymbol?" · "+escapeHTML(pair.quoteSymbol):""}</div>
     </div>
     <div class="right">
-      <div class="chg ${isUp ? "up" : "down"}">${fmtPct(change)}</div>
+      <div class="chg ${isUp?"up":"down"}">${fmtPct(change)}</div>
       <div class="actions">
-        <button class="act-btn ${fav ? "on" : ""}" onclick="event.stopPropagation();toggleFavByAddr('${addr}')">★</button>
-        <button class="act-btn ${alrt ? "alert-on" : ""}" onclick="event.stopPropagation();openAlertByAddr('${addr}')">🔔</button>
-        <button class="act-btn" onclick="event.stopPropagation();openAIAnalysis('${addr}')" title="AI Analiz">🤖</button>
-        <button class="act-btn" onclick="event.stopPropagation();openPair('${escapeAttr(pair.url || "")}')">↗</button>
+        <button class="act-btn ${fav?"on":""}" onclick="event.stopPropagation();toggleFavByAddr('${addr}')">★</button>
+        <button class="act-btn ${alrt?"alert-on":""}" onclick="event.stopPropagation();openAlertByAddr('${addr}')">🔔</button>
+        <button class="act-btn" onclick="event.stopPropagation();openAIAnalysis('${addr}')">🤖</button>
+        <button class="act-btn" onclick="event.stopPropagation();openPair('${escapeAttr(pair.url||"")}')">↗</button>
       </div>
     </div>
   </div>
@@ -749,129 +564,98 @@ function cardHTML(pair, index) {
     <div class="tf"><div class="lbl">6s</div><div class="v ${cls(pair.change.h6)}">${fmtPct(pair.change.h6)}</div></div>
     <div class="tf"><div class="lbl">24s</div><div class="v ${cls(pair.change.h24)}">${fmtPct(pair.change.h24)}</div></div>
   </div>
-  <div class="score-row">
-    <span>Noventra Score</span>
-    <span class="score-value">${(pair.score || 0) > 0 ? "+" : ""}${(pair.score || 0).toFixed(0)}${conf}</span>
-  </div>
+  <div class="score-row"><span>Noventra Score</span><span class="score-value">${(pair.score||0)>0?"+":""}${(pair.score||0).toFixed(0)}${conf}</span></div>
   <div class="bar"><div style="width:${scoreWidth}%;background:${scoreColor}"></div></div>
 </div>`;
 }
 
 function render() {
-  if (currentPage !== "market") return;
+  if (currentPage!=="market") return;
   const list = getFiltered();
   const el = document.getElementById("content");
-  if (!list.length) {
-    el.innerHTML = '<div class="empty">Bu filtrede sonuç yok.</div>';
-    return;
-  }
-  el.innerHTML = '<div class="list">' + list.map((p, i) => cardHTML(p, i)).join("") + '</div>';
+  if (!list.length) { el.innerHTML='<div class="empty">Bu filtrede sonuç yok.<br><small>Yenile veya filtre değiştir.</small></div>'; return; }
+  el.innerHTML = '<div class="list">'+list.map((p,i)=>cardHTML(p,i)).join("")+'</div>';
 }
 
 function renderFavorites() {
   const el = document.getElementById("favContent");
-  if (!favorites.length) {
-    el.innerHTML = '<div class="fav-empty"><div class="big">★</div>Henüz favori yok.<br>Piyasa sekmesinden ★ ile ekle.</div>';
-    return;
-  }
+  if (!favorites.length) { el.innerHTML='<div class="fav-empty"><div class="big">★</div>Henüz favori yok.<br>Piyasa sekmesinden ★ ile ekle.</div>'; return; }
   const items = favorites.map(f => {
-    const live = pairs.find(p => p.pairAddress === f.pairAddress);
-    return live || {
-      pairAddress: f.pairAddress, baseSymbol: f.symbol, dexId: f.dexId, url: f.url,
-      priceUsd: 0, change: { m5: 0, h1: 0, h6: 0, h24: 0 }, volume: { h24: 0 },
-      liquidity: 0, score: 0, signal: "neutral", confidence: 0, warnings: []
-    };
+    const live = pairs.find(p=>p.pairAddress===f.pairAddress);
+    return live || { pairAddress:f.pairAddress, baseSymbol:f.symbol, dexId:f.dexId, url:f.url, priceUsd:0, change:{m5:0,h1:0,h6:0,h24:0}, volume:{h24:0}, liquidity:0, score:0, signal:"neutral", confidence:0, warnings:[] };
   });
-  el.innerHTML = '<div class="list">' + items.map((p, i) => cardHTML(p, i)).join("") + '</div>';
+  el.innerHTML = '<div class="list">'+items.map((p,i)=>cardHTML(p,i)).join("")+'</div>';
 }
 
 function renderAlertsPage() {
   const el = document.getElementById("alertContent");
-  if (!alerts.length) {
-    el.innerHTML = '<div class="fav-empty"><div class="big">🔔</div>Aktif alarm yok.<br>Kartlardaki 🔔 ile kur.</div>';
-    return;
-  }
-  const typeLabel = { pct_up: "↑ % yükselince", pct_down: "↓ % düşünce", price_above: "Fiyat ≥", price_below: "Fiyat ≤" };
-  el.innerHTML = '<div class="list">' + alerts.map(a => {
-    const live = pairs.find(p => p.pairAddress === a.pairAddress);
+  if (!alerts.length) { el.innerHTML='<div class="fav-empty"><div class="big">🔔</div>Aktif alarm yok.<br>Kartlardaki 🔔 ile kur.</div>'; return; }
+  const typeLabel = { pct_up:"↑ % yükselince", pct_down:"↓ % düşünce", price_above:"Fiyat ≥", price_below:"Fiyat ≤" };
+  el.innerHTML = '<div class="list">'+alerts.map(a=>{
+    const live = pairs.find(p=>p.pairAddress===a.pairAddress);
     const price = live ? formatPrice(live.priceUsd) : "—";
     const suffix = a.type.startsWith("pct") ? "%" : "$";
     return `<div class="card"><div class="card-top"><div class="info">
       <div class="sym-row"><span class="symbol">${escapeHTML(a.symbol)}</span></div>
-      <div class="meta">${typeLabel[a.type] || a.type} ${a.value}${suffix} · Şu an: $${price}</div>
+      <div class="meta">${typeLabel[a.type]||a.type} ${a.value}${suffix} · Şu an: $${price}</div>
     </div>
     <button class="btn btn-danger" style="flex:none;padding:8px 12px;font-size:.72rem" onclick="removeAlert('${escapeAttr(a.id)}')">Sil</button>
     </div></div>`;
-  }).join("") + '</div>';
+  }).join("")+'</div>';
 }
 
-/* ---------- Telegram helpers ---------- */
 function openPair(url) {
   if (!url) return;
-  try {
-    if (tg?.openLink) tg.openLink(url, { try_instant_view: false });
-    else window.open(url, "_blank", "noopener,noreferrer");
-  } catch { window.open(url, "_blank"); }
+  try { if (tg?.openLink) tg.openLink(url,{try_instant_view:false}); else window.open(url,"_blank","noopener,noreferrer"); }
+  catch { window.open(url,"_blank"); }
 }
-function showAlert(msg) { if (tg?.showAlert) tg.showAlert(msg); else alert(msg); }
-function showPopup(title, msg) {
-  if (tg?.showPopup) tg.showPopup({ title, message: msg, buttons: [{ type: "ok" }] });
-  else alert(title + "\n\n" + msg);
-}
+function showAlert(msg){ if(tg?.showAlert) tg.showAlert(msg); else alert(msg); }
+function showPopup(title,msg){ if(tg?.showPopup) tg.showPopup({title,message:msg,buttons:[{type:"ok"}]}); else alert(title+"\n\n"+msg); }
 
-/* ---------- Global actions ---------- */
-window.toggleFavByAddr = function (addr) {
-  const p = pairs.find(x => x.pairAddress === addr) || favorites.find(x => x.pairAddress === addr);
+window.toggleFavByAddr = function(addr) {
+  const p = pairs.find(x=>x.pairAddress===addr) || favorites.find(x=>x.pairAddress===addr);
   if (!p) return;
-  toggleFav(p.baseSymbol ? p : { pairAddress: p.pairAddress, baseSymbol: p.symbol, dexId: p.dexId, url: p.url });
+  toggleFav(p.baseSymbol ? p : { pairAddress:p.pairAddress, baseSymbol:p.symbol, dexId:p.dexId, url:p.url });
 };
-window.openAlertByAddr = function (addr) {
-  const p = pairs.find(x => x.pairAddress === addr);
+window.openAlertByAddr = function(addr) {
+  const p = pairs.find(x=>x.pairAddress===addr);
   if (p) openAlertModal(p); else showAlert("Bu token şu an listede değil.");
 };
 window.openAIAnalysis = openAIAnalysis;
 window.removeAlert = removeAlert;
 window.openPair = openPair;
 
-/* ---------- Events ---------- */
-document.querySelectorAll("#mainTabs .tab").forEach(tab => {
-  tab.addEventListener("click", () => {
-    document.querySelectorAll("#mainTabs .tab").forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
-    currentTab = tab.dataset.tab;
-    render();
+document.querySelectorAll("#mainTabs .tab").forEach(tab=>{
+  tab.addEventListener("click",()=>{
+    document.querySelectorAll("#mainTabs .tab").forEach(t=>t.classList.remove("active"));
+    tab.classList.add("active"); currentTab=tab.dataset.tab; render();
   });
 });
-
-document.querySelectorAll(".chip").forEach(chip => {
-  chip.addEventListener("click", () => {
+document.querySelectorAll(".chip").forEach(chip=>{
+  chip.addEventListener("click",()=>{
     if (chip.dataset.tf) {
-      document.querySelectorAll("[data-tf]").forEach(c => c.classList.remove("active"));
-      chip.classList.add("active");
-      currentTf = chip.dataset.tf;
+      document.querySelectorAll("[data-tf]").forEach(c=>c.classList.remove("active"));
+      chip.classList.add("active"); currentTf=chip.dataset.tf;
     }
     if (chip.dataset.vol) {
-      document.querySelectorAll("[data-vol]").forEach(c => c.classList.remove("active"));
-      chip.classList.add("active");
-      volFilter = chip.dataset.vol;
+      document.querySelectorAll("[data-vol]").forEach(c=>c.classList.remove("active"));
+      chip.classList.add("active"); volFilter=chip.dataset.vol;
     }
     render();
   });
 });
-
-document.querySelectorAll(".nav-item").forEach(item => {
-  item.addEventListener("click", () => {
-    document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
-    item.classList.add("active");
-    currentPage = item.dataset.page;
-    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    document.getElementById("page-" + currentPage).classList.add("active");
-    const market = currentPage === "market";
-    document.getElementById("filters").style.display = market ? "flex" : "none";
-    document.getElementById("mainTabs").style.display = market ? "flex" : "none";
-    if (currentPage === "favorites") renderFavorites();
-    if (currentPage === "alerts") renderAlertsPage();
-    if (currentPage === "market") render();
+document.querySelectorAll(".nav-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));
+    item.classList.add("active"); currentPage=item.dataset.page;
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.getElementById("page-"+currentPage).classList.add("active");
+    const market = currentPage==="market";
+    document.getElementById("filters").style.display = market?"flex":"none";
+    document.getElementById("mainTabs").style.display = market?"flex":"none";
+    if (currentPage==="favorites") renderFavorites();
+    if (currentPage==="alerts") renderAlertsPage();
+    if (currentPage==="market") render();
   });
 });
 
@@ -879,12 +663,12 @@ document.getElementById("refreshBtn").addEventListener("click", loadData);
 document.getElementById("modalClose").addEventListener("click", closeModal);
 document.getElementById("modalCancel").addEventListener("click", closeModal);
 document.getElementById("modalSave").addEventListener("click", saveAlert);
-document.getElementById("alertModal").addEventListener("click", e => { if (e.target.id === "alertModal") closeModal(); });
+document.getElementById("alertModal").addEventListener("click", e=>{ if(e.target.id==="alertModal") closeModal(); });
 document.getElementById("aiModalClose").addEventListener("click", closeAIModal);
 document.getElementById("aiModalOk").addEventListener("click", closeAIModal);
-document.getElementById("aiModal").addEventListener("click", e => { if (e.target.id === "aiModal") closeAIModal(); });
+document.getElementById("aiModal").addEventListener("click", e=>{ if(e.target.id==="aiModal") closeAIModal(); });
 
-setInterval(() => { if (!isLoading) loadData(); }, REFRESH_MS);
+setInterval(()=>{ if(!isLoading) loadData(); }, REFRESH_MS);
 loadData();
 </script>
 </body>
