@@ -174,7 +174,6 @@ let isLoading = false, alertTarget = null;
 
 const MIN_VOL = 800, MIN_LIQ = 400, HIGH_VOL = 20000, REFRESH_MS = 75000, MAX_RESULTS = 120;
 
-/* Daha odaklı ve hızlı arama seti */
 const QUERIES = [
   "TON","USDT","USDC","STON","dedust",
   "NOT","DOGS","HMSTR","CATI","MAJOR","GRAM","SCALE","ANON","FISH","REDO",
@@ -324,7 +323,6 @@ async function loadData() {
 
 function setStatus(t){ document.getElementById("statusText").textContent = t; }
 
-/* ---- Daha çeşitli AI analiz ---- */
 function generateAIAnalysis(pair) {
   const c = pair.change;
   const score = pair.score || 0;
@@ -333,7 +331,6 @@ function generateAIAnalysis(pair) {
   const vol = pair.volume.h24;
   const liq = pair.liquidity;
 
-  // Trend — daha fazla dallanma
   let trendText;
   if (score >= 70) trendText = "Çok güçlü kısa vadeli alım baskısı. Momentum net şekilde yukarı.";
   else if (score >= 55) trendText = "Güçlü yükseliş momentumu var; alıcılar kontrolde.";
@@ -345,23 +342,20 @@ function generateAIAnalysis(pair) {
   else if (score > -70) trendText = "Güçlü düşüş momentumu; satıcılar baskın.";
   else trendText = "Çok sert satış baskısı. Kısa vadede zayıf tablo.";
 
-  // Hacim yorumu
   let volText;
-  if (vol >= 200000) volText = `Çok yüksek hacim ($${fmtMoney(vol).slice(1)}) — hareket geniş katılımla destekleniyor.`;
-  else if (vol >= 50000) volText = `Yüksek hacim ($${fmtMoney(vol).slice(1)}) — trend daha güvenilir.`;
-  else if (vol >= 15000) volText = `Orta hacim ($${fmtMoney(vol).slice(1)}) — makul destek var.`;
-  else if (vol >= 5000) volText = `Düşük-orta hacim ($${fmtMoney(vol).slice(1)}) — hareket kırılgan olabilir.`;
-  else volText = `Çok düşük hacim ($${fmtMoney(vol).slice(1)}) — manipülasyon ve ani tersine dönüş riski yüksek.`;
+  if (vol >= 200000) volText = `Çok yüksek hacim (\[ {fmtMoney(vol).slice(1)}) — hareket geniş katılımla destekleniyor.`;
+  else if (vol >= 50000) volText = `Yüksek hacim ( \]{fmtMoney(vol).slice(1)}) — trend daha güvenilir.`;
+  else if (vol >= 15000) volText = `Orta hacim (\[ {fmtMoney(vol).slice(1)}) — makul destek var.`;
+  else if (vol >= 5000) volText = `Düşük-orta hacim ( \]{fmtMoney(vol).slice(1)}) — hareket kırılgan olabilir.`;
+  else volText = `Çok düşük hacim (\[ {fmtMoney(vol).slice(1)}) — manipülasyon ve ani tersine dönüş riski yüksek.`;
 
-  // Likidite
   let liqText;
-  if (liq >= 100000) liqText = `Güçlü likidite ($${fmtMoney(liq).slice(1)}) — kayma riski düşük.`;
-  else if (liq >= 20000) liqText = `Yeterli likidite ($${fmtMoney(liq).slice(1)}).`;
-  else if (liq >= 5000) liqText = `Orta likidite ($${fmtMoney(liq).slice(1)}) — büyük emirlerde kayma olabilir.`;
-  else if (liq >= 1500) liqText = `Zayıf likidite ($${fmtMoney(liq).slice(1)}) — dikkatli ol.`;
-  else liqText = `Kritik düşük likidite ($${fmtMoney(liq).slice(1)}) — yüksek rug / kayma riski.`;
+  if (liq >= 100000) liqText = `Güçlü likidite ( \]{fmtMoney(liq).slice(1)}) — kayma riski düşük.`;
+  else if (liq >= 20000) liqText = `Yeterli likidite (\[ {fmtMoney(liq).slice(1)}).`;
+  else if (liq >= 5000) liqText = `Orta likidite ( \]{fmtMoney(liq).slice(1)}) — büyük emirlerde kayma olabilir.`;
+  else if (liq >= 1500) liqText = `Zayıf likidite (\[ {fmtMoney(liq).slice(1)}) — dikkatli ol.`;
+  else liqText = `Kritik düşük likidite ( \]{fmtMoney(liq).slice(1)}) — yüksek rug / kayma riski.`;
 
-  // Timeframe uyumu
   let tfText;
   const upCount = [c.m5, c.h1, c.h6, c.h24].filter(x => x > 1).length;
   const downCount = [c.m5, c.h1, c.h6, c.h24].filter(x => x < -1).length;
@@ -371,7 +365,6 @@ function generateAIAnalysis(pair) {
   else if (c.h1 < -5 && c.h6 > 3) tfText = "Kısa vade aşağı, orta vade hâlâ pozitif — toparlanma veya dağıtım olabilir.";
   else tfText = "Zaman dilimleri karışık; net konsensüs yok.";
 
-  // Riskler
   const risks = [];
   if (c.h1 > 25) risks.push(`1 saatte %${c.h1.toFixed(0)} yükseliş — aşırı ısınma ve kâr realizasyonu riski.`);
   if (c.h1 < -25) risks.push(`1 saatte %${Math.abs(c.h1).toFixed(0)} düşüş — panik satış veya likidasyon izi olabilir.`);
@@ -381,7 +374,6 @@ function generateAIAnalysis(pair) {
   if (c.h1 < 0 && c.h6 > 10) risks.push("Orta vade güçlüyken kısa vade düşüyor — düzeltme veya trend kırılımı.");
   if (!risks.length) risks.push("Ekstra kırmızı bayrak yok; yine de pozisyon boyutunu sınırla.");
 
-  // Öneri — sinyal + güven + likiditeye göre
   let advice;
   if (pair.signal === "strong-buy" && conf >= 70 && liq >= 5000) {
     advice = "Güçlü alım sinyali + yeterli likidite. Kademeli giriş ve stop ile düşünülebilir.";
@@ -408,7 +400,7 @@ function generateAIAnalysis(pair) {
 
   return `<b>${escapeHTML(pair.baseSymbol)} — Noventra AI Analiz</b>
 
-<b>Fiyat:</b> $${priceStr}
+<b>Fiyat:</b> \[ {priceStr}
 <b>Genel:</b> ${trendText}
 <b>Zaman dilimleri:</b> ${tfText}
 
@@ -418,7 +410,7 @@ function generateAIAnalysis(pair) {
 • 6s: ${fmtPct(c.h6)}
 • 24s: ${fmtPct(c.h24)}
 
-<b>Skor:</b> ${score>0?"+":""}${score.toFixed(0)} (${sig})
+<b>Skor:</b> \( {score>0?"+":""} \){score.toFixed(0)} (${sig})
 <b>Güven:</b> %${conf.toFixed(0)}
 <b>Uyarılar:</b> ${warnText}
 
@@ -497,7 +489,7 @@ function removeAlert(id) {
 }
 
 function fmtPct(v){ v=Number(v||0); if(Math.abs(v)<0.05) return "0.0%"; return (v>0?"+":"")+v.toFixed(1)+"%"; }
-function fmtMoney(v){ v=Number(v||0); if(v>=1e9) return "$"+(v/1e9).toFixed(1)+"B"; if(v>=1e6) return "$"+(v/1e6).toFixed(1)+"M"; if(v>=1e3) return "$"+(v/1e3).toFixed(1)+"K"; return "$"+Math.round(v); }
+function fmtMoney(v){ v=Number(v||0); if(v>=1e9) return "\( "+(v/1e9).toFixed(1)+"B"; if(v>=1e6) return " \)"+(v/1e6).toFixed(1)+"M"; if(v>=1e3) return "\( "+(v/1e3).toFixed(1)+"K"; return " \)"+Math.round(v); }
 function formatPrice(v){ v=Number(v||0); if(!v) return "0"; if(v<1e-6) return v.toExponential(2); if(v<0.01) return v.toFixed(6); if(v<1) return v.toFixed(4); if(v<100) return v.toFixed(3); return v.toFixed(2); }
 function cls(v){ if(v>0.25) return "up"; if(v<-0.25) return "down"; return "neu"; }
 function signalLabel(s){ return ({ "strong-buy":"GÜÇLÜ AL","buy":"AL","strong-sell":"GÜÇLÜ SAT","sell":"SAT" })[s]||""; }
@@ -531,7 +523,7 @@ function cardHTML(pair, index) {
   if (pair.isDedust) { dexClass="dedust"; dexLabel="DeDust"; }
   else if (pair.isSton) { dexClass="ston"; dexLabel="Ston.fi"; }
   const sig = signalLabel(pair.signal);
-  const sigHTML = sig ? `<span class="signal ${pair.signal}">${sig}</span>` : "";
+  const sigHTML = sig ? `<span class="signal \( {pair.signal}"> \){sig}</span>` : "";
   const scoreWidth = Math.min(Math.abs(pair.score||0),100);
   const scoreColor = (pair.score||0)>=0 ? "var(--green)" : "var(--red)";
   const addr = escapeAttr(pair.pairAddress);
@@ -539,33 +531,33 @@ function cardHTML(pair, index) {
 
   return `<div class="card ${fav?"fav":""} ${alrt?"alert-hit":""}">
   <div class="card-top">
-    <div class="rank ${index<3?"top":""}">${index+1}</div>
+    <div class="rank \( {index<3?"top":""}"> \){index+1}</div>
     <div class="info">
       <div class="sym-row">
         <span class="symbol">${escapeHTML(pair.baseSymbol)}</span>
-        <span class="dex ${dexClass}">${escapeHTML(dexLabel)}</span>
+        <span class="dex \( {dexClass}"> \){escapeHTML(dexLabel)}</span>
         ${sigHTML}
       </div>
-      <div class="meta">${fmtMoney(pair.liquidity)} liq · ${fmtMoney(pair.volume.h24)} vol${pair.quoteSymbol?" · "+escapeHTML(pair.quoteSymbol):""}</div>
+      <div class="meta">${fmtMoney(pair.liquidity)} liq · \( {fmtMoney(pair.volume.h24)} vol \){pair.quoteSymbol?" · "+escapeHTML(pair.quoteSymbol):""}</div>
     </div>
     <div class="right">
-      <div class="chg ${isUp?"up":"down"}">${fmtPct(change)}</div>
+      <div class="chg \( {isUp?"up":"down"}"> \){fmtPct(change)}</div>
       <div class="actions">
-        <button class="act-btn ${fav?"on":""}" onclick="event.stopPropagation();toggleFavByAddr('${addr}')">★</button>
-        <button class="act-btn ${alrt?"alert-on":""}" onclick="event.stopPropagation();openAlertByAddr('${addr}')">🔔</button>
+        <button class="act-btn \( {fav?"on":""}" onclick="event.stopPropagation();toggleFavByAddr(' \){addr}')">★</button>
+        <button class="act-btn \( {alrt?"alert-on":""}" onclick="event.stopPropagation();openAlertByAddr(' \){addr}')">🔔</button>
         <button class="act-btn" onclick="event.stopPropagation();openAIAnalysis('${addr}')">🤖</button>
         <button class="act-btn" onclick="event.stopPropagation();openPair('${escapeAttr(pair.url||"")}')">↗</button>
       </div>
     </div>
   </div>
   <div class="tf-row">
-    <div class="tf"><div class="lbl">5dk</div><div class="v ${cls(pair.change.m5)}">${fmtPct(pair.change.m5)}</div></div>
-    <div class="tf"><div class="lbl">1s</div><div class="v ${cls(pair.change.h1)}">${fmtPct(pair.change.h1)}</div></div>
-    <div class="tf"><div class="lbl">6s</div><div class="v ${cls(pair.change.h6)}">${fmtPct(pair.change.h6)}</div></div>
-    <div class="tf"><div class="lbl">24s</div><div class="v ${cls(pair.change.h24)}">${fmtPct(pair.change.h24)}</div></div>
+    <div class="tf"><div class="lbl">5dk</div><div class="v \( {cls(pair.change.m5)}"> \){fmtPct(pair.change.m5)}</div></div>
+    <div class="tf"><div class="lbl">1s</div><div class="v \( {cls(pair.change.h1)}"> \){fmtPct(pair.change.h1)}</div></div>
+    <div class="tf"><div class="lbl">6s</div><div class="v \( {cls(pair.change.h6)}"> \){fmtPct(pair.change.h6)}</div></div>
+    <div class="tf"><div class="lbl">24s</div><div class="v \( {cls(pair.change.h24)}"> \){fmtPct(pair.change.h24)}</div></div>
   </div>
-  <div class="score-row"><span>Noventra Score</span><span class="score-value">${(pair.score||0)>0?"+":""}${(pair.score||0).toFixed(0)}${conf}</span></div>
-  <div class="bar"><div style="width:${scoreWidth}%;background:${scoreColor}"></div></div>
+  <div class="score-row"><span>Noventra Score</span><span class="score-value">\( {(pair.score||0)>0?"+":""} \){(pair.score||0).toFixed(0)}${conf}</span></div>
+  <div class="bar"><div style="width:\( {scoreWidth}%;background: \){scoreColor}"></div></div>
 </div>`;
 }
 
@@ -597,7 +589,7 @@ function renderAlertsPage() {
     const suffix = a.type.startsWith("pct") ? "%" : "$";
     return `<div class="card"><div class="card-top"><div class="info">
       <div class="sym-row"><span class="symbol">${escapeHTML(a.symbol)}</span></div>
-      <div class="meta">${typeLabel[a.type]||a.type} ${a.value}${suffix} · Şu an: $${price}</div>
+      <div class="meta">${typeLabel[a.type]||a.type} \( {a.value} \){suffix} · Şu an: \]{price}</div>
     </div>
     <button class="btn btn-danger" style="flex:none;padding:8px 12px;font-size:.72rem" onclick="removeAlert('${escapeAttr(a.id)}')">Sil</button>
     </div></div>`;
@@ -672,4 +664,4 @@ setInterval(()=>{ if(!isLoading) loadData(); }, REFRESH_MS);
 loadData();
 </script>
 </body>
-</html>
+      </html>
