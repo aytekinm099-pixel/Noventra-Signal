@@ -300,8 +300,140 @@ const QUERIES = [
   "STAKE","LOCK","DAO","NFT","META","VERSE","CHAIN","BLOCK","NODE","LP",
   "POOL","BRIDGE","WRAP","WTON","DEGEN","ALPHA","HODL","APE","MOONSHOT"
 ];
+  /* ===== NOVENTRA: DEDUST OTOMATİK KEŞİF ===== */
 
-function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+const DEDUST_POOLS_API = "https://api.dedust.io/v2/pools";
+
+async function fetchAllDeDustPools(attempt = 0) {
+  try {
+    const res = await fetch(DEDUST_POOLS_API, {
+      cache: "no-store"
+    });
+
+    if (res.status === 429 && attempt < 2) {
+      await sleep(1000 * (attempt + 1));
+      return fetchAllDeDustPools(attempt + 1);
+    }
+
+    if (!res.ok) {
+      console.warn("DeDust pools HTTP:", res.status);
+      return [];
+    }
+
+    const data = await res.json();
+
+    if (!Array.isArray(data)) {
+      console.warn("DeDust pools beklenmeyen cevap:", data);
+      return [];
+    }
+
+    return data;
+  } catch (e) {
+    console.error("DeDust pools alınamadı:", e);
+    return [];
+  }
+}
+
+function getDeDustAssetAddress(asset) {
+  if (!asset) return null;
+
+  if (typeof asset === "string") {
+    return asset;
+  }
+
+  return (
+    asset.address ||
+    asset.jetton?.address ||
+    asset.jettonAddress ||
+    asset.asset?.address ||
+    null
+  );
+}
+
+function getDeDustAssetSymbol(asset) {
+  if (!asset || typeof asset === "string") return "";
+
+  return (
+    asset.symbol ||
+    asset.jetton?.symbol ||
+    asset.metadata?.symbol ||
+    ""
+  );
+}
+
+function isNativeTONAsset(asset) {
+  if (!asset) return false;
+
+  if (typeof asset === "string") {
+    return (
+      asset === "native" ||
+      asset === "TON" ||
+      asset === "ton"
+    );
+  }
+
+  return (
+    asset.type === "native" ||
+    asset.type === "ton" ||
+    asset.type === "native_coin"
+  );
+}
+
+function extractDeDustTokens(pools) {
+  const tokens = new Map();
+
+  for (const pool of pools) {
+    if (!pool) continue;
+
+    const assets = Array.isArray(pool.assets)
+      ? pool.assets
+      : [];
+
+    for (const asset of assets) {
+      if (!asset || isNativeTONAsset(asset)) continue;
+
+      const address = getDeDustAssetAddress(asset);
+      if (!address) continue;
+
+      const symbol = getDeDustAssetSymbol(asset);
+
+      if (!tokens.has(address)) {
+        tokens.set(address, {
+          address,
+          symbol: symbol || "UNKNOWN",
+          pools: 0,
+          poolAddresses: []
+        });
+      }
+
+      const token = tokens.get(address);
+      token.pools++;
+
+      if (pool.address && !token.poolAddresses.includes(pool.address)) {
+        token.poolAddresses.push(pool.address);
+      }
+    }
+  }
+
+  return [...tokens.values()];
+}
+
+function normalizeDeDustPool(pool) {
+  if (!pool) return null;
+
+  const assets = Array.isArray(pool.assets)
+    ? pool.assets
+    : [];
+
+  if (assets.length !== 2) return null;
+
+  return {
+    address: pool.address || pool.poolAddress || "",
+    assets,
+    type: pool.type || pool.poolType || "volatile"
+  };
+}
+
 
 async function fetchQuery(query, attempt=0) {
   try {
