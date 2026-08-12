@@ -264,8 +264,21 @@
     let currentTab = 'gainers', currentTf = 'h1', volFilter = 'all', currentPage = 'market';
     let pairs = [], isLoading = false, alertTarget = null;
 
-    const MIN_VOL = 4000, MIN_LIQ = 1500, HIGH_VOL = 40000;
-    const QUERIES = ['TON','USDT','NOT','DOGS','HMSTR','CATI','MAJOR','X','STON','JETTON','GRAM','SCALE','ANON','FISH','REDO','WEB3','MEME','AI','PUNK','DUST'];
+    const MIN_VOL = 1500, MIN_LIQ = 800, HIGH_VOL = 25000;
+    const QUERIES = [
+      'TON','USDT','USDC','NOT','DOGS','HMSTR','CATI','MAJOR','X','STON','JETTON',
+      'GRAM','SCALE','ANON','FISH','REDO','WEB3','MEME','AI','PUNK','DUST','KINGY',
+      'DFC','UTYA','WALL','COFFEE','TIME','PROXY','JETTON','SOON','ARBUZ','LAVE',
+      'BOLT','FNZ','TAKE','STORM','ORACLE','TRC','TGR','AMBR','GEMS','LUNA',
+      'PUFF','WOLF','MOON','PEPE','DOGE','SHIB','CAT','DOG','FROG','BEAR',
+      'BULL','GOLD','SILVER','DIAMOND','CROWN','KING','QUEEN','PRINCE','BABY',
+      'INU','COIN','TOKEN','SWAP','DEX','FARM','YIELD','STAKE','LOCK','BURN',
+      'MINT','DAO','NFT','META','VERSE','CHAIN','BLOCK','HASH','NODE','GAS',
+      'FEE','LP','POOL','PAIR','ROUTE','BRIDGE','WRAP','STTON','TS TON','WTON',
+      'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
+      'S','T','U','V','W','Y','Z','1','2','3','4','5','9','69','420','777',
+      '100X','1000X','MOONSHOT','RUG','SAFE','HODL','FOMO','APE','DEGEN','ALPHA'
+    ];
 
     async function fetchQuery(q) {
       try {
@@ -412,7 +425,7 @@
         list = list.filter(p => p.signal !== 'neutral');
         list.sort((a,b) => (order[a.signal]-order[b.signal]) || (Math.abs(b.score)-Math.abs(a.score)));
       }
-      return list.slice(0, 28);
+      return list.slice(0, 100);
     }
 
     function cardHTML(p, i) {
@@ -539,4 +552,4 @@
     loadData();
   </script>
 </body>
-  </html>
+</html>
