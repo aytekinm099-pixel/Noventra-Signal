@@ -1,6491 +1,713 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#070b14">
 <title>Noventra Signal</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
 <style>
 :root{
-  --bg:#070b14;
-  --card:#0f1623;
-  --card2:#151e2e;
-  --text:#e8eef7;
-  --muted:#6b7a94;
-  --blue:#3b82f6;
-  --cyan:#22d3ee;
-  --green:#10b981;
-  --red:#f43f5e;
-  --orange:#f59e0b;
-  --border:rgba(59,130,246,.12);
-  --glow:rgba(59,130,246,.25)
+  --bg:#070b14;--card:#0f1623;--card2:#151e2e;--text:#e8eef7;--muted:#6b7a94;
+  --blue:#3b82f6;--cyan:#22d3ee;--green:#10b981;--red:#f43f5e;--orange:#f59e0b;
+  --border:rgba(59,130,246,.12);--glow:rgba(59,130,246,.25)
 }
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent
-}
-
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;
-  background:
-    radial-gradient(circle at 50% -20%,rgba(37,99,235,.13),transparent 40%),
-    var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  padding-bottom:76px;
-  line-height:1.4
-}
-
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;
+background:radial-gradient(circle at 50% -20%,rgba(37,99,235,.16),transparent 42%),var(--bg);
+color:var(--text);min-height:100vh;padding-bottom:78px;line-height:1.4}
 button,input,select{font:inherit}
-
-.header{
-  padding:15px 14px 10px;
-  background:linear-gradient(180deg,rgba(12,18,32,.98),rgba(7,11,20,.96));
-  position:sticky;
-  top:0;
-  z-index:40;
-  border-bottom:1px solid var(--border);
-  backdrop-filter:blur(18px)
-}
-
-.header-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px
-}
-
-.brand-icon{
-  width:38px;
-  height:38px;
-  border-radius:12px;
-  background:linear-gradient(135deg,#1d4ed8,#7c3aed);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-  box-shadow:0 0 18px var(--glow)
-}
-
-.brand h1{
-  font-size:1.08rem;
-  font-weight:800;
-  letter-spacing:-.4px;
-  background:linear-gradient(90deg,#e0e7ff,#93c5fd);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent
-}
-
-.brand span{
-  display:block;
-  font-size:.61rem;
-  color:var(--muted);
-  font-weight:500;
-  margin-top:1px
-}
-
-.icon-btn{
-  width:35px;
-  height:35px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  font-size:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer
-}
-
-.icon-btn.spin{
-  animation:spin .7s linear infinite
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg)}
-}
-
-.tabs{
-  display:flex;
-  gap:4px;
-  background:var(--card);
-  padding:3px;
-  border-radius:12px
-}
-
-.tab{
-  flex:1;
-  text-align:center;
-  padding:8px 2px;
-  border-radius:9px;
-  font-size:.70rem;
-  font-weight:650;
-  color:var(--muted);
-  cursor:pointer
-}
-
-.tab.active{
-  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
-  color:#fff;
-  box-shadow:0 2px 12px rgba(37,99,235,.35)
-}
-
-.filters{
-  display:flex;
-  gap:6px;
-  padding:10px 14px 0;
-  overflow-x:auto;
-  scrollbar-width:none
-}
-
+button{cursor:pointer}
+.header{padding:14px 14px 10px;background:linear-gradient(180deg,rgba(12,18,32,.99),rgba(7,11,20,.96));
+position:sticky;top:0;z-index:40;border-bottom:1px solid var(--border);backdrop-filter:blur(18px)}
+.header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand-icon{width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,#1d4ed8,#7c3aed);
+display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 0 20px var(--glow);flex-shrink:0}
+.brand h1{font-size:1.08rem;font-weight:800;letter-spacing:-.4px;background:linear-gradient(90deg,#e0e7ff,#93c5fd);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.brand span{display:block;font-size:.61rem;color:var(--muted);font-weight:500;margin-top:1px}
+.header-actions{display:flex;gap:5px}
+.icon-btn{width:35px;height:35px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);
+font-size:16px;display:flex;align-items:center;justify-content:center}
+.icon-btn.spin{animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tabs{display:flex;gap:4px;background:var(--card);padding:3px;border-radius:12px}
+.tab{flex:1;text-align:center;padding:8px 2px;border-radius:9px;font-size:.70rem;font-weight:650;color:var(--muted)}
+.tab.active{background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;box-shadow:0 2px 12px rgba(37,99,235,.35)}
+.filters{display:flex;gap:6px;padding:10px 14px 0;overflow-x:auto;scrollbar-width:none}
 .filters::-webkit-scrollbar{display:none}
-
-.chip{
-  flex-shrink:0;
-  padding:6px 11px;
-  border-radius:20px;
-  font-size:.69rem;
-  font-weight:550;
-  background:var(--card);
-  color:var(--muted);
-  border:1px solid var(--border);
-  cursor:pointer
-}
-
-.chip.active{
-  background:rgba(59,130,246,.18);
-  border-color:#3b82f6;
-  color:#93c5fd
-}
-
-.status-bar{
-  display:flex;
-  justify-content:space-between;
-  padding:8px 14px 4px;
-  font-size:.65rem;
-  color:var(--muted)
-}
-
-.alert-banner{
-  margin:8px 12px 0;
-  padding:10px 12px;
-  border-radius:10px;
-  background:rgba(245,158,11,.12);
-  border:1px solid rgba(245,158,11,.3);
-  color:#fbbf24;
-  font-size:.76rem;
-  display:none
-}
-
+.chip{flex-shrink:0;padding:6px 11px;border-radius:20px;font-size:.69rem;font-weight:550;background:var(--card);
+color:var(--muted);border:1px solid var(--border)}
+.chip.active{background:rgba(59,130,246,.18);border-color:#3b82f6;color:#93c5fd}
+.status-bar{display:flex;justify-content:space-between;padding:8px 14px 4px;font-size:.65rem;color:var(--muted)}
+.alert-banner{margin:8px 12px 0;padding:10px 12px;border-radius:10px;background:rgba(245,158,11,.12);
+border:1px solid rgba(245,158,11,.3);color:#fbbf24;font-size:.76rem;display:none}
 .alert-banner.show{display:block}
-
-.page{display:none}
-.page.active{display:block}
-
-.list{
-  padding:4px 12px 18px;
-  display:flex;
-  flex-direction:column;
-  gap:8px
-}
-
-.card{
-  background:linear-gradient(145deg,rgba(15,22,35,.98),rgba(12,19,31,.98));
-  border-radius:14px;
-  padding:12px 13px;
-  border:1px solid var(--border)
-}
-
-.card.fav{
-  border-color:rgba(129,140,248,.38)
-}
-
-.card.alert-hit{
-  border-color:var(--orange);
-  box-shadow:0 0 14px rgba(245,158,11,.18)
-}
-
-.card-top{
-  display:flex;
-  align-items:center;
-  gap:9px
-}
-
-.rank{
-  width:23px;
-  height:23px;
-  border-radius:7px;
-  background:rgba(255,255,255,.04);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:.67rem;
-  font-weight:750;
-  color:var(--muted);
-  flex-shrink:0
-}
-
-.rank.top{
-  background:rgba(59,130,246,.2);
-  color:#93c5fd
-}
-
-.info{
-  flex:1;
-  min-width:0
-}
-
-.sym-row{
-  display:flex;
-  align-items:center;
-  gap:5px;
-  flex-wrap:wrap
-}
-
-/* TOKEN NAME + SYMBOL */
-.token-title{
-  display:flex;
-  align-items:baseline;
-  gap:5px;
-  min-width:0;
-  max-width:100%
-}
-
-.token-name{
-  font-weight:750;
-  font-size:.91rem;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  max-width:150px
-}
-
-.token-symbol{
-  font-size:.62rem;
-  font-weight:650;
-  color:var(--muted);
-  white-space:nowrap
-}
-
-.symbol{
-  font-weight:750;
-  font-size:.91rem;
-  max-width:150px;
-  overflow:hidden;
-  text-overflow:ellipsis
-}
-
-.dex{
-  font-size:.56rem;
-  padding:1px 5px;
-  border-radius:4px;
-  font-weight:650;
-  text-transform:uppercase
-}
-
-.dex.dedust{
-  background:rgba(16,185,129,.15);
-  color:#6ee7b7
-}
-
-.dex.ston{
-  background:rgba(59,130,246,.15);
-  color:#93c5fd
-}
-
-.dex.other{
-  background:rgba(255,255,255,.06);
-  color:var(--muted)
-}
-
-.signal{
-  font-size:.55rem;
-  font-weight:750;
-  padding:2px 5px;
-  border-radius:4px
-}
-
-.signal.strong-buy{
-  background:rgba(16,185,129,.22);
-  color:#34d399
-}
-
-.signal.buy{
-  background:rgba(16,185,129,.12);
-  color:#6ee7b7
-}
-
-.signal.strong-sell{
-  background:rgba(244,63,94,.22);
-  color:#fb7185
-}
-
-.signal.sell{
-  background:rgba(244,63,94,.12);
-  color:#fda4af
-}
-
-.meta{
-  font-size:.62rem;
-  color:var(--muted);
-  margin-top:3px
-}
-
-.right{
-  text-align:right;
-  min-width:78px
-}
-
-.chg{
-  font-weight:750;
-  font-size:.97rem
-}
-
-.chg.up{color:var(--green)}
-.chg.down{color:var(--red)}
-
-.actions{
-  display:flex;
-  gap:4px;
-  margin-top:3px;
-  justify-content:flex-end
-}
-
-.act-btn{
-  width:26px;
-  height:26px;
-  border-radius:7px;
-  border:1px solid var(--border);
-  background:var(--card2);
-  color:var(--muted);
-  font-size:12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer
-}
-
-.act-btn.on{
-  color:#a5b4fc;
-  border-color:#6366f1;
-  background:rgba(99,102,241,.15)
-}
-
-.act-btn.alert-on{
-  color:var(--orange);
-  border-color:var(--orange);
-  background:rgba(245,158,11,.08)
-}
-
-.tf-row{
-  display:flex;
-  gap:5px;
-  margin-top:9px
-}
-
-.tf{
-  flex:1;
-  text-align:center;
-  padding:5px 2px;
-  border-radius:7px;
-  background:rgba(255,255,255,.025);
-  font-size:.64rem
-}
-
-.tf .lbl{
-  color:var(--muted);
-  font-size:.56rem;
-  margin-bottom:1px
-}
-
-.tf .v.up{color:var(--green)}
-.tf .v.down{color:var(--red)}
-.tf .v.neu{color:var(--muted)}
-
-.score-row{
-  display:flex;
-  justify-content:space-between;
-  margin-top:7px;
-  font-size:.55rem;
-  color:var(--muted)
-}
-
-.score-value{
-  color:#93c5fd;
-  font-weight:700
-}
-
-.bar{
-  height:3px;
-  background:rgba(255,255,255,.05);
-  border-radius:2px;
-  margin-top:3px;
-  overflow:hidden
-}
-
-.bar>div{
-  height:100%;
-  border-radius:2px
-}
-
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:rgba(12,18,32,.96);
-  border-top:1px solid var(--border);
-  display:flex;
-  z-index:50;
-  padding:6px 8px calc(6px + env(safe-area-inset-bottom));
-  backdrop-filter:blur(18px)
-}
-
-.nav-item{
-  flex:1;
-  text-align:center;
-  padding:6px 2px;
-  font-size:.64rem;
-  color:var(--muted);
-  cursor:pointer
-}
-
-.nav-item.active{color:#93c5fd}
-
-.nav-item .ico{
-  font-size:16px;
-  display:block;
-  margin-bottom:2px
-}
-
-.modal-bg{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.72);
-  z-index:100;
-  display:none;
-  align-items:flex-end;
-  justify-content:center
-}
-
-.modal-bg.show{display:flex}
-
-.modal{
-  background:#111827;
-  width:100%;
-  max-width:420px;
-  border-radius:18px 18px 0 0;
-  padding:18px 16px 28px;
-  border-top:1px solid var(--border);
-  max-height:85vh;
-  overflow-y:auto
-}
-
-.modal h3{
-  font-size:1rem;
-  margin-bottom:12px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center
-}
-
-.modal label{
-  display:block;
-  font-size:.74rem;
-  color:var(--muted);
-  margin-bottom:5px;
-  margin-top:10px
-}
-
-.modal input,
-.modal select{
-  width:100%;
-  padding:11px 12px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  font-size:.94rem;
-  outline:none
-}
-
-.modal-actions{
-  display:flex;
-  gap:8px;
-  margin-top:16px
-}
-
-.btn{
-  flex:1;
-  padding:12px;
-  border-radius:11px;
-  font-weight:650;
-  font-size:.88rem;
-  cursor:pointer;
-  border:none
-}
-
-.btn-primary{
-  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
-  color:#fff
-}
-
-.btn-ghost{
-  background:var(--card);
-  color:var(--muted);
-  border:1px solid var(--border)
-}
-
-.btn-danger{
-  background:rgba(244,63,94,.15);
-  color:#fb7185;
-  border:1px solid rgba(244,63,94,.3)
-}
-
-.empty,
-.loading{
-  text-align:center;
-  padding:48px 20px;
-  color:var(--muted);
-  font-size:.86rem
-}
-
-.loader{
-  width:24px;
-  height:24px;
-  margin:0 auto 10px;
-  border:2px solid rgba(255,255,255,.08);
-  border-top-color:var(--blue);
-  border-radius:50%;
-  animation:spin .8s linear infinite
-}
-
-.fav-empty{
-  text-align:center;
-  padding:42px 20px;
-  color:var(--muted)
-}
-
-.fav-empty .big{
-  font-size:2rem;
-  margin-bottom:8px
-}
-
-.ai-body{
-  font-size:.82rem;
-  line-height:1.55;
-  color:#dbe4f5;
-  white-space:pre-wrap
-}
-
-.ai-body b{color:#93c5fd}
-.ai-body i{color:var(--muted)}
+.page{display:none}.page.active{display:block}
+.list{padding:4px 12px 18px;display:flex;flex-direction:column;gap:8px}
+.card{background:linear-gradient(145deg,rgba(15,22,35,.98),rgba(12,19,31,.98));border-radius:14px;padding:12px 13px;border:1px solid var(--border)}
+.card.fav{border-color:rgba(129,140,248,.38)}.card.alert-hit{border-color:var(--orange);box-shadow:0 0 14px rgba(245,158,11,.18)}
+.card-top{display:flex;align-items:center;gap:9px}.rank{width:23px;height:23px;border-radius:7px;background:rgba(255,255,255,.04);
+display:flex;align-items:center;justify-content:center;font-size:.67rem;font-weight:750;color:var(--muted);flex-shrink:0}
+.rank.top{background:rgba(59,130,246,.2);color:#93c5fd}.info{flex:1;min-width:0}.sym-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.token-title{display:flex;align-items:baseline;gap:5px;min-width:0;max-width:100%}
+.token-name{font-weight:750;font-size:.91rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:155px}
+.token-symbol{font-size:.62rem;font-weight:650;color:var(--muted);white-space:nowrap}
+.dex{font-size:.56rem;padding:1px 5px;border-radius:4px;font-weight:650;text-transform:uppercase}
+.dex.dedust{background:rgba(16,185,129,.15);color:#6ee7b7}.dex.ston{background:rgba(59,130,246,.15);color:#93c5fd}
+.dex.other{background:rgba(255,255,255,.06);color:var(--muted)}
+.signal{font-size:.55rem;font-weight:750;padding:2px 5px;border-radius:4px}
+.signal.strong-buy,.signal.buy{background:rgba(16,185,129,.16);color:#34d399}
+.signal.strong-sell,.signal.sell{background:rgba(244,63,94,.16);color:#fb7185}
+.meta{font-size:.62rem;color:var(--muted);margin-top:3px}.right{text-align:right;min-width:88px}
+.chg{font-weight:750;font-size:.97rem}.chg.up{color:var(--green)}.chg.down{color:var(--red)}
+.actions{display:flex;gap:4px;margin-top:3px;justify-content:flex-end}.act-btn{width:26px;height:26px;border-radius:7px;border:1px solid var(--border);
+background:var(--card2);color:var(--muted);font-size:12px;display:flex;align-items:center;justify-content:center}
+.act-btn.on{color:#a5b4fc;border-color:#6366f1;background:rgba(99,102,241,.15)}
+.act-btn.alert-on{color:var(--orange);border-color:var(--orange);background:rgba(245,158,11,.08)}
+.tf-row{display:flex;gap:5px;margin-top:9px}.tf{flex:1;text-align:center;padding:5px 2px;border-radius:7px;background:rgba(255,255,255,.025);font-size:.64rem}
+.tf .lbl{color:var(--muted);font-size:.56rem;margin-bottom:1px}.tf .v.up{color:var(--green)}.tf .v.down{color:var(--red)}.tf .v.neu{color:var(--muted)}
+.score-row{display:flex;justify-content:space-between;margin-top:7px;font-size:.55rem;color:var(--muted)}
+.score-value{color:#93c5fd;font-weight:700}.bar{height:3px;background:rgba(255,255,255,.05);border-radius:2px;margin-top:3px;overflow:hidden}
+.bar>div{height:100%;border-radius:2px}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(12,18,32,.97);
+border-top:1px solid var(--border);display:flex;z-index:50;padding:6px 8px calc(6px + env(safe-area-inset-bottom));backdrop-filter:blur(18px)}
+.nav-item{flex:1;text-align:center;padding:6px 2px;font-size:.64rem;color:var(--muted)}.nav-item.active{color:#93c5fd}
+.nav-item .ico{font-size:16px;display:block;margin-bottom:2px}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:100;display:none;align-items:flex-end;justify-content:center}
+.modal-bg.show{display:flex}.modal{background:#111827;width:100%;max-width:430px;border-radius:18px 18px 0 0;padding:18px 16px 28px;
+border-top:1px solid var(--border);max-height:88vh;overflow-y:auto}.modal h3{font-size:1rem;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.modal label{display:block;font-size:.74rem;color:var(--muted);margin-bottom:5px;margin-top:10px}.modal input,.modal select{width:100%;padding:11px 12px;
+border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:.94rem;outline:none}
+.modal-actions{display:flex;gap:8px;margin-top:16px}.btn{flex:1;padding:12px;border-radius:11px;font-weight:650;font-size:.88rem;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff}.btn-ghost{background:var(--card);color:var(--muted);border:1px solid var(--border)}
+.btn-danger{background:rgba(244,63,94,.15);color:#fb7185;border:1px solid rgba(244,63,94,.3)}
+.empty,.loading{text-align:center;padding:48px 20px;color:var(--muted);font-size:.86rem}.loader{width:24px;height:24px;margin:0 auto 10px;
+border:2px solid rgba(255,255,255,.08);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+.fav-empty{text-align:center;padding:42px 20px;color:var(--muted)}.fav-empty .big{font-size:2rem;margin-bottom:8px}
+.ai-body{font-size:.82rem;line-height:1.55;color:#dbe4f5;white-space:pre-wrap}.ai-body b{color:#93c5fd}.ai-body i{color:var(--muted)}
+.language-menu{position:fixed;top:64px;right:10px;z-index:200;width:190px;background:#111827;border:1px solid rgba(59,130,246,.25);
+border-radius:14px;padding:7px;box-shadow:0 15px 40px rgba(0,0,0,.45);backdrop-filter:blur(18px)}
+.language-menu button{width:100%;border:0;background:transparent;color:#e8eef7;border-radius:9px;padding:10px;text-align:left;font-size:.82rem}
+.language-menu button.active{background:rgba(59,130,246,.20)}
+.scan-badge{font-size:.57rem;color:#6ee7b7;margin-left:4px}
 </style>
 </head>
-
 <body>
 
-<div class="header">
+<header class="header">
   <div class="header-top">
-
     <div class="brand">
-
       <div class="brand-icon">◈</div>
-
-      <div>
-
-        <h1>Noventra Signal</h1>
-
-        <span>
-          TON · Fast Scan · AI Signals
-        </span>
-
-      </div>
-
+      <div><h1>Noventra Signal</h1><span>TON · Fast Scan · AI Signals</span></div>
     </div>
-
-    <button
-      class="icon-btn"
-      id="refreshBtn"
-      title="Yenile"
-    >↻</button>
-
+    <div class="header-actions">
+      <button class="icon-btn" id="languageBtn" title="Language">🌐</button>
+      <button class="icon-btn" id="refreshBtn" title="Refresh">↻</button>
+    </div>
   </div>
-
   <div class="tabs" id="mainTabs">
-
-    <div
-      class="tab active"
-      data-tab="gainers"
-    >
-      Yükselen
-    </div>
-
-    <div
-      class="tab"
-      data-tab="losers"
-    >
-      Düşen
-    </div>
-
-    <div
-      class="tab"
-      data-tab="volume"
-    >
-      Hacim
-    </div>
-
-    <div
-      class="tab"
-      data-tab="signals"
-    >
-      Sinyal
-    </div>
-
+    <div class="tab active" data-tab="gainers">Gainers</div>
+    <div class="tab" data-tab="losers">Losers</div>
+    <div class="tab" data-tab="volume">Volume</div>
+    <div class="tab" data-tab="signals">Signals</div>
   </div>
+</header>
 
-</div>
+<div class="alert-banner" id="alertBanner"></div>
 
-<div
-  class="alert-banner"
-  id="alertBanner"
-></div>
-
-<div
-  class="filters"
-  id="filters"
->
-
-  <div
-    class="chip active"
-    data-tf="h1"
-  >
-    1 Saat
-  </div>
-
-  <div
-    class="chip"
-    data-tf="h6"
-  >
-    6 Saat
-  </div>
-
-  <div
-    class="chip"
-    data-tf="h24"
-  >
-    24 Saat
-  </div>
-
-  <div
-    class="chip active"
-    data-vol="all"
-  >
-    Tüm
-  </div>
-
-  <div
-    class="chip"
-    data-vol="high"
-  >
-    Yüksek Hacim
-  </div>
-
-  <div
-    class="chip"
-    data-vol="dedust"
-  >
-    DeDust
-  </div>
-
+<div class="filters" id="filters">
+  <div class="chip active" data-tf="h1">1 Hour</div>
+  <div class="chip" data-tf="h6">6 Hours</div>
+  <div class="chip" data-tf="h24">24 Hours</div>
+  <div class="chip active" data-vol="all">All</div>
+  <div class="chip" data-vol="high">High Volume</div>
+  <div class="chip" data-vol="dedust">DeDust</div>
 </div>
 
 <div class="status-bar">
-
-  <span id="statusText">
-    Hazırlanıyor...
-  </span>
-
+  <span id="statusText">Preparing...</span>
   <span id="countText"></span>
-
 </div>
 
-<div
-  class="page active"
-  id="page-market"
->
+<section class="page active" id="page-market">
+  <div id="content"><div class="loading"><div class="loader"></div><span id="loadingText">Scanning TON market...</span></div></div>
+</section>
 
-  <div id="content">
+<section class="page" id="page-favorites">
+  <div id="favContent"></div>
+</section>
 
-    <div class="loading">
+<section class="page" id="page-alerts">
+  <div id="alertContent"></div>
+</section>
 
-      <div class="loader"></div>
+<nav class="bottom-nav">
+  <div class="nav-item active" data-page="market"><span class="ico">📊</span><span data-i18n="market">Market</span></div>
+  <div class="nav-item" data-page="favorites"><span class="ico">★</span><span data-i18n="favorites">Favorites</span></div>
+  <div class="nav-item" data-page="alerts"><span class="ico">🔔</span><span data-i18n="alerts">Alerts</span></div>
+</nav>
 
-      TON piyasası taranıyor...
-
-    </div>
-
-  </div>
-
-</div>
-
-<div
-  class="page"
-  id="page-favorites"
->
-
-  <div id="favContent">
-
-    <div class="fav-empty">
-
-      <div class="big">★</div>
-
-      Henüz favori yok.<br>
-
-      Kartlardaki ★ ile ekle.
-
-    </div>
-
-  </div>
-
-</div>
-
-<div
-  class="page"
-  id="page-alerts"
->
-
-  <div id="alertContent">
-
-    <div class="fav-empty">
-
-      <div class="big">🔔</div>
-
-      Aktif alarm yok.<br>
-
-      Kartlardaki 🔔 ile alarm kur.
-
-    </div>
-
-  </div>
-
-</div>
-
-<div class="bottom-nav">
-
-  <div
-    class="nav-item active"
-    data-page="market"
-  >
-
-    <span class="ico">
-      📊
-    </span>
-
-    Piyasa
-
-  </div>
-
-  <div
-    class="nav-item"
-    data-page="favorites"
-  >
-
-    <span class="ico">
-      ★
-    </span>
-
-    Favoriler
-
-  </div>
-
-  <div
-    class="nav-item"
-    data-page="alerts"
-  >
-
-    <span class="ico">
-      🔔
-    </span>
-
-    Alarmlar
-
-  </div>
-
-</div>
-
-<!-- ALERT MODAL -->
-
-<div
-  class="modal-bg"
-  id="alertModal"
->
-
+<div class="modal-bg" id="alertModal">
   <div class="modal">
-
-    <h3>
-
-      <span>
-        Alarm Kur
-      </span>
-
-      <span
-        id="modalClose"
-        style="font-size:1.2rem;cursor:pointer;color:var(--muted)"
-      >
-        ✕
-      </span>
-
-    </h3>
-
-    <div
-      id="modalSymbol"
-      style="font-size:.85rem;color:var(--cyan);margin-bottom:8px"
-    ></div>
-
-    <label>
-      Alarm Tipi
-    </label>
-
+    <h3><span id="alertTitle">Set Alert</span><span id="modalClose" style="font-size:1.2rem;cursor:pointer;color:var(--muted)">✕</span></h3>
+    <div id="modalSymbol" style="font-size:.85rem;color:var(--cyan);margin-bottom:8px"></div>
+    <label id="alertTypeLabel">Alert Type</label>
     <select id="alertType">
-
-      <option value="pct_up">
-        Yüzde yükselince (%)
-      </option>
-
-      <option value="pct_down">
-        Yüzde düşünce (%)
-      </option>
-
-      <option value="price_above">
-        Fiyat üstüne çıkınca ($)
-      </option>
-
-      <option value="price_below">
-        Fiyat altına inince ($)
-      </option>
-
+      <option value="pct_up">When percentage rises (%)</option>
+      <option value="pct_down">When percentage falls (%)</option>
+      <option value="price_above">When price rises above ($)</option>
+      <option value="price_below">When price falls below ($)</option>
     </select>
-
-    <label>
-      Değer
-    </label>
-
-    <input
-      type="number"
-      id="alertValue"
-      placeholder="Örn: 10 veya 0.05"
-      step="any"
-      inputmode="decimal"
-    >
-
+    <label id="valueLabel">Value</label>
+    <input type="number" id="alertValue" placeholder="e.g. 10 or 0.05" step="any" inputmode="decimal">
     <div class="modal-actions">
-
-      <button
-        class="btn btn-ghost"
-        id="modalCancel"
-      >
-        İptal
-      </button>
-
-      <button
-        class="btn btn-primary"
-        id="modalSave"
-      >
-        Kaydet
-      </button>
-
+      <button class="btn btn-ghost" id="modalCancel">Cancel</button>
+      <button class="btn btn-primary" id="modalSave">Save</button>
     </div>
-
   </div>
-
 </div>
 
-<!-- AI MODAL -->
-
-<div
-  class="modal-bg"
-  id="aiModal"
->
-
+<div class="modal-bg" id="aiModal">
   <div class="modal">
-
-    <h3>
-
-      <span>
-        🤖 AI Analiz
-      </span>
-
-      <span
-        id="aiModalClose"
-        style="font-size:1.2rem;cursor:pointer;color:var(--muted)"
-      >
-        ✕
-      </span>
-
-    </h3>
-
-    <div
-      class="ai-body"
-      id="aiBody"
-    ></div>
-
-    <div class="modal-actions">
-
-      <button
-        class="btn btn-primary"
-        id="aiModalOk"
-      >
-        Tamam
-      </button>
-
-    </div>
-
+    <h3><span id="aiTitle">🤖 AI Analysis</span><span id="aiModalClose" style="font-size:1.2rem;cursor:pointer;color:var(--muted)">✕</span></h3>
+    <div class="ai-body" id="aiBody"></div>
+    <div class="modal-actions"><button class="btn btn-primary" id="aiModalOk">OK</button></div>
   </div>
-
 </div>
 
 <script>
+"use strict";
 
-/* =========================================================
+/* =========================
    TELEGRAM
-========================================================= */
-
-const tg =
-  window.Telegram?.WebApp || null;
-
-if (tg) {
-
-  tg.ready();
-
-  tg.expand();
-
-  try {
-
-    const tp =
-      tg.themeParams || {};
-
-    if (tp.bg_color) {
-
-      document.documentElement.style.setProperty(
-        "--bg",
-        tp.bg_color
-      );
-
-    }
-
-    if (tp.secondary_bg_color) {
-
-      document.documentElement.style.setProperty(
-        "--card",
-        tp.secondary_bg_color
-      );
-
-    }
-
-    if (tp.text_color) {
-
-      document.documentElement.style.setProperty(
-        "--text",
-        tp.text_color
-      );
-
-    }
-
-    if (tp.hint_color) {
-
-      document.documentElement.style.setProperty(
-        "--muted",
-        tp.hint_color
-      );
-
-    }
-
-    if (tp.button_color) {
-
-      document.documentElement.style.setProperty(
-        "--blue",
-        tp.button_color
-      );
-
-    }
-
-  } catch (_) {}
-
+========================= */
+const tg = window.Telegram?.WebApp || null;
+if(tg){
+  tg.ready(); tg.expand();
+  try{
+    const p=tg.themeParams||{};
+    if(p.bg_color) document.documentElement.style.setProperty("--bg",p.bg_color);
+    if(p.secondary_bg_color) document.documentElement.style.setProperty("--card",p.secondary_bg_color);
+    if(p.text_color) document.documentElement.style.setProperty("--text",p.text_color);
+    if(p.hint_color) document.documentElement.style.setProperty("--muted",p.hint_color);
+    if(p.button_color) document.documentElement.style.setProperty("--blue",p.button_color);
+  }catch(_){}
 }
 
-
-/* =========================================================
+/* =========================
    STORAGE
-========================================================= */
+========================= */
+const FAV_KEY="noventra_favs_v8", ALERT_KEY="noventra_alerts_v8", LANG_KEY="noventra_language_v2";
+const loadJSON=(k,d=[])=>{try{const x=JSON.parse(localStorage.getItem(k));return Array.isArray(x)?x:d}catch(_){return d}};
+const saveJSON=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(_){}};
 
-const STORAGE_FAV =
-  "noventra_favs_v7";
+let favorites=loadJSON(FAV_KEY), alerts=loadJSON(ALERT_KEY), pairs=[];
+let currentTab="gainers", currentTf="h1", volFilter="all", currentPage="market";
+let isLoading=false, alertTarget=null, currentLanguage="en";
 
-const STORAGE_ALERTS =
-  "noventra_alerts_v7";
+/* =========================
+   CONFIG — FAST + WIDE
+========================= */
+const MIN_VOL=500, MIN_LIQ=250, HIGH_VOL=20000, REFRESH_MS=60000, MAX_RESULTS=150;
+const SEARCH_CONCURRENCY=10, REQUEST_TIMEOUT=6500;
 
-
-function loadJSON(
-  key,
-  defaultValue = []
-) {
-
-  try {
-
-    const value =
-      JSON.parse(
-        localStorage.getItem(key)
-      );
-
-    return Array.isArray(value)
-      ? value
-      : defaultValue;
-
-  } catch (_) {
-
-    return defaultValue;
-
-  }
-
-}
-
-
-function saveJSON(
-  key,
-  value
-) {
-
-  try {
-
-    localStorage.setItem(
-      key,
-      JSON.stringify(value)
-    );
-
-  } catch (_) {}
-
-}
-
-
-let favorites =
-  loadJSON(STORAGE_FAV);
-
-let alerts =
-  loadJSON(STORAGE_ALERTS);
-
-let pairs = [];
-
-let currentTab =
-  "gainers";
-
-let currentTf =
-  "h1";
-
-let volFilter =
-  "all";
-
-let currentPage =
-  "market";
-
-let isLoading =
-  false;
-
-let alertTarget =
-  null;
-
-
-/* =========================================================
-   CONFIG
-========================================================= */
-
-const MIN_VOL =
-  800;
-
-const MIN_LIQ =
-  400;
-
-const HIGH_VOL =
-  20000;
-
-const REFRESH_MS =
-  75000;
-
-const MAX_RESULTS =
-  120;
-
-
-const QUERIES = [
-
-  "TON",
-  "USDT",
-  "USDC",
-  "STON",
-  "dedust",
-  "NOT",
-  "DOGS",
-  "HMSTR",
-  "CATI",
-  "MAJOR",
-  "GRAM",
-  "SCALE",
-  "ANON",
-  "FISH",
-  "REDO",
-  "DUST",
-  "KINGY",
-  "JETTON",
-  "ARBUZ",
-  "LAVE",
-  "BOLT",
-  "STORM",
-  "ORACLE",
-  "GEMS",
-  "PUFF",
-  "WOLF",
-  "MOON",
-  "PEPE",
-  "DOGE",
-  "SHIB",
-  "CAT",
-  "DOG",
-  "FROG",
-  "BEAR",
-  "INU",
-  "MEME",
-  "AI",
-  "PUNK",
-  "DEGEN",
-  "ALPHA",
-  "HODL",
-  "APE",
-  "NFT",
-  "DAO",
-  "WALL",
-  "COFFEE",
-  "TIME",
-  "PROXY",
-  "LUNA",
-  "GOLD",
-  "DIAMOND",
-  "BULL"
-
+/*
+  DexScreener search is used only as a discovery layer.
+  More focused queries + TON-only normalization = wider discovery
+  without putting non-TON pairs into the app.
+*/
+const QUERIES=[
+  "TON","USDT","USDC","STON","DeDust","TONCOIN","GRAM","NOT","DOGS","HMSTR","CATI","MAJOR",
+  "SCALE","ANON","FISH","REDO","DUST","KINGY","JETTON","ARBUZ","LAVE","BOLT","STORM","ORACLE",
+  "GEMS","PUFF","WOLF","MOON","PEPE","DOGE","SHIB","CAT","DOG","FROG","BEAR","INU","MEME",
+  "AI","PUNK","DEGEN","ALPHA","HODL","APE","NFT","DAO","WALL","COFFEE","TIME","PROXY","LUNA",
+  "GOLD","DIAMOND","BULL","BEER","TINU","MAGA","TRUMP","TGRAM","WEB3","GAME","GAMING","BOT",
+  "PAY","BANK","SWAP","DEX","FINANCE","FUND","META","VERSE","STAR","SPACE","ROCKET","ROCK",
+  "FIRE","WHALE","SHARK","FROG","MONKEY","RAT","BIRD","PANDA","TIGER","DRAGON","PIXEL","AI",
+  "CHAIN","LINK","DAO","LAB","X","FX","NOVA","NOVENTRA"
 ];
 
+/* =========================
+   I18N
+========================= */
+const LANGUAGES={tr:"🇹🇷 Türkçe",en:"🇬🇧 English",ru:"🇷🇺 Русский",zh:"🇨🇳 中文",ja:"🇯🇵 日本語",ko:"🇰🇷 한국어"};
+const I18N={
+tr:{
+market:"Piyasa",favorites:"Favoriler",alerts:"Alarmlar",gainers:"Yükselen",losers:"Düşen",volume:"Hacim",signals:"Sinyal",
+hour1:"1 Saat",hour6:"6 Saat",hour24:"24 Saat",all:"Tüm",highVolume:"Yüksek Hacim",dedust:"DeDust",
+preparing:"Hazırlanıyor...",scanning:"TON piyasası taranıyor...",scanned:"Hızlı tarama...",updated:"Güncelleme",pairs:"çift",
+noResults:"Bu filtrede sonuç yok.",refreshOrFilter:"Yenile veya filtre değiştir.",dataError:"Veri alınamadı — yenile",
+noFavorites:"Henüz favori yok.",addFavorite:"Piyasa sekmesinden ★ ile ekle.",noAlerts:"Aktif alarm yok.",setAlertShort:"Kartlardaki 🔔 ile kur.",
+alertSet:"Alarm Kur",alertType:"Alarm Tipi",percentUp:"Yüzde yükselince (%)",percentDown:"Yüzde düşünce (%)",priceAbove:"Fiyat üstüne çıkınca ($)",priceBelow:"Fiyat altına inince ($)",
+value:"Değer",example:"Örn: 10 veya 0.05",cancel:"İptal",save:"Kaydet",saved:"Alarm Kaydedildi",alertCreated:"için alarm oluşturuldu.",invalidValue:"Geçerli bir değer gir.",triggered:"alarmı tetiklendi!",
+aiAnalysis:"AI Analiz",ok:"Tamam",tokenDataMissing:"Token verisi bulunamadı.",tokenNotListed:"Bu token şu an listede değil.",delete:"Sil",now:"Şu an",
+liquidity:"liq",vol:"vol",score:"Noventra Score",strongBuy:"GÜÇLÜ AL",buy:"AL",strongSell:"GÜÇLÜ SAT",sell:"SAT",unknownToken:"Bilinmeyen Token",neutral:"Nötr",
+technical:"Teknik",general:"Genel",timeframe:"Zaman dilimleri",confidence:"Güven",warnings:"Uyarılar",risks:"Riskler",summary:"Özet",
+disclaimer:"Noventra Signal teknik veriler üzerinden otomatik analiz üretir. Yatırım tavsiyesi değildir.",
+veryStrongUp:"Çok güçlü kısa vadeli alım baskısı. Momentum net şekilde yukarı.",strongUp:"Güçlü yükseliş momentumu var; alıcılar kontrolde.",positive:"Olumlu momentum, alıcılar hafif önde.",slightlyPositive:"Hafif pozitif eğilim, henüz net kırılım yok.",
+neutralTrend:"Yatay / belirsiz bölge. Net yön oluşmamış.",slightlyNegative:"Hafif satış baskısı hissediliyor.",weak:"Satıcılar önde, zayıf görünüm.",strongDown:"Güçlü düşüş momentumu; satıcılar baskın.",veryStrongDown:"Çok sert satış baskısı. Kısa vadede zayıf tablo.",
+veryHighVolume:"Çok yüksek hacim",highVolumeText:"Yüksek hacim",mediumVolume:"Orta hacim",lowMediumVolume:"Düşük-orta hacim",veryLowVolume:"Çok düşük hacim",
+strongLiquidity:"Güçlü likidite",sufficientLiquidity:"Yeterli likidite",mediumLiquidity:"Orta likidite",weakLiquidity:"Zayıf likidite",criticalLiquidity:"Kritik düşük likidite",
+multiUp:"Çoklu zaman diliminde yükseliş uyumu var.",multiDown:"Çoklu zaman diliminde düşüş uyumu var.",shortUpMediumWeak:"Kısa vade yukarı, orta vade zayıf — çelişkili tablo.",
+shortDownMediumPositive:"Kısa vade aşağı, orta vade hâlâ pozitif — toparlanma veya dağıtım olabilir.",mixed:"Zaman dilimleri karışık; net konsensüs yok.",
+overheat:"Aşırı ısınmış",oversold:"Aşırı satılmış",lowLiquidity:"Düşük likidite",highVolumeMove:"Yüksek hacimli hareket",lowVolumeMove:"Hacimsiz hareket",noExtraWarnings:"Ekstra kırmızı bayrak yok; yine de pozisyon boyutunu sınırla.",
+adviceStrongBuy:"Güçlü alım momentumu var. Kademeli giriş ve stop ile değerlendirilebilir.",adviceBuy:"Alım yönlü momentum mevcut. Küçük pay ile takip edilebilir.",adviceWeakBuy:"Hafif alım eğilimi var; hacim ve zaman dilimi uyumunu izle.",
+adviceStrongSell:"Güçlü satış baskısı var. Long açmak riskli.",adviceSell:"Zayıf görünüm. Yeni long için uygun değil.",adviceNeutral:"Nötr bölge. Net kırılım veya hacim artışı bekle.",adviceWatch:"İzlemede kal; sinyal ve hacim netleşsin.",
+volumeVeryHigh:"Çok yüksek hacim",volumeHigh:"Yüksek hacim",volumeMedium:"Orta hacim",volumeLowMedium:"Düşük-orta hacim",volumeVeryLow:"Çok düşük hacim",
+liquidityStrong:"Güçlü likidite",liquidityEnough:"Yeterli likidite",liquidityMedium:"Orta likidite",liquidityWeak:"Zayıf likidite",liquidityCritical:"Kritik düşük likidite"
+},
+en:{
+market:"Market",favorites:"Favorites",alerts:"Alerts",gainers:"Gainers",losers:"Losers",volume:"Volume",signals:"Signals",
+hour1:"1 Hour",hour6:"6 Hours",hour24:"24 Hours",all:"All",highVolume:"High Volume",dedust:"DeDust",preparing:"Preparing...",scanning:"Scanning TON market...",scanned:"Fast scan...",updated:"Updated",pairs:"pairs",
+noResults:"No results for this filter.",refreshOrFilter:"Refresh or change the filter.",dataError:"Failed to load data — refresh",noFavorites:"No favorites yet.",addFavorite:"Add one with ★ from the Market tab.",noAlerts:"No active alerts.",setAlertShort:"Set one with 🔔.",
+alertSet:"Set Alert",alertType:"Alert Type",percentUp:"When percentage rises (%)",percentDown:"When percentage falls (%)",priceAbove:"When price rises above ($)",priceBelow:"When price falls below ($)",value:"Value",example:"e.g. 10 or 0.05",cancel:"Cancel",save:"Save",saved:"Alert Saved",alertCreated:"alert created for",invalidValue:"Enter a valid value.",triggered:"alert triggered!",
+aiAnalysis:"AI Analysis",ok:"OK",tokenDataMissing:"Token data not found.",tokenNotListed:"This token is not currently listed.",delete:"Delete",now:"Now",liquidity:"liq",vol:"vol",score:"Noventra Score",
+strongBuy:"STRONG BUY",buy:"BUY",strongSell:"STRONG SELL",sell:"SELL",unknownToken:"Unknown Token",neutral:"Neutral",technical:"Technical",general:"Overview",timeframe:"Timeframes",confidence:"Confidence",warnings:"Warnings",risks:"Risks",summary:"Summary",
+disclaimer:"Noventra Signal generates automated analysis from technical market data. Not financial advice.",
+veryStrongUp:"Very strong short-term buying pressure. Momentum is clearly bullish.",strongUp:"Strong upward momentum; buyers are in control.",positive:"Positive momentum, buyers have a slight edge.",slightlyPositive:"Slightly positive trend, no clear breakout yet.",neutralTrend:"Sideways / uncertain area. No clear direction.",slightlyNegative:"Slight selling pressure is present.",weak:"Sellers are ahead; weak outlook.",strongDown:"Strong downward momentum; sellers dominate.",veryStrongDown:"Very strong selling pressure. Weak short-term outlook.",
+veryHighVolume:"Very high volume",highVolumeText:"High volume",mediumVolume:"Medium volume",lowMediumVolume:"Low-medium volume",veryLowVolume:"Very low volume",strongLiquidity:"Strong liquidity",sufficientLiquidity:"Sufficient liquidity",mediumLiquidity:"Medium liquidity",weakLiquidity:"Weak liquidity",criticalLiquidity:"Critically low liquidity",
+multiUp:"Multiple timeframes confirm the upward trend.",multiDown:"Multiple timeframes confirm the downward trend.",shortUpMediumWeak:"Short-term is bullish while the medium-term is weak — conflicting picture.",shortDownMediumPositive:"Short-term is bearish while the medium-term remains positive — pullback or distribution is possible.",mixed:"Timeframes are mixed; there is no clear consensus.",
+overheat:"Overheated",oversold:"Oversold",lowLiquidity:"Low liquidity",highVolumeMove:"High-volume move",lowVolumeMove:"Low-volume move",noExtraWarnings:"No additional red flags; still keep position size limited.",
+adviceStrongBuy:"Strong buying momentum. Consider only with disciplined sizing and a stop.",adviceBuy:"Buying momentum is present. It may be worth tracking with a small position.",adviceWeakBuy:"Mild bullish bias; watch volume and timeframe confirmation.",adviceStrongSell:"Strong selling pressure. Opening a long is risky.",adviceSell:"Weak outlook. Not ideal for a new long.",adviceNeutral:"Neutral zone. Wait for a clear breakout or volume expansion.",adviceWatch:"Stay on watch; wait for clearer signal and volume.",
+volumeVeryHigh:"Very high volume",volumeHigh:"High volume",volumeMedium:"Medium volume",volumeLowMedium:"Low-medium volume",volumeVeryLow:"Very low volume",liquidityStrong:"Strong liquidity",liquidityEnough:"Sufficient liquidity",liquidityMedium:"Medium liquidity",liquidityWeak:"Weak liquidity",liquidityCritical:"Critically low liquidity"
+},
+ru:{
+market:"Рынок",favorites:"Избранное",alerts:"Оповещения",gainers:"Рост",losers:"Падение",volume:"Объём",signals:"Сигналы",hour1:"1 час",hour6:"6 часов",hour24:"24 часа",all:"Все",highVolume:"Высокий объём",dedust:"DeDust",
+preparing:"Подготовка...",scanning:"Сканирование рынка TON...",scanned:"Быстрое сканирование...",updated:"Обновлено",pairs:"пар",noResults:"Нет результатов для этого фильтра.",refreshOrFilter:"Обновите или измените фильтр.",dataError:"Не удалось получить данные — обновите",noFavorites:"Избранного пока нет.",addFavorite:"Добавьте через ★.",noAlerts:"Активных оповещений нет.",setAlertShort:"Установите через 🔔.",
+alertSet:"Установить оповещение",alertType:"Тип оповещения",percentUp:"При росте (%)",percentDown:"При падении (%)",priceAbove:"Цена выше ($)",priceBelow:"Цена ниже ($)",value:"Значение",example:"Напр.: 10 или 0.05",cancel:"Отмена",save:"Сохранить",saved:"Оповещение сохранено",alertCreated:"оповещение создано для",invalidValue:"Введите корректное значение.",triggered:"оповещение сработало!",
+aiAnalysis:"AI-анализ",ok:"OK",tokenDataMissing:"Данные токена не найдены.",tokenNotListed:"Этот токен сейчас не найден в списке.",delete:"Удалить",now:"Сейчас",liquidity:"ликв.",vol:"объём",score:"Noventra Score",strongBuy:"СИЛЬНАЯ ПОКУПКА",buy:"ПОКУПКА",strongSell:"СИЛЬНАЯ ПРОДАЖА",sell:"ПРОДАЖА",unknownToken:"Неизвестный токен",neutral:"Нейтрально",technical:"Техника",general:"Обзор",timeframe:"Таймфреймы",confidence:"Уверенность",warnings:"Предупреждения",risks:"Риски",summary:"Итог",
+disclaimer:"Noventra Signal создаёт автоматический анализ на основе технических данных. Не является финансовой рекомендацией.",veryStrongUp:"Очень сильное краткосрочное давление покупателей. Моментум явно направлен вверх.",strongUp:"Сильный восходящий моментум; покупатели контролируют рынок.",positive:"Положительный моментум, покупатели немного впереди.",slightlyPositive:"Слабоположительный тренд, явного пробоя пока нет.",neutralTrend:"Боковое / неопределённое движение.",slightlyNegative:"Наблюдается небольшое давление продавцов.",weak:"Продавцы впереди; слабая картина.",strongDown:"Сильный нисходящий моментум; продавцы доминируют.",veryStrongDown:"Очень сильное давление продавцов. Слабая краткосрочная картина.",
+veryHighVolume:"Очень высокий объём",highVolumeText:"Высокий объём",mediumVolume:"Средний объём",lowMediumVolume:"Низко-средний объём",veryLowVolume:"Очень низкий объём",strongLiquidity:"Сильная ликвидность",sufficientLiquidity:"Достаточная ликвидность",mediumLiquidity:"Средняя ликвидность",weakLiquidity:"Слабая ликвидность",criticalLiquidity:"Критически низкая ликвидность",
+multiUp:"Несколько таймфреймов подтверждают рост.",multiDown:"Несколько таймфреймов подтверждают падение.",shortUpMediumWeak:"Краткосрочно рост, среднесрочно слабость — противоречивая картина.",shortDownMediumPositive:"Краткосрочно падение, среднесрочно позитивно — коррекция или распределение.",mixed:"Таймфреймы смешанные; чёткого консенсуса нет.",overheat:"Перегрет",oversold:"Перепродан",lowLiquidity:"Низкая ликвидность",highVolumeMove:"Движение на высоком объёме",lowVolumeMove:"Движение без объёма",noExtraWarnings:"Дополнительных красных флагов нет; всё же ограничивайте размер позиции.",
+adviceStrongBuy:"Сильный импульс покупок. Используйте дисциплинированный размер позиции и стоп.",adviceBuy:"Покупательский импульс присутствует. Можно наблюдать с небольшой позицией.",adviceWeakBuy:"Слабый бычий уклон; следите за объёмом и подтверждением таймфреймов.",adviceStrongSell:"Сильное давление продавцов. Открывать long рискованно.",adviceSell:"Слабая картина. Не лучший момент для нового long.",adviceNeutral:"Нейтральная зона. Ждите пробоя или роста объёма.",adviceWatch:"Наблюдайте; ждите более ясного сигнала и объёма.",volumeVeryHigh:"Очень высокий объём",volumeHigh:"Высокий объём",volumeMedium:"Средний объём",volumeLowMedium:"Низко-средний объём",volumeVeryLow:"Очень низкий объём",liquidityStrong:"Сильная ликвидность",liquidityEnough:"Достаточная ликвидность",liquidityMedium:"Средняя ликвидность",liquidityWeak:"Слабая ликвидность",liquidityCritical:"Критически низкая ликвидность"
+},
+zh:{
+market:"市场",favorites:"收藏",alerts:"提醒",gainers:"上涨",losers:"下跌",volume:"成交量",signals:"信号",hour1:"1小时",hour6:"6小时",hour24:"24小时",all:"全部",highVolume:"高成交量",dedust:"DeDust",preparing:"准备中...",scanning:"正在扫描 TON 市场...",scanned:"快速扫描...",updated:"更新于",pairs:"交易对",noResults:"此筛选条件没有结果。",refreshOrFilter:"刷新或更改筛选条件。",dataError:"无法获取数据 — 请刷新",noFavorites:"暂无收藏。",addFavorite:"在市场页面点击 ★ 添加。",noAlerts:"暂无活跃提醒。",setAlertShort:"点击 🔔 设置。",
+alertSet:"设置提醒",alertType:"提醒类型",percentUp:"上涨百分比 (%)",percentDown:"下跌百分比 (%)",priceAbove:"价格高于 ($)",priceBelow:"价格低于 ($)",value:"数值",example:"例如：10 或 0.05",cancel:"取消",save:"保存",saved:"提醒已保存",alertCreated:"提醒已创建：",invalidValue:"请输入有效数值。",triggered:"提醒已触发！",aiAnalysis:"AI 分析",ok:"确定",tokenDataMissing:"未找到代币数据。",tokenNotListed:"该代币目前不在列表中。",delete:"删除",now:"当前",liquidity:"流动性",vol:"成交量",score:"Noventra Score",strongBuy:"强力买入",buy:"买入",strongSell:"强力卖出",sell:"卖出",unknownToken:"未知代币",neutral:"中性",technical:"技术面",general:"概览",timeframe:"时间周期",confidence:"置信度",warnings:"警告",risks:"风险",summary:"总结",
+disclaimer:"Noventra Signal 根据技术数据生成自动分析。不构成投资建议。",veryStrongUp:"短期买盘压力非常强，动能明显向上。",strongUp:"上涨动能强劲，买方占据主导。",positive:"动能偏多，买方略占优势。",slightlyPositive:"轻微看涨，尚未形成明确突破。",neutralTrend:"横盘 / 不确定区域，方向不明确。",slightlyNegative:"存在轻微卖压。",weak:"卖方占优，走势偏弱。",strongDown:"下跌动能强劲，卖方占主导。",veryStrongDown:"卖压非常强，短期走势疲弱。",
+veryHighVolume:"极高成交量",highVolumeText:"高成交量",mediumVolume:"中等成交量",lowMediumVolume:"低至中等成交量",veryLowVolume:"极低成交量",strongLiquidity:"流动性强",sufficientLiquidity:"流动性充足",mediumLiquidity:"中等流动性",weakLiquidity:"流动性较弱",criticalLiquidity:"流动性极低",
+multiUp:"多个时间周期确认上涨趋势。",multiDown:"多个时间周期确认下跌趋势。",shortUpMediumWeak:"短期上涨，中期偏弱 — 走势存在冲突。",shortDownMediumPositive:"短期下跌，中期仍偏强 — 可能是回调或派发。",mixed:"时间周期信号混合，没有明确共识。",overheat:"过热",oversold:"超卖",lowLiquidity:"低流动性",highVolumeMove:"高成交量异动",lowVolumeMove:"低成交量异动",noExtraWarnings:"没有额外红旗，但仍应控制仓位。",
+adviceStrongBuy:"买盘动能强劲。请使用严格的仓位控制和止损。",adviceBuy:"存在买盘动能，可用小仓位继续观察。",adviceWeakBuy:"轻微看涨，关注成交量和周期确认。",adviceStrongSell:"卖压强劲，做多风险较高。",adviceSell:"走势偏弱，不适合新的多头。",adviceNeutral:"中性区域，等待明确突破或成交量放大。",adviceWatch:"继续观察，等待更清晰的信号和成交量。",volumeVeryHigh:"极高成交量",volumeHigh:"高成交量",volumeMedium:"中等成交量",volumeLowMedium:"低至中等成交量",volumeVeryLow:"极低成交量",liquidityStrong:"流动性强",liquidityEnough:"流动性充足",liquidityMedium:"中等流动性",liquidityWeak:"流动性较弱",liquidityCritical:"流动性极低"
+},
+ja:{
+market:"市場",favorites:"お気に入り",alerts:"アラート",gainers:"上昇",losers:"下落",volume:"出来高",signals:"シグナル",hour1:"1時間",hour6:"6時間",hour24:"24時間",all:"すべて",highVolume:"高出来高",dedust:"DeDust",preparing:"準備中...",scanning:"TON市場をスキャン中...",scanned:"高速スキャン...",updated:"更新",pairs:"ペア",noResults:"このフィルターに結果はありません。",refreshOrFilter:"更新するかフィルターを変更してください。",dataError:"データを取得できません — 更新してください",noFavorites:"お気に入りはありません。",addFavorite:"市場画面で ★ をタップして追加。",noAlerts:"アクティブなアラートはありません。",setAlertShort:"🔔 から設定できます。",
+alertSet:"アラート設定",alertType:"アラートタイプ",percentUp:"上昇率 (%)",percentDown:"下落率 (%)",priceAbove:"価格が上回ったら ($)",priceBelow:"価格が下回ったら ($)",value:"値",example:"例: 10 または 0.05",cancel:"キャンセル",save:"保存",saved:"アラートを保存しました",alertCreated:"アラートを作成しました:",invalidValue:"有効な値を入力してください。",triggered:"アラートが発生しました！",aiAnalysis:"AI分析",ok:"OK",tokenDataMissing:"トークンデータが見つかりません。",tokenNotListed:"このトークンは現在リストにありません。",delete:"削除",now:"現在",liquidity:"流動性",vol:"出来高",score:"Noventra Score",strongBuy:"強い買い",buy:"買い",strongSell:"強い売り",sell:"売り",unknownToken:"不明なトークン",neutral:"中立",technical:"テクニカル",general:"概要",timeframe:"時間足",confidence:"信頼度",warnings:"警告",risks:"リスク",summary:"概要",
+disclaimer:"Noventra Signalはテクニカルデータに基づく自動分析を提供します。投資助言ではありません。",veryStrongUp:"短期の買い圧力が非常に強く、モメンタムは明確に上向きです。",strongUp:"強い上昇モメンタムがあり、買い手が主導しています。",positive:"プラスのモメンタムで、買い手がやや優勢です。",slightlyPositive:"やや強気ですが、明確なブレイクはまだありません。",neutralTrend:"横ばい / 不確実な状態です。",slightlyNegative:"軽い売り圧力があります。",weak:"売り手が優勢で弱い状況です。",strongDown:"強い下降モメンタムで、売り手が優勢です。",veryStrongDown:"非常に強い売り圧力。短期的に弱い状況です。",
+veryHighVolume:"非常に高い出来高",highVolumeText:"高出来高",mediumVolume:"中程度の出来高",lowMediumVolume:"低〜中程度の出来高",veryLowVolume:"非常に低い出来高",strongLiquidity:"強い流動性",sufficientLiquidity:"十分な流動性",mediumLiquidity:"中程度の流動性",weakLiquidity:"弱い流動性",criticalLiquidity:"非常に低い流動性",
+multiUp:"複数の時間足で上昇トレンドが確認されています。",multiDown:"複数の時間足で下降トレンドが確認されています。",shortUpMediumWeak:"短期は上向き、中期は弱い — 相反する状況です。",shortDownMediumPositive:"短期は下落、中期はまだ強い — 調整または分配の可能性があります。",mixed:"時間足が混在しており、明確な方向性はありません。",overheat:"過熱",oversold:"売られすぎ",lowLiquidity:"低流動性",highVolumeMove:"高出来高の動き",lowVolumeMove:"低出来高の動き",noExtraWarnings:"追加の危険サインはありませんが、ポジションサイズには注意してください。",
+adviceStrongBuy:"強い買いモメンタム。厳格な資金管理とストップを使用してください。",adviceBuy:"買いモメンタムがあります。小さなポジションで観察できます。",adviceWeakBuy:"弱い強気バイアス。出来高と時間足の確認を見てください。",adviceStrongSell:"強い売り圧力。ロングはリスクが高いです。",adviceSell:"弱い状況。新規ロングには不向きです。",adviceNeutral:"中立。明確なブレイクまたは出来高増加を待ってください。",adviceWatch:"監視を継続し、より明確なシグナルと出来高を待ってください。",volumeVeryHigh:"非常に高い出来高",volumeHigh:"高出来高",volumeMedium:"中程度の出来高",volumeLowMedium:"低〜中程度の出来高",volumeVeryLow:"非常に低い出来高",liquidityStrong:"強い流動性",liquidityEnough:"十分な流動性",liquidityMedium:"中程度の流動性",liquidityWeak:"弱い流動性",liquidityCritical:"非常に低い流動性"
+},
+ko:{
+market:"시장",favorites:"즐겨찾기",alerts:"알림",gainers:"상승",losers:"하락",volume:"거래량",signals:"시그널",hour1:"1시간",hour6:"6시간",hour24:"24시간",all:"전체",highVolume:"높은 거래량",dedust:"DeDust",preparing:"준비 중...",scanning:"TON 시장 스캔 중...",scanned:"고속 스캔...",updated:"업데이트",pairs:"페어",noResults:"이 필터에는 결과가 없습니다.",refreshOrFilter:"새로고침하거나 필터를 변경하세요.",dataError:"데이터를 가져오지 못했습니다 — 새로고침",noFavorites:"즐겨찾기가 없습니다.",addFavorite:"시장 탭에서 ★를 눌러 추가하세요.",noAlerts:"활성 알림이 없습니다.",setAlertShort:"카드의 🔔에서 설정하세요.",
+alertSet:"알림 설정",alertType:"알림 유형",percentUp:"상승률 (%)",percentDown:"하락률 (%)",priceAbove:"가격이 이상일 때 ($)",priceBelow:"가격이 이하일 때 ($)",value:"값",example:"예: 10 또는 0.05",cancel:"취소",save:"저장",saved:"알림 저장됨",alertCreated:"알림 생성:",invalidValue:"유효한 값을 입력하세요.",triggered:"알림이 발생했습니다!",aiAnalysis:"AI 분석",ok:"확인",tokenDataMissing:"토큰 데이터를 찾을 수 없습니다.",tokenNotListed:"현재 목록에 없는 토큰입니다.",delete:"삭제",now:"현재",liquidity:"유동성",vol:"거래량",score:"Noventra Score",strongBuy:"강력 매수",buy:"매수",strongSell:"강력 매도",sell:"매도",unknownToken:"알 수 없는 토큰",neutral:"중립",technical:"기술 분석",general:"개요",timeframe:"시간대",confidence:"신뢰도",warnings:"경고",risks:"위험",summary:"요약",
+disclaimer:"Noventra Signal은 기술 데이터를 기반으로 자동 분석을 제공합니다. 투자 조언이 아닙니다.",veryStrongUp:"단기 매수 압력이 매우 강하며 모멘텀이 명확하게 상승 중입니다.",strongUp:"강한 상승 모멘텀이 있으며 매수세가 주도하고 있습니다.",positive:"긍정적인 모멘텀이 있으며 매수세가 약간 우세합니다.",slightlyPositive:"약한 상승 흐름이며 아직 명확한 돌파는 없습니다.",neutralTrend:"횡보 / 불확실한 구간입니다.",slightlyNegative:"약한 매도 압력이 나타나고 있습니다.",weak:"매도세가 우세하며 흐름이 약합니다.",strongDown:"강한 하락 모멘텀으로 매도세가 우세합니다.",veryStrongDown:"매도 압력이 매우 강하며 단기 흐름이 약합니다.",
+veryHighVolume:"매우 높은 거래량",highVolumeText:"높은 거래량",mediumVolume:"중간 거래량",lowMediumVolume:"낮음~중간 거래량",veryLowVolume:"매우 낮은 거래량",strongLiquidity:"높은 유동성",sufficientLiquidity:"충분한 유동성",mediumLiquidity:"중간 유동성",weakLiquidity:"낮은 유동성",criticalLiquidity:"매우 낮은 유동성",
+multiUp:"여러 시간대에서 상승 추세가 확인됩니다.",multiDown:"여러 시간대에서 하락 추세가 확인됩니다.",shortUpMediumWeak:"단기는 상승, 중기는 약세 — 서로 다른 신호입니다.",shortDownMediumPositive:"단기는 하락하지만 중기는 여전히 긍정적입니다 — 조정 또는 분배 가능성이 있습니다.",mixed:"시간대 신호가 혼재되어 명확한 방향이 없습니다.",overheat:"과열",oversold:"과매도",lowLiquidity:"낮은 유동성",highVolumeMove:"높은 거래량 움직임",lowVolumeMove:"낮은 거래량 움직임",noExtraWarnings:"추가적인 위험 신호는 없지만 포지션 규모를 제한하세요.",
+adviceStrongBuy:"강한 매수 모멘텀입니다. 엄격한 포지션 관리와 손절을 사용하세요.",adviceBuy:"매수 모멘텀이 있습니다. 소규모 포지션으로 관찰할 수 있습니다.",adviceWeakBuy:"약한 상승 편향입니다. 거래량과 시간대 확인을 지켜보세요.",adviceStrongSell:"강한 매도 압력입니다. 롱 진입은 위험합니다.",adviceSell:"약한 흐름입니다. 신규 롱에는 적합하지 않습니다.",adviceNeutral:"중립 구간입니다. 명확한 돌파나 거래량 증가를 기다리세요.",adviceWatch:"관찰을 유지하고 더 명확한 시그널과 거래량을 기다리세요.",volumeVeryHigh:"매우 높은 거래량",volumeHigh:"높은 거래량",volumeMedium:"중간 거래량",volumeLowMedium:"낮음~중간 거래량",volumeVeryLow:"매우 낮은 거래량",liquidityStrong:"높은 유동성",liquidityEnough:"충분한 유동성",liquidityMedium:"중간 유동성",liquidityWeak:"낮은 유동성",liquidityCritical:"매우 낮은 유동성"
+}
+};
 
-/* =========================================================
+function detectLanguage(){
+  try{
+    const saved=localStorage.getItem(LANG_KEY);
+    if(saved&&LANGUAGES[saved]) return saved;
+    const code=(tg?.initDataUnsafe?.user?.language_code||navigator.language||"en").toLowerCase().split("-")[0].split("_")[0];
+    return LANGUAGES[code]?code:"en";
+  }catch(_){return"en"}
+}
+currentLanguage=detectLanguage();
+const t=k=>I18N[currentLanguage]?.[k]||I18N.en[k]||k;
+
+/* =========================
    HELPERS
-========================================================= */
-
-function sleep(ms) {
-
-  return new Promise(
-    resolve =>
-      setTimeout(
-        resolve,
-        ms
-      )
-  );
-
-}
-
-
-function clamp(
-  value,
-  min,
-  max
-) {
-
-  return Math.max(
-    min,
-    Math.min(
-      max,
-      value
-    )
-  );
-
-}
-
-
-function escapeHTML(value) {
-
-  return String(
-    value ?? ""
-  )
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-    .replace(
-      /</g,
-      "&lt;"
-    )
-    .replace(
-      />/g,
-      "&gt;"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
-
-
-function escapeAttr(value) {
-
-  return String(
-    value ?? ""
-  )
-    .replace(
-      /\\/g,
-      "\\\\"
-    )
-    .replace(
-      /'/g,
-      "\\'"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    );
-
-}
-
-
-/* =========================================================
-   API
-========================================================= */
-
-async function fetchQuery(
-  query,
-  attempt = 0
-) {
-
-  try {
-
-    const response =
-      await fetch(
-        "https://api.dexscreener.com/latest/dex/search?q=" +
-        encodeURIComponent(query),
-        {
-          cache:
-            "no-store"
-        }
-      );
-
-
-    if (
-      response.status === 429 &&
-      attempt < 2
-    ) {
-
-      await sleep(
-        500 *
-        (attempt + 1)
-      );
-
-      return fetchQuery(
-        query,
-        attempt + 1
-      );
-
-    }
-
-
-    if (!response.ok) {
-
-      return [];
-
-    }
-
-
-    const data =
-      await response.json();
-
-
-    return Array.isArray(
-      data.pairs
-    )
-      ? data.pairs
-      : [];
-
-
-  } catch (_) {
-
-    return [];
-
-  }
-
-}
-
-
-async function fetchInBatches(
-  queries,
-  size = 8
-) {
-
-  const output = [];
-
-
-  for (
-    let i = 0;
-    i < queries.length;
-    i += size
-  ) {
-
-    const batch =
-      queries.slice(
-        i,
-        i + size
-      );
-
-
-    const results =
-      await Promise.all(
-        batch.map(
-          fetchQuery
-        )
-      );
-
-
-    for (
-      const result
-      of results
-    ) {
-
-      output.push(
-        ...result
-      );
-
-    }
-
-
-    if (
-      i + size <
-      queries.length
-    ) {
-
-      await sleep(60);
-
-    }
-
-  }
-
-
-  return output;
-
-}
-
-
-/* =========================================================
-   NORMALIZE
-========================================================= */
-
-function normalizePair(
-  pair
-) {
-
-  if (!pair) {
-
-    return null;
-
-  }
-
-
-  if (
-    pair.chainId !==
-    "ton"
-  ) {
-
-    return null;
-
-  }
-
-
-  if (
-    !pair.pairAddress
-  ) {
-
-    return null;
-
-  }
-
-
-  const volume =
-    Number(
-      pair.volume?.h24 ||
-      0
-    );
-
-
-  const liquidity =
-    Number(
-      pair.liquidity?.usd ||
-      0
-    );
-
-
-  if (
-    volume <
-    MIN_VOL
-  ) {
-
-    return null;
-
-  }
-
-
-  if (
-    liquidity <
-    MIN_LIQ
-  ) {
-
-    return null;
-
-  }
-
-
-  const dex =
-    String(
-      pair.dexId ||
-      ""
-    ).toLowerCase();
-
-
-  /*
-    TOKEN NAME FIX
-
-    Öncelik:
-    1. baseToken.name
-    2. baseToken.symbol
-    3. Unknown Token
-  */
-
-  const rawName =
-    String(
-      pair.baseToken?.name ||
-      ""
-    ).trim();
-
-
-  const rawSymbol =
-    String(
-      pair.baseToken?.symbol ||
-      ""
-    ).trim();
-
-
-  const baseName =
-    (
-      rawName ||
-      rawSymbol ||
-      "Unknown Token"
-    ).slice(
-      0,
-      32
-    );
-
-
-  const baseSymbol =
-    (
-      rawSymbol ||
-      rawName ||
-      "???"
-    ).slice(
-      0,
-      15
-    );
-
-
-  const baseAddress =
-    String(
-      pair.baseToken?.address ||
-      ""
-    );
-
-
-  const quoteSymbol =
-    String(
-      pair.quoteToken?.symbol ||
-      ""
-    )
-      .trim()
-      .slice(
-        0,
-        12
-      );
-
-
-  return {
-
-    pairAddress:
-      pair.pairAddress,
-
-    url:
-      pair.url ||
-      "",
-
-    dexId:
-      pair.dexId ||
-      "Unknown",
-
-    isDedust:
-      dex.includes(
-        "dedust"
-      ),
-
-    isSton:
-      dex.includes(
-        "ston"
-      ),
-
-
-    /* TOKEN DATA */
-
-    baseName:
-      baseName,
-
-    baseSymbol:
-      baseSymbol,
-
-    baseAddress:
-      baseAddress,
-
-    quoteSymbol:
-      quoteSymbol,
-
-
-    priceUsd:
-      Number(
-        pair.priceUsd ||
-        0
-      ),
-
-
-    change: {
-
-      m5:
-        Number(
-          pair.priceChange?.m5 ||
-          0
-        ),
-
-      h1:
-        Number(
-          pair.priceChange?.h1 ||
-          0
-        ),
-
-      h6:
-        Number(
-          pair.priceChange?.h6 ||
-          0
-        ),
-
-      h24:
-        Number(
-          pair.priceChange?.h24 ||
-          0
-        )
-
-    },
-
-
-    volume: {
-
-      h24:
-        volume
-
-    },
-
-
-    liquidity:
-      liquidity,
-
-
-    txns:
-      Number(
-        pair.txns?.h24?.buys ||
-        0
-      ) +
-      Number(
-        pair.txns?.h24?.sells ||
-        0
-      )
-
-  };
-
-}
-
-
-/* =========================================================
-   NOVENTRA SIGNAL ENGINE
-========================================================= */
-
-function calculateSignal(
-  pair
-) {
-
-  const c =
-    pair.change;
-
-
-  const momentum =
-    clamp(
-      c.h1 * 1.8 +
-      c.h6 * 0.9 +
-      c.h24 * 0.35,
-      -100,
-      100
-    );
-
-
-  const acceleration =
-    clamp(
-      (
-        c.h1 -
-        c.m5
-      ) * 0.8,
-      -30,
-      30
-    );
-
-
-  const volumeFactor =
-    clamp(
-      Math.log10(
-        Math.max(
-          pair.volume.h24,
-          1000
-        )
-      ) / 6,
-      0.5,
-      1.25
-    );
-
-
-  let liquidityFactor =
-    clamp(
-      Math.log10(
-        Math.max(
-          pair.liquidity,
-          1000
-        )
-      ) / 6,
-      0.5,
-      1.2
-    );
-
-
-  if (
-    pair.liquidity <
-    2500
-  ) {
-
-    liquidityFactor *=
-      0.72;
-
-  }
-
-
-  let consistency = 1;
-
-
-  if (
-    (
-      c.h1 > 0 &&
-      c.h6 > 0
-    ) ||
-    (
-      c.h1 < 0 &&
-      c.h6 < 0
-    )
-  ) {
-
-    consistency =
-      1.12;
-
-  } else if (
-    (
-      c.h1 > 3 &&
-      c.h6 < -2
-    ) ||
-    (
-      c.h1 < -3 &&
-      c.h6 > 2
-    )
-  ) {
-
-    consistency =
-      0.82;
-
-  }
-
-
-  let spikeBonus = 1;
-
-
-  if (
-    pair.volume.h24 >
-    50000
-  ) {
-
-    spikeBonus =
-      1.08;
-
-  }
-
-
-  if (
-    pair.volume.h24 >
-    150000
-  ) {
-
-    spikeBonus =
-      1.15;
-
-  }
-
-
-  let score =
-    (
-      momentum * 0.70 +
-      acceleration * 0.20
-    ) *
-    volumeFactor *
-    liquidityFactor *
-    consistency *
-    spikeBonus;
-
-
-  score =
-    clamp(
-      score,
-      -100,
-      100
-    );
-
-
-  let signal =
-    "neutral";
-
-
-  if (
-    score >= 55 &&
-    c.h1 >= 4 &&
-    c.h6 >= 1.5
-  ) {
-
-    signal =
-      "strong-buy";
-
-  } else if (
-    score >= 25 &&
-    c.h1 >= 1.5
-  ) {
-
-    signal =
-      "buy";
-
-  } else if (
-    score <= -55 &&
-    c.h1 <= -4 &&
-    c.h6 <= -1.5
-  ) {
-
-    signal =
-      "strong-sell";
-
-  } else if (
-    score <= -25 &&
-    c.h1 <= -1.5
-  ) {
-
-    signal =
-      "sell";
-
-  }
-
-
-  let confidence =
-    48;
-
-
-  confidence +=
-    Math.min(
-      Math.abs(score) *
-      0.35,
-      30
-    );
-
-
-  if (
-    pair.volume.h24 >
-    25000
-  ) {
-
-    confidence +=
-      8;
-
-  }
-
-
-  if (
-    pair.liquidity >
-    8000
-  ) {
-
-    confidence +=
-      7;
-
-  }
-
-
-  if (
-    consistency > 1
-  ) {
-
-    confidence +=
-      5;
-
-  }
-
-
-  if (
-    pair.liquidity <
-    2500
-  ) {
-
-    confidence -=
-      14;
-
-  }
-
-
-  if (
-    Math.abs(c.h1) >
-    30
-  ) {
-
-    confidence -=
-      10;
-
-  }
-
-
-  confidence =
-    clamp(
-      confidence,
-      12,
-      94
-    );
-
-
-  const warnings = [];
-
-
-  if (
-    c.h1 > 30
-  ) {
-
-    warnings.push(
-      "Aşırı ısınmış"
-    );
-
-  }
-
-
-  if (
-    c.h1 < -30
-  ) {
-
-    warnings.push(
-      "Aşırı satılmış"
-    );
-
-  }
-
-
-  if (
-    pair.liquidity <
-    2500
-  ) {
-
-    warnings.push(
-      "Düşük likidite"
-    );
-
-  }
-
-
-  if (
-    pair.volume.h24 >
-      100000 &&
-    Math.abs(c.h1) >
-      12
-  ) {
-
-    warnings.push(
-      "Yüksek hacimli hareket"
-    );
-
-  }
-
-
-  if (
-    Math.abs(c.h1) >
-      8 &&
-    pair.volume.h24 <
-      5000
-  ) {
-
-    warnings.push(
-      "Hacimsiz hareket"
-    );
-
-  }
-
-
-  return {
-
-    score,
-    signal,
-    confidence,
-    warnings
-
-  };
-
-}
-
-
-/* =========================================================
-   LOAD MARKET
-========================================================= */
-
-async function loadData() {
-
-  if (
-    isLoading
-  ) {
-
-    return;
-
-  }
-
-
-  isLoading =
-    true;
-
-
-  document
-    .getElementById(
-      "refreshBtn"
-    )
-    .classList.add(
-      "spin"
-    );
-
-
-  setStatus(
-    "Taranıyor..."
-  );
-
-
-  try {
-
-    const raw =
-      await fetchInBatches(
-        QUERIES,
-        8
-      );
-
-
-    const seen =
-      new Set();
-
-
-    const collected =
-      [];
-
-
-    for (
-      const rawPair
-      of raw
-    ) {
-
-      const pair =
-        normalizePair(
-          rawPair
-        );
-
-
-      if (!pair) {
-
-        continue;
-
-      }
-
-
-      if (
-        seen.has(
-          pair.pairAddress
-        )
-      ) {
-
-        continue;
-
-      }
-
-
-      seen.add(
-        pair.pairAddress
-      );
-
-
-      const signal =
-        calculateSignal(
-          pair
-        );
-
-
-      pair.score =
-        signal.score;
-
-      pair.signal =
-        signal.signal;
-
-      pair.confidence =
-        signal.confidence;
-
-      pair.warnings =
-        signal.warnings;
-
-
-      collected.push(
-        pair
-      );
-
-    }
-
-
-    collected.sort(
-      (
-        a,
-        b
-      ) =>
-        Math.abs(
-          b.score
-        ) -
-        Math.abs(
-          a.score
-        )
-    );
-
-
-    pairs =
-      collected;
-
-
-    setStatus(
-      "Güncelleme: " +
-      new Date()
-        .toLocaleTimeString(
-          "tr-TR"
-        )
-    );
-
-
-    document
-      .getElementById(
-        "countText"
-      )
-      .textContent =
-      pairs.length +
-      " çift";
-
-
-    checkAlerts();
-
-    render();
-
-    renderFavorites();
-
-    renderAlertsPage();
-
-
-  } catch (error) {
-
-    console.error(
-      error
-    );
-
-
-    setStatus(
-      "Veri alınamadı — yenile"
-    );
-
-
-  } finally {
-
-    isLoading =
-      false;
-
-
-    document
-      .getElementById(
-        "refreshBtn"
-      )
-      .classList.remove(
-        "spin"
-      );
-
-  }
-
-}
-
-
-function setStatus(
-  text
-) {
-
-  document
-    .getElementById(
-      "statusText"
-    )
-    .textContent =
-    text;
-
-}
-
-
-/* =========================================================
-   FORMATTING
-========================================================= */
-
-function fmtPct(
-  value
-) {
-
-  value =
-    Number(
-      value || 0
-    );
-
-
-  if (
-    Math.abs(value) <
-    0.05
-  ) {
-
-    return "0.0%";
-
-  }
-
-
-  return (
-    (
-      value > 0
-        ? "+"
-        : ""
-    ) +
-    value.toFixed(1) +
-    "%"
-  );
-
-}
-
-
-function fmtMoney(
-  value
-) {
-
-  value =
-    Number(
-      value || 0
-    );
-
-
-  if (
-    value >= 1e9
-  ) {
-
-    return (
-      "$" +
-      (
-        value / 1e9
-      ).toFixed(1) +
-      "B"
-    );
-
-  }
-
-
-  if (
-    value >= 1e6
-  ) {
-
-    return (
-      "$" +
-      (
-        value / 1e6
-      ).toFixed(1) +
-      "M"
-    );
-
-  }
-
-
-  if (
-    value >= 1e3
-  ) {
-
-    return (
-      "$" +
-      (
-        value / 1e3
-      ).toFixed(1) +
-      "K"
-    );
-
-  }
-
-
-  return (
-    "$" +
-    Math.round(
-      value
-    )
-  );
-
-}
-
-
-function formatPrice(
-  value
-) {
-
-  value =
-    Number(
-      value || 0
-    );
-
-
-  if (!value) {
-
-    return "0";
-
-  }
-
-
-  if (
-    value < 1e-6
-  ) {
-
-    return value
-      .toExponential(2);
-
-  }
-
-
-  if (
-    value < 0.01
-  ) {
-
-    return value
-      .toFixed(6);
-
-  }
-
-
-  if (
-    value < 1
-  ) {
-
-    return value
-      .toFixed(4);
-
-  }
-
-
-  if (
-    value < 100
-  ) {
-
-    return value
-      .toFixed(3);
-
-  }
-
-
-  return value
-    .toFixed(2);
-
-}
-
-
-function cls(
-  value
-) {
-
-  if (
-    value > 0.25
-  ) {
-
-    return "up";
-
-  }
-
-
-  if (
-    value < -0.25
-  ) {
-
-    return "down";
-
-  }
-
-
-  return "neu";
-
-}
-
-
-function signalLabel(
-  signal
-) {
-
-  return {
-
-    "strong-buy":
-      "GÜÇLÜ AL",
-
-    "buy":
-      "AL",
-
-    "strong-sell":
-      "GÜÇLÜ SAT",
-
-    "sell":
-      "SAT"
-
-  }[signal] || "";
-
-}
-
-
-/* =========================================================
-   AI ANALYSIS
-========================================================= */
-
-function generateAIAnalysis(
-  pair
-) {
-
-  const c =
-    pair.change;
-
-
-  const score =
-    pair.score || 0;
-
-
-  const confidence =
-    pair.confidence ||
-    50;
-
-
-  const signal =
-    signalLabel(
-      pair.signal
-    ) ||
-    "Nötr";
-
-
-  const volume =
-    pair.volume.h24;
-
-
-  const liquidity =
-    pair.liquidity;
-
-
-  let trendText;
-
-
-  if (
-    score >= 70
-  ) {
-
-    trendText =
-      "Çok güçlü kısa vadeli alım baskısı. Momentum net şekilde yukarı.";
-
-  } else if (
-    score >= 55
-  ) {
-
-    trendText =
-      "Güçlü yükseliş momentumu var; alıcılar kontrolde.";
-
-  } else if (
-    score >= 35
-  ) {
-
-    trendText =
-      "Olumlu momentum, alıcılar hafif önde.";
-
-  } else if (
-    score >= 15
-  ) {
-
-    trendText =
-      "Hafif pozitif eğilim, henüz net kırılım yok.";
-
-  } else if (
-    score > -15
-  ) {
-
-    trendText =
-      "Yatay / belirsiz bölge. Net yön oluşmamış.";
-
-  } else if (
-    score > -35
-  ) {
-
-    trendText =
-      "Hafif satış baskısı hissediliyor.";
-
-  } else if (
-    score > -55
-  ) {
-
-    trendText =
-      "Satıcılar önde, zayıf görünüm.";
-
-  } else if (
-    score > -70
-  ) {
-
-    trendText =
-      "Güçlü düşüş momentumu; satıcılar baskın.";
-
-  } else {
-
-    trendText =
-      "Çok sert satış baskısı. Kısa vadede zayıf tablo.";
-
-  }
-
-
-  let volumeText;
-
-
-  if (
-    volume >= 200000
-  ) {
-
-    volumeText =
-      `Çok yüksek hacim (${fmtMoney(volume)}) — hareket geniş katılımla destekleniyor.`;
-
-  } else if (
-    volume >= 50000
-  ) {
-
-    volumeText =
-      `Yüksek hacim (${fmtMoney(volume)}) — trend daha güvenilir.`;
-
-  } else if (
-    volume >= 15000
-  ) {
-
-    volumeText =
-      `Orta hacim (${fmtMoney(volume)}) — makul destek var.`;
-
-  } else if (
-    volume >= 5000
-  ) {
-
-    volumeText =
-      `Düşük-orta hacim (${fmtMoney(volume)}) — hareket kırılgan olabilir.`;
-
-  } else {
-
-    volumeText =
-      `Çok düşük hacim (${fmtMoney(volume)}) — manipülasyon ve ani tersine dönüş riski yüksek.`;
-
-  }
-
-
-  let liquidityText;
-
-
-  if (
-    liquidity >= 100000
-  ) {
-
-    liquidityText =
-      `Güçlü likidite (${fmtMoney(liquidity)}) — kayma riski daha düşük.`;
-
-  } else if (
-    liquidity >= 20000
-  ) {
-
-    liquidityText =
-      `Yeterli likidite (${fmtMoney(liquidity)}).`;
-
-  } else if (
-    liquidity >= 5000
-  ) {
-
-    liquidityText =
-      `Orta likidite (${fmtMoney(liquidity)}) — büyük emirlerde kayma olabilir.`;
-
-  } else if (
-    liquidity >= 1500
-  ) {
-
-    liquidityText =
-      `Zayıf likidite (${fmtMoney(liquidity)}) — dikkatli ol.`;
-
-  } else {
-
-    liquidityText =
-      `Kritik düşük likidite (${fmtMoney(liquidity)}) — yüksek kayma riski.`;
-
-  }
-
-
-  let timeframeText;
-
-
-  const upCount =
-    [
-      c.m5,
-      c.h1,
-      c.h6,
-      c.h24
-    ]
-      .filter(
-        value =>
-          value > 1
-      )
-      .length;
-
-
-  const downCount =
-    [
-      c.m5,
-      c.h1,
-      c.h6,
-      c.h24
-    ]
-      .filter(
-        value =>
-          value < -1
-      )
-      .length;
-
-
-  if (
-    upCount >= 3
-  ) {
-
-    timeframeText =
-      "Çoklu zaman diliminde yükseliş uyumu var.";
-
-  } else if (
-    downCount >= 3
-  ) {
-
-    timeframeText =
-      "Çoklu zaman diliminde düşüş uyumu var.";
-
-  } else if (
-    c.h1 > 5 &&
-    c.h6 < -3
-  ) {
-
-    timeframeText =
-      "Kısa vade yukarı, orta vade zayıf — çelişkili tablo.";
-
-  } else if (
-    c.h1 < -5 &&
-    c.h6 > 3
-  ) {
-
-    timeframeText =
-      "Kısa vade aşağı, orta vade hâlâ pozitif — toparlanma veya dağıtım olabilir.";
-
-  } else {
-
-    timeframeText =
-      "Zaman dilimleri karışık; net konsensüs yok.";
-
-  }
-
-
-  const risks = [];
-
-
-  if (
-    c.h1 > 25
-  ) {
-
-    risks.push(
-      `1 saatte %${c.h1.toFixed(0)} yükseliş — aşırı ısınma ve kâr realizasyonu riski.`
-    );
-
-  }
-
-
-  if (
-    c.h1 < -25
-  ) {
-
-    risks.push(
-      `1 saatte %${Math.abs(c.h1).toFixed(0)} düşüş — panik satış riski.`
-    );
-
-  }
-
-
-  if (
-    liquidity < 2500
-  ) {
-
-    risks.push(
-      "Düşük likidite: büyük emir fiyatı kolay bozabilir."
-    );
-
-  }
-
-
-  if (
-    volume < 5000 &&
-    Math.abs(c.h1) > 8
-  ) {
-
-    risks.push(
-      "Hacimsiz sert hareket — güvenilirlik zayıf."
-    );
-
-  }
-
-
-  if (
-    c.h1 > 0 &&
-    c.h6 < -8
-  ) {
-
-    risks.push(
-      "Orta vade hâlâ negatifken kısa vade yükseliyor — tuzak olabilir."
-    );
-
-  }
-
-
-  if (
-    c.h1 < 0 &&
-    c.h6 > 10
-  ) {
-
-    risks.push(
-      "Orta vade güçlüyken kısa vade düşüyor — düzeltme veya trend kırılımı."
-    );
-
-  }
-
-
-  if (
-    !risks.length
-  ) {
-
-    risks.push(
-      "Ekstra kırmızı bayrak yok; yine de pozisyon boyutunu sınırla."
-    );
-
-  }
-
-
-  let advice;
-
-
-  if (
-    pair.signal ===
-      "strong-buy" &&
-    confidence >= 70 &&
-    liquidity >= 5000
-  ) {
-
-    advice =
-      "Güçlü alım sinyali + yeterli likidite. Kademeli giriş ve stop ile değerlendirilebilir.";
-
-  } else if (
-    pair.signal ===
-    "strong-buy"
-  ) {
-
-    advice =
-      "Güçlü al sinyali var ama likidite/güven sınırlı. Çok küçük pay veya bekle.";
-
-  } else if (
-    pair.signal ===
-      "buy" &&
-    confidence >= 60
-  ) {
-
-    advice =
-      "Alım yönlü momentum mevcut. Küçük pay ile takip mantıklı olabilir.";
-
-  } else if (
-    pair.signal ===
-    "buy"
-  ) {
-
-    advice =
-      "Hafif alım eğilimi var; teyit için hacim ve 1s/6s uyumunu izle.";
-
-  } else if (
-    pair.signal ===
-      "strong-sell" &&
-    confidence >= 70
-  ) {
-
-    advice =
-      "Güçlü satış sinyali. Long’dan uzak dur; varsa kademeli çıkış düşün.";
-
-  } else if (
-    pair.signal ===
-    "strong-sell"
-  ) {
-
-    advice =
-      "Satış baskısı belirgin. Long açmak riskli.";
-
-  } else if (
-    pair.signal ===
-    "sell"
-  ) {
-
-    advice =
-      "Zayıf görünüm. Yeni long için uygun değil.";
-
-  } else if (
-    Math.abs(score) <
-    15
-  ) {
-
-    advice =
-      "Nötr bölge. Net kırılım veya hacim artışı bekle.";
-
-  } else {
-
-    advice =
-      "İzlemede kal; sinyal ve hacim netleşsin.";
-
-  }
-
-
-  const warnings =
-    pair.warnings?.length
-      ? pair.warnings.join(
-          " · "
-        )
-      : "Yok";
-
-
-  const price =
-    formatPrice(
-      pair.priceUsd
-    );
-
-
-  const signedScore =
-    score > 0
-      ? "+" +
-        score.toFixed(0)
-      : score.toFixed(0);
-
-
-  const displayName =
-    pair.baseName ||
-    pair.baseSymbol ||
-    "Unknown Token";
-
-
-  const displaySymbol =
-    pair.baseSymbol ||
-    "???";
-
-
-  return `
-<b>${escapeHTML(displayName)} (${escapeHTML(displaySymbol)}) — Noventra AI Analiz</b>
-
-<b>Fiyat:</b> $${escapeHTML(price)}
-<b>Genel:</b> ${trendText}
-<b>Zaman dilimleri:</b> ${timeframeText}
-
-<b>Teknik:</b>
-• 5dk: ${fmtPct(c.m5)}
-• 1s: ${fmtPct(c.h1)}
-• 6s: ${fmtPct(c.h6)}
-• 24s: ${fmtPct(c.h24)}
-
-<b>Skor:</b> ${signedScore} (${signal})
-<b>Güven:</b> %${confidence.toFixed(0)}
-<b>Uyarılar:</b> ${escapeHTML(warnings)}
-
-<b>Hacim:</b> ${volumeText}
-<b>Likidite:</b> ${liquidityText}
-
-<b>Riskler:</b>
-• ${risks.join("\n• ")}
-
-<b>Özet:</b> ${advice}
-
-<i>Noventra Signal teknik verileri üzerinden otomatik analiz üretir. Yatırım tavsiyesi değildir.</i>
-`;
-
-}
-
-
-function openAIAnalysis(
-  address
-) {
-
-  const pair =
-    pairs.find(
-      p =>
-        p.pairAddress ===
-        address
-    );
-
-
-  if (!pair) {
-
-    showAlert(
-      "Token verisi bulunamadı."
-    );
-
-    return;
-
-  }
-
-
-  document.getElementById(
-    "aiBody"
-  ).innerHTML =
-    generateAIAnalysis(
-      pair
-    );
-
-
-  document
-    .getElementById(
-      "aiModal"
-    )
-    .classList.add(
-      "show"
-    );
-
-}
-
-
-function closeAIModal() {
-
-  document
-    .getElementById(
-      "aiModal"
-    )
-    .classList.remove(
-      "show"
-    );
-
-}
-
-
-/* =========================================================
-   ALERTS
-========================================================= */
-
-function checkAlerts() {
-
-  const hits = [];
-
-
-  for (
-    const alert
-    of alerts
-  ) {
-
-    const pair =
-      pairs.find(
-        p =>
-          p.pairAddress ===
-          alert.pairAddress
-      );
-
-
-    if (!pair) {
-
-      continue;
-
-    }
-
-
-    let triggered =
-      false;
-
-
-    if (
-      alert.type ===
-        "pct_up" &&
-      pair.change.h1 >=
-        alert.value
-    ) {
-
-      triggered =
-        true;
-
-    }
-
-
-    if (
-      alert.type ===
-        "pct_down" &&
-      pair.change.h1 <=
-        -alert.value
-    ) {
-
-      triggered =
-        true;
-
-    }
-
-
-    if (
-      alert.type ===
-        "price_above" &&
-      pair.priceUsd >=
-        alert.value
-    ) {
-
-      triggered =
-        true;
-
-    }
-
-
-    if (
-      alert.type ===
-        "price_below" &&
-      pair.priceUsd <=
-        alert.value
-    ) {
-
-      triggered =
-        true;
-
-    }
-
-
-    if (
-      triggered
-    ) {
-
-      hits.push(
-        alert
-      );
-
-    }
-
-  }
-
-
-  const banner =
-    document.getElementById(
-      "alertBanner"
-    );
-
-
-  if (
-    !hits.length
-  ) {
-
-    banner.classList.remove(
-      "show"
-    );
-
-    return;
-
-  }
-
-
-  banner.innerHTML =
-    hits
-      .map(
-        hit =>
-          "🔔 <b>" +
-          escapeHTML(
-            hit.symbol
-          ) +
-          "</b> alarmı tetiklendi!"
-      )
-      .join(
-        "<br>"
-      );
-
-
-  banner.classList.add(
-    "show"
-  );
-
-
-  try {
-
-    tg?.HapticFeedback?.notificationOccurred(
-      "warning"
-    );
-
-  } catch (_) {}
-
-}
-
-
-function isFav(
-  address
-) {
-
-  return favorites.some(
-    favorite =>
-      favorite.pairAddress ===
-      address
-  );
-
-}
-
-
-function hasAlert(
-  address
-) {
-
-  return alerts.some(
-    alert =>
-      alert.pairAddress ===
-      address
-  );
-
-}
-
-
-/* =========================================================
-   FAVORITES
-========================================================= */
-
-function toggleFav(
-  pair
-) {
-
-  if (
-    isFav(
-      pair.pairAddress
-    )
-  ) {
-
-    favorites =
-      favorites.filter(
-        favorite =>
-          favorite.pairAddress !==
-          pair.pairAddress
-      );
-
-  } else {
-
-    favorites.push({
-
-      pairAddress:
-        pair.pairAddress,
-
-      symbol:
-        pair.baseSymbol,
-
-      name:
-        pair.baseName ||
-        pair.baseSymbol,
-
-      baseAddress:
-        pair.baseAddress ||
-        "",
-
-      dexId:
-        pair.dexId,
-
-      url:
-        pair.url
-
+========================= */
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+const escJS=v=>String(v??"").replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+const fmtPct=v=>{v=Number(v||0);return Math.abs(v)<.05?"0.0%":(v>0?"+":"")+v.toFixed(1)+"%"};
+const fmtMoney=v=>{v=Number(v||0);if(v>=1e9)return"$"+(v/1e9).toFixed(1)+"B";if(v>=1e6)return"$"+(v/1e6).toFixed(1)+"M";if(v>=1e3)return"$"+(v/1e3).toFixed(1)+"K";return"$"+Math.round(v)};
+function formatPrice(v){v=Number(v||0);if(!v)return"0";if(v<1e-6)return v.toExponential(2);if(v<.01)return v.toFixed(6);if(v<1)return v.toFixed(4);if(v<100)return v.toFixed(3);return v.toFixed(2)}
+function cls(v){return v>.25?"up":v<-.25?"down":"neu"}
+function signalLabel(s){return({"strong-buy":t("strongBuy"),buy:t("buy"),"strong-sell":t("strongSell"),sell:t("sell")}[s]||"")}
+function locale(){return({tr:"tr-TR",ru:"ru-RU",zh:"zh-CN",ja:"ja-JP",ko:"ko-KR",en:"en-US"}[currentLanguage]||"en-US")}
+function setStatus(s){document.getElementById("statusText").textContent=s}
+
+/* =========================
+   FAST DISCOVERY
+========================= */
+async function fetchQuery(q,attempt=0){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),REQUEST_TIMEOUT);
+  try{
+    const r=await fetch("https://api.dexscreener.com/latest/dex/search?q="+encodeURIComponent(q),{
+      cache:"no-store",signal:controller.signal
     });
-
-  }
-
-
-  saveJSON(
-    STORAGE_FAV,
-    favorites
-  );
-
-
-  render();
-
-  renderFavorites();
-
+    clearTimeout(timer);
+    if(r.status===429&&attempt<2){await sleep(700*(attempt+1));return fetchQuery(q,attempt+1)}
+    if(!r.ok)return[];
+    const d=await r.json();
+    return Array.isArray(d.pairs)?d.pairs:[];
+  }catch(_){clearTimeout(timer);return[]}
 }
 
-
-/* =========================================================
-   ALERT MODAL
-========================================================= */
-
-function openAlertModal(
-  pair
-) {
-
-  alertTarget =
-    pair;
-
-
-  document.getElementById(
-    "modalSymbol"
-  ).textContent =
-    (
-      pair.baseName ||
-      pair.baseSymbol
-    ) +
-    " (" +
-    pair.baseSymbol +
-    ")" +
-    " · $" +
-    formatPrice(
-      pair.priceUsd
-    );
-
-
-  document.getElementById(
-    "alertValue"
-  ).value =
-    "";
-
-
-  document.getElementById(
-    "alertType"
-  ).value =
-    "pct_up";
-
-
-  document
-    .getElementById(
-      "alertModal"
-    )
-    .classList.add(
-      "show"
-    );
-
+async function fetchWide(){
+  const out=[];
+  for(let i=0;i<QUERIES.length;i+=SEARCH_CONCURRENCY){
+    const batch=QUERIES.slice(i,i+SEARCH_CONCURRENCY);
+    const results=await Promise.all(batch.map(fetchQuery));
+    results.forEach(x=>out.push(...x));
+    setStatus(t("scanned")+" "+Math.min(i+batch.length,QUERIES.length)+"/"+QUERIES.length);
+    if(i+SEARCH_CONCURRENCY<QUERIES.length) await sleep(45);
+  }
+  return out;
 }
 
-
-function closeModal() {
-
-  document
-    .getElementById(
-      "alertModal"
-    )
-    .classList.remove(
-      "show"
-    );
-
-
-  alertTarget =
-    null;
-
+/* =========================
+   NORMALIZE + SIGNAL ENGINE
+========================= */
+function normalizePair(p){
+  if(!p||p.chainId!=="ton"||!p.pairAddress)return null;
+  const volume=Number(p.volume?.h24||0), liquidity=Number(p.liquidity?.usd||0);
+  if(volume<MIN_VOL||liquidity<MIN_LIQ)return null;
+  const dex=String(p.dexId||"").toLowerCase();
+  const name=String(p.baseToken?.name||p.baseToken?.symbol||"Unknown Token").trim().slice(0,32);
+  const symbol=String(p.baseToken?.symbol||p.baseToken?.name||"???").trim().slice(0,15);
+  return{
+    pairAddress:p.pairAddress,url:p.url||"",dexId:p.dexId||"Unknown",isDedust:dex.includes("dedust"),isSton:dex.includes("ston"),
+    baseName:name,baseSymbol:symbol,baseAddress:String(p.baseToken?.address||""),quoteSymbol:String(p.quoteToken?.symbol||"").trim().slice(0,12),
+    priceUsd:Number(p.priceUsd||0),
+    change:{m5:Number(p.priceChange?.m5||0),h1:Number(p.priceChange?.h1||0),h6:Number(p.priceChange?.h6||0),h24:Number(p.priceChange?.h24||0)},
+    volume:{h24:volume},liquidity,txns:Number(p.txns?.h24?.buys||0)+Number(p.txns?.h24?.sells||0)
+  }
 }
 
+function calculateSignal(p){
+  const c=p.change;
+  const momentum=clamp(c.h1*1.8+c.h6*.9+c.h24*.35,-100,100);
+  const acceleration=clamp((c.h1-c.m5)*.8,-30,30);
+  const volumeFactor=clamp(Math.log10(Math.max(p.volume.h24,1000))/6,.5,1.25);
+  let liquidityFactor=clamp(Math.log10(Math.max(p.liquidity,1000))/6,.5,1.2);
+  if(p.liquidity<2500)liquidityFactor*=.72;
+  let consistency=1;
+  if((c.h1>0&&c.h6>0)||(c.h1<0&&c.h6<0))consistency=1.12;
+  else if((c.h1>3&&c.h6<-2)||(c.h1<-3&&c.h6>2))consistency=.82;
+  let spikeBonus=p.volume.h24>150000?1.15:p.volume.h24>50000?1.08:1;
+  let score=clamp((momentum*.70+acceleration*.20)*volumeFactor*liquidityFactor*consistency*spikeBonus,-100,100);
+  let signal="neutral";
+  if(score>=55&&c.h1>=4&&c.h6>=1.5)signal="strong-buy";
+  else if(score>=25&&c.h1>=1.5)signal="buy";
+  else if(score<=-55&&c.h1<=-4&&c.h6<=-1.5)signal="strong-sell";
+  else if(score<=-25&&c.h1<=-1.5)signal="sell";
+  let confidence=48+Math.min(Math.abs(score)*.35,30);
+  if(p.volume.h24>25000)confidence+=8;
+  if(p.liquidity>8000)confidence+=7;
+  if(consistency>1)confidence+=5;
+  if(p.liquidity<2500)confidence-=14;
+  if(Math.abs(c.h1)>30)confidence-=10;
+  confidence=clamp(confidence,12,94);
+  const warnings=[];
+  if(c.h1>30)warnings.push(t("overheat"));
+  if(c.h1<-30)warnings.push(t("oversold"));
+  if(p.liquidity<2500)warnings.push(t("lowLiquidity"));
+  if(p.volume.h24>100000&&Math.abs(c.h1)>12)warnings.push(t("highVolumeMove"));
+  if(Math.abs(c.h1)>8&&p.volume.h24<5000)warnings.push(t("lowVolumeMove"));
+  return{score,signal,confidence,warnings}
+}
 
-function saveAlert() {
+/* =========================
+   LOAD
+========================= */
+async function loadData(){
+  if(isLoading)return;
+  isLoading=true;
+  document.getElementById("refreshBtn").classList.add("spin");
+  setStatus(t("scanning"));
+  try{
+    const raw=await fetchWide(), seen=new Set(), collected=[];
+    for(const rp of raw){
+      const p=normalizePair(rp);if(!p||seen.has(p.pairAddress))continue;
+      seen.add(p.pairAddress);
+      Object.assign(p,calculateSignal(p));
+      collected.push(p);
+    }
+    collected.sort((a,b)=>Math.abs(b.score)-Math.abs(a.score));
+    pairs=collected;
+    document.getElementById("countText").textContent=pairs.length+" "+t("pairs");
+    setStatus(t("updated")+": "+new Date().toLocaleTimeString(locale()));
+    checkAlerts();render();renderFavorites();renderAlertsPage();
+  }catch(e){console.error(e);setStatus(t("dataError"))}
+  finally{isLoading=false;document.getElementById("refreshBtn").classList.remove("spin")}
+}
 
-  if (
-    !alertTarget
-  ) {
-
-    return;
-
+/* =========================
+   FILTER / CARD
+========================= */
+function getFiltered(){
+  let list=[...pairs];
+  if(volFilter==="high")list=list.filter(p=>p.volume.h24>=HIGH_VOL);
+  if(volFilter==="dedust")list=list.filter(p=>p.isDedust);
+  if(currentTab==="gainers"){list=list.filter(p=>p.change[currentTf]>1).sort((a,b)=>b.change[currentTf]-a.change[currentTf])}
+  else if(currentTab==="losers"){list=list.filter(p=>p.change[currentTf]<-1).sort((a,b)=>a.change[currentTf]-b.change[currentTf])}
+  else if(currentTab==="volume")list.sort((a,b)=>b.volume.h24-a.volume.h24);
+  else{
+    const order={"strong-buy":0,buy:1,"strong-sell":2,sell:3,neutral:9};
+    list=list.filter(p=>p.signal!=="neutral").sort((a,b)=>(order[a.signal]-order[b.signal])||(Math.abs(b.score)-Math.abs(a.score)));
   }
+  return list.slice(0,MAX_RESULTS);
+}
 
+function isFav(a){return favorites.some(x=>x.pairAddress===a)}
+function hasAlert(a){return alerts.some(x=>x.pairAddress===a)}
 
-  const type =
-    document.getElementById(
-      "alertType"
-    ).value;
+function cardHTML(p,i){
+  const ch=p.change[currentTf], fav=isFav(p.pairAddress), alarm=hasAlert(p.pairAddress);
+  const dexClass=p.isDedust?"dedust":p.isSton?"ston":"other", dexLabel=p.isDedust?"DeDust":p.isSton?"Ston.fi":String(p.dexId||"DEX").slice(0,8);
+  const sig=signalLabel(p.signal), addr=escJS(p.pairAddress), score=Number(p.score||0);
+  const confidence=p.confidence!=null?" · %"+p.confidence.toFixed(0):"";
+  const sw=Math.min(Math.abs(score),100), color=score>=0?"var(--green)":"var(--red)";
+  return `<div class="card ${fav?"fav":""} ${alarm?"alert-hit":""}">
+    <div class="card-top">
+      <div class="rank ${i<3?"top":""}">${i+1}</div>
+      <div class="info">
+        <div class="sym-row">
+          <div class="token-title"><span class="token-name">${esc(p.baseName)}</span><span class="token-symbol">${esc(p.baseSymbol)}</span></div>
+          <span class="dex ${dexClass}">${esc(dexLabel)}</span>
+          ${sig?`<span class="signal ${p.signal}">${sig}</span>`:""}
+        </div>
+        <div class="meta">${fmtMoney(p.liquidity)} ${t("liquidity")} · ${fmtMoney(p.volume.h24)} ${t("vol")}${p.quoteSymbol?" · "+esc(p.quoteSymbol):""}</div>
+      </div>
+      <div class="right">
+        <div class="chg ${ch>=0?"up":"down"}">${fmtPct(ch)}</div>
+        <div class="actions">
+          <button class="act-btn ${fav?"on":""}" onclick="toggleFavByAddr('${addr}')">★</button>
+          <button class="act-btn ${alarm?"alert-on":""}" onclick="openAlertByAddr('${addr}')">🔔</button>
+          <button class="act-btn" onclick="openAIAnalysis('${addr}')">🤖</button>
+          <button class="act-btn" onclick="openPair('${escJS(p.url)}')">↗</button>
+        </div>
+      </div>
+    </div>
+    <div class="tf-row">
+      ${["m5","h1","h6","h24"].map((x,j)=>`<div class="tf"><div class="lbl">${["5m","1h","6h","24h"][j]}</div><div class="v ${cls(p.change[x])}">${fmtPct(p.change[x])}</div></div>`).join("")}
+    </div>
+    <div class="score-row"><span>${t("score")}</span><span class="score-value">${score>0?"+":""}${score.toFixed(0)}${confidence}</span></div>
+    <div class="bar"><div style="width:${sw}%;background:${color}"></div></div>
+  </div>`;
+}
 
+function render(){
+  if(currentPage!=="market")return;
+  const list=getFiltered(), el=document.getElementById("content");
+  if(!list.length){el.innerHTML=`<div class="empty">${t("noResults")}<br><small>${t("refreshOrFilter")}</small></div>`;return}
+  el.innerHTML='<div class="list">'+list.map(cardHTML).join("")+"</div>";
+}
 
-  const value =
-    parseFloat(
-      document.getElementById(
-        "alertValue"
-      ).value
-    );
-
-
-  if (
-    !Number.isFinite(
-      value
-    ) ||
-    value <= 0
-  ) {
-
-    showAlert(
-      "Geçerli bir değer gir."
-    );
-
-    return;
-
-  }
-
-
-  alerts =
-    alerts.filter(
-      alert =>
-        !(
-          alert.pairAddress ===
-            alertTarget.pairAddress &&
-          alert.type ===
-            type
-        )
-    );
-
-
-  alerts.push({
-
-    id:
-      Date.now().toString(
-        36
-      ),
-
-    pairAddress:
-      alertTarget.pairAddress,
-
-    symbol:
-      alertTarget.baseSymbol,
-
-    name:
-      alertTarget.baseName ||
-      alertTarget.baseSymbol,
-
-    type,
-
-    value,
-
-    url:
-      alertTarget.url,
-
-    created:
-      Date.now()
-
+function renderFavorites(){
+  const el=document.getElementById("favContent");
+  if(!favorites.length){el.innerHTML=`<div class="fav-empty"><div class="big">★</div>${t("noFavorites")}<br>${t("addFavorite")}</div>`;return}
+  const items=favorites.map(f=>pairs.find(p=>p.pairAddress===f.pairAddress)||{
+    pairAddress:f.pairAddress,baseSymbol:f.symbol,baseName:f.name||f.symbol,baseAddress:f.baseAddress||"",dexId:f.dexId,url:f.url,
+    priceUsd:0,change:{m5:0,h1:0,h6:0,h24:0},volume:{h24:0},liquidity:0,score:0,signal:"neutral",confidence:0,warnings:[]
   });
-
-
-  saveJSON(
-    STORAGE_ALERTS,
-    alerts
-  );
-
-
-  const symbol =
-    alertTarget.baseSymbol;
-
-
-  closeModal();
-
-  render();
-
-  renderAlertsPage();
-
-
-  showPopup(
-    "Alarm Kaydedildi",
-    symbol +
-    " için alarm oluşturuldu."
-  );
-
+  el.innerHTML='<div class="list">'+items.map(cardHTML).join("")+"</div>";
 }
 
-
-function removeAlert(
-  id
-) {
-
-  alerts =
-    alerts.filter(
-      alert =>
-        alert.id !==
-        id
-    );
-
-
-  saveJSON(
-    STORAGE_ALERTS,
-    alerts
-  );
-
-
-  renderAlertsPage();
-
-  render();
-
-  checkAlerts();
-
+function renderAlertsPage(){
+  const el=document.getElementById("alertContent");
+  if(!alerts.length){el.innerHTML=`<div class="fav-empty"><div class="big">🔔</div>${t("noAlerts")}<br>${t("setAlertShort")}</div>`;return}
+  const labels={pct_up:t("percentUp"),pct_down:t("percentDown"),price_above:"≥ $",price_below:"≤ $"};
+  el.innerHTML='<div class="list">'+alerts.map(a=>{
+    const live=pairs.find(p=>p.pairAddress===a.pairAddress), price=live?formatPrice(live.priceUsd):"—";
+    const suffix=a.type.startsWith("pct")?"%":"$";
+    return `<div class="card"><div class="card-top"><div class="info"><div class="sym-row"><div class="token-title"><span class="token-name">${esc(a.name||a.symbol||t("unknownToken"))}</span><span class="token-symbol">${esc(a.symbol||"???")}</span></div></div><div class="meta">${labels[a.type]||a.type} ${a.value}${suffix} · ${t("now")}: $${price}</div></div><button class="btn btn-danger" style="flex:none;padding:8px 12px;font-size:.72rem" onclick="removeAlert('${escJS(a.id)}')">${t("delete")}</button></div></div>`;
+  }).join("")+"</div>";
 }
 
+/* =========================
+   FAVORITES / ALERTS
+========================= */
+function toggleFav(p){
+  if(isFav(p.pairAddress))favorites=favorites.filter(x=>x.pairAddress!==p.pairAddress);
+  else favorites.push({pairAddress:p.pairAddress,symbol:p.baseSymbol,name:p.baseName,baseAddress:p.baseAddress||"",dexId:p.dexId,url:p.url});
+  saveJSON(FAV_KEY,favorites);render();renderFavorites();
+}
+window.toggleFavByAddr=a=>{const p=pairs.find(x=>x.pairAddress===a),f=favorites.find(x=>x.pairAddress===a);if(p)toggleFav(p);else if(f)toggleFav({...f,baseSymbol:f.symbol,baseName:f.name||f.symbol})};
 
-/* =========================================================
-   FILTER
-========================================================= */
+function openAlertModal(p){
+  alertTarget=p;
+  document.getElementById("modalSymbol").textContent=`${p.baseName} (${p.baseSymbol}) · $${formatPrice(p.priceUsd)}`;
+  document.getElementById("alertValue").value="";
+  document.getElementById("alertType").value="pct_up";
+  document.getElementById("alertModal").classList.add("show");
+}
+window.openAlertByAddr=a=>{const p=pairs.find(x=>x.pairAddress===a);if(p)openAlertModal(p);else showAlert(t("tokenNotListed"))};
+function closeModal(){document.getElementById("alertModal").classList.remove("show");alertTarget=null}
+function saveAlert(){
+  if(!alertTarget)return;
+  const type=document.getElementById("alertType").value,value=parseFloat(document.getElementById("alertValue").value);
+  if(!Number.isFinite(value)||value<=0){showAlert(t("invalidValue"));return}
+  alerts=alerts.filter(a=>!(a.pairAddress===alertTarget.pairAddress&&a.type===type));
+  alerts.push({id:Date.now().toString(36),pairAddress:alertTarget.pairAddress,symbol:alertTarget.baseSymbol,name:alertTarget.baseName,type,value,url:alertTarget.url,created:Date.now()});
+  saveJSON(ALERT_KEY,alerts);const sym=alertTarget.baseSymbol;closeModal();render();renderAlertsPage();showPopup(t("saved"),`${sym} ${t("alertCreated")}`);
+}
+function removeAlert(id){alerts=alerts.filter(a=>a.id!==id);saveJSON(ALERT_KEY,alerts);renderAlertsPage();render();checkAlerts()}
+window.removeAlert=removeAlert;
 
-function getFiltered() {
-
-  let list =
-    [...pairs];
-
-
-  if (
-    volFilter ===
-    "high"
-  ) {
-
-    list =
-      list.filter(
-        pair =>
-          pair.volume.h24 >=
-          HIGH_VOL
-      );
-
+function checkAlerts(){
+  const hits=[];
+  for(const a of alerts){
+    const p=pairs.find(x=>x.pairAddress===a.pairAddress);if(!p)continue;
+    const hit=(a.type==="pct_up"&&p.change.h1>=a.value)||(a.type==="pct_down"&&p.change.h1<=-a.value)||(a.type==="price_above"&&p.priceUsd>=a.value)||(a.type==="price_below"&&p.priceUsd<=a.value);
+    if(hit)hits.push(a);
   }
-
-
-  if (
-    volFilter ===
-    "dedust"
-  ) {
-
-    list =
-      list.filter(
-        pair =>
-          pair.isDedust
-      );
-
-  }
-
-
-  if (
-    currentTab ===
-    "gainers"
-  ) {
-
-    list =
-      list.filter(
-        pair =>
-          pair.change[
-            currentTf
-          ] > 1
-      );
-
-
-    list.sort(
-      (
-        a,
-        b
-      ) =>
-        b.change[
-          currentTf
-        ] -
-        a.change[
-          currentTf
-        ]
-    );
-
-  } else if (
-    currentTab ===
-    "losers"
-  ) {
-
-    list =
-      list.filter(
-        pair =>
-          pair.change[
-            currentTf
-          ] < -1
-      );
-
-
-    list.sort(
-      (
-        a,
-        b
-      ) =>
-        a.change[
-          currentTf
-        ] -
-        b.change[
-          currentTf
-        ]
-    );
-
-  } else if (
-    currentTab ===
-    "volume"
-  ) {
-
-    list.sort(
-      (
-        a,
-        b
-      ) =>
-        b.volume.h24 -
-        a.volume.h24
-    );
-
-  } else if (
-    currentTab ===
-    "signals"
-  ) {
-
-    const order = {
-
-      "strong-buy": 0,
-
-      "buy": 1,
-
-      "strong-sell": 2,
-
-      "sell": 3,
-
-      "neutral": 9
-
-    };
-
-
-    list =
-      list.filter(
-        pair =>
-          pair.signal !==
-          "neutral"
-      );
-
-
-    list.sort(
-      (
-        a,
-        b
-      ) =>
-        (
-          order[
-            a.signal
-          ] -
-          order[
-            b.signal
-          ]
-        ) ||
-        (
-          Math.abs(
-            b.score
-          ) -
-          Math.abs(
-            a.score
-          )
-        )
-    );
-
-  }
-
-
-  return list.slice(
-    0,
-    MAX_RESULTS
-  );
-
+  const b=document.getElementById("alertBanner");
+  if(!hits.length){b.classList.remove("show");return}
+  b.innerHTML=hits.map(a=>"🔔 <b>"+esc(a.symbol)+"</b> "+t("triggered")).join("<br>");
+  b.classList.add("show");
+  try{tg?.HapticFeedback?.notificationOccurred("warning")}catch(_){}
 }
 
-
-/* =========================================================
-   CARD
-========================================================= */
-
-function cardHTML(
-  pair,
-  index
-) {
-
-  const change =
-    pair.change[
-      currentTf
-    ];
-
-
-  const isUp =
-    change >= 0;
-
-
-  const favorite =
-    isFav(
-      pair.pairAddress
-    );
-
-
-  const alarm =
-    hasAlert(
-      pair.pairAddress
-    );
-
-
-  let dexClass =
-    "other";
-
-
-  let dexLabel =
-    String(
-      pair.dexId ||
-      "DEX"
-    ).slice(
-      0,
-      8
-    );
-
-
-  if (
-    pair.isDedust
-  ) {
-
-    dexClass =
-      "dedust";
-
-    dexLabel =
-      "DeDust";
-
-  } else if (
-    pair.isSton
-  ) {
-
-    dexClass =
-      "ston";
-
-    dexLabel =
-      "Ston.fi";
-
-  }
-
-
-  const signal =
-    signalLabel(
-      pair.signal
-    );
-
-
-  const signalHTML =
-    signal
-      ? `
-        <span class="signal ${pair.signal}">
-          ${signal}
-        </span>
-      `
-      : "";
-
-
-  const scoreWidth =
-    Math.min(
-      Math.abs(
-        pair.score ||
-        0
-      ),
-      100
-    );
-
-
-  const scoreColor =
-    (
-      pair.score ||
-      0
-    ) >= 0
-      ? "var(--green)"
-      : "var(--red)";
-
-
-  const address =
-    escapeAttr(
-      pair.pairAddress
-    );
-
-
-  const confidence =
-    pair.confidence != null
-      ? " · %" +
-        pair.confidence.toFixed(
-          0
-        )
-      : "";
-
-
-  const tokenName =
-    pair.baseName ||
-    pair.baseSymbol ||
-    "Unknown Token";
-
-
-  const tokenSymbol =
-    pair.baseSymbol ||
-    "???";
-
-
-  return `
-
-<div class="card ${
-    favorite
-      ? "fav"
-      : ""
-  } ${
-    alarm
-      ? "alert-hit"
-      : ""
-  }">
-
-  <div class="card-top">
-
-    <div class="rank ${
-      index < 3
-        ? "top"
-        : ""
-    }">
-      ${index + 1}
-    </div>
-
-
-    <div class="info">
-
-      <div class="sym-row">
-
-        <div class="token-title">
-
-          <span class="token-name">
-            ${escapeHTML(
-              tokenName
-            )}
-          </span>
-
-          <span class="token-symbol">
-            ${escapeHTML(
-              tokenSymbol
-            )}
-          </span>
-
-        </div>
-
-
-        <span
-          class="dex ${dexClass}"
-        >
-          ${escapeHTML(
-            dexLabel
-          )}
-        </span>
-
-
-        ${signalHTML}
-
-      </div>
-
-
-      <div class="meta">
-
-        ${fmtMoney(
-          pair.liquidity
-        )}
-        liq
-
-        ·
-
-        ${fmtMoney(
-          pair.volume.h24
-        )}
-        vol
-
-        ${
-          pair.quoteSymbol
-            ? " · " +
-              escapeHTML(
-                pair.quoteSymbol
-              )
-            : ""
-        }
-
-      </div>
-
-    </div>
-
-
-    <div class="right">
-
-      <div class="chg ${
-        isUp
-          ? "up"
-          : "down"
-      }">
-
-        ${fmtPct(
-          change
-        )}
-
-      </div>
-
-
-      <div class="actions">
-
-        <button
-          class="act-btn ${
-            favorite
-              ? "on"
-              : ""
-          }"
-          onclick="event.stopPropagation();toggleFavByAddr('${address}')"
-          title="Favori"
-        >
-          ★
-        </button>
-
-
-        <button
-          class="act-btn ${
-            alarm
-              ? "alert-on"
-              : ""
-          }"
-          onclick="event.stopPropagation();openAlertByAddr('${address}')"
-          title="Alarm"
-        >
-          🔔
-        </button>
-
-
-        <button
-          class="act-btn"
-          onclick="event.stopPropagation();openAIAnalysis('${address}')"
-          title="AI Analiz"
-        >
-          🤖
-        </button>
-
-
-        <button
-          class="act-btn"
-          onclick="event.stopPropagation();openPair('${escapeAttr(pair.url || "")}')"
-          title="DEX"
-        >
-          ↗
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="tf-row">
-
-    <div class="tf">
-
-      <div class="lbl">
-        5dk
-      </div>
-
-      <div class="v ${
-        cls(
-          pair.change.m5
-        )
-      }">
-
-        ${fmtPct(
-          pair.change.m5
-        )}
-
-      </div>
-
-    </div>
-
-
-    <div class="tf">
-
-      <div class="lbl">
-        1s
-      </div>
-
-      <div class="v ${
-        cls(
-          pair.change.h1
-        )
-      }">
-
-        ${fmtPct(
-          pair.change.h1
-        )}
-
-      </div>
-
-    </div>
-
-
-    <div class="tf">
-
-      <div class="lbl">
-        6s
-      </div>
-
-      <div class="v ${
-        cls(
-          pair.change.h6
-        )
-      }">
-
-        ${fmtPct(
-          pair.change.h6
-        )}
-
-      </div>
-
-    </div>
-
-
-    <div class="tf">
-
-      <div class="lbl">
-        24s
-      </div>
-
-      <div class="v ${
-        cls(
-          pair.change.h24
-        )
-      }">
-
-        ${fmtPct(
-          pair.change.h24
-        )}
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="score-row">
-
-    <span>
-      Noventra Score
-    </span>
-
-    <span class="score-value">
-
-      ${
-        (
-          pair.score ||
-          0
-        ) > 0
-          ? "+"
-          : ""
-      }
-
-      ${
-        (
-          pair.score ||
-          0
-        ).toFixed(0)
-      }
-
-      ${confidence}
-
-    </span>
-
-  </div>
-
-
-  <div class="bar">
-
-    <div
-      style="
-        width:${scoreWidth}%;
-        background:${scoreColor};
-      "
-    ></div>
-
-  </div>
-
-</div>
-
-`;
-
+/* =========================
+   LOCALIZED AI ANALYSIS
+========================= */
+function generateAIAnalysis(p){
+  const c=p.change,score=p.score||0,conf=p.confidence||50,v=p.volume.h24,l=p.liquidity;
+  let trend=score>=70?t("veryStrongUp"):score>=55?t("strongUp"):score>=35?t("positive"):score>=15?t("slightlyPositive"):score>-15?t("neutralTrend"):score>-35?t("slightlyNegative"):score>-55?t("weak"):score>-70?t("strongDown"):t("veryStrongDown");
+  let volume=v>=200000?`${t("volumeVeryHigh")} (${fmtMoney(v)})`:v>=50000?`${t("volumeHigh")} (${fmtMoney(v)})`:v>=15000?`${t("volumeMedium")} (${fmtMoney(v)})`:v>=5000?`${t("volumeLowMedium")} (${fmtMoney(v)})`:`${t("volumeVeryLow")} (${fmtMoney(v)})`;
+  let liq=l>=100000?`${t("liquidityStrong")} (${fmtMoney(l)})`:l>=20000?`${t("liquidityEnough")} (${fmtMoney(l)})`:l>=5000?`${t("liquidityMedium")} (${fmtMoney(l)})`:l>=1500?`${t("liquidityWeak")} (${fmtMoney(l)})`:`${t("liquidityCritical")} (${fmtMoney(l)})`;
+  const ups=[c.m5,c.h1,c.h6,c.h24].filter(x=>x>1).length,downs=[c.m5,c.h1,c.h6,c.h24].filter(x=>x<-1).length;
+  const tf=ups>=3?t("multiUp"):downs>=3?t("multiDown"):c.h1>5&&c.h6<-3?t("shortUpMediumWeak"):c.h1<-5&&c.h6>3?t("shortDownMediumPositive"):t("mixed");
+  const risks=[];
+  if(c.h1>25)risks.push(`${fmtPct(c.h1)} 1h — ${t("overheat")}.`);
+  if(c.h1<-25)risks.push(`${fmtPct(c.h1)} 1h — ${t("oversold")}.`);
+  if(l<2500)risks.push(t("lowLiquidity"));
+  if(v<5000&&Math.abs(c.h1)>8)risks.push(t("lowVolumeMove"));
+  if(c.h1>0&&c.h6<-8)risks.push(t("shortUpMediumWeak"));
+  if(c.h1<0&&c.h6>10)risks.push(t("shortDownMediumPositive"));
+  if(!risks.length)risks.push(t("noExtraWarnings"));
+  let advice=p.signal==="strong-buy"&&conf>=65?t("adviceStrongBuy"):p.signal==="buy"&&conf>=60?t("adviceBuy"):p.signal==="buy"?t("adviceWeakBuy"):p.signal==="strong-sell"?t("adviceStrongSell"):p.signal==="sell"?t("adviceSell"):Math.abs(score)<15?t("adviceNeutral"):t("adviceWatch");
+  const s=score>0?"+"+score.toFixed(0):score.toFixed(0);
+  return `<b>${esc(p.baseName)} (${esc(p.baseSymbol)}) — ${t("aiAnalysis")}</b>
+
+<b>${t("general")}:</b> ${trend}
+<b>${t("technical")}:</b>
+• 5m: ${fmtPct(c.m5)}
+• 1h: ${fmtPct(c.h1)}
+• 6h: ${fmtPct(c.h6)}
+• 24h: ${fmtPct(c.h24)}
+
+<b>${t("score")}:</b> ${s} (${signalLabel(p.signal)||t("neutral")})
+<b>${t("confidence")}:</b> %${conf.toFixed(0)}
+<b>${t("timeframe")}:</b> ${tf}
+<b>${t("volume")}:</b> ${volume}
+<b>${t("liquidity")}:</b> ${liq}
+
+<b>${t("warnings")}:</b> ${esc((p.warnings||[]).join(" · ")||"—")}
+<b>${t("risks")}:</b>
+• ${risks.map(esc).join("\n• ")}
+
+<b>${t("summary")}:</b> ${esc(advice)}
+
+<i>${t("disclaimer")}</i>`;
 }
-
-
-/* =========================================================
-   RENDER MARKET
-========================================================= */
-
-function render() {
-
-  if (
-    currentPage !==
-    "market"
-  ) {
-
-    return;
-
-  }
-
-
-  const list =
-    getFiltered();
-
-
-  const element =
-    document.getElementById(
-      "content"
-    );
-
-
-  if (
-    !list.length
-  ) {
-
-    element.innerHTML = `
-
-      <div class="empty">
-
-        Bu filtrede sonuç yok.<br>
-
-        <small>
-          Yenile veya filtre değiştir.
-        </small>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  element.innerHTML =
-    '<div class="list">' +
-
-    list
-      .map(
-        (
-          pair,
-          index
-        ) =>
-          cardHTML(
-            pair,
-            index
-          )
-      )
-      .join("") +
-
-    "</div>";
-
-}
-
-
-/* =========================================================
-   FAVORITES PAGE
-========================================================= */
-
-function renderFavorites() {
-
-  const element =
-    document.getElementById(
-      "favContent"
-    );
-
-
-  if (
-    !favorites.length
-  ) {
-
-    element.innerHTML = `
-
-      <div class="fav-empty">
-
-        <div class="big">
-          ★
-        </div>
-
-        Henüz favori yok.<br>
-
-        Piyasa sekmesinden ★ ile ekle.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  const items =
-    favorites.map(
-      favorite => {
-
-        const live =
-          pairs.find(
-            pair =>
-              pair.pairAddress ===
-              favorite.pairAddress
-          );
-
-
-        return (
-          live ||
-          {
-
-            pairAddress:
-              favorite.pairAddress,
-
-            baseSymbol:
-              favorite.symbol,
-
-            baseName:
-              favorite.name ||
-              favorite.symbol,
-
-            baseAddress:
-              favorite.baseAddress ||
-              "",
-
-            dexId:
-              favorite.dexId,
-
-            url:
-              favorite.url,
-
-            priceUsd:
-              0,
-
-            change: {
-
-              m5: 0,
-
-              h1: 0,
-
-              h6: 0,
-
-              h24: 0
-
-            },
-
-            volume: {
-
-              h24: 0
-
-            },
-
-            liquidity:
-              0,
-
-            score:
-              0,
-
-            signal:
-              "neutral",
-
-            confidence:
-              0,
-
-            warnings:
-              []
-
-          }
-
-        );
-
-      }
-    );
-
-
-  element.innerHTML =
-    '<div class="list">' +
-
-    items
-      .map(
-        (
-          pair,
-          index
-        ) =>
-          cardHTML(
-            pair,
-            index
-          )
-      )
-      .join("") +
-
-    "</div>";
-
-}
-
-
-/* =========================================================
-   ALERT PAGE
-========================================================= */
-
-function renderAlertsPage() {
-
-  const element =
-    document.getElementById(
-      "alertContent"
-    );
-
-
-  if (
-    !alerts.length
-  ) {
-
-    element.innerHTML = `
-
-      <div class="fav-empty">
-
-        <div class="big">
-          🔔
-        </div>
-
-        Aktif alarm yok.<br>
-
-        Kartlardaki 🔔 ile kur.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  const typeLabel = {
-
-    pct_up:
-      "↑ % yükselince",
-
-    pct_down:
-      "↓ % düşünce",
-
-    price_above:
-      "Fiyat ≥",
-
-    price_below:
-      "Fiyat ≤"
-
-  };
-
-
-  element.innerHTML =
-    '<div class="list">' +
-
-    alerts
-      .map(
-        alert => {
-
-          const live =
-            pairs.find(
-              pair =>
-                pair.pairAddress ===
-                alert.pairAddress
-            );
-
-
-          const price =
-            live
-              ? formatPrice(
-                  live.priceUsd
-                )
-              : "—";
-
-
-          const suffix =
-            alert.type.startsWith(
-              "pct"
-            )
-              ? "%"
-              : "$";
-
-
-          const displayName =
-            alert.name ||
-            alert.symbol ||
-            "Unknown Token";
-
-
-          return `
-
-<div class="card">
-
-  <div class="card-top">
-
-    <div class="info">
-
-      <div class="sym-row">
-
-        <div class="token-title">
-
-          <span class="token-name">
-
-            ${escapeHTML(
-              displayName
-            )}
-
-          </span>
-
-          <span class="token-symbol">
-
-            ${escapeHTML(
-              alert.symbol ||
-              "???"
-            )}
-
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="meta">
-
-        ${
-          typeLabel[
-            alert.type
-          ] ||
-          alert.type
-        }
-
-        ${alert.value}${suffix}
-
-        · Şu an: $${price}
-
-      </div>
-
-    </div>
-
-
-    <button
-      class="btn btn-danger"
-      style="flex:none;padding:8px 12px;font-size:.72rem"
-      onclick="removeAlert('${escapeAttr(alert.id)}')"
-    >
-      Sil
-    </button>
-
-  </div>
-
-</div>
-
-`;
-
-        }
-      )
-      .join("") +
-
-    "</div>";
-
-}
-
-
-/* =========================================================
+function openAIAnalysis(a){const p=pairs.find(x=>x.pairAddress===a);if(!p){showAlert(t("tokenDataMissing"));return}document.getElementById("aiBody").innerHTML=generateAIAnalysis(p);document.getElementById("aiModal").classList.add("show")}
+window.openAIAnalysis=openAIAnalysis;
+function closeAIModal(){document.getElementById("aiModal").classList.remove("show")}
+
+/* =========================
    ACTIONS
-========================================================= */
+========================= */
+function openPair(url){
+  if(!url)return;
+  try{tg?.openLink?tg.openLink(url,{try_instant_view:false}):window.open(url,"_blank","noopener,noreferrer")}catch(_){window.open(url,"_blank")}
+}
+window.openPair=openPair;
+function showAlert(m){try{tg?.showAlert?tg.showAlert(m):alert(m)}catch(_){alert(m)}}
+function showPopup(title,message){try{tg?.showPopup?tg.showPopup({title,message,buttons:[{type:"ok"}]}):alert(title+"\n\n"+message)}catch(_){alert(title+"\n\n"+message)}}
 
-function openPair(
-  url
-) {
-
-  if (!url) {
-
-    return;
-
-  }
-
-
-  try {
-
-    if (
-      tg?.openLink
-    ) {
-
-      tg.openLink(
-        url,
-        {
-          try_instant_view:
-            false
-        }
-      );
-
-    } else {
-
-      window.open(
-        url,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-    }
-
-  } catch (_) {
-
-    window.open(
-      url,
-      "_blank"
-    );
-
-  }
-
+/* =========================
+   LANGUAGE
+========================= */
+function setLanguage(lang){
+  if(!LANGUAGES[lang])return;
+  currentLanguage=lang;try{localStorage.setItem(LANG_KEY,lang)}catch(_){}
+  document.documentElement.lang=lang;applyLanguage();render();renderFavorites();renderAlertsPage();
+}
+function applyLanguage(){
+  document.querySelectorAll("[data-i18n]").forEach(el=>el.textContent=t(el.dataset.i18n));
+  const tabs={gainers:t("gainers"),losers:t("losers"),volume:t("volume"),signals:t("signals")};
+  document.querySelectorAll("#mainTabs .tab").forEach(el=>el.textContent=tabs[el.dataset.tab]);
+  document.querySelectorAll(".chip").forEach(el=>{
+    if(el.dataset.tf==="h1")el.textContent=t("hour1");
+    if(el.dataset.tf==="h6")el.textContent=t("hour6");
+    if(el.dataset.tf==="h24")el.textContent=t("hour24");
+    if(el.dataset.vol==="all")el.textContent=t("all");
+    if(el.dataset.vol==="high")el.textContent=t("highVolume");
+    if(el.dataset.vol==="dedust")el.textContent=t("dedust");
+  });
+  document.getElementById("loadingText").textContent=t("scanning");
+  document.getElementById("alertTitle").textContent=t("alertSet");
+  document.getElementById("alertTypeLabel").textContent=t("alertType");
+  document.getElementById("valueLabel").textContent=t("value");
+  document.getElementById("modalCancel").textContent=t("cancel");
+  document.getElementById("modalSave").textContent=t("save");
+  document.getElementById("aiTitle").textContent="🤖 "+t("aiAnalysis");
+  document.getElementById("aiModalOk").textContent=t("ok");
+  document.getElementById("alertValue").placeholder=t("example");
+  document.getElementById("alertType").innerHTML=`<option value="pct_up">${t("percentUp")}</option><option value="pct_down">${t("percentDown")}</option><option value="price_above">${t("priceAbove")}</option><option value="price_below">${t("priceBelow")}</option>`;
+  document.getElementById("refreshBtn").title=currentLanguage==="tr"?"Yenile":currentLanguage==="ru"?"Обновить":currentLanguage==="zh"?"刷新":currentLanguage==="ja"?"更新":currentLanguage==="ko"?"새로고침":"Refresh";
 }
 
-
-function showAlert(
-  message
-) {
-
-  if (
-    tg?.showAlert
-  ) {
-
-    tg.showAlert(
-      message
-    );
-
-  } else {
-
-    alert(
-      message
-    );
-
-  }
-
+/* =========================
+   LANGUAGE MENU
+========================= */
+function openLanguageMenu(){
+  let menu=document.getElementById("languageMenu");
+  if(menu){menu.remove();return}
+  menu=document.createElement("div");menu.id="languageMenu";menu.className="language-menu";
+  Object.entries(LANGUAGES).forEach(([code,name])=>{
+    const b=document.createElement("button");b.textContent=name;if(code===currentLanguage)b.classList.add("active");
+    b.onclick=()=>{setLanguage(code);menu.remove()};menu.appendChild(b);
+  });
+  document.body.appendChild(menu);
 }
-
-
-function showPopup(
-  title,
-  message
-) {
-
-  if (
-    tg?.showPopup
-  ) {
-
-    tg.showPopup({
-
-      title,
-
-      message,
-
-      buttons: [
-        {
-          type:
-            "ok"
-        }
-      ]
-
-    });
-
-  } else {
-
-    alert(
-      title +
-      "\n\n" +
-      message
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   GLOBAL FUNCTIONS
-========================================================= */
-
-window.toggleFavByAddr =
-  function(
-    address
-  ) {
-
-    const pair =
-      pairs.find(
-        p =>
-          p.pairAddress ===
-          address
-      );
-
-
-    const favorite =
-      favorites.find(
-        f =>
-          f.pairAddress ===
-          address
-      );
-
-
-    if (pair) {
-
-      toggleFav(
-        pair
-      );
-
-      return;
-
-    }
-
-
-    if (favorite) {
-
-      toggleFav({
-
-        pairAddress:
-          favorite.pairAddress,
-
-        baseSymbol:
-          favorite.symbol,
-
-        baseName:
-          favorite.name ||
-          favorite.symbol,
-
-        baseAddress:
-          favorite.baseAddress ||
-          "",
-
-        dexId:
-          favorite.dexId,
-
-        url:
-          favorite.url
-
-      });
-
-    }
-
-  };
-
-
-window.openAlertByAddr =
-  function(
-    address
-  ) {
-
-    const pair =
-      pairs.find(
-        p =>
-          p.pairAddress ===
-          address
-      );
-
-
-    if (pair) {
-
-      openAlertModal(
-        pair
-      );
-
-    } else {
-
-      showAlert(
-        "Bu token şu an listede değil."
-      );
-
-    }
-
-  };
-
-
-window.openAIAnalysis =
-  openAIAnalysis;
-
-
-window.removeAlert =
-  removeAlert;
-
-
-window.openPair =
-  openPair;
-
-
-/* =========================================================
-   MAIN TABS
-========================================================= */
-
-document
-  .querySelectorAll(
-    "#mainTabs .tab"
-  )
-  .forEach(
-    tab => {
-
-      tab.addEventListener(
-        "click",
-        () => {
-
-          document
-            .querySelectorAll(
-              "#mainTabs .tab"
-            )
-            .forEach(
-              item =>
-                item.classList.remove(
-                  "active"
-                )
-            );
-
-
-          tab.classList.add(
-            "active"
-          );
-
-
-          currentTab =
-            tab.dataset.tab;
-
-
-          render();
-
-        }
-      );
-
-    }
-  );
-
-
-/* =========================================================
-   FILTER CHIPS
-========================================================= */
-
-document
-  .querySelectorAll(
-    ".chip"
-  )
-  .forEach(
-    chip => {
-
-      chip.addEventListener(
-        "click",
-        () => {
-
-          if (
-            chip.dataset.tf
-          ) {
-
-            document
-              .querySelectorAll(
-                "[data-tf]"
-              )
-              .forEach(
-                item =>
-                  item.classList.remove(
-                    "active"
-                  )
-              );
-
-
-            chip.classList.add(
-              "active"
-            );
-
-
-            currentTf =
-              chip.dataset.tf;
-
-          }
-
-
-          if (
-            chip.dataset.vol
-          ) {
-
-            document
-              .querySelectorAll(
-                "[data-vol]"
-              )
-              .forEach(
-                item =>
-                  item.classList.remove(
-                    "active"
-                  )
-              );
-
-
-            chip.classList.add(
-              "active"
-            );
-
-
-            volFilter =
-              chip.dataset.vol;
-
-          }
-
-
-          render();
-
-        }
-      );
-
-    }
-  );
-
-
-/* =========================================================
-   BOTTOM NAV
-========================================================= */
-
-document
-  .querySelectorAll(
-    ".nav-item"
-  )
-  .forEach(
-    item => {
-
-      item.addEventListener(
-        "click",
-        () => {
-
-          document
-            .querySelectorAll(
-              ".nav-item"
-            )
-            .forEach(
-              nav =>
-                nav.classList.remove(
-                  "active"
-                )
-            );
-
-
-          item.classList.add(
-            "active"
-          );
-
-
-          currentPage =
-            item.dataset.page;
-
-
-          document
-            .querySelectorAll(
-              ".page"
-            )
-            .forEach(
-              page =>
-                page.classList.remove(
-                  "active"
-                )
-            );
-
-
-          document
-            .getElementById(
-              "page-" +
-              currentPage
-            )
-            .classList.add(
-              "active"
-            );
-
-
-          const market =
-            currentPage ===
-            "market";
-
-
-          document.getElementById(
-            "filters"
-          ).style.display =
-            market
-              ? "flex"
-              : "none";
-
-
-          document.getElementById(
-            "mainTabs"
-          ).style.display =
-            market
-              ? "flex"
-              : "none";
-
-
-          if (
-            currentPage ===
-            "favorites"
-          ) {
-
-            renderFavorites();
-
-          }
-
-
-          if (
-            currentPage ===
-            "alerts"
-          ) {
-
-            renderAlertsPage();
-
-          }
-
-
-          if (
-            currentPage ===
-            "market"
-          ) {
-
-            render();
-
-          }
-
-        }
-      );
-
-    }
-  );
-
-
-/* =========================================================
-   BUTTON EVENTS
-========================================================= */
-
-document
-  .getElementById(
-    "refreshBtn"
-  )
-  .addEventListener(
-    "click",
-    loadData
-  );
-
-
-document
-  .getElementById(
-    "modalClose"
-  )
-  .addEventListener(
-    "click",
-    closeModal
-  );
-
-
-document
-  .getElementById(
-    "modalCancel"
-  )
-  .addEventListener(
-    "click",
-    closeModal
-  );
-
-
-document
-  .getElementById(
-    "modalSave"
-  )
-  .addEventListener(
-    "click",
-    saveAlert
-  );
-
-
-document
-  .getElementById(
-    "alertModal"
-  )
-  .addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target.id ===
-        "alertModal"
-      ) {
-
-        closeModal();
-
-      }
-
-    }
-  );
-
-
-document
-  .getElementById(
-    "aiModalClose"
-  )
-  .addEventListener(
-    "click",
-    closeAIModal
-  );
-
-
-document
-  .getElementById(
-    "aiModalOk"
-  )
-  .addEventListener(
-    "click",
-    closeAIModal
-  );
-
-
-document
-  .getElementById(
-    "aiModal"
-  )
-  .addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target.id ===
-        "aiModal"
-      ) {
-
-        closeAIModal();
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   AUTO REFRESH
-========================================================= */
-
-setInterval(
-  () => {
-
-    if (
-      !isLoading
-    ) {
-
-      loadData();
-
-    }
-
-  },
-  REFRESH_MS
-);
-  /* =========================================================
-   NOVENTRA MULTI-LANGUAGE SYSTEM
-========================================================= */
-
-const LANGUAGE_STORAGE = "noventra_language_v1";
-
-const LANGUAGES = {
-  tr: "🇹🇷 Türkçe",
-  en: "🇬🇧 English",
-  ru: "🇷🇺 Русский",
-  zh: "🇨🇳 中文",
-  ja: "🇯🇵 日本語",
-  ko: "🇰🇷 한국어"
-};
-
-const I18N = {
-
-  tr: {
-    language: "Dil",
-    market: "Piyasa",
-    favorites: "Favoriler",
-    alerts: "Alarmlar",
-    gainers: "Yükselen",
-    losers: "Düşen",
-    volume: "Hacim",
-    signals: "Sinyal",
-
-    hour1: "1 Saat",
-    hour6: "6 Saat",
-    hour24: "24 Saat",
-    all: "Tüm",
-    highVolume: "Yüksek Hacim",
-    dedust: "DeDust",
-
-    preparing: "Hazırlanıyor...",
-    scanning: "TON piyasası taranıyor...",
-    scanned: "Taranıyor...",
-    updated: "Güncelleme",
-    pairs: "çift",
-    noResults: "Bu filtrede sonuç yok.",
-    refreshOrFilter: "Yenile veya filtre değiştir.",
-    dataError: "Veri alınamadı — yenile",
-
-    noFavorites: "Henüz favori yok.",
-    addFavorite: "Piyasa sekmesinden ★ ile ekle.",
-
-    noAlerts: "Aktif alarm yok.",
-    setAlert: "Kartlardaki 🔔 ile alarm kur.",
-    setAlertShort: "Kartlardaki 🔔 ile kur.",
-
-    alertSet: "Alarm Kur",
-    alertType: "Alarm Tipi",
-    percentUp: "Yüzde yükselince (%)",
-    percentDown: "Yüzde düşünce (%)",
-    priceAbove: "Fiyat üstüne çıkınca ($)",
-    priceBelow: "Fiyat altına inince ($)",
-    value: "Değer",
-    example: "Örn: 10 veya 0.05",
-    cancel: "İptal",
-    save: "Kaydet",
-    saved: "Alarm Kaydedildi",
-    alertCreated: "için alarm oluşturuldu.",
-    invalidValue: "Geçerli bir değer gir.",
-    triggered: "alarmı tetiklendi!",
-
-    aiAnalysis: "AI Analiz",
-    ok: "Tamam",
-    tokenDataMissing: "Token verisi bulunamadı.",
-    tokenNotListed: "Bu token şu an listede değil.",
-    delete: "Sil",
-    now: "Şu an",
-
-    liquidity: "liq",
-    vol: "vol",
-    score: "Noventra Score",
-    strongBuy: "GÜÇLÜ AL",
-    buy: "AL",
-    strongSell: "GÜÇLÜ SAT",
-    sell: "SAT",
-
-    unknownToken: "Unknown Token",
-    neutral: "Nötr",
-
-    technical: "Teknik",
-    general: "Genel",
-    timeframe: "Zaman dilimleri",
-    confidence: "Güven",
-    warnings: "Uyarılar",
-    risks: "Riskler",
-    summary: "Özet",
-
-    disclaimer:
-      "Noventra Signal teknik verileri üzerinden otomatik analiz üretir. Yatırım tavsiyesi değildir.",
-
-    veryStrongUp:
-      "Çok güçlü kısa vadeli alım baskısı. Momentum net şekilde yukarı.",
-    strongUp:
-      "Güçlü yükseliş momentumu var; alıcılar kontrolde.",
-    positive:
-      "Olumlu momentum, alıcılar hafif önde.",
-    slightlyPositive:
-      "Hafif pozitif eğilim, henüz net kırılım yok.",
-    neutralTrend:
-      "Yatay / belirsiz bölge. Net yön oluşmamış.",
-    slightlyNegative:
-      "Hafif satış baskısı hissediliyor.",
-    weak:
-      "Satıcılar önde, zayıf görünüm.",
-    strongDown:
-      "Güçlü düşüş momentumu; satıcılar baskın.",
-    veryStrongDown:
-      "Çok sert satış baskısı. Kısa vadede zayıf tablo.",
-
-    veryHighVolume:
-      "Çok yüksek hacim",
-    highVolumeText:
-      "Yüksek hacim",
-    mediumVolume:
-      "Orta hacim",
-    lowMediumVolume:
-      "Düşük-orta hacim",
-    veryLowVolume:
-      "Çok düşük hacim",
-
-    strongLiquidity: "Güçlü likidite",
-    sufficientLiquidity: "Yeterli likidite",
-    mediumLiquidity: "Orta likidite",
-    weakLiquidity: "Zayıf likidite",
-    criticalLiquidity: "Kritik düşük likidite",
-
-    multiUp:
-      "Çoklu zaman diliminde yükseliş uyumu var.",
-    multiDown:
-      "Çoklu zaman diliminde düşüş uyumu var.",
-    shortUpMediumWeak:
-      "Kısa vade yukarı, orta vade zayıf — çelişkili tablo.",
-    shortDownMediumPositive:
-      "Kısa vade aşağı, orta vade hâlâ pozitif — toparlanma veya dağıtım olabilir.",
-    mixed:
-      "Zaman dilimleri karışık; net konsensüs yok.",
-
-    overheat:
-      "Aşırı ısınmış",
-    oversold:
-      "Aşırı satılmış",
-    lowLiquidity:
-      "Düşük likidite",
-    highVolumeMove:
-      "Yüksek hacimli hareket",
-    lowVolumeMove:
-      "Hacimsiz hareket",
-
-    noExtraWarnings:
-      "Ekstra kırmızı bayrak yok; yine de pozisyon boyutunu sınırla."
-  },
-
-  en: {
-    language: "Language",
-    market: "Market",
-    favorites: "Favorites",
-    alerts: "Alerts",
-    gainers: "Gainers",
-    losers: "Losers",
-    volume: "Volume",
-    signals: "Signals",
-
-    hour1: "1 Hour",
-    hour6: "6 Hours",
-    hour24: "24 Hours",
-    all: "All",
-    highVolume: "High Volume",
-    dedust: "DeDust",
-
-    preparing: "Preparing...",
-    scanning: "Scanning TON market...",
-    scanned: "Scanning...",
-    updated: "Updated",
-    pairs: "pairs",
-    noResults: "No results for this filter.",
-    refreshOrFilter: "Refresh or change the filter.",
-    dataError: "Failed to load data — refresh",
-
-    noFavorites: "No favorites yet.",
-    addFavorite: "Add one with ★ from the Market tab.",
-
-    noAlerts: "No active alerts.",
-    setAlert: "Set one with 🔔 on a card.",
-    setAlertShort: "Set one with 🔔.",
-
-    alertSet: "Set Alert",
-    alertType: "Alert Type",
-    percentUp: "When percentage rises (%)",
-    percentDown: "When percentage falls (%)",
-    priceAbove: "When price rises above ($)",
-    priceBelow: "When price falls below ($)",
-    value: "Value",
-    example: "e.g. 10 or 0.05",
-    cancel: "Cancel",
-    save: "Save",
-    saved: "Alert Saved",
-    alertCreated: "alert created for",
-    invalidValue: "Enter a valid value.",
-    triggered: "alert triggered!",
-
-    aiAnalysis: "AI Analysis",
-    ok: "OK",
-    tokenDataMissing: "Token data not found.",
-    tokenNotListed: "This token is not currently listed.",
-    delete: "Delete",
-    now: "Now",
-
-    liquidity: "liq",
-    vol: "vol",
-    score: "Noventra Score",
-    strongBuy: "STRONG BUY",
-    buy: "BUY",
-    strongSell: "STRONG SELL",
-    sell: "SELL",
-    unknownToken: "Unknown Token",
-    neutral: "Neutral",
-
-    technical: "Technical",
-    general: "Overview",
-    timeframe: "Timeframes",
-    confidence: "Confidence",
-    warnings: "Warnings",
-    risks: "Risks",
-    summary: "Summary",
-
-    disclaimer:
-      "Noventra Signal generates automated analysis based on technical data. Not financial advice.",
-
-    veryStrongUp:
-      "Very strong short-term buying pressure. Momentum is clearly bullish.",
-    strongUp:
-      "Strong upward momentum; buyers are in control.",
-    positive:
-      "Positive momentum, buyers have a slight edge.",
-    slightlyPositive:
-      "Slightly positive trend, no clear breakout yet.",
-    neutralTrend:
-      "Sideways / uncertain area. No clear direction.",
-    slightlyNegative:
-      "Slight selling pressure is present.",
-    weak:
-      "Sellers are ahead; weak outlook.",
-    strongDown:
-      "Strong downward momentum; sellers dominate.",
-    veryStrongDown:
-      "Very strong selling pressure. Weak short-term outlook.",
-
-    veryHighVolume:
-      "Very high volume",
-    highVolumeText:
-      "High volume",
-    mediumVolume:
-      "Medium volume",
-    lowMediumVolume:
-      "Low-medium volume",
-    veryLowVolume:
-      "Very low volume",
-
-    strongLiquidity: "Strong liquidity",
-    sufficientLiquidity: "Sufficient liquidity",
-    mediumLiquidity: "Medium liquidity",
-    weakLiquidity: "Weak liquidity",
-    criticalLiquidity: "Critically low liquidity",
-
-    multiUp:
-      "Multiple timeframes confirm the upward trend.",
-    multiDown:
-      "Multiple timeframes confirm the downward trend.",
-    shortUpMediumWeak:
-      "Short-term is bullish while the medium-term is weak — conflicting picture.",
-    shortDownMediumPositive:
-      "Short-term is bearish while the medium-term remains positive — could be a pullback or distribution.",
-    mixed:
-      "Timeframes are mixed; there is no clear consensus.",
-
-    overheat: "Overheated",
-    oversold: "Oversold",
-    lowLiquidity: "Low liquidity",
-    highVolumeMove: "High-volume move",
-    lowVolumeMove: "Low-volume move",
-
-    noExtraWarnings:
-      "No additional red flags; still keep position size limited."
-  },
-
-  ru: {
-    language: "Язык",
-    market: "Рынок",
-    favorites: "Избранное",
-    alerts: "Оповещения",
-    gainers: "Рост",
-    losers: "Падение",
-    volume: "Объём",
-    signals: "Сигналы",
-    hour1: "1 час",
-    hour6: "6 часов",
-    hour24: "24 часа",
-    all: "Все",
-    highVolume: "Высокий объём",
-    dedust: "DeDust",
-    preparing: "Подготовка...",
-    scanning: "Сканирование рынка TON...",
-    scanned: "Сканирование...",
-    updated: "Обновлено",
-    pairs: "пар",
-    noResults: "Нет результатов для этого фильтра.",
-    refreshOrFilter: "Обновите или измените фильтр.",
-    dataError: "Не удалось получить данные — обновите",
-    noFavorites: "Избранного пока нет.",
-    addFavorite: "Добавьте токен через ★.",
-    noAlerts: "Активных оповещений нет.",
-    setAlert: "Установите оповещение через 🔔.",
-    setAlertShort: "Установите через 🔔.",
-    alertSet: "Установить оповещение",
-    alertType: "Тип оповещения",
-    percentUp: "При росте процента (%)",
-    percentDown: "При падении процента (%)",
-    priceAbove: "При цене выше ($)",
-    priceBelow: "При цене ниже ($)",
-    value: "Значение",
-    example: "Напр.: 10 или 0.05",
-    cancel: "Отмена",
-    save: "Сохранить",
-    saved: "Оповещение сохранено",
-    alertCreated: "Оповещение создано для",
-    invalidValue: "Введите корректное значение.",
-    triggered: "оповещение сработало!",
-    aiAnalysis: "AI-анализ",
-    ok: "OK",
-    tokenDataMissing: "Данные токена не найдены.",
-    tokenNotListed: "Этот токен сейчас не найден в списке.",
-    delete: "Удалить",
-    now: "Сейчас",
-    liquidity: "ликв.",
-    vol: "объём",
-    score: "Noventra Score",
-    strongBuy: "СИЛЬНАЯ ПОКУПКА",
-    buy: "ПОКУПКА",
-    strongSell: "СИЛЬНАЯ ПРОДАЖА",
-    sell: "ПРОДАЖА",
-    unknownToken: "Неизвестный токен",
-    neutral: "Нейтрально",
-    technical: "Техника",
-    general: "Обзор",
-    timeframe: "Таймфреймы",
-    confidence: "Уверенность",
-    warnings: "Предупреждения",
-    risks: "Риски",
-    summary: "Итог",
-    disclaimer: "Noventra Signal создаёт автоматический анализ на основе технических данных. Не является финансовой рекомендацией.",
-    veryStrongUp: "Очень сильное краткосрочное давление покупателей. Моментум явно направлен вверх.",
-    strongUp: "Сильный восходящий моментум; покупатели контролируют рынок.",
-    positive: "Положительный моментум, покупатели немного впереди.",
-    slightlyPositive: "Слабоположительный тренд, явного пробоя пока нет.",
-    neutralTrend: "Боковое / неопределённое движение.",
-    slightlyNegative: "Наблюдается небольшое давление продавцов.",
-    weak: "Продавцы впереди; слабая картина.",
-    strongDown: "Сильный нисходящий моментум; продавцы доминируют.",
-    veryStrongDown: "Очень сильное давление продавцов. Слабая краткосрочная картина.",
-    veryHighVolume: "Очень высокий объём",
-    highVolumeText: "Высокий объём",
-    mediumVolume: "Средний объём",
-    lowMediumVolume: "Низко-средний объём",
-    veryLowVolume: "Очень низкий объём",
-    strongLiquidity: "Сильная ликвидность",
-    sufficientLiquidity: "Достаточная ликвидность",
-    mediumLiquidity: "Средняя ликвидность",
-    weakLiquidity: "Слабая ликвидность",
-    criticalLiquidity: "Критически низкая ликвидность",
-    multiUp: "Несколько таймфреймов подтверждают рост.",
-    multiDown: "Несколько таймфреймов подтверждают падение.",
-    shortUpMediumWeak: "Краткосрочно рост, среднесрочно слабость — противоречивая картина.",
-    shortDownMediumPositive: "Краткосрочно падение, среднесрочно позитивно — коррекция или распределение.",
-    mixed: "Таймфреймы смешанные; чёткого консенсуса нет.",
-    overheat: "Перегрет",
-    oversold: "Перепродан",
-    lowLiquidity: "Низкая ликвидность",
-    highVolumeMove: "Движение на высоком объёме",
-    lowVolumeMove: "Движение без объёма",
-    noExtraWarnings: "Дополнительных красных флагов нет; всё же ограничивайте размер позиции."
-  },
-
-  zh: {
-    language: "语言",
-    market: "市场",
-    favorites: "收藏",
-    alerts: "提醒",
-    gainers: "上涨",
-    losers: "下跌",
-    volume: "成交量",
-    signals: "信号",
-    hour1: "1小时",
-    hour6: "6小时",
-    hour24: "24小时",
-    all: "全部",
-    highVolume: "高成交量",
-    dedust: "DeDust",
-    preparing: "准备中...",
-    scanning: "正在扫描 TON 市场...",
-    scanned: "扫描中...",
-    updated: "更新于",
-    pairs: "交易对",
-    noResults: "此筛选条件没有结果。",
-    refreshOrFilter: "刷新或更改筛选条件。",
-    dataError: "无法获取数据 — 请刷新",
-    noFavorites: "暂无收藏。",
-    addFavorite: "在市场页面点击 ★ 添加。",
-    noAlerts: "暂无活跃提醒。",
-    setAlert: "点击卡片上的 🔔 设置提醒。",
-    setAlertShort: "点击 🔔 设置。",
-    alertSet: "设置提醒",
-    alertType: "提醒类型",
-    percentUp: "上涨百分比时 (%)",
-    percentDown: "下跌百分比时 (%)",
-    priceAbove: "价格高于 ($)",
-    priceBelow: "价格低于 ($)",
-    value: "数值",
-    example: "例如：10 或 0.05",
-    cancel: "取消",
-    save: "保存",
-    saved: "提醒已保存",
-    alertCreated: "提醒已创建：",
-    invalidValue: "请输入有效数值。",
-    triggered: "提醒已触发！",
-    aiAnalysis: "AI 分析",
-    ok: "确定",
-    tokenDataMissing: "未找到代币数据。",
-    tokenNotListed: "该代币目前不在列表中。",
-    delete: "删除",
-    now: "当前",
-    liquidity: "流动性",
-    vol: "成交量",
-    score: "Noventra Score",
-    strongBuy: "强力买入",
-    buy: "买入",
-    strongSell: "强力卖出",
-    sell: "卖出",
-    unknownToken: "未知代币",
-    neutral: "中性",
-    technical: "技术面",
-    general: "概览",
-    timeframe: "时间周期",
-    confidence: "置信度",
-    warnings: "警告",
-    risks: "风险",
-    summary: "总结",
-    disclaimer: "Noventra Signal 根据技术数据生成自动分析。不构成投资建议。",
-    veryStrongUp: "短期买盘压力非常强，动能明显向上。",
-    strongUp: "上涨动能强劲，买方占据主导。",
-    positive: "动能偏多，买方略占优势。",
-    slightlyPositive: "轻微看涨，尚未形成明确突破。",
-    neutralTrend: "横盘 / 不确定区域，方向不明确。",
-    slightlyNegative: "存在轻微卖压。",
-    weak: "卖方占优，走势偏弱。",
-    strongDown: "下跌动能强劲，卖方占主导。",
-    veryStrongDown: "卖压非常强，短期走势疲弱。",
-    veryHighVolume: "极高成交量",
-    highVolumeText: "高成交量",
-    mediumVolume: "中等成交量",
-    lowMediumVolume: "低至中等成交量",
-    veryLowVolume: "极低成交量",
-    strongLiquidity: "流动性强",
-    sufficientLiquidity: "流动性充足",
-    mediumLiquidity: "中等流动性",
-    weakLiquidity: "流动性较弱",
-    criticalLiquidity: "流动性极低",
-    multiUp: "多个时间周期确认上涨趋势。",
-    multiDown: "多个时间周期确认下跌趋势。",
-    shortUpMediumWeak: "短期上涨，中期偏弱 — 走势存在冲突。",
-    shortDownMediumPositive: "短期下跌，中期仍偏强 — 可能是回调或派发。",
-    mixed: "时间周期信号混合，没有明确共识。",
-    overheat: "过热",
-    oversold: "超卖",
-    lowLiquidity: "低流动性",
-    highVolumeMove: "高成交量异动",
-    lowVolumeMove: "低成交量异动",
-    noExtraWarnings: "没有额外红旗，但仍应控制仓位。"
-  },
-
-  ja: {
-    language: "言語",
-    market: "市場",
-    favorites: "お気に入り",
-    alerts: "アラート",
-    gainers: "上昇",
-    losers: "下落",
-    volume: "出来高",
-    signals: "シグナル",
-    hour1: "1時間",
-    hour6: "6時間",
-    hour24: "24時間",
-    all: "すべて",
-    highVolume: "高出来高",
-    dedust: "DeDust",
-    preparing: "準備中...",
-    scanning: "TON市場をスキャン中...",
-    scanned: "スキャン中...",
-    updated: "更新",
-    pairs: "ペア",
-    noResults: "このフィルターに結果はありません。",
-    refreshOrFilter: "更新するかフィルターを変更してください。",
-    dataError: "データを取得できません — 更新してください",
-    noFavorites: "お気に入りはありません。",
-    addFavorite: "市場画面で ★ をタップして追加。",
-    noAlerts: "アクティブなアラートはありません。",
-    setAlert: "カードの 🔔 から設定できます。",
-    setAlertShort: "🔔 から設定できます。",
-    alertSet: "アラート設定",
-    alertType: "アラートタイプ",
-    percentUp: "上昇率 (%)",
-    percentDown: "下落率 (%)",
-    priceAbove: "価格が上回ったら ($)",
-    priceBelow: "価格が下回ったら ($)",
-    value: "値",
-    example: "例: 10 または 0.05",
-    cancel: "キャンセル",
-    save: "保存",
-    saved: "アラートを保存しました",
-    alertCreated: "アラートを作成しました:",
-    invalidValue: "有効な値を入力してください。",
-    triggered: "アラートが発生しました！",
-    aiAnalysis: "AI分析",
-    ok: "OK",
-    tokenDataMissing: "トークンデータが見つかりません。",
-    tokenNotListed: "このトークンは現在リストにありません。",
-    delete: "削除",
-    now: "現在",
-    liquidity: "流動性",
-    vol: "出来高",
-    score: "Noventra Score",
-    strongBuy: "強い買い",
-    buy: "買い",
-    strongSell: "強い売り",
-    sell: "売り",
-    unknownToken: "不明なトークン",
-    neutral: "中立",
-    technical: "テクニカル",
-    general: "概要",
-    timeframe: "時間足",
-    confidence: "信頼度",
-    warnings: "警告",
-    risks: "リスク",
-    summary: "概要",
-    disclaimer: "Noventra Signalはテクニカルデータに基づく自動分析を提供します。投資助言ではありません。",
-    veryStrongUp: "短期の買い圧力が非常に強く、モメンタムは明確に上向きです。",
-    strongUp: "強い上昇モメンタムがあり、買い手が主導しています。",
-    positive: "プラスのモメンタムで、買い手がやや優勢です。",
-    slightlyPositive: "やや強気ですが、明確なブレイクはまだありません。",
-    neutralTrend: "横ばい / 不確実な状態です。",
-    slightlyNegative: "軽い売り圧力があります。",
-    weak: "売り手が優勢で弱い状況です。",
-    strongDown: "強い下降モメンタムで、売り手が優勢です。",
-    veryStrongDown: "非常に強い売り圧力。短期的に弱い状況です。",
-    veryHighVolume: "非常に高い出来高",
-    highVolumeText: "高出来高",
-    mediumVolume: "中程度の出来高",
-    lowMediumVolume: "低〜中程度の出来高",
-    veryLowVolume: "非常に低い出来高",
-    strongLiquidity: "強い流動性",
-    sufficientLiquidity: "十分な流動性",
-    mediumLiquidity: "中程度の流動性",
-    weakLiquidity: "弱い流動性",
-    criticalLiquidity: "非常に低い流動性",
-    multiUp: "複数の時間足で上昇トレンドが確認されています。",
-    multiDown: "複数の時間足で下降トレンドが確認されています。",
-    shortUpMediumWeak: "短期は上向き、中期は弱い — 相反する状況です。",
-    shortDownMediumPositive: "短期は下落、中期はまだ強い — 調整または分配の可能性があります。",
-    mixed: "時間足が混在しており、明確な方向性はありません。",
-    overheat: "過熱",
-    oversold: "売られすぎ",
-    lowLiquidity: "低流動性",
-    highVolumeMove: "高出来高の動き",
-    lowVolumeMove: "低出来高の動き",
-    noExtraWarnings: "追加の危険サインはありませんが、ポジションサイズには注意してください。"
-  },
-
-  ko: {
-    language: "언어",
-    market: "시장",
-    favorites: "즐겨찾기",
-    alerts: "알림",
-    gainers: "상승",
-    losers: "하락",
-    volume: "거래량",
-    signals: "시그널",
-    hour1: "1시간",
-    hour6: "6시간",
-    hour24: "24시간",
-    all: "전체",
-    highVolume: "높은 거래량",
-    dedust: "DeDust",
-    preparing: "준비 중...",
-    scanning: "TON 시장 스캔 중...",
-    scanned: "스캔 중...",
-    updated: "업데이트",
-    pairs: "페어",
-    noResults: "이 필터에는 결과가 없습니다.",
-    refreshOrFilter: "새로고침하거나 필터를 변경하세요.",
-    dataError: "데이터를 가져오지 못했습니다 — 새로고침",
-    noFavorites: "즐겨찾기가 없습니다.",
-    addFavorite: "시장 탭에서 ★를 눌러 추가하세요.",
-    noAlerts: "활성 알림이 없습니다.",
-    setAlert: "카드의 🔔에서 알림을 설정하세요.",
-    setAlertShort: "🔔에서 설정하세요.",
-    alertSet: "알림 설정",
-    alertType: "알림 유형",
-    percentUp: "상승률 (%)",
-    percentDown: "하락률 (%)",
-    priceAbove: "가격이 이상일 때 ($)",
-    priceBelow: "가격이 이하일 때 ($)",
-    value: "값",
-    example: "예: 10 또는 0.05",
-    cancel: "취소",
-    save: "저장",
-    saved: "알림 저장됨",
-    alertCreated: "알림 생성:",
-    invalidValue: "유효한 값을 입력하세요.",
-    triggered: "알림이 발생했습니다!",
-    aiAnalysis: "AI 분석",
-    ok: "확인",
-    tokenDataMissing: "토큰 데이터를 찾을 수 없습니다.",
-    tokenNotListed: "현재 목록에 없는 토큰입니다.",
-    delete: "삭제",
-    now: "현재",
-    liquidity: "유동성",
-    vol: "거래량",
-    score: "Noventra Score",
-    strongBuy: "강력 매수",
-    buy: "매수",
-    strongSell: "강력 매도",
-    sell: "매도",
-    unknownToken: "알 수 없는 토큰",
-    neutral: "중립",
-    technical: "기술 분석",
-    general: "개요",
-    timeframe: "시간대",
-    confidence: "신뢰도",
-    warnings: "경고",
-    risks: "위험",
-    summary: "요약",
-    disclaimer: "Noventra Signal은 기술 데이터를 기반으로 자동 분석을 제공합니다. 투자 조언이 아닙니다.",
-    veryStrongUp: "단기 매수 압력이 매우 강하며 모멘텀이 명확하게 상승 중입니다.",
-    strongUp: "강한 상승 모멘텀이 있으며 매수세가 주도하고 있습니다.",
-    positive: "긍정적인 모멘텀이 있으며 매수세가 약간 우세합니다.",
-    slightlyPositive: "약한 상승 흐름이며 아직 명확한 돌파는 없습니다.",
-    neutralTrend: "횡보 / 불확실한 구간입니다.",
-    slightlyNegative: "약한 매도 압력이 나타나고 있습니다.",
-    weak: "매도세가 우세하며 흐름이 약합니다.",
-    strongDown: "강한 하락 모멘텀으로 매도세가 우세합니다.",
-    veryStrongDown: "매도 압력이 매우 강하며 단기 흐름이 약합니다.",
-    veryHighVolume: "매우 높은 거래량",
-    highVolumeText: "높은 거래량",
-    mediumVolume: "중간 거래량",
-    lowMediumVolume: "낮음~중간 거래량",
-    veryLowVolume: "매우 낮은 거래량",
-    strongLiquidity: "높은 유동성",
-    sufficientLiquidity: "충분한 유동성",
-    mediumLiquidity: "중간 유동성",
-    weakLiquidity: "낮은 유동성",
-    criticalLiquidity: "매우 낮은 유동성",
-    multiUp: "여러 시간대에서 상승 추세가 확인됩니다.",
-    multiDown: "여러 시간대에서 하락 추세가 확인됩니다.",
-    shortUpMediumWeak: "단기는 상승, 중기는 약세 — 서로 다른 신호입니다.",
-    shortDownMediumPositive: "단기는 하락하지만 중기는 여전히 긍정적입니다 — 조정 또는 분배 가능성이 있습니다.",
-    mixed: "시간대 신호가 혼재되어 명확한 방향이 없습니다.",
-    overheat: "과열",
-    oversold: "과매도",
-    lowLiquidity: "낮은 유동성",
-    highVolumeMove: "높은 거래량 움직임",
-    lowVolumeMove: "낮은 거래량 움직임",
-    noExtraWarnings: "추가적인 위험 신호는 없지만 포지션 규모를 제한하세요."
-  }
-};
-
-
-/* =========================================================
-   LANGUAGE STATE
-========================================================= */
-
-function detectTelegramLanguage() {
-
-  try {
-
-    const telegramLang =
-      tg?.initDataUnsafe?.user?.language_code;
-
-    if (!telegramLang) {
-      return "en";
-    }
-
-    const lang =
-      telegramLang
-        .toLowerCase()
-        .split("-")[0]
-        .split("_")[0];
-
-    return LANGUAGES[lang]
-      ? lang
-      : "en";
-
-  } catch (_) {
-
-    return "en";
-
-  }
-}
-
-
-function getLanguage() {
-
-  try {
-
-    const saved =
-      localStorage.getItem(
-        LANGUAGE_STORAGE
-      );
-
-    if (
-      saved &&
-      LANGUAGES[saved]
-    ) {
-
-      return saved;
-
-    }
-
-  } catch (_) {}
-
-  return detectTelegramLanguage();
-}
-
-
-let currentLanguage =
-  getLanguage();
-
-
-function t(key) {
-
-  return (
-    I18N[currentLanguage]?.[key] ||
-    I18N.en[key] ||
-    key
-  );
-
-}
-
-
-function setLanguage(lang) {
-
-  if (
-    !LANGUAGES[lang]
-  ) {
-
-    return;
-
-  }
-
-  currentLanguage =
-    lang;
-
-  try {
-
-    localStorage.setItem(
-      LANGUAGE_STORAGE,
-      lang
-    );
-
-  } catch (_) {}
-
-  document.documentElement.lang =
-    lang;
-
-  applyLanguage();
-
+document.getElementById("languageBtn").onclick=openLanguageMenu;
+document.addEventListener("click",e=>{const m=document.getElementById("languageMenu");if(m&&!m.contains(e.target)&&e.target.id!=="languageBtn")m.remove()});
+
+/* =========================
+   UI EVENTS
+========================= */
+document.querySelectorAll("#mainTabs .tab").forEach(tab=>tab.addEventListener("click",()=>{
+  document.querySelectorAll("#mainTabs .tab").forEach(x=>x.classList.remove("active"));tab.classList.add("active");currentTab=tab.dataset.tab;render();
+}));
+document.querySelectorAll(".chip").forEach(chip=>chip.addEventListener("click",()=>{
+  if(chip.dataset.tf){document.querySelectorAll("[data-tf]").forEach(x=>x.classList.remove("active"));chip.classList.add("active");currentTf=chip.dataset.tf}
+  if(chip.dataset.vol){document.querySelectorAll("[data-vol]").forEach(x=>x.classList.remove("active"));chip.classList.add("active");volFilter=chip.dataset.vol}
   render();
-
-  renderFavorites();
-
-  renderAlertsPage();
-
-}
-
-
-/* =========================================================
-   LANGUAGE BUTTON
-========================================================= */
-
-function createLanguageButton() {
-
-  if (
-    document.getElementById(
-      "languageBtn"
-    )
-  ) {
-
-    return;
-
-  }
-
-  const button =
-    document.createElement(
-      "button"
-    );
-
-  button.id =
-    "languageBtn";
-
-  button.className =
-    "icon-btn";
-
-  button.title =
-    t("language");
-
-  button.textContent =
-    "🌐";
-
-  button.style.marginRight =
-    "5px";
-
-  button.onclick =
-    openLanguageMenu;
-
-
-  const refresh =
-    document.getElementById(
-      "refreshBtn"
-    );
-
-  if (
-    refresh &&
-    refresh.parentNode
-  ) {
-
-    refresh.parentNode.insertBefore(
-      button,
-      refresh
-    );
-
-  }
-
-}
-
-
-function openLanguageMenu() {
-
-  let menu =
-    document.getElementById(
-      "languageMenu"
-    );
-
-  if (menu) {
-
-    menu.remove();
-
-    return;
-
-  }
-
-
-  menu =
-    document.createElement(
-      "div"
-    );
-
-  menu.id =
-    "languageMenu";
-
-
-  menu.style.cssText = `
-    position:fixed;
-    top:64px;
-    right:10px;
-    z-index:200;
-    width:190px;
-    background:#111827;
-    border:1px solid rgba(59,130,246,.25);
-    border-radius:14px;
-    padding:7px;
-    box-shadow:0 15px 40px rgba(0,0,0,.45);
-    backdrop-filter:blur(18px);
-  `;
-
-
-  Object.entries(
-    LANGUAGES
-  ).forEach(
-    ([code, name]) => {
-
-      const item =
-        document.createElement(
-          "button"
-        );
-
-      item.textContent =
-        name;
-
-      item.style.cssText = `
-        width:100%;
-        border:0;
-        background:${
-          code === currentLanguage
-            ? "rgba(59,130,246,.20)"
-            : "transparent"
-        };
-        color:#e8eef7;
-        border-radius:9px;
-        padding:10px;
-        text-align:left;
-        font-size:.82rem;
-        cursor:pointer;
-      `;
-
-      item.onclick =
-        () => {
-
-          setLanguage(code);
-
-          menu.remove();
-
-        };
-
-      menu.appendChild(
-        item
-      );
-
-    }
-  );
-
-
-  document.body.appendChild(
-    menu
-  );
-
-}
-
-
-/* =========================================================
-   STATIC UI TRANSLATION
-========================================================= */
-
-function applyLanguage() {
-
-  createLanguageButton();
-
-
-  const tabs = {
-
-    gainers:
-      t("gainers"),
-
-    losers:
-      t("losers"),
-
-    volume:
-      t("volume"),
-
-    signals:
-      t("signals")
-
-  };
-
-
-  document
-    .querySelectorAll(
-      "#mainTabs .tab"
-    )
-    .forEach(
-      tab => {
-
-        const key =
-          tab.dataset.tab;
-
-        if (
-          tabs[key]
-        ) {
-
-          tab.textContent =
-            tabs[key];
-
-        }
-
-      }
-    );
-
-
-  const nav = {
-
-    market:
-      t("market"),
-
-    favorites:
-      t("favorites"),
-
-    alerts:
-      t("alerts")
-
-  };
-
-
-  document
-    .querySelectorAll(
-      ".nav-item"
-    )
-    .forEach(
-      item => {
-
-        const key =
-          item.dataset.page;
-
-        const ico =
-          item.querySelector(
-            ".ico"
-          );
-
-        item.innerHTML =
-          "";
-
-        if (ico) {
-
-          item.appendChild(
-            ico
-          );
-
-        }
-
-        item.appendChild(
-          document.createTextNode(
-            nav[key] || key
-          )
-        );
-
-      }
-    );
-
-
-  const chips =
-    document.querySelectorAll(
-      ".chip"
-    );
-
-
-  chips.forEach(
-    chip => {
-
-      if (
-        chip.dataset.tf ===
-        "h1"
-      ) {
-
-        chip.textContent =
-          t("hour1");
-
-      }
-
-      if (
-        chip.dataset.tf ===
-        "h6"
-      ) {
-
-        chip.textContent =
-          t("hour6");
-
-      }
-
-      if (
-        chip.dataset.tf ===
-        "h24"
-      ) {
-
-        chip.textContent =
-          t("hour24");
-
-      }
-
-      if (
-        chip.dataset.vol ===
-        "all"
-      ) {
-
-        chip.textContent =
-          t("all");
-
-      }
-
-      if (
-        chip.dataset.vol ===
-        "high"
-      ) {
-
-        chip.textContent =
-          t("highVolume");
-
-      }
-
-      if (
-        chip.dataset.vol ===
-        "dedust"
-      ) {
-
-        chip.textContent =
-          t("dedust");
-
-      }
-
-    }
-  );
-
-
-  const refresh =
-    document.getElementById(
-      "refreshBtn"
-    );
-
-  if (refresh) {
-
-    refresh.title =
-      currentLanguage === "tr"
-        ? "Yenile"
-        : currentLanguage === "ru"
-        ? "Обновить"
-        : currentLanguage === "zh"
-        ? "刷新"
-        : currentLanguage === "ja"
-        ? "更新"
-        : currentLanguage === "ko"
-        ? "새로고침"
-        : "Refresh";
-
-  }
-
-
-  const alertType =
-    document.getElementById(
-      "alertType"
-    );
-
-  if (alertType) {
-
-    alertType.innerHTML = `
-      <option value="pct_up">${t("percentUp")}</option>
-      <option value="pct_down">${t("percentDown")}</option>
-      <option value="price_above">${t("priceAbove")}</option>
-      <option value="price_below">${t("priceBelow")}</option>
-    `;
-
-  }
-
-
-  const alertModal =
-    document.querySelector(
-      "#alertModal h3 span:first-child"
-    );
-
-  if (alertModal) {
-
-    alertModal.textContent =
-      t("alertSet");
-
-  }
-
-
-  const aiTitle =
-    document.querySelector(
-      "#aiModal h3 span:first-child"
-    );
-
-  if (aiTitle) {
-
-    aiTitle.textContent =
-      "🤖 " +
-      t("aiAnalysis");
-
-  }
-
-
-  const cancel =
-    document.getElementById(
-      "modalCancel"
-    );
-
-  if (cancel) {
-
-    cancel.textContent =
-      t("cancel");
-
-  }
-
-
-  const save =
-    document.getElementById(
-      "modalSave"
-    );
-
-  if (save) {
-
-    save.textContent =
-      t("save");
-
-  }
-
-
-  const aiOk =
-    document.getElementById(
-      "aiModalOk"
-    );
-
-  if (aiOk) {
-
-    aiOk.textContent =
-      t("ok");
-
-  }
-
-
-  const valueInput =
-    document.getElementById(
-      "alertValue"
-    );
-
-  if (valueInput) {
-
-    valueInput.placeholder =
-      t("example");
-
-  }
-
-}
-
-
-/* =========================================================
-   LOCALIZED SIGNAL LABEL
-========================================================= */
-
-function signalLabel(signal) {
-
-  return {
-
-    "strong-buy":
-      t("strongBuy"),
-
-    "buy":
-      t("buy"),
-
-    "strong-sell":
-      t("strongSell"),
-
-    "sell":
-      t("sell")
-
-  }[signal] || "";
-
-}
-
-
-/* =========================================================
-   LOCALIZED FORMAT
-========================================================= */
-
-function localizedUpdatedTime() {
-
-  return (
-    t("updated") +
-    ": " +
-    new Date().toLocaleTimeString(
-      currentLanguage === "tr"
-        ? "tr-TR"
-        : currentLanguage === "ru"
-        ? "ru-RU"
-        : currentLanguage === "zh"
-        ? "zh-CN"
-        : currentLanguage === "ja"
-        ? "ja-JP"
-        : currentLanguage === "ko"
-        ? "ko-KR"
-        : "en-US"
-    )
-  );
-
-}
-
-
-/* =========================================================
-   PATCH STATUS
-========================================================= */
-
-const originalSetStatus =
-  setStatus;
-
-setStatus =
-  function(text) {
-
-    if (
-      text === "Taranıyor..."
-    ) {
-
-      originalSetStatus(
-        t("scanned")
-      );
-
-      return;
-
-    }
-
-    if (
-      text.startsWith(
-        "Güncelleme:"
-      )
-    ) {
-
-      originalSetStatus(
-        localizedUpdatedTime()
-      );
-
-      return;
-
-    }
-
-    if (
-      text ===
-      "Veri alınamadı — yenile"
-    ) {
-
-      originalSetStatus(
-        t("dataError")
-      );
-
-      return;
-
-    }
-
-    originalSetStatus(
-      text
-    );
-
-  };
-
-
-/* =========================================================
-   LANGUAGE-AWARE ALERT PAGE
-========================================================= */
-
-const originalRenderAlertsPage =
-  renderAlertsPage;
-
-renderAlertsPage =
-  function() {
-
-    const element =
-      document.getElementById(
-        "alertContent"
-      );
-
-    if (
-      !alerts.length
-    ) {
-
-      element.innerHTML = `
-        <div class="fav-empty">
-          <div class="big">🔔</div>
-          ${t("noAlerts")}<br>
-          ${t("setAlertShort")}
-        </div>
-      `;
-
-      return;
-
-    }
-
-    const typeLabel = {
-
-      pct_up:
-        t("percentUp"),
-
-      pct_down:
-        t("percentDown"),
-
-      price_above:
-        "≥ $",
-
-      price_below:
-        "≤ $"
-
-    };
-
-
-    element.innerHTML =
-      '<div class="list">' +
-
-      alerts
-        .map(
-          alert => {
-
-            const live =
-              pairs.find(
-                pair =>
-                  pair.pairAddress ===
-                  alert.pairAddress
-              );
-
-            const price =
-              live
-                ? formatPrice(
-                    live.priceUsd
-                  )
-                : "—";
-
-            const suffix =
-              alert.type.startsWith(
-                "pct"
-              )
-                ? "%"
-                : "$";
-
-            const displayName =
-              alert.name ||
-              alert.symbol ||
-              t("unknownToken");
-
-
-            return `
-              <div class="card">
-                <div class="card-top">
-
-                  <div class="info">
-
-                    <div class="sym-row">
-
-                      <div class="token-title">
-
-                        <span class="token-name">
-                          ${escapeHTML(
-                            displayName
-                          )}
-                        </span>
-
-                        <span class="token-symbol">
-                          ${escapeHTML(
-                            alert.symbol ||
-                            "???"
-                          )}
-                        </span>
-
-                      </div>
-
-                    </div>
-
-                    <div class="meta">
-
-                      ${
-                        typeLabel[
-                          alert.type
-                        ] ||
-                        alert.type
-                      }
-
-                      ${
-                        alert.type ===
-                          "price_above" ||
-                        alert.type ===
-                          "price_below"
-                          ? ""
-                          : " "
-                      }
-
-                      ${alert.value}${suffix}
-
-                      · ${t("now")}: $${price}
-
-                    </div>
-
-                  </div>
-
-                  <button
-                    class="btn btn-danger"
-                    style="flex:none;padding:8px 12px;font-size:.72rem"
-                    onclick="removeAlert('${escapeAttr(alert.id)}')"
-                  >
-                    ${t("delete")}
-                  </button>
-
-                </div>
-              </div>
-            `;
-
-          }
-        )
-        .join("") +
-
-      "</div>";
-
-  };
-
-
-/* =========================================================
-   LANGUAGE-AWARE FAVORITES
-========================================================= */
-
-const originalRenderFavorites =
-  renderFavorites;
-
-renderFavorites =
-  function() {
-
-    const element =
-      document.getElementById(
-        "favContent"
-      );
-
-    if (
-      !favorites.length
-    ) {
-
-      element.innerHTML = `
-        <div class="fav-empty">
-          <div class="big">★</div>
-          ${t("noFavorites")}<br>
-          ${t("addFavorite")}
-        </div>
-      `;
-
-      return;
-
-    }
-
-    originalRenderFavorites();
-
-  };
-
-
-/* =========================================================
-   LANGUAGE MENU CLOSE
-========================================================= */
-
-document.addEventListener(
-  "click",
-  event => {
-
-    const menu =
-      document.getElementById(
-        "languageMenu"
-      );
-
-    const button =
-      document.getElementById(
-        "languageBtn"
-      );
-
-    if (
-      menu &&
-      !menu.contains(event.target) &&
-      event.target !== button
-    ) {
-
-      menu.remove();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   INITIAL LANGUAGE
-========================================================= */
-
-document.documentElement.lang =
-  currentLanguage;
-
-applyLanguage();
-
-
-/* =========================================================
+}));
+document.querySelectorAll(".nav-item").forEach(item=>item.addEventListener("click",()=>{
+  document.querySelectorAll(".nav-item").forEach(x=>x.classList.remove("active"));item.classList.add("active");currentPage=item.dataset.page;
+  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById("page-"+currentPage).classList.add("active");
+  const market=currentPage==="market";document.getElementById("filters").style.display=market?"flex":"none";document.getElementById("mainTabs").style.display=market?"flex":"none";
+  if(currentPage==="favorites")renderFavorites();if(currentPage==="alerts")renderAlertsPage();if(market)render();
+}));
+document.getElementById("refreshBtn").onclick=loadData;
+document.getElementById("modalClose").onclick=closeModal;
+document.getElementById("modalCancel").onclick=closeModal;
+document.getElementById("modalSave").onclick=saveAlert;
+document.getElementById("alertModal").onclick=e=>{if(e.target.id==="alertModal")closeModal()};
+document.getElementById("aiModalClose").onclick=closeAIModal;
+document.getElementById("aiModalOk").onclick=closeAIModal;
+document.getElementById("aiModal").onclick=e=>{if(e.target.id==="aiModal")closeAIModal()};
+
+/* =========================
    START
-========================================================= */
-
+========================= */
+document.documentElement.lang=currentLanguage;
+applyLanguage();
 loadData();
-
+setInterval(()=>{if(!isLoading)loadData()},REFRESH_MS);
 </script>
-
 </body>
 </html>
