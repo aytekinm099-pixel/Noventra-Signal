@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#070b14">
-<meta name="description" content="Noventra Signal — TON Guardian market intelligence and technical signals">
+<meta name="description" content="Noventra Signal — TON market intelligence powered by Noventra Guardian AI">
 <title>Noventra Signal</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -22,116 +22,136 @@
   --red:#f43f5e;
   --orange:#f59e0b;
   --purple:#8b5cf6;
-  --border:rgba(59,130,246,.14);
-  --glow:rgba(59,130,246,.25);
+  --border:rgba(96,165,250,.13);
+  --glow:rgba(59,130,246,.25)
 }
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+  -webkit-tap-highlight-color:transparent
 }
 
 html{
-  background:#070b14 !important;
+  background:var(--bg)
 }
 
 body{
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;
   background:
-    radial-gradient(circle at 50% -20%,rgba(37,99,235,.16),transparent 42%),
-    #070b14 !important;
-  color:#e8eef7 !important;
+    radial-gradient(circle at 50% -20%,rgba(37,99,235,.18),transparent 42%),
+    var(--bg);
+  color:var(--text);
   min-height:100vh;
   padding-bottom:82px;
-  line-height:1.4;
+  line-height:1.4
 }
 
 button,input,select{
-  font:inherit;
+  font:inherit
 }
 
 button{
-  cursor:pointer;
+  cursor:pointer
 }
 
 .header{
   padding:14px 14px 10px;
-  background:linear-gradient(
-    180deg,
-    rgba(7,11,20,.99),
-    rgba(7,11,20,.96)
-  );
+  background:linear-gradient(180deg,rgba(10,16,29,.99),rgba(7,11,20,.96));
   position:sticky;
   top:0;
   z-index:40;
   border-bottom:1px solid var(--border);
-  backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px)
 }
 
 .header-top{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:11px;
+  margin-bottom:11px
 }
 
 .brand{
   display:flex;
   align-items:center;
   gap:10px;
-  min-width:0;
+  min-width:0
 }
 
 .brand-icon{
-  width:39px;
-  height:39px;
+  width:40px;
+  height:40px;
   border-radius:12px;
   background:linear-gradient(135deg,#1d4ed8,#7c3aed);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:19px;
-  box-shadow:0 0 20px var(--glow);
-  flex-shrink:0;
+  font-size:20px;
+  box-shadow:0 0 22px var(--glow);
+  flex-shrink:0
 }
 
 .brand h1{
   font-size:1.08rem;
   font-weight:800;
   letter-spacing:-.4px;
-  color:#dbeafe;
+  background:linear-gradient(90deg,#e0e7ff,#93c5fd);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent
 }
 
 .brand span{
   display:block;
   font-size:.61rem;
-  color:#71809a;
+  color:var(--muted);
   font-weight:500;
-  margin-top:1px;
+  margin-top:1px
+}
+
+.guardian-state{
+  margin-top:3px;
+  font-size:.58rem;
+  color:#6ee7b7;
+  display:flex;
+  align-items:center;
+  gap:5px
+}
+
+.guardian-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#10b981;
+  box-shadow:0 0 9px rgba(16,185,129,.7)
+}
+
+.guardian-dot.off{
+  background:#f43f5e;
+  box-shadow:0 0 9px rgba(244,63,94,.7)
 }
 
 .header-actions{
   display:flex;
-  gap:5px;
+  gap:5px
 }
 
 .icon-btn{
-  width:35px;
-  height:35px;
-  border-radius:10px;
+  width:36px;
+  height:36px;
+  border-radius:11px;
   border:1px solid var(--border);
-  background:#0f1623;
-  color:#e8eef7;
+  background:var(--card);
+  color:var(--text);
   font-size:16px;
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:center
 }
 
 .icon-btn.spin{
-  animation:spin .7s linear infinite;
+  animation:spin .7s linear infinite
 }
 
 @keyframes spin{
@@ -141,9 +161,9 @@ button{
 .tabs{
   display:flex;
   gap:4px;
-  background:#0f1623;
+  background:var(--card);
   padding:3px;
-  border-radius:12px;
+  border-radius:12px
 }
 
 .tab{
@@ -153,13 +173,13 @@ button{
   border-radius:9px;
   font-size:.70rem;
   font-weight:650;
-  color:#71809a;
+  color:var(--muted)
 }
 
 .tab.active{
   background:linear-gradient(135deg,#1d4ed8,#3b82f6);
   color:#fff;
-  box-shadow:0 2px 12px rgba(37,99,235,.35);
+  box-shadow:0 2px 12px rgba(37,99,235,.35)
 }
 
 .filters{
@@ -167,45 +187,37 @@ button{
   gap:6px;
   padding:10px 14px 0;
   overflow-x:auto;
-  scrollbar-width:none;
+  scrollbar-width:none
 }
 
 .filters::-webkit-scrollbar{
-  display:none;
+  display:none
 }
 
 .chip{
   flex-shrink:0;
-  padding:6px 11px;
+  padding:7px 12px;
   border-radius:20px;
   font-size:.69rem;
   font-weight:550;
-  background:#0f1623;
-  color:#71809a;
-  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--muted);
+  border:1px solid var(--border)
 }
 
 .chip.active{
   background:rgba(59,130,246,.18);
   border-color:#3b82f6;
-  color:#93c5fd;
+  color:#93c5fd
 }
 
 .status-bar{
   display:flex;
   justify-content:space-between;
-  gap:10px;
   padding:8px 14px 4px;
   font-size:.65rem;
-  color:#71809a;
-}
-
-.status-ok{
-  color:#34d399 !important;
-}
-
-.status-error{
-  color:#fb7185 !important;
+  color:var(--muted);
+  min-height:27px
 }
 
 .alert-banner{
@@ -216,84 +228,80 @@ button{
   border:1px solid rgba(245,158,11,.3);
   color:#fbbf24;
   font-size:.76rem;
-  display:none;
+  display:none
 }
 
 .alert-banner.show{
-  display:block;
+  display:block
 }
 
 .page{
-  display:none;
+  display:none
 }
 
 .page.active{
-  display:block;
+  display:block
 }
 
 .list{
   padding:4px 12px 18px;
   display:flex;
   flex-direction:column;
-  gap:8px;
+  gap:9px
 }
 
 .card{
-  background:
-    linear-gradient(
-      145deg,
-      rgba(15,22,35,.99),
-      rgba(12,19,31,.99)
-    );
-  border-radius:14px;
-  padding:12px 13px;
+  background:linear-gradient(145deg,rgba(15,22,35,.98),rgba(12,19,31,.98));
+  border-radius:15px;
+  padding:13px;
   border:1px solid var(--border);
+  overflow:hidden
 }
 
 .card.fav{
-  border-color:rgba(129,140,248,.38);
+  border-color:rgba(129,140,248,.4)
 }
 
 .card.alert-hit{
   border-color:var(--orange);
-  box-shadow:0 0 14px rgba(245,158,11,.18);
+  box-shadow:0 0 15px rgba(245,158,11,.16)
 }
 
 .card-top{
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:9px
 }
 
 .rank{
-  width:23px;
-  height:23px;
-  border-radius:7px;
-  background:rgba(255,255,255,.04);
+  width:27px;
+  height:27px;
+  border-radius:8px;
+  background:rgba(255,255,255,.045);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:.67rem;
+  font-size:.68rem;
   font-weight:750;
-  color:#71809a;
-  flex-shrink:0;
+  color:var(--muted);
+  flex-shrink:0
 }
 
 .rank.top{
-  background:rgba(59,130,246,.2);
-  color:#93c5fd;
+  background:rgba(59,130,246,.20);
+  color:#93c5fd
 }
 
 .info{
   flex:1;
-  min-width:0;
+  min-width:0
 }
 
 .sym-row{
   display:flex;
   align-items:center;
   gap:5px;
-  flex-wrap:wrap;
+  flex-wrap:wrap
 }
 
 .token-title{
@@ -301,206 +309,201 @@ button{
   align-items:baseline;
   gap:5px;
   min-width:0;
-  max-width:100%;
+  max-width:100%
 }
 
 .token-name{
   font-weight:750;
   font-size:.91rem;
-  color:#f1f5f9 !important;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
-  max-width:155px;
+  max-width:155px
 }
 
 .token-symbol{
   font-size:.62rem;
   font-weight:650;
-  color:#8da0ba !important;
-  white-space:nowrap;
+  color:var(--muted);
+  white-space:nowrap
 }
 
 .dex{
   font-size:.56rem;
-  padding:1px 5px;
-  border-radius:4px;
+  padding:2px 5px;
+  border-radius:5px;
   font-weight:650;
-  text-transform:uppercase;
+  text-transform:uppercase
 }
 
 .dex.dedust{
   background:rgba(16,185,129,.15);
-  color:#6ee7b7;
+  color:#6ee7b7
 }
 
 .dex.ston{
   background:rgba(59,130,246,.15);
-  color:#93c5fd;
+  color:#93c5fd
 }
 
 .dex.other{
   background:rgba(255,255,255,.06);
-  color:#94a3b8;
+  color:var(--muted)
 }
 
 .signal{
   font-size:.55rem;
   font-weight:750;
   padding:2px 5px;
-  border-radius:4px;
+  border-radius:5px
 }
 
 .signal.strong-buy,
 .signal.buy{
   background:rgba(16,185,129,.16);
-  color:#34d399;
+  color:#34d399
 }
 
 .signal.strong-sell,
 .signal.sell{
   background:rgba(244,63,94,.16);
-  color:#fb7185;
-}
-
-.signal.neutral{
-  background:rgba(148,163,184,.10);
-  color:#94a3b8;
+  color:#fb7185
 }
 
 .meta{
   font-size:.62rem;
-  color:#71809a !important;
-  margin-top:3px;
+  color:var(--muted);
+  margin-top:3px
 }
 
 .right{
   text-align:right;
-  min-width:88px;
+  min-width:92px
 }
 
 .chg{
   font-weight:750;
-  font-size:.97rem;
+  font-size:.97rem
 }
 
 .chg.up{
-  color:#10b981;
+  color:var(--green)
 }
 
 .chg.down{
-  color:#f43f5e;
-}
-
-.chg.neu{
-  color:#94a3b8;
+  color:var(--red)
 }
 
 .actions{
   display:flex;
   gap:4px;
-  margin-top:3px;
-  justify-content:flex-end;
+  margin-top:4px;
+  justify-content:flex-end
 }
 
 .act-btn{
-  width:26px;
-  height:26px;
-  border-radius:7px;
+  width:29px;
+  height:29px;
+  border-radius:8px;
   border:1px solid var(--border);
-  background:#151e2e;
-  color:#94a3b8;
+  background:var(--card2);
+  color:var(--muted);
   font-size:12px;
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:center
 }
 
 .act-btn.on{
   color:#a5b4fc;
   border-color:#6366f1;
-  background:rgba(99,102,241,.15);
+  background:rgba(99,102,241,.15)
 }
 
 .act-btn.alert-on{
-  color:#f59e0b;
-  border-color:#f59e0b;
-  background:rgba(245,158,11,.08);
+  color:var(--orange);
+  border-color:var(--orange);
+  background:rgba(245,158,11,.08)
+}
+
+.act-btn.ai{
+  color:#c4b5fd
 }
 
 .tf-row{
   display:flex;
   gap:5px;
-  margin-top:9px;
+  margin-top:10px
 }
 
 .tf{
   flex:1;
   text-align:center;
-  padding:5px 2px;
-  border-radius:7px;
+  padding:6px 2px;
+  border-radius:8px;
   background:rgba(255,255,255,.025);
-  font-size:.64rem;
+  font-size:.64rem
 }
 
 .tf .lbl{
-  color:#71809a;
+  color:var(--muted);
   font-size:.56rem;
-  margin-bottom:1px;
+  margin-bottom:1px
 }
 
 .tf .v.up{
-  color:#10b981;
+  color:var(--green)
 }
 
 .tf .v.down{
-  color:#f43f5e;
+  color:var(--red)
 }
 
 .tf .v.neu{
-  color:#71809a;
+  color:var(--muted)
 }
 
 .score-row{
   display:flex;
   justify-content:space-between;
-  margin-top:7px;
+  margin-top:8px;
   font-size:.55rem;
-  color:#71809a;
+  color:var(--muted)
 }
 
 .score-value{
   color:#93c5fd;
-  font-weight:700;
+  font-weight:700
 }
 
 .bar{
   height:3px;
   background:rgba(255,255,255,.05);
   border-radius:2px;
-  margin-top:3px;
-  overflow:hidden;
+  margin-top:4px;
+  overflow:hidden
 }
 
 .bar>div{
   height:100%;
-  border-radius:2px;
+  border-radius:2px
 }
 
-.flow-row{
+.ai-mini{
+  margin-top:10px;
+  padding:8px 9px;
+  border-radius:9px;
+  background:linear-gradient(90deg,rgba(139,92,246,.10),rgba(59,130,246,.06));
+  border:1px solid rgba(139,92,246,.15);
+  font-size:.61rem;
+  color:#b8c5da;
   display:flex;
-  justify-content:space-between;
-  margin-top:6px;
-  font-size:.54rem;
-  color:#71809a;
+  gap:7px;
+  align-items:flex-start
 }
 
-.flow-buy{
-  color:#34d399;
-}
-
-.flow-sell{
-  color:#fb7185;
+.ai-mini b{
+  color:#c4b5fd
 }
 
 .bottom-nav{
@@ -508,12 +511,12 @@ button{
   bottom:0;
   left:0;
   right:0;
-  background:rgba(12,18,32,.98);
+  background:rgba(9,15,27,.98);
   border-top:1px solid var(--border);
   display:flex;
   z-index:50;
   padding:6px 8px calc(6px + env(safe-area-inset-bottom));
-  backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px)
 }
 
 .nav-item{
@@ -521,42 +524,46 @@ button{
   text-align:center;
   padding:6px 2px;
   font-size:.64rem;
-  color:#71809a;
+  color:var(--muted)
 }
 
 .nav-item.active{
-  color:#93c5fd;
+  color:#93c5fd
 }
 
 .nav-item .ico{
-  font-size:16px;
+  font-size:17px;
   display:block;
-  margin-bottom:2px;
+  margin-bottom:2px
 }
 
 .modal-bg{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.72);
+  background:rgba(0,0,0,.76);
   z-index:100;
   display:none;
   align-items:flex-end;
-  justify-content:center;
+  justify-content:center
 }
 
 .modal-bg.show{
-  display:flex;
+  display:flex
 }
 
 .modal{
   background:#111827;
   width:100%;
-  max-width:430px;
-  border-radius:18px 18px 0 0;
-  padding:18px 16px 28px;
+  max-width:470px;
+  border-radius:19px 19px 0 0;
+  padding:18px 16px 30px;
   border-top:1px solid var(--border);
-  max-height:88vh;
-  overflow-y:auto;
+  max-height:90vh;
+  overflow-y:auto
+}
+
+.modal.ai-modal{
+  max-height:94vh
 }
 
 .modal h3{
@@ -564,15 +571,133 @@ button{
   margin-bottom:12px;
   display:flex;
   justify-content:space-between;
+  align-items:center
+}
+
+.ai-head{
+  display:flex;
   align-items:center;
+  gap:9px
+}
+
+.ai-orb{
+  width:35px;
+  height:35px;
+  border-radius:11px;
+  background:linear-gradient(135deg,#7c3aed,#2563eb);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 0 20px rgba(124,58,237,.3)
+}
+
+.ai-status{
+  font-size:.58rem;
+  color:#6ee7b7;
+  margin-top:2px
+}
+
+.ai-body{
+  font-size:.82rem;
+  line-height:1.55;
+  color:#dbe4f5
+}
+
+.ai-loading{
+  padding:30px 5px;
+  text-align:center;
+  color:var(--muted)
+}
+
+.ai-loader{
+  width:28px;
+  height:28px;
+  margin:0 auto 12px;
+  border:2px solid rgba(255,255,255,.08);
+  border-top-color:#8b5cf6;
+  border-radius:50%;
+  animation:spin .8s linear infinite
+}
+
+.ai-headline{
+  padding:12px;
+  border-radius:12px;
+  background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.09));
+  border:1px solid rgba(99,102,241,.18);
+  margin-bottom:11px
+}
+
+.ai-signal{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:5px
+}
+
+.ai-signal strong{
+  font-size:1.05rem
+}
+
+.ai-confidence{
+  font-size:.65rem;
+  color:#93c5fd
+}
+
+.ai-section{
+  margin-top:11px;
+  padding:11px;
+  border-radius:11px;
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.045)
+}
+
+.ai-section-title{
+  font-size:.67rem;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  color:#93c5fd;
+  font-weight:750;
+  margin-bottom:6px
+}
+
+.ai-section p{
+  margin:3px 0;
+  color:#c8d3e5
+}
+
+.ai-list{
+  padding-left:17px;
+  color:#c8d3e5
+}
+
+.ai-list li{
+  margin:4px 0
+}
+
+.ai-good{
+  color:#34d399!important
+}
+
+.ai-bad{
+  color:#fb7185!important
+}
+
+.ai-warn{
+  color:#fbbf24!important
+}
+
+.ai-action{
+  font-weight:800;
+  color:#c4b5fd
 }
 
 .modal label{
   display:block;
   font-size:.74rem;
-  color:#71809a;
+  color:var(--muted);
   margin-bottom:5px;
-  margin-top:10px;
+  margin-top:10px
 }
 
 .modal input,
@@ -581,16 +706,16 @@ button{
   padding:11px 12px;
   border-radius:10px;
   border:1px solid var(--border);
-  background:#0f1623;
-  color:#e8eef7;
+  background:var(--card);
+  color:var(--text);
   font-size:.94rem;
-  outline:none;
+  outline:none
 }
 
 .modal-actions{
   display:flex;
   gap:8px;
-  margin-top:16px;
+  margin-top:16px
 }
 
 .btn{
@@ -600,65 +725,58 @@ button{
   font-weight:650;
   font-size:.88rem;
   cursor:pointer;
-  border:none;
+  border:none
 }
 
 .btn-primary{
   background:linear-gradient(135deg,#1d4ed8,#3b82f6);
-  color:#fff;
+  color:#fff
 }
 
 .btn-ghost{
-  background:#0f1623;
-  color:#94a3b8;
-  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--muted);
+  border:1px solid var(--border)
 }
 
 .btn-danger{
   background:rgba(244,63,94,.15);
   color:#fb7185;
-  border:1px solid rgba(244,63,94,.3);
+  border:1px solid rgba(244,63,94,.3)
 }
 
 .empty,
 .loading{
   text-align:center;
   padding:48px 20px;
-  color:#71809a;
-  font-size:.86rem;
+  color:var(--muted);
+  font-size:.86rem
 }
 
 .loader{
-  width:24px;
-  height:24px;
+  width:25px;
+  height:25px;
   margin:0 auto 10px;
   border:2px solid rgba(255,255,255,.08);
-  border-top-color:#3b82f6;
+  border-top-color:var(--blue);
   border-radius:50%;
-  animation:spin .8s linear infinite;
+  animation:spin .8s linear infinite
 }
 
 .fav-empty{
   text-align:center;
   padding:42px 20px;
-  color:#71809a;
+  color:var(--muted)
 }
 
 .fav-empty .big{
   font-size:2rem;
-  margin-bottom:8px;
-}
-
-.ai-body{
-  font-size:.82rem;
-  line-height:1.55;
-  color:#dbe4f5;
-  white-space:pre-wrap;
+  margin-bottom:8px
 }
 
 .language-menu{
   position:fixed;
-  top:64px;
+  top:65px;
   right:10px;
   z-index:200;
   width:190px;
@@ -667,7 +785,7 @@ button{
   border-radius:14px;
   padding:7px;
   box-shadow:0 15px 40px rgba(0,0,0,.45);
-  backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px)
 }
 
 .language-menu button{
@@ -678,34 +796,48 @@ button{
   border-radius:9px;
   padding:10px;
   text-align:left;
-  font-size:.82rem;
+  font-size:.82rem
 }
 
 .language-menu button.active{
-  background:rgba(59,130,246,.20);
+  background:rgba(59,130,246,.20)
 }
 
-.guardian-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:4px;
-  font-size:.57rem;
-  color:#6ee7b7;
-  margin-top:2px;
+.ai-error{
+  padding:13px;
+  border-radius:11px;
+  background:rgba(244,63,94,.08);
+  border:1px solid rgba(244,63,94,.22);
+  color:#fda4af;
+  font-size:.76rem
 }
 
-.guardian-dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#10b981;
-  box-shadow:0 0 7px #10b981;
+.guardian-box{
+  padding:11px;
+  border-radius:11px;
+  background:rgba(16,185,129,.06);
+  border:1px solid rgba(16,185,129,.14);
+  margin-bottom:11px;
+  font-size:.72rem
 }
 
-.version{
-  font-size:.52rem;
-  color:#53627a;
-  margin-left:4px;
+.guardian-box strong{
+  color:#6ee7b7
+}
+
+@media(max-width:380px){
+  .token-name{
+    max-width:125px
+  }
+
+  .right{
+    min-width:84px
+  }
+
+  .act-btn{
+    width:27px;
+    height:27px
+  }
 }
 </style>
 </head>
@@ -722,34 +854,25 @@ button{
 
       <div>
         <h1>Noventra Signal</h1>
+        <span>TON · Guardian Gateway · AI Signals</span>
 
-        <span>
-          TON · Guardian Gateway · AI Signals
-        </span>
-
-        <div class="guardian-badge">
-          <span class="guardian-dot"></span>
-          GUARDIAN
-          <span class="version">v2</span>
+        <div class="guardian-state">
+          <span class="guardian-dot" id="guardianDot"></span>
+          <span id="guardianStateText">GUARDIAN</span>
         </div>
-
       </div>
 
     </div>
 
     <div class="header-actions">
 
-      <button
-        class="icon-btn"
-        id="languageBtn"
-        title="Language"
-      >🌐</button>
+      <button class="icon-btn" id="languageBtn">
+        🌐
+      </button>
 
-      <button
-        class="icon-btn"
-        id="refreshBtn"
-        title="Refresh"
-      >↻</button>
+      <button class="icon-btn" id="refreshBtn">
+        ↻
+      </button>
 
     </div>
 
@@ -826,7 +949,7 @@ button{
       <div class="loader"></div>
 
       <span id="loadingText">
-        Connecting to Guardian...
+        Connecting to Noventra Guardian...
       </span>
 
     </div>
@@ -849,55 +972,47 @@ button{
 
 <nav class="bottom-nav">
 
-  <div
-    class="nav-item active"
-    data-page="market"
-  >
+  <div class="nav-item active" data-page="market">
     <span class="ico">📊</span>
-    <span data-i18n="market">Market</span>
+    <span>Market</span>
   </div>
 
-  <div
-    class="nav-item"
-    data-page="favorites"
-  >
+  <div class="nav-item" data-page="favorites">
     <span class="ico">★</span>
-    <span data-i18n="favorites">Favorites</span>
+    <span>Favorites</span>
   </div>
 
-  <div
-    class="nav-item"
-    data-page="alerts"
-  >
+  <div class="nav-item" data-page="alerts">
     <span class="ico">🔔</span>
-    <span data-i18n="alerts">Alerts</span>
+    <span>Alerts</span>
   </div>
 
 </nav>
+
+<!-- ALERT MODAL -->
 
 <div class="modal-bg" id="alertModal">
 
   <div class="modal">
 
     <h3>
-
-      <span id="alertTitle">
-        Set Alert
-      </span>
+      <span>Set Alert</span>
 
       <span
         id="modalClose"
-        style="font-size:1.2rem;cursor:pointer;color:#71809a"
-      >✕</span>
+        style="font-size:1.2rem;cursor:pointer;color:var(--muted)"
+      >
+        ✕
+      </span>
 
     </h3>
 
     <div
       id="modalSymbol"
-      style="font-size:.85rem;color:#22d3ee;margin-bottom:8px"
+      style="font-size:.85rem;color:var(--cyan);margin-bottom:8px"
     ></div>
 
-    <label id="alertTypeLabel">
+    <label>
       Alert Type
     </label>
 
@@ -921,7 +1036,7 @@ button{
 
     </select>
 
-    <label id="valueLabel">
+    <label>
       Value
     </label>
 
@@ -955,27 +1070,44 @@ button{
 
 </div>
 
+<!-- AI MODAL -->
+
 <div class="modal-bg" id="aiModal">
 
-  <div class="modal">
+  <div class="modal ai-modal">
 
     <h3>
 
-      <span id="aiTitle">
-        🤖 AI Analysis
-      </span>
+      <div class="ai-head">
+
+        <div class="ai-orb">
+          ✦
+        </div>
+
+        <div>
+
+          <div>
+            Noventra Guardian AI
+          </div>
+
+          <div class="ai-status">
+            Gemini Intelligence · TON
+          </div>
+
+        </div>
+
+      </div>
 
       <span
         id="aiModalClose"
-        style="font-size:1.2rem;cursor:pointer;color:#71809a"
-      >✕</span>
+        style="font-size:1.2rem;cursor:pointer;color:var(--muted)"
+      >
+        ✕
+      </span>
 
     </h3>
 
-    <div
-      class="ai-body"
-      id="aiBody"
-    ></div>
+    <div id="aiBody"></div>
 
     <div class="modal-actions">
 
@@ -983,7 +1115,7 @@ button{
         class="btn btn-primary"
         id="aiModalOk"
       >
-        OK
+        Close
       </button>
 
     </div>
@@ -999,93 +1131,113 @@ button{
    TELEGRAM
 ========================================================= */
 
-const tg=window.Telegram?.WebApp||null;
+const tg =
+  window.Telegram?.WebApp || null;
 
 if(tg){
 
-  tg.ready();
-  tg.expand();
-
-  /*
-   * Telegram'ın light theme renklerini uygulamaya aktarmıyoruz.
-   * Noventra Signal kendi koyu temasını kullanıyor.
-   */
   try{
 
-    tg.setHeaderColor?.("#070b14");
-    tg.setBackgroundColor?.("#070b14");
-    tg.setBottomBarColor?.("#0c1220");
+    tg.ready();
+    tg.expand();
+
+    const p =
+      tg.themeParams || {};
+
+    if(p.bg_color)
+      document.documentElement.style.setProperty(
+        "--bg",
+        p.bg_color
+      );
+
+    if(p.secondary_bg_color)
+      document.documentElement.style.setProperty(
+        "--card",
+        p.secondary_bg_color
+      );
+
+    if(p.text_color)
+      document.documentElement.style.setProperty(
+        "--text",
+        p.text_color
+      );
+
+    if(p.hint_color)
+      document.documentElement.style.setProperty(
+        "--muted",
+        p.hint_color
+      );
+
+    if(p.button_color)
+      document.documentElement.style.setProperty(
+        "--blue",
+        p.button_color
+      );
 
   }catch(_){}
 
 }
 
-
 /* =========================================================
-   CONFIG
+   API CONFIG
 ========================================================= */
 
-const GUARDIAN_BASE=
-  "https://noventraguardian.aytekinm099.workers.dev";
+/*
+ IMPORTANT:
 
-const GUARDIAN_MARKET=
-  GUARDIAN_BASE+"/api/market";
+ This is the PUBLIC Signal Worker URL.
 
-const FAV_KEY=
-  "noventra_favs_v9";
+ Gemini API key is NOT here.
+ It stays inside Cloudflare Secret:
+ GEMINI_API_KEY
+*/
 
-const ALERT_KEY=
-  "noventra_alerts_v9";
+const SIGNAL_API =
+  "https://noventrasignal.aytekinm099.workers.dev";
 
-const LANG_KEY=
-  "noventra_language_v3";
+/*
+ Guardian is accessed through Signal Worker.
+ The browser NEVER sees TONAPI_KEY.
+*/
 
-const REFRESH_MS=
-  60000;
-
-const MIN_VOL=
-  500;
-
-const MIN_LIQ=
-  250;
-
-const HIGH_VOL=
-  20000;
-
-const MAX_RESULTS=
-  150;
-
-const REQUEST_TIMEOUT=
-  10000;
-
+const GUARDIAN_API =
+  SIGNAL_API + "/api/guardian";
 
 /* =========================================================
    STORAGE
 ========================================================= */
 
-const loadJSON=(key,def=[])=>{
+const FAV_KEY =
+  "noventra_signal_favorites_v10";
+
+const ALERT_KEY =
+  "noventra_signal_alerts_v10";
+
+const LANG_KEY =
+  "noventra_signal_language_v4";
+
+function loadJSON(key, fallback){
+
   try{
 
-    const raw=
-      localStorage.getItem(key);
+    const x =
+      JSON.parse(
+        localStorage.getItem(key)
+      );
 
-    if(!raw)return def;
-
-    const parsed=
-      JSON.parse(raw);
-
-    return Array.isArray(parsed)
-      ?parsed
-      :def;
+    return Array.isArray(x)
+      ? x
+      : fallback;
 
   }catch(_){
 
-    return def;
+    return fallback;
 
   }
-};
 
-const saveJSON=(key,value)=>{
+}
+
+function saveJSON(key,value){
 
   try{
 
@@ -1096,682 +1248,376 @@ const saveJSON=(key,value)=>{
 
   }catch(_){}
 
-};
+}
 
-let favorites=
+let favorites =
   loadJSON(FAV_KEY,[]);
 
-let alerts=
+let alerts =
   loadJSON(ALERT_KEY,[]);
 
-let pairs=[];
+let pairs = [];
 
-let currentTab=
+let currentTab =
   "gainers";
 
-let currentTf=
+let currentTf =
   "h1";
 
-let volFilter=
+let volFilter =
   "all";
 
-let currentPage=
+let currentPage =
   "market";
 
-let isLoading=
+let isLoading =
   false;
 
-let alertTarget=
+let aiLoading =
+  false;
+
+let alertTarget =
   null;
 
-let currentLanguage=
-  "en";
-
-
 /* =========================================================
-   I18N
+   LANGUAGE
 ========================================================= */
 
-const LANGUAGES={
+const LANGUAGES = {
+
   tr:"🇹🇷 Türkçe",
+
   en:"🇬🇧 English",
+
   ru:"🇷🇺 Русский",
+
   zh:"🇨🇳 中文",
+
   ja:"🇯🇵 日本語",
+
   ko:"🇰🇷 한국어"
+
 };
 
-const I18N={
+const I18N = {
 
-tr:{
-  market:"Piyasa",
-  favorites:"Favoriler",
-  alerts:"Alarmlar",
-  gainers:"Yükselen",
-  losers:"Düşen",
-  volume:"Hacim",
-  signals:"Sinyaller",
-  hour1:"1 Saat",
-  hour6:"6 Saat",
-  hour24:"24 Saat",
-  all:"Tüm",
-  highVolume:"Yüksek Hacim",
-  dedust:"DeDust",
-  preparing:"Hazırlanıyor...",
-  scanning:"Guardian üzerinden TON piyasası taranıyor...",
-  updated:"Güncellendi",
-  pairs:"çift",
-  noResults:"Bu filtrede sonuç yok.",
-  refreshOrFilter:"Yenileyin veya filtreyi değiştirin.",
-  dataError:"Guardian verisi alınamadı — yenileyin",
-  guardianError:"Guardian verilerine erişilemiyor — sayfayı yenileyin",
-  noFavorites:"Henüz favori yok.",
-  addFavorite:"Piyasa sekmesinden ★ ile ekleyin.",
-  noAlerts:"Aktif alarm yok.",
-  setAlertShort:"Kartlardaki 🔔 ile alarm kurun.",
-  alertSet:"Alarm Kur",
-  alertType:"Alarm Tipi",
-  percentUp:"Yüzde yükselince (%)",
-  percentDown:"Yüzde düşünce (%)",
-  priceAbove:"Fiyat üstüne çıkınca ($)",
-  priceBelow:"Fiyat altına inince ($)",
-  value:"Değer",
-  example:"Örn: 10 veya 0.05",
-  cancel:"İptal",
-  save:"Kaydet",
-  saved:"Alarm Kaydedildi",
-  alertCreated:"için alarm oluşturuldu.",
-  invalidValue:"Geçerli bir değer girin.",
-  triggered:"alarmı tetiklendi!",
-  aiAnalysis:"AI Analiz",
-  ok:"Tamam",
-  tokenDataMissing:"Token verisi bulunamadı.",
-  tokenNotListed:"Bu token şu an listede değil.",
-  delete:"Sil",
-  now:"Şu an",
-  liquidity:"liq",
-  vol:"vol",
-  score:"Noventra Score",
-  strongBuy:"GÜÇLÜ AL",
-  buy:"AL",
-  strongSell:"GÜÇLÜ SAT",
-  sell:"SAT",
-  unknownToken:"Bilinmeyen Token",
-  neutral:"NÖTR",
-  technical:"Teknik",
-  general:"Genel",
-  timeframe:"Zaman dilimleri",
-  confidence:"Güven",
-  warnings:"Uyarılar",
-  risks:"Riskler",
-  summary:"Özet",
-  disclaimer:"Noventra Signal teknik piyasa verilerinden otomatik analiz üretir. Yatırım tavsiyesi değildir.",
-  veryStrongUp:"Çok güçlü kısa vadeli alım baskısı.",
-  strongUp:"Güçlü yükseliş momentumu var; alıcılar kontrolde.",
-  positive:"Pozitif momentum mevcut.",
-  slightlyPositive:"Hafif pozitif eğilim.",
-  neutralTrend:"Yatay / belirsiz bölge.",
-  slightlyNegative:"Hafif satış baskısı.",
-  weak:"Satıcılar önde; görünüm zayıf.",
-  strongDown:"Güçlü düşüş momentumu.",
-  veryStrongDown:"Çok güçlü satış baskısı.",
-  veryHighVolume:"Çok yüksek hacim",
-  highVolumeText:"Yüksek hacim",
-  mediumVolume:"Orta hacim",
-  lowMediumVolume:"Düşük-orta hacim",
-  veryLowVolume:"Çok düşük hacim",
-  strongLiquidity:"Güçlü likidite",
-  sufficientLiquidity:"Yeterli likidite",
-  mediumLiquidity:"Orta likidite",
-  weakLiquidity:"Zayıf likidite",
-  criticalLiquidity:"Kritik düşük likidite",
-  multiUp:"Birden fazla zaman dilimi yükselişi doğruluyor.",
-  multiDown:"Birden fazla zaman dilimi düşüşü doğruluyor.",
-  shortUpMediumWeak:"Kısa vade yukarı, orta vade zayıf.",
-  shortDownMediumPositive:"Kısa vade aşağı, orta vade pozitif.",
-  mixed:"Zaman dilimleri karışık.",
-  overheat:"Aşırı ısınmış",
-  oversold:"Aşırı satılmış",
-  lowLiquidity:"Düşük likidite",
-  highVolumeMove:"Yüksek hacimli hareket",
-  lowVolumeMove:"Hacimsiz hareket",
-  noExtraWarnings:"Ekstra kırmızı bayrak yok.",
-  adviceStrongBuy:"Güçlü alım momentumu. Disiplinli risk yönetimi gerekir.",
-  adviceBuy:"Alım momentumu mevcut; takip edilebilir.",
-  adviceWeakBuy:"Hafif pozitif eğilim; hacim ve zaman dilimlerini izleyin.",
-  adviceStrongSell:"Güçlü satış baskısı. Long açmak riskli.",
-  adviceSell:"Zayıf görünüm. Yeni long için uygun değil.",
-  adviceNeutral:"Nötr bölge. Net kırılım veya hacim artışı bekleyin.",
-  adviceWatch:"İzlemede kalın; daha net sinyal bekleyin.",
-  buys:"Alış",
-  sells:"Satış",
-  flow:"Akış"
-},
+  en:{
+    market:"Market",
+    favorites:"Favorites",
+    alerts:"Alerts",
+    gainers:"Gainers",
+    losers:"Losers",
+    volume:"Volume",
+    signals:"Signals",
+    scanning:"Scanning TON market...",
+    guardian:"GUARDIAN",
+    guardianOffline:"GUARDIAN OFFLINE",
+    updated:"Updated",
+    pairs:"pairs",
+    noResults:"No results for this filter.",
+    refresh:"Refresh",
+    noFavorites:"No favorites yet.",
+    addFavorite:"Add one with ★ from the Market tab.",
+    noAlerts:"No active alerts.",
+    setAlert:"Set one with 🔔.",
+    alertSaved:"Alert Saved",
+    alertCreated:"alert created for",
+    invalidValue:"Enter a valid value.",
+    triggered:"alert triggered!",
+    unknown:"Unknown Token",
+    ai:"AI Analysis",
+    close:"Close",
+    loadingAI:"Noventra Guardian AI is analyzing...",
+    aiConnection:"Connecting to Gemini intelligence...",
+    aiError:"Guardian AI could not complete the analysis.",
+    signal:"Signal",
+    confidence:"Confidence",
+    marketState:"Market State",
+    reasoning:"Why this signal?",
+    timeframes:"Timeframes",
+    liquidityView:"TON Liquidity",
+    volumeView:"Volume",
+    risks:"Risk Flags",
+    bullCase:"Bull Case",
+    bearCase:"Bear Case",
+    action:"Action",
+    summary:"Summary",
+    guardianData:"Guardian Security",
+    buy:"BUY",
+    strongBuy:"STRONG BUY",
+    sell:"SELL",
+    strongSell:"STRONG SELL",
+    watch:"WATCH",
+    wait:"WAIT",
+    momentumEntry:"MOMENTUM ENTRY",
+    avoid:"AVOID",
+    disclaimer:"AI analysis is informational and is not financial advice."
+  },
 
-en:{
-  market:"Market",
-  favorites:"Favorites",
-  alerts:"Alerts",
-  gainers:"Gainers",
-  losers:"Losers",
-  volume:"Volume",
-  signals:"Signals",
-  hour1:"1 Hour",
-  hour6:"6 Hours",
-  hour24:"24 Hours",
-  all:"All",
-  highVolume:"High Volume",
-  dedust:"DeDust",
-  preparing:"Preparing...",
-  scanning:"Scanning TON market through Guardian...",
-  updated:"Updated",
-  pairs:"pairs",
-  noResults:"No results for this filter.",
-  refreshOrFilter:"Refresh or change the filter.",
-  dataError:"Guardian data unavailable — refresh",
-  guardianError:"Guardian data unavailable — refresh",
-  noFavorites:"No favorites yet.",
-  addFavorite:"Add one with ★ from Market.",
-  noAlerts:"No active alerts.",
-  setAlertShort:"Set one with 🔔.",
-  alertSet:"Set Alert",
-  alertType:"Alert Type",
-  percentUp:"When percentage rises (%)",
-  percentDown:"When percentage falls (%)",
-  priceAbove:"When price rises above ($)",
-  priceBelow:"When price falls below ($)",
-  value:"Value",
-  example:"e.g. 10 or 0.05",
-  cancel:"Cancel",
-  save:"Save",
-  saved:"Alert Saved",
-  alertCreated:"alert created for",
-  invalidValue:"Enter a valid value.",
-  triggered:"alert triggered!",
-  aiAnalysis:"AI Analysis",
-  ok:"OK",
-  tokenDataMissing:"Token data not found.",
-  tokenNotListed:"This token is not currently listed.",
-  delete:"Delete",
-  now:"Now",
-  liquidity:"liq",
-  vol:"vol",
-  score:"Noventra Score",
-  strongBuy:"STRONG BUY",
-  buy:"BUY",
-  strongSell:"STRONG SELL",
-  sell:"SELL",
-  neutral:"NEUTRAL",
-  unknownToken:"Unknown Token",
-  technical:"Technical",
-  general:"Overview",
-  timeframe:"Timeframes",
-  confidence:"Confidence",
-  warnings:"Warnings",
-  risks:"Risks",
-  summary:"Summary",
-  disclaimer:"Noventra Signal generates automated analysis from technical market data. Not financial advice.",
-  veryStrongUp:"Very strong short-term buying pressure.",
-  strongUp:"Strong upward momentum; buyers are in control.",
-  positive:"Positive momentum is present.",
-  slightlyPositive:"Slightly positive trend.",
-  neutralTrend:"Sideways / uncertain area.",
-  slightlyNegative:"Slight selling pressure.",
-  weak:"Sellers are ahead; weak outlook.",
-  strongDown:"Strong downward momentum.",
-  veryStrongDown:"Very strong selling pressure.",
-  veryHighVolume:"Very high volume",
-  highVolumeText:"High volume",
-  mediumVolume:"Medium volume",
-  lowMediumVolume:"Low-medium volume",
-  veryLowVolume:"Very low volume",
-  strongLiquidity:"Strong liquidity",
-  sufficientLiquidity:"Sufficient liquidity",
-  mediumLiquidity:"Medium liquidity",
-  weakLiquidity:"Weak liquidity",
-  criticalLiquidity:"Critically low liquidity",
-  multiUp:"Multiple timeframes confirm the upward trend.",
-  multiDown:"Multiple timeframes confirm the downward trend.",
-  shortUpMediumWeak:"Short-term bullish while medium-term is weak.",
-  shortDownMediumPositive:"Short-term bearish while medium-term remains positive.",
-  mixed:"Timeframes are mixed.",
-  overheat:"Overheated",
-  oversold:"Oversold",
-  lowLiquidity:"Low liquidity",
-  highVolumeMove:"High-volume move",
-  lowVolumeMove:"Low-volume move",
-  noExtraWarnings:"No additional red flags.",
-  adviceStrongBuy:"Strong buying momentum. Use disciplined risk management.",
-  adviceBuy:"Buying momentum is present; worth tracking.",
-  adviceWeakBuy:"Mild bullish bias; watch volume and timeframes.",
-  adviceStrongSell:"Strong selling pressure. Opening a long is risky.",
-  adviceSell:"Weak outlook. Not ideal for a new long.",
-  adviceNeutral:"Neutral zone. Wait for a clear breakout or volume expansion.",
-  adviceWatch:"Stay on watch and wait for a clearer signal.",
-  buys:"Buys",
-  sells:"Sells",
-  flow:"Flow"
-},
+  tr:{
+    market:"Pazar",
+    favorites:"Favoriler",
+    alerts:"Uyarılar",
+    gainers:"Kazananlar",
+    losers:"Kaybedenler",
+    volume:"Hacim",
+    signals:"Sinyaller",
+    scanning:"TON pazarı taranıyor...",
+    guardian:"GUARDIAN",
+    guardianOffline:"GUARDIAN ÇEVRİMDIŞI",
+    updated:"Güncellendi",
+    pairs:"çift",
+    noResults:"Bu filtrede sonuç yok.",
+    refresh:"Yenile",
+    noFavorites:"Henüz favori yok.",
+    addFavorite:"Pazar sekmesinden ★ ile ekle.",
+    noAlerts:"Aktif alarm yok.",
+    setAlert:"Kartlardaki 🔔 ile kur.",
+    alertSaved:"Alarm Kaydedildi",
+    alertCreated:"için alarm oluşturuldu.",
+    invalidValue:"Geçerli bir değer gir.",
+    triggered:"alarmı tetiklendi!",
+    unknown:"Bilinmeyen Token",
+    ai:"AI Analizi",
+    close:"Kapat",
+    loadingAI:"Noventra Guardian AI analiz ediyor...",
+    aiConnection:"Gemini zekâ motoruna bağlanılıyor...",
+    aiError:"Guardian AI analizi tamamlayamadı.",
+    signal:"Sinyal",
+    confidence:"Güven",
+    marketState:"Piyasa Durumu",
+    reasoning:"Bu sinyal neden oluştu?",
+    timeframes:"Zaman Dilimleri",
+    liquidityView:"TON Likiditesi",
+    volumeView:"Hacim",
+    risks:"Risk Sinyalleri",
+    bullCase:"Pozitif Senaryo",
+    bearCase:"Negatif Senaryo",
+    action:"Aksiyon",
+    summary:"Özet",
+    guardianData:"Guardian Güvenlik",
+    buy:"AL",
+    strongBuy:"GÜÇLÜ AL",
+    sell:"SAT",
+    strongSell:"GÜÇLÜ SAT",
+    watch:"İZLE",
+    wait:"BEKLE",
+    momentumEntry:"MOMENTUM GİRİŞİ",
+    avoid:"UZAK DUR",
+    disclaimer:"AI analizi bilgilendirme amaçlıdır ve yatırım tavsiyesi değildir."
+  },
 
-ru:{
-  market:"Рынок",
-  favorites:"Избранное",
-  alerts:"Оповещения",
-  gainers:"Рост",
-  losers:"Падение",
-  volume:"Объём",
-  signals:"Сигналы",
-  hour1:"1 час",
-  hour6:"6 часов",
-  hour24:"24 часа",
-  all:"Все",
-  highVolume:"Высокий объём",
-  dedust:"DeDust",
-  preparing:"Подготовка...",
-  scanning:"Сканирование TON через Guardian...",
-  updated:"Обновлено",
-  pairs:"пар",
-  noResults:"Нет результатов.",
-  refreshOrFilter:"Обновите или измените фильтр.",
-  dataError:"Нет данных Guardian — обновите",
-  guardianError:"Guardian недоступен — обновите",
-  noFavorites:"Избранного пока нет.",
-  addFavorite:"Добавьте через ★.",
-  noAlerts:"Активных оповещений нет.",
-  setAlertShort:"Установите через 🔔.",
-  alertSet:"Оповещение",
-  alertType:"Тип",
-  percentUp:"Рост (%)",
-  percentDown:"Падение (%)",
-  priceAbove:"Цена выше ($)",
-  priceBelow:"Цена ниже ($)",
-  value:"Значение",
-  example:"Напр. 10 или 0.05",
-  cancel:"Отмена",
-  save:"Сохранить",
-  saved:"Сохранено",
-  alertCreated:"создано для",
-  invalidValue:"Введите корректное значение.",
-  triggered:"сработало!",
-  aiAnalysis:"AI-анализ",
-  ok:"OK",
-  tokenDataMissing:"Данные токена не найдены.",
-  tokenNotListed:"Токен не найден.",
-  delete:"Удалить",
-  now:"Сейчас",
-  liquidity:"ликв.",
-  vol:"объём",
-  score:"Noventra Score",
-  strongBuy:"СИЛЬНАЯ ПОКУПКА",
-  buy:"ПОКУПКА",
-  strongSell:"СИЛЬНАЯ ПРОДАЖА",
-  sell:"ПРОДАЖА",
-  neutral:"НЕЙТРАЛЬНО",
-  unknownToken:"Неизвестный токен",
-  technical:"Техника",
-  general:"Обзор",
-  timeframe:"Таймфреймы",
-  confidence:"Уверенность",
-  warnings:"Предупреждения",
-  risks:"Риски",
-  summary:"Итог",
-  disclaimer:"Автоматический анализ технических данных. Не является финансовой рекомендацией.",
-  veryStrongUp:"Очень сильное краткосрочное давление покупателей.",
-  strongUp:"Сильный восходящий моментум.",
-  positive:"Положительный моментум.",
-  slightlyPositive:"Слабоположительный тренд.",
-  neutralTrend:"Боковое / неопределённое движение.",
-  slightlyNegative:"Небольшое давление продавцов.",
-  weak:"Продавцы впереди.",
-  strongDown:"Сильный нисходящий моментум.",
-  veryStrongDown:"Очень сильное давление продавцов.",
-  veryHighVolume:"Очень высокий объём",
-  highVolumeText:"Высокий объём",
-  mediumVolume:"Средний объём",
-  lowMediumVolume:"Низко-средний объём",
-  veryLowVolume:"Очень низкий объём",
-  strongLiquidity:"Сильная ликвидность",
-  sufficientLiquidity:"Достаточная ликвидность",
-  mediumLiquidity:"Средняя ликвидность",
-  weakLiquidity:"Слабая ликвидность",
-  criticalLiquidity:"Критически низкая ликвидность",
-  multiUp:"Несколько таймфреймов подтверждают рост.",
-  multiDown:"Несколько таймфреймов подтверждают падение.",
-  shortUpMediumWeak:"Краткосрочно рост, среднесрочно слабость.",
-  shortDownMediumPositive:"Краткосрочно падение, среднесрочно позитивно.",
-  mixed:"Таймфреймы смешанные.",
-  overheat:"Перегрет",
-  oversold:"Перепродан",
-  lowLiquidity:"Низкая ликвидность",
-  highVolumeMove:"Движение на высоком объёме",
-  lowVolumeMove:"Движение без объёма",
-  noExtraWarnings:"Дополнительных красных флагов нет.",
-  adviceStrongBuy:"Сильный импульс покупок. Используйте управление риском.",
-  adviceBuy:"Покупательский импульс присутствует.",
-  adviceWeakBuy:"Слабый бычий уклон.",
-  adviceStrongSell:"Сильное давление продавцов.",
-  adviceSell:"Слабая картина.",
-  adviceNeutral:"Нейтральная зона.",
-  adviceWatch:"Наблюдайте и ждите более ясного сигнала.",
-  buys:"Покупки",
-  sells:"Продажи",
-  flow:"Поток"
-},
+  ru:{
+    market:"Рынок",
+    favorites:"Избранное",
+    alerts:"Оповещения",
+    gainers:"Рост",
+    losers:"Падение",
+    volume:"Объём",
+    signals:"Сигналы",
+    scanning:"Сканирование рынка TON...",
+    guardian:"GUARDIAN",
+    guardianOffline:"GUARDIAN OFFLINE",
+    updated:"Обновлено",
+    pairs:"пар",
+    noResults:"Нет результатов.",
+    refresh:"Обновить",
+    noFavorites:"Избранного пока нет.",
+    addFavorite:"Добавьте через ★.",
+    noAlerts:"Нет активных оповещений.",
+    setAlert:"Установите через 🔔.",
+    alertSaved:"Сохранено",
+    alertCreated:"оповещение для",
+    invalidValue:"Введите корректное значение.",
+    triggered:"оповещение сработало!",
+    unknown:"Неизвестный токен",
+    ai:"AI-анализ",
+    close:"Закрыть",
+    loadingAI:"Noventra Guardian AI анализирует...",
+    aiConnection:"Подключение к Gemini...",
+    aiError:"Guardian AI не смог завершить анализ.",
+    signal:"Сигнал",
+    confidence:"Уверенность",
+    marketState:"Состояние рынка",
+    reasoning:"Почему этот сигнал?",
+    timeframes:"Таймфреймы",
+    liquidityView:"Ликвидность TON",
+    volumeView:"Объём",
+    risks:"Риски",
+    bullCase:"Бычий сценарий",
+    bearCase:"Медвежий сценарий",
+    action:"Действие",
+    summary:"Итог",
+    guardianData:"Безопасность Guardian",
+    buy:"ПОКУПКА",
+    strongBuy:"СИЛЬНАЯ ПОКУПКА",
+    sell:"ПРОДАЖА",
+    strongSell:"СИЛЬНАЯ ПРОДАЖА",
+    watch:"НАБЛЮДАТЬ",
+    wait:"ЖДАТЬ",
+    momentumEntry:"ВХОД ПО МОМЕНТУМУ",
+    avoid:"ИЗБЕГАТЬ",
+    disclaimer:"AI-анализ не является финансовой рекомендацией."
+  },
 
-zh:{
-  market:"市场",
-  favorites:"收藏",
-  alerts:"提醒",
-  gainers:"上涨",
-  losers:"下跌",
-  volume:"成交量",
-  signals:"信号",
-  hour1:"1小时",
-  hour6:"6小时",
-  hour24:"24小时",
-  all:"全部",
-  highVolume:"高成交量",
-  dedust:"DeDust",
-  preparing:"准备中...",
-  scanning:"通过 Guardian 扫描 TON 市场...",
-  updated:"更新于",
-  pairs:"交易对",
-  noResults:"没有结果。",
-  refreshOrFilter:"刷新或更改筛选。",
-  dataError:"Guardian 数据不可用",
-  guardianError:"Guardian 不可用",
-  noFavorites:"暂无收藏。",
-  addFavorite:"点击 ★ 添加。",
-  noAlerts:"暂无提醒。",
-  setAlertShort:"点击 🔔 设置。",
-  alertSet:"设置提醒",
-  alertType:"提醒类型",
-  percentUp:"上涨 (%)",
-  percentDown:"下跌 (%)",
-  priceAbove:"价格高于 ($)",
-  priceBelow:"价格低于 ($)",
-  value:"数值",
-  example:"例如 10",
-  cancel:"取消",
-  save:"保存",
-  saved:"已保存",
-  alertCreated:"提醒已创建",
-  invalidValue:"请输入有效值。",
-  triggered:"提醒触发！",
-  aiAnalysis:"AI 分析",
-  ok:"确定",
-  tokenDataMissing:"未找到代币数据。",
-  tokenNotListed:"未找到代币。",
-  delete:"删除",
-  now:"当前",
-  liquidity:"流动性",
-  vol:"成交量",
-  score:"Noventra Score",
-  strongBuy:"强力买入",
-  buy:"买入",
-  strongSell:"强力卖出",
-  sell:"卖出",
-  neutral:"中性",
-  unknownToken:"未知代币",
-  technical:"技术面",
-  general:"概览",
-  timeframe:"时间周期",
-  confidence:"置信度",
-  warnings:"警告",
-  risks:"风险",
-  summary:"总结",
-  disclaimer:"基于技术市场数据的自动分析。不构成投资建议。",
-  veryStrongUp:"短期买盘压力非常强。",
-  strongUp:"上涨动能强劲。",
-  positive:"动能偏多。",
-  slightlyPositive:"轻微看涨。",
-  neutralTrend:"横盘或不确定。",
-  slightlyNegative:"存在轻微卖压。",
-  weak:"卖方占优。",
-  strongDown:"下跌动能强劲。",
-  veryStrongDown:"卖压非常强。",
-  veryHighVolume:"极高成交量",
-  highVolumeText:"高成交量",
-  mediumVolume:"中等成交量",
-  lowMediumVolume:"低至中等成交量",
-  veryLowVolume:"极低成交量",
-  strongLiquidity:"流动性强",
-  sufficientLiquidity:"流动性充足",
-  mediumLiquidity:"中等流动性",
-  weakLiquidity:"流动性较弱",
-  criticalLiquidity:"流动性极低",
-  multiUp:"多个周期确认上涨。",
-  multiDown:"多个周期确认下跌。",
-  shortUpMediumWeak:"短期上涨，中期偏弱。",
-  shortDownMediumPositive:"短期下跌，中期仍偏强。",
-  mixed:"周期信号混合。",
-  overheat:"过热",
-  oversold:"超卖",
-  lowLiquidity:"低流动性",
-  highVolumeMove:"高成交量异动",
-  lowVolumeMove:"低成交量异动",
-  noExtraWarnings:"没有额外红旗。",
-  adviceStrongBuy:"买盘动能强劲，请严格管理风险。",
-  adviceBuy:"存在买盘动能。",
-  adviceWeakBuy:"轻微看涨。",
-  adviceStrongSell:"卖压强劲。",
-  adviceSell:"走势偏弱。",
-  adviceNeutral:"中性区域。",
-  adviceWatch:"继续观察。",
-  buys:"买入",
-  sells:"卖出",
-  flow:"资金流"
-},
+  zh:{
+    market:"市场",
+    favorites:"收藏",
+    alerts:"提醒",
+    gainers:"上涨",
+    losers:"下跌",
+    volume:"成交量",
+    signals:"信号",
+    scanning:"正在扫描 TON 市场...",
+    guardian:"GUARDIAN",
+    guardianOffline:"GUARDIAN 离线",
+    updated:"更新",
+    pairs:"交易对",
+    noResults:"没有结果。",
+    refresh:"刷新",
+    noFavorites:"暂无收藏。",
+    addFavorite:"点击 ★ 添加。",
+    noAlerts:"暂无提醒。",
+    setAlert:"点击 🔔 设置。",
+    alertSaved:"提醒已保存",
+    alertCreated:"提醒已创建：",
+    invalidValue:"请输入有效数值。",
+    triggered:"提醒已触发！",
+    unknown:"未知代币",
+    ai:"AI 分析",
+    close:"关闭",
+    loadingAI:"Noventra Guardian AI 正在分析...",
+    aiConnection:"正在连接 Gemini...",
+    aiError:"Guardian AI 无法完成分析。",
+    signal:"信号",
+    confidence:"置信度",
+    marketState:"市场状态",
+    reasoning:"为什么产生这个信号？",
+    timeframes:"时间周期",
+    liquidityView:"TON 流动性",
+    volumeView:"成交量",
+    risks:"风险",
+    bullCase:"看涨情景",
+    bearCase:"看跌情景",
+    action:"操作",
+    summary:"总结",
+    guardianData:"Guardian 安全",
+    buy:"买入",
+    strongBuy:"强力买入",
+    sell:"卖出",
+    strongSell:"强力卖出",
+    watch:"观察",
+    wait:"等待",
+    momentumEntry:"动能入场",
+    avoid:"避免",
+    disclaimer:"AI分析仅供参考，不构成投资建议。"
+  },
 
-ja:{
-  market:"市場",
-  favorites:"お気に入り",
-  alerts:"アラート",
-  gainers:"上昇",
-  losers:"下落",
-  volume:"出来高",
-  signals:"シグナル",
-  hour1:"1時間",
-  hour6:"6時間",
-  hour24:"24時間",
-  all:"すべて",
-  highVolume:"高出来高",
-  dedust:"DeDust",
-  preparing:"準備中...",
-  scanning:"Guardian経由でTON市場をスキャン中...",
-  updated:"更新",
-  pairs:"ペア",
-  noResults:"結果はありません。",
-  refreshOrFilter:"更新またはフィルター変更。",
-  dataError:"Guardianデータを取得できません。",
-  guardianError:"Guardianに接続できません。",
-  noFavorites:"お気に入りはありません。",
-  addFavorite:"★で追加。",
-  noAlerts:"アラートはありません。",
-  setAlertShort:"🔔から設定。",
-  alertSet:"アラート設定",
-  alertType:"タイプ",
-  percentUp:"上昇率 (%)",
-  percentDown:"下落率 (%)",
-  priceAbove:"価格以上 ($)",
-  priceBelow:"価格以下 ($)",
-  value:"値",
-  example:"例 10",
-  cancel:"キャンセル",
-  save:"保存",
-  saved:"保存しました",
-  alertCreated:"アラート作成",
-  invalidValue:"有効な値を入力してください。",
-  triggered:"アラート発生！",
-  aiAnalysis:"AI分析",
-  ok:"OK",
-  tokenDataMissing:"トークンデータがありません。",
-  tokenNotListed:"トークンが見つかりません。",
-  delete:"削除",
-  now:"現在",
-  liquidity:"流動性",
-  vol:"出来高",
-  score:"Noventra Score",
-  strongBuy:"強い買い",
-  buy:"買い",
-  strongSell:"強い売り",
-  sell:"売り",
-  neutral:"中立",
-  unknownToken:"不明なトークン",
-  technical:"テクニカル",
-  general:"概要",
-  timeframe:"時間足",
-  confidence:"信頼度",
-  warnings:"警告",
-  risks:"リスク",
-  summary:"概要",
-  disclaimer:"テクニカル市場データによる自動分析。投資助言ではありません。",
-  veryStrongUp:"非常に強い短期買い圧力。",
-  strongUp:"強い上昇モメンタム。",
-  positive:"プラスのモメンタム。",
-  slightlyPositive:"やや強気。",
-  neutralTrend:"横ばい / 不確実。",
-  slightlyNegative:"軽い売り圧力。",
-  weak:"売り手優勢。",
-  strongDown:"強い下降モメンタム。",
-  veryStrongDown:"非常に強い売り圧力。",
-  veryHighVolume:"非常に高い出来高",
-  highVolumeText:"高出来高",
-  mediumVolume:"中程度",
-  lowMediumVolume:"低〜中程度",
-  veryLowVolume:"非常に低い出来高",
-  strongLiquidity:"強い流動性",
-  sufficientLiquidity:"十分な流動性",
-  mediumLiquidity:"中程度の流動性",
-  weakLiquidity:"弱い流動性",
-  criticalLiquidity:"非常に低い流動性",
-  multiUp:"複数の時間足で上昇確認。",
-  multiDown:"複数の時間足で下降確認。",
-  shortUpMediumWeak:"短期上昇、中期弱い。",
-  shortDownMediumPositive:"短期下落、中期は強い。",
-  mixed:"時間足が混在。",
-  overheat:"過熱",
-  oversold:"売られすぎ",
-  lowLiquidity:"低流動性",
-  highVolumeMove:"高出来高の動き",
-  lowVolumeMove:"低出来高の動き",
-  noExtraWarnings:"追加の危険サインなし。",
-  adviceStrongBuy:"強い買いモメンタム。リスク管理を徹底してください。",
-  adviceBuy:"買いモメンタムがあります。",
-  adviceWeakBuy:"弱い強気バイアス。",
-  adviceStrongSell:"強い売り圧力。",
-  adviceSell:"弱い状況。",
-  adviceNeutral:"中立。",
-  adviceWatch:"監視を継続してください。",
-  buys:"買い",
-  sells:"売り",
-  flow:"フロー"
-},
+  ja:{
+    market:"市場",
+    favorites:"お気に入り",
+    alerts:"アラート",
+    gainers:"上昇",
+    losers:"下落",
+    volume:"出来高",
+    signals:"シグナル",
+    scanning:"TON市場をスキャン中...",
+    guardian:"GUARDIAN",
+    guardianOffline:"GUARDIAN OFFLINE",
+    updated:"更新",
+    pairs:"ペア",
+    noResults:"結果がありません。",
+    refresh:"更新",
+    noFavorites:"お気に入りはありません。",
+    addFavorite:"★で追加。",
+    noAlerts:"アクティブなアラートはありません。",
+    setAlert:"🔔から設定。",
+    alertSaved:"保存しました",
+    alertCreated:"アラート:",
+    invalidValue:"有効な値を入力してください。",
+    triggered:"アラート発生！",
+    unknown:"不明なトークン",
+    ai:"AI分析",
+    close:"閉じる",
+    loadingAI:"Noventra Guardian AIが分析中...",
+    aiConnection:"Geminiに接続しています...",
+    aiError:"Guardian AIが分析を完了できませんでした。",
+    signal:"シグナル",
+    confidence:"信頼度",
+    marketState:"市場状態",
+    reasoning:"なぜこのシグナル？",
+    timeframes:"時間足",
+    liquidityView:"TON流動性",
+    volumeView:"出来高",
+    risks:"リスク",
+    bullCase:"強気シナリオ",
+    bearCase:"弱気シナリオ",
+    action:"アクション",
+    summary:"概要",
+    guardianData:"Guardianセキュリティ",
+    buy:"買い",
+    strongBuy:"強い買い",
+    sell:"売り",
+    strongSell:"強い売り",
+    watch:"監視",
+    wait:"待機",
+    momentumEntry:"モメンタムエントリー",
+    avoid:"回避",
+    disclaimer:"AI分析は情報提供のみであり、投資助言ではありません。"
+  },
 
-ko:{
-  market:"시장",
-  favorites:"즐겨찾기",
-  alerts:"알림",
-  gainers:"상승",
-  losers:"하락",
-  volume:"거래량",
-  signals:"시그널",
-  hour1:"1시간",
-  hour6:"6시간",
-  hour24:"24시간",
-  all:"전체",
-  highVolume:"높은 거래량",
-  dedust:"DeDust",
-  preparing:"준비 중...",
-  scanning:"Guardian을 통해 TON 시장 스캔 중...",
-  updated:"업데이트",
-  pairs:"페어",
-  noResults:"결과가 없습니다.",
-  refreshOrFilter:"새로고침하거나 필터를 변경하세요.",
-  dataError:"Guardian 데이터를 가져오지 못했습니다.",
-  guardianError:"Guardian 연결 실패",
-  noFavorites:"즐겨찾기가 없습니다.",
-  addFavorite:"★로 추가하세요.",
-  noAlerts:"활성 알림이 없습니다.",
-  setAlertShort:"🔔에서 설정하세요.",
-  alertSet:"알림 설정",
-  alertType:"알림 유형",
-  percentUp:"상승률 (%)",
-  percentDown:"하락률 (%)",
-  priceAbove:"가격 이상 ($)",
-  priceBelow:"가격 이하 ($)",
-  value:"값",
-  example:"예: 10",
-  cancel:"취소",
-  save:"저장",
-  saved:"저장됨",
-  alertCreated:"알림 생성",
-  invalidValue:"유효한 값을 입력하세요.",
-  triggered:"알림 발생!",
-  aiAnalysis:"AI 분석",
-  ok:"확인",
-  tokenDataMissing:"토큰 데이터가 없습니다.",
-  tokenNotListed:"토큰을 찾을 수 없습니다.",
-  delete:"삭제",
-  now:"현재",
-  liquidity:"유동성",
-  vol:"거래량",
-  score:"Noventra Score",
-  strongBuy:"강력 매수",
-  buy:"매수",
-  strongSell:"강력 매도",
-  sell:"매도",
-  neutral:"중립",
-  unknownToken:"알 수 없는 토큰",
-  technical:"기술 분석",
-  general:"개요",
-  timeframe:"시간대",
-  confidence:"신뢰도",
-  warnings:"경고",
-  risks:"위험",
-  summary:"요약",
-  disclaimer:"기술 시장 데이터 기반 자동 분석입니다. 투자 조언이 아닙니다.",
-  veryStrongUp:"매우 강한 단기 매수 압력.",
-  strongUp:"강한 상승 모멘텀.",
-  positive:"긍정적 모멘텀.",
-  slightlyPositive:"약한 상승 흐름.",
-  neutralTrend:"횡보 / 불확실.",
-  slightlyNegative:"약한 매도 압력.",
-  weak:"매도세 우세.",
-  strongDown:"강한 하락 모멘텀.",
-  veryStrongDown:"매우 강한 매도 압력.",
-  veryHighVolume:"매우 높은 거래량",
-  highVolumeText:"높은 거래량",
-  mediumVolume:"중간 거래량",
-  lowMediumVolume:"낮음~중간 거래량",
-  veryLowVolume:"매우 낮은 거래량",
-  strongLiquidity:"높은 유동성",
-  sufficientLiquidity:"충분한 유동성",
-  mediumLiquidity:"중간 유동성",
-  weakLiquidity:"낮은 유동성",
-  criticalLiquidity:"매우 낮은 유동성",
-  multiUp:"여러 시간대에서 상승 확인.",
-  multiDown:"여러 시간대에서 하락 확인.",
-  shortUpMediumWeak:"단기 상승, 중기 약세.",
-  shortDownMediumPositive:"단기 하락, 중기 강세.",
-  mixed:"시간대 신호 혼합.",
-  overheat:"과열",
-  oversold:"과매도",
-  lowLiquidity:"낮은 유동성",
-  highVolumeMove:"높은 거래량 움직임",
-  lowVolumeMove:"낮은 거래량 움직임",
-  noExtraWarnings:"추가 위험 신호 없음.",
-  adviceStrongBuy:"강한 매수 모멘텀. 위험 관리를 철저히 하세요.",
-  adviceBuy:"매수 모멘텀이 있습니다.",
-  adviceWeakBuy:"약한 상승 편향.",
-  adviceStrongSell:"강한 매도 압력.",
-  adviceSell:"약한 흐름.",
-  adviceNeutral:"중립 구간.",
-  adviceWatch:"관찰을 유지하세요.",
-  buys:"매수",
-  sells:"매도",
-  flow:"흐름"
-}
+  ko:{
+    market:"시장",
+    favorites:"즐겨찾기",
+    alerts:"알림",
+    gainers:"상승",
+    losers:"하락",
+    volume:"거래량",
+    signals:"시그널",
+    scanning:"TON 시장 스캔 중...",
+    guardian:"GUARDIAN",
+    guardianOffline:"GUARDIAN OFFLINE",
+    updated:"업데이트",
+    pairs:"페어",
+    noResults:"결과가 없습니다.",
+    refresh:"새로고침",
+    noFavorites:"즐겨찾기가 없습니다.",
+    addFavorite:"★로 추가하세요.",
+    noAlerts:"활성 알림이 없습니다.",
+    setAlert:"🔔에서 설정하세요.",
+    alertSaved:"알림 저장",
+    alertCreated:"알림:",
+    invalidValue:"유효한 값을 입력하세요.",
+    triggered:"알림 발생!",
+    unknown:"알 수 없는 토큰",
+    ai:"AI 분석",
+    close:"닫기",
+    loadingAI:"Noventra Guardian AI가 분석 중...",
+    aiConnection:"Gemini에 연결 중...",
+    aiError:"Guardian AI가 분석을 완료하지 못했습니다.",
+    signal:"시그널",
+    confidence:"신뢰도",
+    marketState:"시장 상태",
+    reasoning:"왜 이 시그널인가?",
+    timeframes:"시간대",
+    liquidityView:"TON 유동성",
+    volumeView:"거래량",
+    risks:"위험",
+    bullCase:"강세 시나리오",
+    bearCase:"약세 시나리오",
+    action:"액션",
+    summary:"요약",
+    guardianData:"Guardian 보안",
+    buy:"매수",
+    strongBuy:"강력 매수",
+    sell:"매도",
+    strongSell:"강력 매도",
+    watch:"관찰",
+    wait:"대기",
+    momentumEntry:"모멘텀 진입",
+    avoid:"회피",
+    disclaimer:"AI 분석은 정보 제공용이며 투자 조언이 아닙니다."
+  }
 
 };
 
@@ -1779,8 +1625,10 @@ function detectLanguage(){
 
   try{
 
-    const saved=
-      localStorage.getItem(LANG_KEY);
+    const saved =
+      localStorage.getItem(
+        LANG_KEY
+      );
 
     if(
       saved &&
@@ -1789,19 +1637,18 @@ function detectLanguage(){
       return saved;
     }
 
-    const code=
+    const code =
       (
         tg?.initDataUnsafe?.user?.language_code ||
         navigator.language ||
         "en"
       )
       .toLowerCase()
-      .split("-")[0]
-      .split("_")[0];
+      .split("-")[0];
 
     return LANGUAGES[code]
-      ?code
-      :"en";
+      ? code
+      : "en";
 
   }catch(_){
 
@@ -1811,1095 +1658,1307 @@ function detectLanguage(){
 
 }
 
-currentLanguage=
+let currentLanguage =
   detectLanguage();
 
-const t=k=>
-  I18N[currentLanguage]?.[k] ||
-  I18N.en[k] ||
-  k;
+function t(key){
 
+  return (
+    I18N[currentLanguage]?.[key] ||
+    I18N.en[key] ||
+    key
+  );
+
+}
 
 /* =========================================================
    HELPERS
 ========================================================= */
 
-const sleep=
-  ms=>new Promise(r=>setTimeout(r,ms));
-
-const clamp=
-  (v,min,max)=>
-    Math.max(min,Math.min(max,v));
-
-const esc=
-  v=>String(v??"")
-    .replace(
-      /[&<>"']/g,
-      m=>({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-      }[m])
+const sleep =
+  ms =>
+    new Promise(
+      r => setTimeout(r,ms)
     );
 
-const escJS=
-  v=>String(v??"")
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'");
+const clamp =
+  (v,min,max) =>
+    Math.max(
+      min,
+      Math.min(max,v)
+    );
 
-const fmtPct=
-  v=>{
-    v=Number(v||0);
+const esc =
+  v =>
+    String(v ?? "")
+      .replace(
+        /[&<>"']/g,
+        m => ({
+          "&":"&amp;",
+          "<":"&lt;",
+          ">":"&gt;",
+          '"':"&quot;",
+          "'":"&#039;"
+        }[m])
+      );
 
-    if(Math.abs(v)<.05){
-      return "0.0%";
-    }
+const escJS =
+  v =>
+    String(v ?? "")
+      .replace(
+        /\\/g,
+        "\\\\"
+      )
+      .replace(
+        /'/g,
+        "\\'"
+      );
 
-    return (
-      v>0?"+":""
-    )+
-    v.toFixed(1)+
-    "%";
-  };
+function fmtPct(v){
 
-const fmtMoney=
-  v=>{
-    v=Number(v||0);
+  v =
+    Number(v || 0);
 
-    if(v>=1e9)
-      return "$"+(v/1e9).toFixed(1)+"B";
+  if(
+    Math.abs(v) < .05
+  ){
+    return "0.0%";
+  }
 
-    if(v>=1e6)
-      return "$"+(v/1e6).toFixed(1)+"M";
+  return (
+    v > 0 ? "+" : ""
+  ) +
+  v.toFixed(1) +
+  "%";
 
-    if(v>=1e3)
-      return "$"+(v/1e3).toFixed(1)+"K";
+}
 
-    return "$"+Math.round(v);
-  };
+function fmtMoney(v){
+
+  v =
+    Number(v || 0);
+
+  if(v >= 1e9)
+    return "$"+(v/1e9).toFixed(1)+"B";
+
+  if(v >= 1e6)
+    return "$"+(v/1e6).toFixed(1)+"M";
+
+  if(v >= 1e3)
+    return "$"+(v/1e3).toFixed(1)+"K";
+
+  return "$"+Math.round(v);
+
+}
 
 function formatPrice(v){
 
-  v=Number(v||0);
+  v =
+    Number(v || 0);
 
-  if(!v)return "0";
+  if(!v)
+    return "0";
 
-  if(v<1e-6)
+  if(v < 1e-9)
     return v.toExponential(2);
 
-  if(v<.01)
-    return v.toFixed(6);
+  if(v < 1e-6)
+    return v.toExponential(2);
 
-  if(v<1)
-    return v.toFixed(4);
+  if(v < .01)
+    return v.toFixed(7);
 
-  if(v<100)
+  if(v < 1)
+    return v.toFixed(5);
+
+  if(v < 100)
     return v.toFixed(3);
 
   return v.toFixed(2);
+
 }
 
 function cls(v){
 
-  v=Number(v||0);
+  return v > .25
+    ? "up"
+    : v < -.25
+      ? "down"
+      : "neu";
 
-  if(v>.25)return "up";
-  if(v<-.25)return "down";
-
-  return "neu";
 }
 
-function signalLabel(signal){
+function signalLabel(s){
 
   return {
-    "strong-buy":t("strongBuy"),
-    "buy":t("buy"),
-    "strong-sell":t("strongSell"),
-    "sell":t("sell"),
-    "neutral":t("neutral")
-  }[signal]||"";
+
+    "strong-buy":
+      t("strongBuy"),
+
+    "buy":
+      t("buy"),
+
+    "strong-sell":
+      t("strongSell"),
+
+    "sell":
+      t("sell"),
+
+    "neutral":
+      t("watch")
+
+  }[s] || t("watch");
+
 }
 
 function locale(){
 
   return {
+
     tr:"tr-TR",
     ru:"ru-RU",
     zh:"zh-CN",
     ja:"ja-JP",
     ko:"ko-KR",
     en:"en-US"
-  }[currentLanguage]||"en-US";
+
+  }[
+    currentLanguage
+  ] || "en-US";
 
 }
 
-function setStatus(
-  text,
-  type=""
-){
+function setStatus(text){
 
-  const el=
-    document.getElementById(
-      "statusText"
-    );
+  document.getElementById(
+    "statusText"
+  ).textContent = text;
 
-  el.textContent=text;
-
-  el.classList.remove(
-    "status-ok",
-    "status-error"
-  );
-
-  if(type)
-    el.classList.add(
-      type==="error"
-        ?"status-error"
-        :"status-ok"
-    );
 }
-
 
 /* =========================================================
-   GUARDIAN FETCH
+   API
 ========================================================= */
 
-async function guardianFetch(
-  path="/api/market"
+async function apiGet(
+  endpoint,
+  timeout=12000
 ){
 
-  const controller=
+  const controller =
     new AbortController();
 
-  const timer=
+  const timer =
     setTimeout(
-      ()=>controller.abort(),
-      REQUEST_TIMEOUT
+      () => controller.abort(),
+      timeout
     );
 
   try{
 
-    const response=
+    const r =
       await fetch(
-        GUARDIAN_BASE+path,
+        endpoint,
         {
           method:"GET",
           cache:"no-store",
-          signal:controller.signal,
           headers:{
-            "Accept":"application/json"
-          }
+            "Accept":
+              "application/json"
+          },
+          signal:
+            controller.signal
         }
       );
 
-    clearTimeout(timer);
+    const text =
+      await r.text();
 
-    const text=
-      await response.text();
-
-    let data=null;
+    let data;
 
     try{
-
-      data=
-        text
-          ?JSON.parse(text)
-          :null;
-
-    }catch(_){
-
-      throw new Error(
-        "Guardian returned invalid JSON"
-      );
-
+      data =
+        JSON.parse(text);
+    }catch{
+      data =
+        {
+          ok:false,
+          error:text
+        };
     }
 
-    if(!response.ok){
+    if(!r.ok){
 
       throw new Error(
-        data?.error?.message ||
         data?.error ||
-        "Guardian HTTP "+response.status
+        "HTTP "+r.status
       );
 
     }
 
     return data;
 
-  }catch(error){
+  }finally{
 
     clearTimeout(timer);
 
-    throw error;
-
   }
 
 }
 
+async function apiPost(
+  endpoint,
+  body,
+  timeout=30000
+){
 
-/* =========================================================
-   MARKET RESPONSE NORMALIZER
-========================================================= */
+  const controller =
+    new AbortController();
 
-function extractMarkets(data){
-
-  if(Array.isArray(data))
-    return data;
-
-  const candidates=[
-    data?.markets,
-    data?.pairs,
-    data?.data?.markets,
-    data?.data?.pairs,
-    data?.result?.markets,
-    data?.result?.pairs
-  ];
-
-  for(const item of candidates){
-
-    if(Array.isArray(item))
-      return item;
-
-  }
-
-  return [];
-
-}
-
-
-/* =========================================================
-   NORMALIZE GUARDIAN MARKET
-========================================================= */
-
-function normalizePair(p){
-
-  if(!p)
-    return null;
-
-  const chain=
-    String(
-      p.chainId ||
-      p.chain ||
-      p.network ||
-      "ton"
-    ).toLowerCase();
-
-  if(
-    chain &&
-    chain!=="ton"
-  ){
-    return null;
-  }
-
-  const pairAddress=
-    String(
-      p.pairAddress ||
-      p.pair_address ||
-      p.address ||
-      ""
+  const timer =
+    setTimeout(
+      () => controller.abort(),
+      timeout
     );
 
-  if(!pairAddress)
-    return null;
-
-  const volume=
-    Number(
-      p.volume?.h24 ??
-      p.volume24h ??
-      p.volume_24h ??
-      p.volume ??
-      0
-    );
-
-  const liquidity=
-    Number(
-      p.liquidity?.usd ??
-      p.liquidityUsd ??
-      p.liquidity_usd ??
-      p.liquidity ??
-      0
-    );
-
-  if(
-    volume<MIN_VOL ||
-    liquidity<MIN_LIQ
-  ){
-    return null;
-  }
-
-  const dex=
-    String(
-      p.dexId ||
-      p.dex ||
-      p.dex_id ||
-      ""
-    ).toLowerCase();
-
-  const base=
-    p.baseToken ||
-    p.base ||
-    {};
-
-  const quote=
-    p.quoteToken ||
-    p.quote ||
-    {};
-
-  const name=
-    String(
-      base.name ||
-      base.symbol ||
-      p.baseName ||
-      p.name ||
-      "Unknown Token"
-    )
-    .trim()
-    .slice(0,32);
-
-  const symbol=
-    String(
-      base.symbol ||
-      p.baseSymbol ||
-      p.symbol ||
-      "???"
-    )
-    .trim()
-    .slice(0,15);
-
-  const buys=
-    Number(
-      p.txns?.h24?.buys ??
-      p.buys24h ??
-      p.buys ??
-      0
-    );
-
-  const sells=
-    Number(
-      p.txns?.h24?.sells ??
-      p.sells24h ??
-      p.sells ??
-      0
-    );
-
-  const totalTx=
-    buys+sells;
-
-  const buyRatio=
-    totalTx>0
-      ?buys/totalTx
-      :.5;
-
-  const flow=
-    totalTx>0
-      ?((buys-sells)/totalTx)*100
-      :0;
-
-  const changeSource=
-    p.priceChange ||
-    p.change ||
-    {};
-
-  const change={
-
-    m5:Number(
-      changeSource.m5 ??
-      changeSource["5m"] ??
-      0
-    ),
-
-    h1:Number(
-      changeSource.h1 ??
-      changeSource["1h"] ??
-      0
-    ),
-
-    h6:Number(
-      changeSource.h6 ??
-      changeSource["6h"] ??
-      0
-    ),
-
-    h24:Number(
-      changeSource.h24 ??
-      changeSource["24h"] ??
-      0
-    )
-
-  };
-
-  return {
-
-    pairAddress,
-
-    url:
-      p.url ||
-      p.pairUrl ||
-      "",
-
-    dexId:
-      p.dexId ||
-      p.dex ||
-      "Unknown",
-
-    isDedust:
-      dex.includes("dedust"),
-
-    isSton:
-      dex.includes("ston"),
-
-    baseName:name,
-
-    baseSymbol:symbol,
-
-    baseAddress:
-      String(
-        base.address ||
-        p.baseAddress ||
-        ""
-      ),
-
-    quoteSymbol:
-      String(
-        quote.symbol ||
-        p.quoteSymbol ||
-        ""
-      )
-      .trim()
-      .slice(0,12),
-
-    priceUsd:
-      Number(
-        p.priceUsd ??
-        p.price ??
-        0
-      ),
-
-    change,
-
-    volume:{
-      h24:volume
-    },
-
-    liquidity,
-
-    txns:totalTx,
-
-    buys,
-
-    sells,
-
-    buyRatio,
-
-    flow
-
-  };
-
-}
-
-
-/* =========================================================
-   NOVENTRA SIGNAL ENGINE v2
-========================================================= */
-
-function calculateSignal(p){
-
-  const c=p.change;
-
-  /*
-   * MOMENTUM       35%
-   * TIMEFRAME      20%
-   * BUY/SELL FLOW  15%
-   * VOLUME         10%
-   * LIQUIDITY      10%
-   * ACCELERATION   10%
-   */
-
-  const momentum=
-    clamp(
-      c.m5*.10 +
-      c.h1*.40 +
-      c.h6*.30 +
-      c.h24*.20,
-      -100,
-      100
-    );
-
-
-  /* TIMEFRAME */
-
-  const directions=[
-    c.m5,
-    c.h1,
-    c.h6,
-    c.h24
-  ];
-
-  const positive=
-    directions.filter(
-      x=>x>0.5
-    ).length;
-
-  const negative=
-    directions.filter(
-      x=>x<-0.5
-    ).length;
-
-  let timeframeScore=0;
-
-  if(positive===4){
-
-    timeframeScore=100;
-
-  }else if(positive===3){
-
-    timeframeScore=70;
-
-  }else if(
-    positive===2 &&
-    c.h1>0
-  ){
-
-    timeframeScore=30;
-
-  }else if(negative===4){
-
-    timeframeScore=-100;
-
-  }else if(negative===3){
-
-    timeframeScore=-70;
-
-  }else if(
-    negative===2 &&
-    c.h1<0
-  ){
-
-    timeframeScore=-30;
-
-  }
-
-
-  /* BUY / SELL FLOW */
-
-  const flow=
-    Number(p.flow||0);
-
-  const flowScore=
-    clamp(
-      flow*1.8,
-      -100,
-      100
-    );
-
-
-  /* VOLUME */
-
-  const volume=
-    Number(p.volume?.h24||0);
-
-  let volumeScore=0;
-
-  if(volume>=500000)
-    volumeScore=100;
-  else if(volume>=200000)
-    volumeScore=80;
-  else if(volume>=100000)
-    volumeScore=65;
-  else if(volume>=50000)
-    volumeScore=50;
-  else if(volume>=20000)
-    volumeScore=30;
-  else if(volume>=5000)
-    volumeScore=10;
-  else
-    volumeScore=-20;
-
-
-  /* LIQUIDITY */
-
-  const liquidity=
-    Number(p.liquidity||0);
-
-  let liquidityScore=0;
-
-  if(liquidity>=250000)
-    liquidityScore=100;
-  else if(liquidity>=100000)
-    liquidityScore=80;
-  else if(liquidity>=50000)
-    liquidityScore=65;
-  else if(liquidity>=20000)
-    liquidityScore=45;
-  else if(liquidity>=5000)
-    liquidityScore=20;
-  else if(liquidity>=2500)
-    liquidityScore=0;
-  else
-    liquidityScore=-50;
-
-
-  /* ACCELERATION */
-
-  const acceleration=
-    clamp(
-      (c.h1-c.m5)*1.5,
-      -100,
-      100
-    );
-
-
-  /* FINAL SCORE */
-
-  let score=
-    momentum*.35 +
-    timeframeScore*.20 +
-    flowScore*.15 +
-    volumeScore*.10 +
-    liquidityScore*.10 +
-    acceleration*.10;
-
-  score=
-    clamp(
-      score,
-      -100,
-      100
-    );
-
-
-  /* SIGNAL */
-
-  let signal="neutral";
-
-  if(
-    score>=65 &&
-    c.h1>=3 &&
-    flow>=5 &&
-    positive>=2
-  ){
-
-    signal="strong-buy";
-
-  }else if(
-    score>=30 &&
-    c.h1>=1 &&
-    flow>=0
-  ){
-
-    signal="buy";
-
-  }else if(
-    score<=-65 &&
-    c.h1<=-3 &&
-    flow<=-5 &&
-    negative>=2
-  ){
-
-    signal="strong-sell";
-
-  }else if(
-    score<=-30 &&
-    c.h1<=-1 &&
-    flow<=0
-  ){
-
-    signal="sell";
-
-  }
-
-
-  /* CONFIDENCE */
-
-  let confidence=50;
-
-  confidence+=
-    Math.min(
-      Math.abs(score)*.28,
-      28
-    );
-
-  if(
-    positive>=3 ||
-    negative>=3
-  ){
-    confidence+=7;
-  }
-
-  if(volume>=50000)
-    confidence+=5;
-
-  if(liquidity>=20000)
-    confidence+=5;
-
-  if(p.txns>=100)
-    confidence+=4;
-
-  if(liquidity<2500)
-    confidence-=15;
-
-  if(volume<5000)
-    confidence-=8;
-
-  if(
-    (c.h1>0&&c.h6<0) ||
-    (c.h1<0&&c.h6>0)
-  ){
-    confidence-=8;
-  }
-
-  confidence=
-    clamp(
-      Math.round(confidence),
-      15,
-      96
-    );
-
-
-  /* WARNINGS */
-
-  const warnings=[];
-
-  if(c.h1>25)
-    warnings.push(t("overheat"));
-
-  if(c.h1<-25)
-    warnings.push(t("oversold"));
-
-  if(liquidity<2500)
-    warnings.push(t("lowLiquidity"));
-
-  if(
-    volume>100000 &&
-    Math.abs(c.h1)>12
-  ){
-    warnings.push(
-      t("highVolumeMove")
-    );
-  }
-
-  if(
-    Math.abs(c.h1)>8 &&
-    volume<5000
-  ){
-    warnings.push(
-      t("lowVolumeMove")
-    );
-  }
-
-  if(
-    c.h1>5 &&
-    c.h6<-5
-  ){
-    warnings.push(
-      t("shortUpMediumWeak")
-    );
-  }
-
-  if(
-    c.h1<-5 &&
-    c.h6>5
-  ){
-    warnings.push(
-      t("shortDownMediumPositive")
-    );
-  }
-
-
-  return {
-
-    score,
-
-    signal,
-
-    confidence,
-
-    warnings,
-
-    analytics:{
-
-      momentum,
-
-      timeframeScore,
-
-      flowScore,
-
-      volumeScore,
-
-      liquidityScore,
-
-      acceleration,
-
-      buyRatio:Number(
-        (p.buyRatio*100).toFixed(1)
-      ),
-
-      buys:p.buys,
-
-      sells:p.sells
+  try{
+
+    const r =
+      await fetch(
+        endpoint,
+        {
+          method:"POST",
+          cache:"no-store",
+          headers:{
+            "Content-Type":
+              "application/json",
+            "Accept":
+              "application/json"
+          },
+          body:
+            JSON.stringify(body),
+          signal:
+            controller.signal
+        }
+      );
+
+    const text =
+      await r.text();
+
+    let data;
+
+    try{
+      data =
+        JSON.parse(text);
+    }catch{
+      data =
+        {
+          ok:false,
+          error:text
+        };
+    }
+
+    if(!r.ok){
+
+      throw new Error(
+        data?.error ||
+        "HTTP "+r.status
+      );
 
     }
 
-  };
+    return data;
+
+  }finally{
+
+    clearTimeout(timer);
+
+  }
 
 }
 
-
 /* =========================================================
-   LOAD DATA
+   GUARDIAN
 ========================================================= */
 
-async function loadData(){
+async function fetchGuardian(
+  tokenAddress
+){
+
+  if(!tokenAddress)
+    return null;
+
+  try{
+
+    /*
+      Known Guardian endpoint:
+      /api/holders?address=...
+    */
+
+    const url =
+      GUARDIAN_API +
+      "/holders?address=" +
+      encodeURIComponent(
+        tokenAddress
+      );
+
+    return await apiGet(
+      url,
+      15000
+    );
+
+  }catch(e){
+
+    console.warn(
+      "Guardian holders:",
+      e
+    );
+
+    return null;
+
+  }
+
+}
+
+/* =========================================================
+   AI
+========================================================= */
+
+async function requestAI(
+  pair
+){
+
+  /*
+    First collect Guardian data.
+  */
+
+  const guardian =
+    await fetchGuardian(
+      pair.baseAddress
+    );
+
+  const payload = {
+
+    token:{
+
+      name:
+        pair.baseToken?.name ||
+        pair.baseName ||
+        "",
+
+      symbol:
+        pair.baseToken?.symbol ||
+        pair.baseSymbol ||
+        "",
+
+      address:
+        pair.baseToken?.address ||
+        pair.baseAddress ||
+        "",
+
+      priceUsd:
+        pair.priceUsd,
+
+      dex:
+        pair.dexId,
+
+      pairAddress:
+        pair.pairAddress
+
+    },
+
+    market:{
+
+      chain:"TON",
+
+      change:{
+
+        m5:
+          pair.change?.m5 || 0,
+
+        h1:
+          pair.change?.h1 || 0,
+
+        h6:
+          pair.change?.h6 || 0,
+
+        h24:
+          pair.change?.h24 || 0
+
+      },
+
+      volume24h:
+        pair.volume?.h24 || 0,
+
+      liquidity:
+        pair.liquidity || 0,
+
+      transactions:
+        pair.txns || {},
+
+      score:
+        pair.score || 0,
+
+      localSignal:
+        pair.signal || "neutral",
+
+      localConfidence:
+        pair.confidence || 0,
+
+      warnings:
+        pair.warnings || []
+
+    },
+
+    guardian:
+      guardian || {
+        available:false,
+        message:
+          "Guardian data unavailable"
+      }
+
+  };
+
+  return apiPost(
+    SIGNAL_API + "/api/ai",
+    payload,
+    30000
+  );
+
+}
+
+/* =========================================================
+   AI UI
+========================================================= */
+
+function aiSignalClass(
+  signal
+){
+
+  const s =
+    String(signal || "")
+      .toUpperCase();
+
+  if(
+    s.includes("STRONG BUY") ||
+    s === "BUY"
+  ){
+    return "ai-good";
+  }
+
+  if(
+    s.includes("SELL")
+  ){
+    return "ai-bad";
+  }
+
+  return "ai-warn";
+
+}
+
+function aiActionText(
+  action
+){
+
+  const a =
+    String(action || "")
+      .toUpperCase();
+
+  const map = {
+
+    "BUY":t("buy"),
+    "STRONG BUY":t("strongBuy"),
+    "SELL":t("sell"),
+    "STRONG SELL":t("strongSell"),
+    "WATCH":t("watch"),
+    "WAIT":t("wait"),
+    "MOMENTUM ENTRY":
+      t("momentumEntry"),
+    "AVOID":t("avoid")
+
+  };
+
+  return map[a] || action || "WATCH";
+
+}
+
+function renderAI(
+  result,
+  pair,
+  guardian
+){
+
+  const body =
+    document.getElementById(
+      "aiBody"
+    );
+
+  const a =
+    result?.analysis ||
+    {};
+
+  const signal =
+    String(
+      a.signal ||
+      "WATCH"
+    ).toUpperCase();
+
+  const confidence =
+    Number(
+      a.confidence || 0
+    );
+
+  const reasons =
+    Array.isArray(
+      a.reasoning
+    )
+      ? a.reasoning
+      : [];
+
+  const risks =
+    Array.isArray(
+      a.riskFlags
+    )
+      ? a.riskFlags
+      : [];
+
+  const guardianAvailable =
+    guardian &&
+    typeof guardian === "object";
+
+  body.innerHTML = `
+
+    ${
+      guardianAvailable
+      ? `
+        <div class="guardian-box">
+          🛡️ <strong>${t("guardianData")}</strong>
+          <br>
+          ${esc(
+            guardian?.ok === false
+              ? "Guardian response received with limitations."
+              : "Guardian security data was included in this AI analysis."
+          )}
+        </div>
+      `
+      : ""
+    }
+
+    <div class="ai-headline">
+
+      <div class="ai-signal">
+
+        <strong
+          class="${aiSignalClass(signal)}"
+        >
+          ${esc(signal)}
+        </strong>
+
+        <span class="ai-confidence">
+          ${t("confidence")}:
+          ${confidence}%
+        </span>
+
+      </div>
+
+      <div>
+        ${esc(
+          a.headline ||
+          `${pair.baseSymbol} analysis`
+        )}
+      </div>
+
+    </div>
+
+    <div class="ai-section">
+
+      <div class="ai-section-title">
+        ${t("marketState")}
+      </div>
+
+      <p>
+        ${esc(
+          a.marketState ||
+          "No market state returned."
+        )}
+      </p>
+
+    </div>
+
+    <div class="ai-section">
+
+      <div class="ai-section-title">
+        ${t("reasoning")}
+      </div>
+
+      ${
+        reasons.length
+        ? `
+          <ul class="ai-list">
+            ${
+              reasons
+                .map(
+                  x =>
+                    `<li>${esc(x)}</li>`
+                )
+                .join("")
+            }
+          </ul>
+        `
+        : `
+          <p>
+            ${esc(
+              a.summary ||
+              "No detailed reasoning returned."
+            )}
+          </p>
+        `
+      }
+
+    </div>
+
+    <div class="ai-section">
+
+      <div class="ai-section-title">
+        ${t("timeframes")}
+      </div>
+
+      <p>
+        <b>Short:</b>
+        ${esc(
+          a.timeframes?.short ||
+          "—"
+        )}
+      </p>
+
+      <p>
+        <b>Medium:</b>
+        ${esc(
+          a.timeframes?.medium ||
+          "—"
+        )}
+      </p>
+
+      <p>
+        <b>Long:</b>
+        ${esc(
+          a.timeframes?.long ||
+          "—"
+        )}
+      </p>
+
+    </div>
+
+    <div class="ai-section">
+
+      <div class="ai-section-title">
+        ${t("liquidityView")}
+      </div>
+
+      <p>
+        ${esc(
+          a.liquidityView ||
+          "—"
+        )}
+      </p>
+
+    </div>
+
+    <div class="ai-section">
+
+      <div class="ai-section-title">
+        ${t("volumeView")}
+      </div>
+
+      <p>
+        ${esc(
+          a.volumeView ||
+          "—"
+        )}
+      </p>
+
+    </div>
+
+    ${
+      risks.length
+      ? `
+        <div class="ai-section">
+
+          <div class="ai-section-title">
+            ${t("risks")}
+          </div>
+
+          <ul class="ai-list">
+
+            ${
+              risks
+                .map(
+                  x =>
+                    `<li class="ai-warn">${esc(x)}</li>`
+                )
+                .join("")
+            }
+
+          </ul>
+
+        </div>
+      `
+      : ""
+    }
+
+    <div class="ai-section">
+
+      <div class="ai-section-title">
+        ${t("bullCase")}
+      </div>
+
+      <p class="ai-good">
+        ${esc(
+          a.bullCase ||
+          "—"
+        )}
+      </p>
+
+    </div>
+
+    <div class="ai-section">
+
+      <div class="ai-section-title">
+        ${t("bearCase")}
+      </div>
+
+      <p class="ai-bad">
+        ${esc(
+          a.bearCase ||
+          "—"
+        )}
+      </p>
+
+    </div>
+
+    <div class="ai-section">
+
+      <div class="ai-section-title">
+        ${t("action")}
+      </div>
+
+      <p class="ai-action">
+        ${esc(
+          aiActionText(
+            a.action
+          )
+        )}
+      </p>
+
+    </div>
+
+    <div class="ai-section">
+
+      <div class="ai-section-title">
+        ${t("summary")}
+      </div>
+
+      <p>
+        ${esc(
+          a.summary ||
+          "—"
+        )}
+      </p>
+
+    </div>
+
+    <div
+      style="
+        margin-top:12px;
+        color:var(--muted);
+        font-size:.61rem;
+        text-align:center
+      "
+    >
+      ${t("disclaimer")}
+    </div>
+  `;
+
+}
+
+async function openAIAnalysis(
+  address
+){
+
+  const pair =
+    pairs.find(
+      p =>
+        p.pairAddress ===
+        address
+    );
+
+  if(!pair){
+
+    showAlert(
+      "Token data not found."
+    );
+
+    return;
+
+  }
+
+  const modal =
+    document.getElementById(
+      "aiModal"
+    );
+
+  const body =
+    document.getElementById(
+      "aiBody"
+    );
+
+  modal.classList.add(
+    "show"
+  );
+
+  body.innerHTML = `
+
+    <div class="ai-loading">
+
+      <div class="ai-loader"></div>
+
+      <strong>
+        ${t("loadingAI")}
+      </strong>
+
+      <br>
+
+      <span>
+        ${t("aiConnection")}
+      </span>
+
+      <div
+        style="
+          margin-top:12px;
+          font-size:.62rem;
+          color:var(--muted)
+        "
+      >
+        ${esc(
+          pair.baseName
+        )}
+        ·
+        ${esc(
+          pair.baseSymbol
+        )}
+      </div>
+
+    </div>
+
+  `;
+
+  if(aiLoading)
+    return;
+
+  aiLoading = true;
+
+  try{
+
+    const guardian =
+      await fetchGuardian(
+        pair.baseAddress
+      );
+
+    const result =
+      await requestAI(
+        pair
+      );
+
+    if(
+      !result ||
+      result.ok === false
+    ){
+
+      throw new Error(
+        result?.error ||
+        "AI endpoint failed"
+      );
+
+    }
+
+    renderAI(
+      result,
+      pair,
+      guardian
+    );
+
+  }catch(e){
+
+    console.error(
+      "Guardian AI:",
+      e
+    );
+
+    body.innerHTML = `
+
+      <div class="ai-error">
+
+        <strong>
+          ${t("aiError")}
+        </strong>
+
+        <br><br>
+
+        ${esc(
+          e?.message ||
+          "Unknown error"
+        )}
+
+      </div>
+
+    `;
+
+  }finally{
+
+    aiLoading = false;
+
+  }
+
+}
+
+window.openAIAnalysis =
+  openAIAnalysis;
+
+/* =========================================================
+   MARKET
+========================================================= */
+
+async function loadMarket(){
 
   if(isLoading)
     return;
 
-  isLoading=true;
+  isLoading = true;
 
-  const refresh=
-    document.getElementById(
+  document
+    .getElementById(
       "refreshBtn"
+    )
+    .classList.add(
+      "spin"
     );
-
-  refresh.classList.add("spin");
 
   setStatus(
     t("scanning")
   );
 
-  document.getElementById(
-    "loadingText"
-  ).textContent=
-    t("scanning");
-
   try{
 
-    const data=
-      await guardianFetch(
-        "/api/market"
+    const data =
+      await apiGet(
+        SIGNAL_API +
+        "/api/market",
+        30000
       );
 
-    const raw=
-      extractMarkets(data);
-
-    if(!raw.length){
+    if(
+      !data ||
+      data.ok === false
+    ){
 
       throw new Error(
-        "Guardian returned zero markets"
+        data?.error ||
+        "Market API failed"
       );
 
     }
 
-    const seen=
-      new Set();
-
-    const collected=[];
-
-    for(const rawPair of raw){
-
-      const p=
-        normalizePair(
-          rawPair
-        );
-
-      if(
-        !p ||
-        seen.has(
-          p.pairAddress
-        )
-      ){
-        continue;
-      }
-
-      seen.add(
-        p.pairAddress
-      );
-
-      Object.assign(
-        p,
-        calculateSignal(p)
-      );
-
-      collected.push(p);
-
-    }
-
-    collected.sort(
-      (a,b)=>
-        Math.abs(b.score)-
-        Math.abs(a.score)
-    );
-
-    pairs=
-      collected;
+    pairs =
+      Array.isArray(
+        data.pairs
+      )
+        ? data.pairs
+        : [];
 
     document.getElementById(
       "countText"
-    ).textContent=
-      pairs.length+
-      " "+
+    ).textContent =
+      pairs.length +
+      " " +
       t("pairs");
 
     setStatus(
-      t("updated")+
-      ": "+
-      new Date()
-        .toLocaleTimeString(
-          locale()
-        ),
-      "ok"
+      t("updated") +
+      ": " +
+      new Date().toLocaleTimeString(
+        locale()
+      )
     );
 
-    checkAlerts();
+    updateGuardianState(
+      true
+    );
 
     render();
-
     renderFavorites();
-
     renderAlertsPage();
+    checkAlerts();
 
-  }catch(error){
+  }catch(e){
 
     console.error(
-      "Noventra Signal Guardian Error:",
-      error
+      "Market:",
+      e
+    );
+
+    updateGuardianState(
+      false
     );
 
     setStatus(
-      t("guardianError"),
-      "error"
+      "Guardian Gateway unavailable"
     );
 
-    const content=
-      document.getElementById(
-        "content"
-      );
+    document.getElementById(
+      "content"
+    ).innerHTML = `
 
-    if(!pairs.length){
+      <div class="empty">
 
-      content.innerHTML=`
-        <div class="empty">
-          <div style="font-size:2rem;margin-bottom:10px">
-            ⚠️
-          </div>
-          ${esc(t("guardianError"))}
-          <br>
-          <small style="display:block;margin-top:8px">
-            ${esc(
-              error?.message ||
-              "Guardian request failed"
-            )}
-          </small>
+        <div
+          style="
+            font-size:2rem;
+            margin-bottom:10px
+          "
+        >
+          🛡️
         </div>
-      `;
 
-    }
+        <strong>
+          Guardian verilerine erişilemiyor
+        </strong>
+
+        <br><br>
+
+        <small>
+          ${esc(
+            e?.message ||
+            "Signal Worker bağlantısı başarısız."
+          )}
+        </small>
+
+        <br><br>
+
+        <button
+          class="btn btn-primary"
+          style="max-width:180px"
+          onclick="loadMarket()"
+        >
+          ${t("refresh")}
+        </button>
+
+      </div>
+
+    `;
 
   }finally{
 
-    isLoading=false;
+    isLoading = false;
 
-    refresh.classList.remove(
-      "spin"
-    );
+    document
+      .getElementById(
+        "refreshBtn"
+      )
+      .classList.remove(
+        "spin"
+      );
 
   }
 
 }
 
+function updateGuardianState(
+  online
+){
+
+  const dot =
+    document.getElementById(
+      "guardianDot"
+    );
+
+  const text =
+    document.getElementById(
+      "guardianStateText"
+    );
+
+  dot.classList.toggle(
+    "off",
+    !online
+  );
+
+  text.textContent =
+    online
+      ? t("guardian")
+      : t("guardianOffline");
+
+}
 
 /* =========================================================
-   FILTER
+   FILTERS
 ========================================================= */
 
 function getFiltered(){
 
-  let list=[
-    ...pairs
-  ];
+  let list =
+    [...pairs];
 
-  if(volFilter==="high"){
+  if(
+    volFilter ===
+    "high"
+  ){
 
-    list=
+    list =
       list.filter(
-        p=>
-          p.volume.h24>=
-          HIGH_VOL
+        p =>
+          Number(
+            p.volume?.h24 ||
+            0
+          ) >= 20000
       );
 
   }
 
-  if(volFilter==="dedust"){
+  if(
+    volFilter ===
+    "dedust"
+  ){
 
-    list=
+    list =
       list.filter(
-        p=>p.isDedust
+        p =>
+          p.isDedust
       );
 
   }
 
+  if(
+    currentTab ===
+    "gainers"
+  ){
 
-  if(currentTab==="gainers"){
-
-    list=
+    list =
       list
         .filter(
-          p=>
-            p.change[currentTf]>1
+          p =>
+            Number(
+              p.change?.[
+                currentTf
+              ] || 0
+            ) > 1
         )
         .sort(
-          (a,b)=>
-            b.change[currentTf]-
-            a.change[currentTf]
+          (a,b) =>
+            Number(
+              b.change?.[
+                currentTf
+              ] || 0
+            ) -
+            Number(
+              a.change?.[
+                currentTf
+              ] || 0
+            )
         );
 
-  }else if(currentTab==="losers"){
+  }
 
-    list=
+  else if(
+    currentTab ===
+    "losers"
+  ){
+
+    list =
       list
         .filter(
-          p=>
-            p.change[currentTf]<-1
+          p =>
+            Number(
+              p.change?.[
+                currentTf
+              ] || 0
+            ) < -1
         )
         .sort(
-          (a,b)=>
-            a.change[currentTf]-
-            b.change[currentTf]
+          (a,b) =>
+            Number(
+              a.change?.[
+                currentTf
+              ] || 0
+            ) -
+            Number(
+              b.change?.[
+                currentTf
+              ] || 0
+            )
         );
 
-  }else if(currentTab==="volume"){
+  }
+
+  else if(
+    currentTab ===
+    "volume"
+  ){
 
     list.sort(
-      (a,b)=>
-        b.volume.h24-
-        a.volume.h24
+      (a,b) =>
+        Number(
+          b.volume?.h24 ||
+          0
+        ) -
+        Number(
+          a.volume?.h24 ||
+          0
+        )
     );
 
-  }else{
+  }
 
-    const order={
+  else{
+
+    const order = {
+
       "strong-buy":0,
+
       "buy":1,
+
       "strong-sell":2,
+
       "sell":3,
+
       "neutral":9
+
     };
 
-    list=
+    list =
       list
         .filter(
-          p=>
-            p.signal!=="neutral"
+          p =>
+            p.signal !==
+            "neutral"
         )
         .sort(
-          (a,b)=>
+          (a,b) =>
             (
-              order[a.signal]-
+              order[a.signal] -
               order[b.signal]
             ) ||
             (
-              Math.abs(b.score)-
-              Math.abs(a.score)
+              Math.abs(
+                Number(
+                  b.score ||
+                  0
+                )
+              ) -
+              Math.abs(
+                Number(
+                  a.score ||
+                  0
+                )
+              )
             )
         );
 
@@ -2907,332 +2966,393 @@ function getFiltered(){
 
   return list.slice(
     0,
-    MAX_RESULTS
+    150
   );
 
 }
-
-
-/* =========================================================
-   FAVORITES
-========================================================= */
-
-function isFav(address){
-
-  return favorites.some(
-    x=>
-      x.pairAddress===
-      address
-  );
-
-}
-
-function hasAlert(address){
-
-  return alerts.some(
-    x=>
-      x.pairAddress===
-      address
-  );
-
-}
-
 
 /* =========================================================
    CARD
 ========================================================= */
+
+function isFav(
+  address
+){
+
+  return favorites.some(
+    x =>
+      x.pairAddress ===
+      address
+  );
+
+}
+
+function hasAlert(
+  address
+){
+
+  return alerts.some(
+    x =>
+      x.pairAddress ===
+      address
+  );
+
+}
 
 function cardHTML(
   p,
   i
 ){
 
-  const ch=
-    p.change[currentTf];
+  const ch =
+    Number(
+      p.change?.[
+        currentTf
+      ] || 0
+    );
 
-  const fav=
-    isFav(p.pairAddress);
+  const fav =
+    isFav(
+      p.pairAddress
+    );
 
-  const alarm=
-    hasAlert(p.pairAddress);
+  const alarm =
+    hasAlert(
+      p.pairAddress
+    );
 
-  const dexClass=
+  const dexClass =
     p.isDedust
-      ?"dedust"
-      :p.isSton
-        ?"ston"
-        :"other";
+      ? "dedust"
+      : p.isSton
+        ? "ston"
+        : "other";
 
-  const dexLabel=
+  const dexLabel =
     p.isDedust
-      ?"DeDust"
-      :p.isSton
-        ?"STON.fi"
-        :String(
-          p.dexId||
-          "DEX"
-        ).slice(0,10);
+      ? "DeDust"
+      : p.isSton
+        ? "STON.FI"
+        : String(
+            p.dexId ||
+            "DEX"
+          ).slice(0,10);
 
-  const sig=
+  const sig =
     signalLabel(
       p.signal
     );
 
-  const addr=
+  const addr =
     escJS(
       p.pairAddress
     );
 
-  const score=
+  const score =
     Number(
-      p.score||0
+      p.score || 0
     );
 
-  const confidence=
-    p.confidence!=null
-      ?" · "+
-       p.confidence.toFixed(0)+
-       "%"
-      :"";
+  const confidence =
+    Number(
+      p.confidence || 0
+    );
 
-  const sw=
-    Math.min(
+  const width =
+    clamp(
       Math.abs(score),
+      0,
       100
     );
 
-  const barColor=
-    score>=0
-      ?"var(--green)"
-      :"var(--red)";
-
-  const buyRatio=
-    Number(
-      p.analytics?.buyRatio ??
-      p.buyRatio*100 ??
-      50
-    );
-
-  const flowClass=
-    p.flow>2
-      ?"flow-buy"
-      :p.flow<-2
-        ?"flow-sell"
-        :"";
+  const barColor =
+    score >= 0
+      ? "var(--green)"
+      : "var(--red)";
 
   return `
 
-  <div class="card ${
-    fav?"fav":""
-  } ${
-    alarm?"alert-hit":""
-  }">
+    <div
+      class="card
+        ${fav ? "fav" : ""}
+        ${alarm ? "alert-hit" : ""}
+      "
+    >
 
-    <div class="card-top">
+      <div class="card-top">
 
-      <div class="rank ${
-        i<3?"top":""
-      }">
-        ${i+1}
-      </div>
+        <div
+          class="rank ${i < 3 ? "top" : ""}"
+        >
+          ${i + 1}
+        </div>
 
-      <div class="info">
+        <div class="info">
 
-        <div class="sym-row">
+          <div class="sym-row">
 
-          <div class="token-title">
+            <div class="token-title">
 
-            <span class="token-name">
-              ${esc(p.baseName)}
+              <span class="token-name">
+                ${esc(
+                  p.baseToken?.name ||
+                  p.baseName ||
+                  t("unknown")
+                )}
+              </span>
+
+              <span class="token-symbol">
+                ${esc(
+                  p.baseToken?.symbol ||
+                  p.baseSymbol ||
+                  "???"
+                )}
+              </span>
+
+            </div>
+
+            <span
+              class="dex ${dexClass}"
+            >
+              ${esc(dexLabel)}
             </span>
 
-            <span class="token-symbol">
-              ${esc(p.baseSymbol)}
-            </span>
+            ${
+              p.signal &&
+              p.signal !==
+              "neutral"
+              ?
+              `
+                <span
+                  class="signal ${esc(
+                    p.signal
+                  )}"
+                >
+                  ${esc(sig)}
+                </span>
+              `
+              :
+              ""
+            }
 
           </div>
 
-          <span class="dex ${dexClass}">
-            ${esc(dexLabel)}
-          </span>
+          <div class="meta">
 
-          ${
-            sig
-              ?`
-              <span class="signal ${p.signal}">
-                ${esc(sig)}
-              </span>
-              `
-              :""
-          }
+            ${fmtMoney(
+              p.liquidity
+            )}
+            liq ·
+
+            ${fmtMoney(
+              p.volume?.h24
+            )}
+            vol
+
+            ${
+              p.quoteToken?.symbol
+              ?
+              " · " +
+              esc(
+                p.quoteToken.symbol
+              )
+              :
+              ""
+            }
+
+          </div>
 
         </div>
 
-        <div class="meta">
+        <div class="right">
 
-          ${fmtMoney(p.liquidity)}
-          ${t("liquidity")}
+          <div
+            class="chg ${
+              ch >= 0
+                ? "up"
+                : "down"
+            }"
+          >
+            ${fmtPct(ch)}
+          </div>
+
+          <div class="actions">
+
+            <button
+              class="act-btn ${
+                fav ? "on" : ""
+              }"
+              onclick="
+                toggleFavByAddr(
+                  '${addr}'
+                )
+              "
+            >
+              ★
+            </button>
+
+            <button
+              class="act-btn ${
+                alarm
+                  ? "alert-on"
+                  : ""
+              }"
+              onclick="
+                openAlertByAddr(
+                  '${addr}'
+                )
+              "
+            >
+              🔔
+            </button>
+
+            <button
+              class="act-btn ai"
+              onclick="
+                openAIAnalysis(
+                  '${addr}'
+                )
+              "
+            >
+              ✦
+            </button>
+
+            <button
+              class="act-btn"
+              onclick="
+                openPair(
+                  '${escJS(
+                    p.url
+                  )}'
+                )
+              "
+            >
+              ↗
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="tf-row">
+
+        <div class="tf">
+          <div class="lbl">5m</div>
+          <div class="v ${cls(
+            p.change?.m5
+          )}">
+            ${fmtPct(
+              p.change?.m5
+            )}
+          </div>
+        </div>
+
+        <div class="tf">
+          <div class="lbl">1h</div>
+          <div class="v ${cls(
+            p.change?.h1
+          )}">
+            ${fmtPct(
+              p.change?.h1
+            )}
+          </div>
+        </div>
+
+        <div class="tf">
+          <div class="lbl">6h</div>
+          <div class="v ${cls(
+            p.change?.h6
+          )}">
+            ${fmtPct(
+              p.change?.h6
+            )}
+          </div>
+        </div>
+
+        <div class="tf">
+          <div class="lbl">24h</div>
+          <div class="v ${cls(
+            p.change?.h24
+          )}">
+            ${fmtPct(
+              p.change?.h24
+            )}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="score-row">
+
+        <span>
+          Noventra Score
+        </span>
+
+        <span class="score-value">
+
+          ${
+            score > 0
+              ? "+"
+              : ""
+          }${score.toFixed(0)}
 
           ·
 
-          ${fmtMoney(p.volume.h24)}
-          ${t("vol")}
+          %${confidence}
 
-          ${
-            p.quoteSymbol
-              ?" · "+esc(p.quoteSymbol)
-              :""
-          }
-
-        </div>
+        </span>
 
       </div>
 
-      <div class="right">
+      <div class="bar">
 
-        <div class="chg ${
-          ch>0
-            ?"up"
-            :ch<0
-              ?"down"
-              :"neu"
-        }">
-          ${fmtPct(ch)}
-        </div>
-
-        <div class="actions">
-
-          <button
-            class="act-btn ${
-              fav?"on":""
-            }"
-            onclick="toggleFavByAddr('${addr}')"
-          >★</button>
-
-          <button
-            class="act-btn ${
-              alarm?"alert-on":""
-            }"
-            onclick="openAlertByAddr('${addr}')"
-          >🔔</button>
-
-          <button
-            class="act-btn"
-            onclick="openAIAnalysis('${addr}')"
-          >🤖</button>
-
-          <button
-            class="act-btn"
-            onclick="openPair('${escJS(p.url)}')"
-          >↗</button>
-
-        </div>
+        <div
+          style="
+            width:${width}%;
+            background:${barColor}
+          "
+        ></div>
 
       </div>
+
+      ${
+        p.signal &&
+        p.signal !== "neutral"
+        ?
+        `
+          <div class="ai-mini">
+
+            <span>✦</span>
+
+            <span>
+              <b>Guardian AI:</b>
+              ${
+                p.signal ===
+                "strong-buy"
+                ? "Strong bullish setup detected."
+                : p.signal === "buy"
+                  ? "Bullish momentum detected."
+                  : p.signal === "strong-sell"
+                    ? "Strong bearish pressure detected."
+                    : p.signal === "sell"
+                      ? "Bearish pressure detected."
+                      : "Market requires observation."
+              }
+            </span>
+
+          </div>
+        `
+        :
+        ""
+      }
 
     </div>
-
-
-    <div class="tf-row">
-
-      <div class="tf">
-        <div class="lbl">5m</div>
-        <div class="v ${cls(p.change.m5)}">
-          ${fmtPct(p.change.m5)}
-        </div>
-      </div>
-
-      <div class="tf">
-        <div class="lbl">1h</div>
-        <div class="v ${cls(p.change.h1)}">
-          ${fmtPct(p.change.h1)}
-        </div>
-      </div>
-
-      <div class="tf">
-        <div class="lbl">6h</div>
-        <div class="v ${cls(p.change.h6)}">
-          ${fmtPct(p.change.h6)}
-        </div>
-      </div>
-
-      <div class="tf">
-        <div class="lbl">24h</div>
-        <div class="v ${cls(p.change.h24)}">
-          ${fmtPct(p.change.h24)}
-        </div>
-      </div>
-
-    </div>
-
-
-    <div class="score-row">
-
-      <span>
-        ${t("score")}
-      </span>
-
-      <span class="score-value">
-
-        ${
-          score>0
-            ?"+"
-            :""
-        }${score.toFixed(0)}
-
-        ${confidence}
-
-      </span>
-
-    </div>
-
-
-    <div class="bar">
-
-      <div
-        style="
-          width:${sw}%;
-          background:${barColor}
-        "
-      ></div>
-
-    </div>
-
-
-    <div class="flow-row">
-
-      <span class="${flowClass}">
-
-        ${t("flow")}:
-        ${p.flow>0?"+":""}
-        ${Number(p.flow||0).toFixed(1)}%
-
-      </span>
-
-      <span>
-
-        ${t("buys")}:
-        ${p.buys||0}
-
-        ·
-
-        ${t("sells")}:
-        ${p.sells||0}
-
-        ·
-
-        ${buyRatio.toFixed(1)}%
-
-      </span>
-
-    </div>
-
-  </div>
 
   `;
 
 }
-
 
 /* =========================================================
    RENDER
@@ -3240,98 +3360,124 @@ function cardHTML(
 
 function render(){
 
-  if(currentPage!=="market")
+  if(
+    currentPage !==
+    "market"
+  ){
     return;
+  }
 
-  const list=
+  const list =
     getFiltered();
 
-  const el=
+  const el =
     document.getElementById(
       "content"
     );
 
   if(!list.length){
 
-    el.innerHTML=`
+    el.innerHTML = `
+
       <div class="empty">
-        ${esc(t("noResults"))}
+
+        ${t("noResults")}
+
         <br>
+
         <small>
-          ${esc(t("refreshOrFilter"))}
+          Try another filter.
         </small>
+
       </div>
+
     `;
 
     return;
 
   }
 
-  el.innerHTML=
-    '<div class="list">'+
-    list.map(cardHTML).join("")+
+  el.innerHTML =
+    '<div class="list">' +
+    list
+      .map(
+        cardHTML
+      )
+      .join("") +
     "</div>";
 
 }
 
-
-/* =========================================================
-   FAVORITES PAGE
-========================================================= */
-
 function renderFavorites(){
 
-  const el=
+  const el =
     document.getElementById(
       "favContent"
     );
 
-  if(!favorites.length){
+  if(
+    !favorites.length
+  ){
 
-    el.innerHTML=`
+    el.innerHTML = `
+
       <div class="fav-empty">
-        <div class="big">★</div>
-        ${esc(t("noFavorites"))}
+
+        <div class="big">
+          ★
+        </div>
+
+        ${t("noFavorites")}
+
         <br>
-        ${esc(t("addFavorite"))}
+
+        ${t("addFavorite")}
+
       </div>
+
     `;
 
     return;
 
   }
 
-  const items=
+  const items =
     favorites.map(
-      f=>
+      f =>
         pairs.find(
-          p=>
-            p.pairAddress===
+          p =>
+            p.pairAddress ===
             f.pairAddress
         ) ||
         {
+          pairAddress:
+            f.pairAddress,
 
-          pairAddress:f.pairAddress,
+          baseToken:{
+            name:
+              f.name ||
+              f.symbol ||
+              t("unknown"),
 
-          baseSymbol:
-            f.symbol||
-            "???",
+            symbol:
+              f.symbol ||
+              "???",
 
-          baseName:
-            f.name||
-            f.symbol||
-            t("unknownToken"),
+            address:
+              f.baseAddress ||
+              ""
+          },
 
-          baseAddress:
-            f.baseAddress||
-            "",
+          quoteToken:{
+            symbol:""
+          },
 
           dexId:
-            f.dexId||
+            f.dexId ||
             "DEX",
 
           url:
-            f.url||
+            f.url ||
             "",
 
           priceUsd:0,
@@ -3351,185 +3497,185 @@ function renderFavorites(){
 
           score:0,
 
-          signal:"neutral",
-
           confidence:0,
 
-          warnings:[],
-
-          buys:0,
-
-          sells:0,
-
-          flow:0,
-
-          buyRatio:.5
+          signal:"neutral"
 
         }
     );
 
-  el.innerHTML=
-    '<div class="list">'+
-    items.map(cardHTML).join("")+
+  el.innerHTML =
+    '<div class="list">' +
+    items
+      .map(
+        cardHTML
+      )
+      .join("") +
     "</div>";
 
 }
 
-
-/* =========================================================
-   ALERT PAGE
-========================================================= */
-
 function renderAlertsPage(){
 
-  const el=
+  const el =
     document.getElementById(
       "alertContent"
     );
 
-  if(!alerts.length){
+  if(
+    !alerts.length
+  ){
 
-    el.innerHTML=`
+    el.innerHTML = `
+
       <div class="fav-empty">
 
-        <div class="big">🔔</div>
+        <div class="big">
+          🔔
+        </div>
 
-        ${esc(t("noAlerts"))}
+        ${t("noAlerts")}
 
         <br>
 
-        ${esc(t("setAlertShort"))}
+        ${t("setAlert")}
 
       </div>
+
     `;
 
     return;
 
   }
 
-  const labels={
+  const labels = {
 
     pct_up:
-      t("percentUp"),
+      "Rise %",
 
     pct_down:
-      t("percentDown"),
+      "Fall %",
 
     price_above:
-      t("priceAbove"),
+      "Price ≥",
 
     price_below:
-      t("priceBelow")
+      "Price ≤"
 
   };
 
-  el.innerHTML=
-    '<div class="list">'+
+  el.innerHTML =
+    '<div class="list">' +
+    alerts
+      .map(
+        a => {
 
-    alerts.map(
-      a=>{
+          const live =
+            pairs.find(
+              p =>
+                p.pairAddress ===
+                a.pairAddress
+            );
 
-        const live=
-          pairs.find(
-            p=>
-              p.pairAddress===
-              a.pairAddress
-          );
+          const price =
+            live
+              ? formatPrice(
+                  live.priceUsd
+                )
+              : "—";
 
-        const price=
-          live
-            ?formatPrice(
-              live.priceUsd
+          const suffix =
+            a.type.startsWith(
+              "pct"
             )
-            :"—";
+              ? "%"
+              : "$";
 
-        const suffix=
-          a.type.startsWith(
-            "pct"
-          )
-            ?"%
-            ":"$";
+          return `
 
-        return `
+            <div class="card">
 
-        <div class="card">
+              <div class="card-top">
 
-          <div class="card-top">
+                <div class="info">
 
-            <div class="info">
+                  <div class="sym-row">
 
-              <div class="sym-row">
+                    <div class="token-title">
 
-                <div class="token-title">
+                      <span class="token-name">
+                        ${esc(
+                          a.name ||
+                          a.symbol ||
+                          t("unknown")
+                        )}
+                      </span>
 
-                  <span class="token-name">
-                    ${esc(
-                      a.name||
-                      a.symbol||
-                      t("unknownToken")
-                    )}
-                  </span>
+                      <span class="token-symbol">
+                        ${esc(
+                          a.symbol ||
+                          "???"
+                        )}
+                      </span>
 
-                  <span class="token-symbol">
-                    ${esc(
-                      a.symbol||
-                      "???"
-                    )}
-                  </span>
+                    </div>
+
+                  </div>
+
+                  <div class="meta">
+
+                    ${
+                      labels[
+                        a.type
+                      ] ||
+                      a.type
+                    }
+
+                    ${a.value}${suffix}
+
+                    · Now:
+                    $${price}
+
+                  </div>
 
                 </div>
 
-              </div>
-
-              <div class="meta">
-
-                ${esc(
-                  labels[a.type]||
-                  a.type
-                )}
-
-                ${a.value}${suffix}
-
-                ·
-
-                ${t("now")}:
-                $${price}
+                <button
+                  class="btn btn-danger"
+                  style="
+                    flex:none;
+                    padding:8px 12px;
+                    font-size:.72rem
+                  "
+                  onclick="
+                    removeAlert(
+                      '${escJS(a.id)}'
+                    )
+                  "
+                >
+                  Delete
+                </button>
 
               </div>
 
             </div>
 
-            <button
-              class="btn btn-danger"
-              style="
-                flex:none;
-                padding:8px 12px;
-                font-size:.72rem
-              "
-              onclick="removeAlert('${escJS(a.id)}')"
-            >
-              ${esc(t("delete"))}
-            </button>
+          `;
 
-          </div>
-
-        </div>
-
-        `;
-
-      }
-    ).join("")+
-
+        }
+      )
+      .join("") +
     "</div>";
 
 }
 
-
 /* =========================================================
-   FAVORITE ACTIONS
+   FAVORITES
 ========================================================= */
 
-function toggleFav(p){
+function toggleFav(
+  p
+){
 
   if(
     isFav(
@@ -3537,10 +3683,10 @@ function toggleFav(p){
     )
   ){
 
-    favorites=
+    favorites =
       favorites.filter(
-        x=>
-          x.pairAddress!==
+        x =>
+          x.pairAddress !==
           p.pairAddress
       );
 
@@ -3552,13 +3698,18 @@ function toggleFav(p){
         p.pairAddress,
 
       symbol:
-        p.baseSymbol,
+        p.baseToken?.symbol ||
+        p.baseSymbol ||
+        "",
 
       name:
-        p.baseName,
+        p.baseToken?.name ||
+        p.baseName ||
+        "",
 
       baseAddress:
-        p.baseAddress||
+        p.baseToken?.address ||
+        p.baseAddress ||
         "",
 
       dexId:
@@ -3577,99 +3728,96 @@ function toggleFav(p){
   );
 
   render();
-
   renderFavorites();
 
 }
 
-window.toggleFavByAddr=
-  a=>{
+window.toggleFavByAddr =
+  function(address){
 
-    const p=
+    const p =
       pairs.find(
-        x=>
-          x.pairAddress===
-          a
-      );
-
-    const f=
-      favorites.find(
-        x=>
-          x.pairAddress===
-          a
+        x =>
+          x.pairAddress ===
+          address
       );
 
     if(p){
 
       toggleFav(p);
 
-    }else if(f){
-
-      toggleFav({
-
-        ...f,
-
-        baseSymbol:
-          f.symbol,
-
-        baseName:
-          f.name||
-          f.symbol
-
-      });
-
     }
 
   };
-
 
 /* =========================================================
    ALERTS
 ========================================================= */
 
-function openAlertModal(p){
+function openAlertModal(
+  p
+){
 
-  alertTarget=p;
+  alertTarget =
+    p;
 
   document.getElementById(
     "modalSymbol"
-  ).textContent=
-    `${p.baseName} (${p.baseSymbol}) · $${formatPrice(p.priceUsd)}`;
+  ).textContent =
+    `${
+      p.baseToken?.name ||
+      p.baseName
+    } (${
+      p.baseToken?.symbol ||
+      p.baseSymbol
+    }) · $${formatPrice(
+      p.priceUsd
+    )}`;
 
   document.getElementById(
     "alertValue"
-  ).value="";
+  ).value = "";
 
   document.getElementById(
     "alertType"
-  ).value="pct_up";
+  ).value =
+    "pct_up";
 
   document.getElementById(
     "alertModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
 
-window.openAlertByAddr=
-  a=>{
+window.openAlertByAddr =
+  function(address){
 
-    const p=
+    const p =
       pairs.find(
-        x=>
-          x.pairAddress===
-          a
+        x =>
+          x.pairAddress ===
+          address
       );
 
-    if(p)
-      openAlertModal(p);
-    else
-      showAlert(
-        t("tokenNotListed")
+    if(p){
+
+      openAlertModal(
+        p
       );
+
+    }else{
+
+      showAlert(
+        "Token is not currently loaded."
+      );
+
+    }
 
   };
 
-function closeModal(){
+function closeAlertModal(){
 
   document.getElementById(
     "alertModal"
@@ -3677,7 +3825,8 @@ function closeModal(){
     "show"
   );
 
-  alertTarget=null;
+  alertTarget =
+    null;
 
 }
 
@@ -3686,12 +3835,12 @@ function saveAlert(){
   if(!alertTarget)
     return;
 
-  const type=
+  const type =
     document.getElementById(
       "alertType"
     ).value;
 
-  const value=
+  const value =
     parseFloat(
       document.getElementById(
         "alertValue"
@@ -3700,7 +3849,7 @@ function saveAlert(){
 
   if(
     !Number.isFinite(value) ||
-    value<=0
+    value <= 0
   ){
 
     showAlert(
@@ -3711,13 +3860,13 @@ function saveAlert(){
 
   }
 
-  alerts=
+  alerts =
     alerts.filter(
-      a=>
+      a =>
         !(
-          a.pairAddress===
+          a.pairAddress ===
           alertTarget.pairAddress &&
-          a.type===
+          a.type ===
           type
         )
     );
@@ -3725,15 +3874,19 @@ function saveAlert(){
   alerts.push({
 
     id:
-      Date.now().toString(36),
+      Date.now().toString(
+        36
+      ),
 
     pairAddress:
       alertTarget.pairAddress,
 
     symbol:
+      alertTarget.baseToken?.symbol ||
       alertTarget.baseSymbol,
 
     name:
+      alertTarget.baseToken?.name ||
       alertTarget.baseName,
 
     type,
@@ -3753,28 +3906,31 @@ function saveAlert(){
     alerts
   );
 
-  const sym=
+  const sym =
+    alertTarget.baseToken?.symbol ||
     alertTarget.baseSymbol;
 
-  closeModal();
+  closeAlertModal();
 
   render();
-
   renderAlertsPage();
 
   showPopup(
-    t("saved"),
-    `${sym} ${t("alertCreated")}`
+    t("alertSaved"),
+    `${sym} ${t("alertCreated")}.`
   );
 
 }
 
-function removeAlert(id){
+function removeAlert(
+  id
+){
 
-  alerts=
+  alerts =
     alerts.filter(
-      a=>
-        a.id!==id
+      a =>
+        a.id !==
+        id
     );
 
   saveJSON(
@@ -3783,54 +3939,66 @@ function removeAlert(id){
   );
 
   renderAlertsPage();
-
   render();
-
   checkAlerts();
 
 }
 
-window.removeAlert=
+window.removeAlert =
   removeAlert;
 
 function checkAlerts(){
 
-  const hits=[];
+  const hits = [];
 
   for(
     const a of alerts
   ){
 
-    const p=
+    const p =
       pairs.find(
-        x=>
-          x.pairAddress===
+        x =>
+          x.pairAddress ===
           a.pairAddress
       );
 
     if(!p)
       continue;
 
-    const hit=
+    const hit =
 
       (
-        a.type==="pct_up" &&
-        p.change.h1>=a.value
-      ) ||
+        a.type ===
+        "pct_up" &&
+        p.change.h1 >=
+        a.value
+      )
+
+      ||
 
       (
-        a.type==="pct_down" &&
-        p.change.h1<=-a.value
-      ) ||
+        a.type ===
+        "pct_down" &&
+        p.change.h1 <=
+        -a.value
+      )
+
+      ||
 
       (
-        a.type==="price_above" &&
-        p.priceUsd>=a.value
-      ) ||
+        a.type ===
+        "price_above" &&
+        p.priceUsd >=
+        a.value
+      )
+
+      ||
 
       (
-        a.type==="price_below" &&
-        p.priceUsd<=a.value
+        a.type ===
+        "price_below" &&
+        p.priceUsd <=
+        a.value
       );
 
     if(hit)
@@ -3838,7 +4006,7 @@ function checkAlerts(){
 
   }
 
-  const banner=
+  const banner =
     document.getElementById(
       "alertBanner"
     );
@@ -3853,13 +4021,13 @@ function checkAlerts(){
 
   }
 
-  banner.innerHTML=
+  banner.innerHTML =
     hits
       .map(
-        a=>
-          "🔔 <b>"+
-          esc(a.symbol)+
-          "</b> "+
+        a =>
+          "🔔 <b>" +
+          esc(a.symbol) +
+          "</b> " +
           t("triggered")
       )
       .join("<br>");
@@ -3879,364 +4047,22 @@ function checkAlerts(){
 
 }
 
-
 /* =========================================================
-   AI ANALYSIS
+   PAIR
 ========================================================= */
 
-function generateAIAnalysis(p){
-
-  const c=p.change;
-
-  const score=
-    Number(p.score||0);
-
-  const conf=
-    Number(p.confidence||50);
-
-  const volume=
-    Number(p.volume?.h24||0);
-
-  const liquidity=
-    Number(p.liquidity||0);
-
-
-  let trend;
-
-  if(score>=70)
-    trend=t("veryStrongUp");
-  else if(score>=55)
-    trend=t("strongUp");
-  else if(score>=35)
-    trend=t("positive");
-  else if(score>=15)
-    trend=t("slightlyPositive");
-  else if(score>-15)
-    trend=t("neutralTrend");
-  else if(score>-35)
-    trend=t("slightlyNegative");
-  else if(score>-55)
-    trend=t("weak");
-  else if(score>-70)
-    trend=t("strongDown");
-  else
-    trend=t("veryStrongDown");
-
-
-  let volumeText;
-
-  if(volume>=200000){
-
-    volumeText=
-      `${t("veryHighVolume")} (${fmtMoney(volume)})`;
-
-  }else if(volume>=50000){
-
-    volumeText=
-      `${t("highVolumeText")} (${fmtMoney(volume)})`;
-
-  }else if(volume>=15000){
-
-    volumeText=
-      `${t("mediumVolume")} (${fmtMoney(volume)})`;
-
-  }else if(volume>=5000){
-
-    volumeText=
-      `${t("lowMediumVolume")} (${fmtMoney(volume)})`;
-
-  }else{
-
-    volumeText=
-      `${t("veryLowVolume")} (${fmtMoney(volume)})`;
-
-  }
-
-
-  let liquidityText;
-
-  if(liquidity>=100000){
-
-    liquidityText=
-      `${t("strongLiquidity")} (${fmtMoney(liquidity)})`;
-
-  }else if(liquidity>=20000){
-
-    liquidityText=
-      `${t("sufficientLiquidity")} (${fmtMoney(liquidity)})`;
-
-  }else if(liquidity>=5000){
-
-    liquidityText=
-      `${t("mediumLiquidity")} (${fmtMoney(liquidity)})`;
-
-  }else if(liquidity>=1500){
-
-    liquidityText=
-      `${t("weakLiquidity")} (${fmtMoney(liquidity)})`;
-
-  }else{
-
-    liquidityText=
-      `${t("criticalLiquidity")} (${fmtMoney(liquidity)})`;
-
-  }
-
-
-  const ups=[
-    c.m5,
-    c.h1,
-    c.h6,
-    c.h24
-  ].filter(
-    x=>x>1
-  ).length;
-
-  const downs=[
-    c.m5,
-    c.h1,
-    c.h6,
-    c.h24
-  ].filter(
-    x=>x<-1
-  ).length;
-
-
-  let tf;
-
-  if(ups>=3)
-    tf=t("multiUp");
-  else if(downs>=3)
-    tf=t("multiDown");
-  else if(
-    c.h1>5 &&
-    c.h6<-3
-  )
-    tf=t("shortUpMediumWeak");
-  else if(
-    c.h1<-5 &&
-    c.h6>3
-  )
-    tf=t("shortDownMediumPositive");
-  else
-    tf=t("mixed");
-
-
-  const risks=[];
-
-  if(c.h1>25)
-    risks.push(
-      `${fmtPct(c.h1)} 1h — ${t("overheat")}`
-    );
-
-  if(c.h1<-25)
-    risks.push(
-      `${fmtPct(c.h1)} 1h — ${t("oversold")}`
-    );
-
-  if(liquidity<2500)
-    risks.push(
-      t("lowLiquidity")
-    );
-
-  if(
-    volume<5000 &&
-    Math.abs(c.h1)>8
-  )
-    risks.push(
-      t("lowVolumeMove")
-    );
-
-  if(
-    c.h1>0 &&
-    c.h6<-8
-  )
-    risks.push(
-      t("shortUpMediumWeak")
-    );
-
-  if(
-    c.h1<0 &&
-    c.h6>10
-  )
-    risks.push(
-      t("shortDownMediumPositive")
-    );
-
-  if(!risks.length)
-    risks.push(
-      t("noExtraWarnings")
-    );
-
-
-  let advice;
-
-  if(
-    p.signal==="strong-buy" &&
-    conf>=65
-  ){
-
-    advice=
-      t("adviceStrongBuy");
-
-  }else if(
-    p.signal==="buy" &&
-    conf>=60
-  ){
-
-    advice=
-      t("adviceBuy");
-
-  }else if(
-    p.signal==="buy"
-  ){
-
-    advice=
-      t("adviceWeakBuy");
-
-  }else if(
-    p.signal==="strong-sell"
-  ){
-
-    advice=
-      t("adviceStrongSell");
-
-  }else if(
-    p.signal==="sell"
-  ){
-
-    advice=
-      t("adviceSell");
-
-  }else if(
-    Math.abs(score)<15
-  ){
-
-    advice=
-      t("adviceNeutral");
-
-  }else{
-
-    advice=
-      t("adviceWatch");
-
-  }
-
-
-  const s=
-    score>0
-      ?"+"+score.toFixed(0)
-      :score.toFixed(0);
-
-
-  return `
-
-<b>${esc(p.baseName)} (${esc(p.baseSymbol)})</b>
-
-<b>${t("general")}:</b>
-${esc(trend)}
-
-<b>${t("technical")}:</b>
-
-• 5m: ${fmtPct(c.m5)}
-• 1h: ${fmtPct(c.h1)}
-• 6h: ${fmtPct(c.h6)}
-• 24h: ${fmtPct(c.h24)}
-
-<b>${t("score")}:</b>
-${s} · ${esc(signalLabel(p.signal)||t("neutral"))}
-
-<b>${t("confidence")}:</b>
-${conf.toFixed(0)}%
-
-<b>${t("timeframe")}:</b>
-${esc(tf)}
-
-<b>${t("volume")}:</b>
-${esc(volumeText)}
-
-<b>${t("liquidity")}:</b>
-${esc(liquidityText)}
-
-<b>${t("flow")}:</b>
-${Number(p.flow||0)>0?"+":""}${Number(p.flow||0).toFixed(1)}%
-
-<b>${t("warnings")}:</b>
-${esc(
-  (p.warnings||[]).join(" · ")||
-  "—"
-)}
-
-<b>${t("risks")}:</b>
-• ${risks.map(esc).join("\n• ")}
-
-<b>${t("summary")}:</b>
-${esc(advice)}
-
-<i>${esc(t("disclaimer"))}</i>
-
-`;
-
-}
-
-function openAIAnalysis(address){
-
-  const p=
-    pairs.find(
-      x=>
-        x.pairAddress===
-        address
-    );
-
-  if(!p){
-
-    showAlert(
-      t("tokenDataMissing")
-    );
-
-    return;
-
-  }
-
-  document.getElementById(
-    "aiBody"
-  ).innerHTML=
-    generateAIAnalysis(p);
-
-  document.getElementById(
-    "aiModal"
-  ).classList.add(
-    "show"
-  );
-
-}
-
-window.openAIAnalysis=
-  openAIAnalysis;
-
-function closeAIModal(){
-
-  document.getElementById(
-    "aiModal"
-  ).classList.remove(
-    "show"
-  );
-
-}
-
-
-/* =========================================================
-   LINKS / POPUPS
-========================================================= */
-
-function openPair(url){
+function openPair(
+  url
+){
 
   if(!url)
     return;
 
   try{
 
-    if(tg?.openLink){
+    if(
+      tg?.openLink
+    ){
 
       tg.openLink(
         url,
@@ -4266,20 +4092,32 @@ function openPair(url){
 
 }
 
-window.openPair=
+window.openPair =
   openPair;
 
-function showAlert(message){
+/* =========================================================
+   POPUPS
+========================================================= */
+
+function showAlert(
+  message
+){
 
   try{
 
     tg?.showAlert
-      ?tg.showAlert(message)
-      :alert(message);
+      ? tg.showAlert(
+          message
+        )
+      : alert(
+          message
+        );
 
   }catch(_){
 
-    alert(message);
+    alert(
+      message
+    );
 
   }
 
@@ -4292,27 +4130,37 @@ function showPopup(
 
   try{
 
-    tg?.showPopup
-      ?tg.showPopup({
-          title,
-          message,
-          buttons:[
-            {
-              type:"ok"
-            }
-          ]
-        })
-      :alert(
-        title+
-        "\n\n"+
+    if(tg?.showPopup){
+
+      tg.showPopup({
+
+        title,
+
+        message,
+
+        buttons:[
+          {
+            type:"ok"
+          }
+        ]
+
+      });
+
+    }else{
+
+      alert(
+        title +
+        "\n\n" +
         message
       );
+
+    }
 
   }catch(_){
 
     alert(
-      title+
-      "\n\n"+
+      title +
+      "\n\n" +
       message
     );
 
@@ -4320,17 +4168,20 @@ function showPopup(
 
 }
 
-
 /* =========================================================
    LANGUAGE
 ========================================================= */
 
-function setLanguage(lang){
+function setLanguage(
+  lang
+){
 
-  if(!LANGUAGES[lang])
+  if(
+    !LANGUAGES[lang]
+  )
     return;
 
-  currentLanguage=
+  currentLanguage =
     lang;
 
   try{
@@ -4342,182 +4193,157 @@ function setLanguage(lang){
 
   }catch(_){}
 
-  document.documentElement.lang=
+  document.documentElement
+    .lang =
     lang;
 
   applyLanguage();
 
   render();
-
   renderFavorites();
-
   renderAlertsPage();
 
 }
 
 function applyLanguage(){
 
-  document
-    .querySelectorAll(
-      "[data-i18n]"
-    )
-    .forEach(
-      el=>{
-        el.textContent=
-          t(
-            el.dataset.i18n
-          );
+  document.querySelectorAll(
+    ".tab"
+  ).forEach(
+    el => {
+
+      const map = {
+
+        gainers:
+          t("gainers"),
+
+        losers:
+          t("losers"),
+
+        volume:
+          t("volume"),
+
+        signals:
+          t("signals")
+
+      };
+
+      el.textContent =
+        map[
+          el.dataset.tab
+        ];
+
+    }
+  );
+
+  document.querySelectorAll(
+    ".nav-item"
+  ).forEach(
+    el => {
+
+      const page =
+        el.dataset.page;
+
+      const map = {
+
+        market:
+          t("market"),
+
+        favorites:
+          t("favorites"),
+
+        alerts:
+          t("alerts")
+
+      };
+
+      const spans =
+        el.querySelectorAll(
+          "span"
+        );
+
+      if(
+        spans[1]
+      ){
+        spans[1].textContent =
+          map[page] ||
+          page;
       }
-    );
 
+    }
+  );
 
-  const tabs={
+  document.querySelectorAll(
+    ".chip"
+  ).forEach(
+    el => {
 
-    gainers:t("gainers"),
-    losers:t("losers"),
-    volume:t("volume"),
-    signals:t("signals")
+      if(
+        el.dataset.tf ===
+        "h1"
+      )
+        el.textContent =
+          currentLanguage ===
+          "tr"
+            ? "1 Saat"
+            : "1 Hour";
 
-  };
+      if(
+        el.dataset.tf ===
+        "h6"
+      )
+        el.textContent =
+          currentLanguage ===
+          "tr"
+            ? "6 Saat"
+            : "6 Hours";
 
-  document
-    .querySelectorAll(
-      "#mainTabs .tab"
-    )
-    .forEach(
-      el=>{
-        el.textContent=
-          tabs[
-            el.dataset.tab
-          ];
-      }
-    );
+      if(
+        el.dataset.tf ===
+        "h24"
+      )
+        el.textContent =
+          currentLanguage ===
+          "tr"
+            ? "24 Saat"
+            : "24 Hours";
 
+      if(
+        el.dataset.vol ===
+        "all"
+      )
+        el.textContent =
+          currentLanguage ===
+          "tr"
+            ? "Tüm"
+            : "All";
 
-  document
-    .querySelectorAll(
-      ".chip"
-    )
-    .forEach(
-      el=>{
+      if(
+        el.dataset.vol ===
+        "high"
+      )
+        el.textContent =
+          currentLanguage ===
+          "tr"
+            ? "Yüksek Hacim"
+            : "High Volume";
 
-        if(
-          el.dataset.tf===
-          "h1"
-        )
-          el.textContent=
-            t("hour1");
+      if(
+        el.dataset.vol ===
+        "dedust"
+      )
+        el.textContent =
+          "DeDust";
 
-        if(
-          el.dataset.tf===
-          "h6"
-        )
-          el.textContent=
-            t("hour6");
-
-        if(
-          el.dataset.tf===
-          "h24"
-        )
-          el.textContent=
-            t("hour24");
-
-        if(
-          el.dataset.vol===
-          "all"
-        )
-          el.textContent=
-            t("all");
-
-        if(
-          el.dataset.vol===
-          "high"
-        )
-          el.textContent=
-            t("highVolume");
-
-        if(
-          el.dataset.vol===
-          "dedust"
-        )
-          el.textContent=
-            t("dedust");
-
-      }
-    );
-
+    }
+  );
 
   document.getElementById(
-    "loadingText"
-  ).textContent=
-    t("scanning");
-
-  document.getElementById(
-    "alertTitle"
-  ).textContent=
-    t("alertSet");
-
-  document.getElementById(
-    "alertTypeLabel"
-  ).textContent=
-    t("alertType");
-
-  document.getElementById(
-    "valueLabel"
-  ).textContent=
-    t("value");
-
-  document.getElementById(
-    "modalCancel"
-  ).textContent=
-    t("cancel");
-
-  document.getElementById(
-    "modalSave"
-  ).textContent=
-    t("save");
-
-  document.getElementById(
-    "aiTitle"
-  ).textContent=
-    "🤖 "+
-    t("aiAnalysis");
-
-  document.getElementById(
-    "aiModalOk"
-  ).textContent=
-    t("ok");
-
-  document.getElementById(
-    "alertValue"
-  ).placeholder=
-    t("example");
-
-
-  document.getElementById(
-    "alertType"
-  ).innerHTML=`
-
-    <option value="pct_up">
-      ${esc(t("percentUp"))}
-    </option>
-
-    <option value="pct_down">
-      ${esc(t("percentDown"))}
-    </option>
-
-    <option value="price_above">
-      ${esc(t("priceAbove"))}
-    </option>
-
-    <option value="price_below">
-      ${esc(t("priceBelow"))}
-    </option>
-
-  `;
+    "guardianStateText"
+  ).textContent =
+    t("guardian");
 
 }
-
 
 /* =========================================================
    LANGUAGE MENU
@@ -4525,7 +4351,7 @@ function applyLanguage(){
 
 function openLanguageMenu(){
 
-  let menu=
+  let menu =
     document.getElementById(
       "languageMenu"
     );
@@ -4533,64 +4359,62 @@ function openLanguageMenu(){
   if(menu){
 
     menu.remove();
-
     return;
 
   }
 
-  menu=
+  menu =
     document.createElement(
       "div"
     );
 
-  menu.id=
+  menu.id =
     "languageMenu";
 
-  menu.className=
+  menu.className =
     "language-menu";
-
 
   Object.entries(
     LANGUAGES
   ).forEach(
-    ([code,name])=>{
+    ([code,name]) => {
 
-      const button=
+      const b =
         document.createElement(
           "button"
         );
 
-      button.textContent=
+      b.textContent =
         name;
 
       if(
-        code===
+        code ===
         currentLanguage
       ){
 
-        button.classList.add(
+        b.classList.add(
           "active"
         );
 
       }
 
-      button.onclick=()=>{
+      b.onclick =
+        () => {
 
-        setLanguage(
-          code
-        );
+          setLanguage(
+            code
+          );
 
-        menu.remove();
+          menu.remove();
 
-      };
+        };
 
       menu.appendChild(
-        button
+        b
       );
 
     }
   );
-
 
   document.body.appendChild(
     menu
@@ -4600,15 +4424,14 @@ function openLanguageMenu(){
 
 document.getElementById(
   "languageBtn"
-).onclick=
+).onclick =
   openLanguageMenu;
-
 
 document.addEventListener(
   "click",
-  event=>{
+  e => {
 
-    const menu=
+    const menu =
       document.getElementById(
         "languageMenu"
       );
@@ -4616,9 +4439,9 @@ document.addEventListener(
     if(
       menu &&
       !menu.contains(
-        event.target
+        e.target
       ) &&
-      event.target.id!==
+      e.target.id !==
       "languageBtn"
     ){
 
@@ -4629,296 +4452,311 @@ document.addEventListener(
   }
 );
 
-
 /* =========================================================
-   UI EVENTS
+   EVENTS
 ========================================================= */
 
-document
-  .querySelectorAll(
-    "#mainTabs .tab"
-  )
-  .forEach(
-    tab=>{
+document.querySelectorAll(
+  "#mainTabs .tab"
+).forEach(
+  tab => {
 
-      tab.addEventListener(
-        "click",
-        ()=>{
+    tab.addEventListener(
+      "click",
+      () => {
+
+        document
+          .querySelectorAll(
+            "#mainTabs .tab"
+          )
+          .forEach(
+            x =>
+              x.classList.remove(
+                "active"
+              )
+          );
+
+        tab.classList.add(
+          "active"
+        );
+
+        currentTab =
+          tab.dataset.tab;
+
+        render();
+
+      }
+    );
+
+  }
+);
+
+document.querySelectorAll(
+  ".chip"
+).forEach(
+  chip => {
+
+    chip.addEventListener(
+      "click",
+      () => {
+
+        if(
+          chip.dataset.tf
+        ){
 
           document
             .querySelectorAll(
-              "#mainTabs .tab"
+              "[data-tf]"
             )
             .forEach(
-              x=>
+              x =>
                 x.classList.remove(
                   "active"
                 )
             );
 
-          tab.classList.add(
+          chip.classList.add(
             "active"
           );
 
-          currentTab=
-            tab.dataset.tab;
-
-          render();
+          currentTf =
+            chip.dataset.tf;
 
         }
-      );
 
-    }
-  );
-
-
-document
-  .querySelectorAll(
-    ".chip"
-  )
-  .forEach(
-    chip=>{
-
-      chip.addEventListener(
-        "click",
-        ()=>{
-
-          if(
-            chip.dataset.tf
-          ){
-
-            document
-              .querySelectorAll(
-                "[data-tf]"
-              )
-              .forEach(
-                x=>
-                  x.classList.remove(
-                    "active"
-                  )
-              );
-
-            chip.classList.add(
-              "active"
-            );
-
-            currentTf=
-              chip.dataset.tf;
-
-          }
-
-
-          if(
-            chip.dataset.vol
-          ){
-
-            document
-              .querySelectorAll(
-                "[data-vol]"
-              )
-              .forEach(
-                x=>
-                  x.classList.remove(
-                    "active"
-                  )
-              );
-
-            chip.classList.add(
-              "active"
-            );
-
-            volFilter=
-              chip.dataset.vol;
-
-          }
-
-          render();
-
-        }
-      );
-
-    }
-  );
-
-
-document
-  .querySelectorAll(
-    ".nav-item"
-  )
-  .forEach(
-    item=>{
-
-      item.addEventListener(
-        "click",
-        ()=>{
+        if(
+          chip.dataset.vol
+        ){
 
           document
             .querySelectorAll(
-              ".nav-item"
+              "[data-vol]"
             )
             .forEach(
-              x=>
+              x =>
                 x.classList.remove(
                   "active"
                 )
             );
 
-          item.classList.add(
+          chip.classList.add(
             "active"
           );
 
-          currentPage=
-            item.dataset.page;
-
-          document
-            .querySelectorAll(
-              ".page"
-            )
-            .forEach(
-              x=>
-                x.classList.remove(
-                  "active"
-                )
-            );
-
-          document
-            .getElementById(
-              "page-"+
-              currentPage
-            )
-            .classList.add(
-              "active"
-            );
-
-
-          const market=
-            currentPage===
-            "market";
-
-          document.getElementById(
-            "filters"
-          ).style.display=
-            market
-              ?"flex"
-              :"none";
-
-          document.getElementById(
-            "mainTabs"
-          ).style.display=
-            market
-              ?"flex"
-              :"none";
-
-
-          if(
-            currentPage===
-            "favorites"
-          )
-            renderFavorites();
-
-          if(
-            currentPage===
-            "alerts"
-          )
-            renderAlertsPage();
-
-          if(market)
-            render();
+          volFilter =
+            chip.dataset.vol;
 
         }
-      );
 
-    }
-  );
+        render();
 
+      }
+    );
+
+  }
+);
+
+document.querySelectorAll(
+  ".nav-item"
+).forEach(
+  item => {
+
+    item.addEventListener(
+      "click",
+      () => {
+
+        document
+          .querySelectorAll(
+            ".nav-item"
+          )
+          .forEach(
+            x =>
+              x.classList.remove(
+                "active"
+              )
+          );
+
+        item.classList.add(
+          "active"
+        );
+
+        currentPage =
+          item.dataset.page;
+
+        document
+          .querySelectorAll(
+            ".page"
+          )
+          .forEach(
+            x =>
+              x.classList.remove(
+                "active"
+              )
+          );
+
+        document
+          .getElementById(
+            "page-" +
+            currentPage
+          )
+          .classList.add(
+            "active"
+          );
+
+        const market =
+          currentPage ===
+          "market";
+
+        document.getElementById(
+          "filters"
+        ).style.display =
+          market
+            ? "flex"
+            : "none";
+
+        document.getElementById(
+          "mainTabs"
+        ).style.display =
+          market
+            ? "flex"
+            : "none";
+
+        if(
+          currentPage ===
+          "favorites"
+        )
+          renderFavorites();
+
+        if(
+          currentPage ===
+          "alerts"
+        )
+          renderAlertsPage();
+
+        if(
+          market
+        )
+          render();
+
+      }
+    );
+
+  }
+);
 
 document.getElementById(
   "refreshBtn"
-).onclick=
-  loadData;
-
+).onclick =
+  loadMarket;
 
 document.getElementById(
   "modalClose"
-).onclick=
-  closeModal;
-
+).onclick =
+  closeAlertModal;
 
 document.getElementById(
   "modalCancel"
-).onclick=
-  closeModal;
-
+).onclick =
+  closeAlertModal;
 
 document.getElementById(
   "modalSave"
-).onclick=
+).onclick =
   saveAlert;
-
 
 document.getElementById(
   "alertModal"
-).onclick=
-  event=>{
+).onclick =
+  e => {
 
     if(
-      event.target.id===
+      e.target.id ===
       "alertModal"
     ){
 
-      closeModal();
+      closeAlertModal();
 
     }
 
   };
-
 
 document.getElementById(
   "aiModalClose"
-).onclick=
-  closeAIModal;
-
+).onclick =
+  () =>
+    document
+      .getElementById(
+        "aiModal"
+      )
+      .classList.remove(
+        "show"
+      );
 
 document.getElementById(
   "aiModalOk"
-).onclick=
-  closeAIModal;
-
+).onclick =
+  () =>
+    document
+      .getElementById(
+        "aiModal"
+      )
+      .classList.remove(
+        "show"
+      );
 
 document.getElementById(
   "aiModal"
-).onclick=
-  event=>{
+).onclick =
+  e => {
 
     if(
-      event.target.id===
+      e.target.id ===
       "aiModal"
     ){
 
-      closeAIModal();
+      document
+        .getElementById(
+          "aiModal"
+        )
+        .classList.remove(
+          "show"
+        );
 
     }
 
   };
-
 
 /* =========================================================
    START
 ========================================================= */
 
-document.documentElement.lang=
+document.documentElement
+  .lang =
   currentLanguage;
 
 applyLanguage();
 
-loadData();
+loadMarket();
+
+/*
+ Refresh every 60 seconds.
+*/
 
 setInterval(
-  ()=>{
-    if(!isLoading)
-      loadData();
+  () => {
+
+    if(
+      !isLoading &&
+      currentPage ===
+      "market"
+    ){
+
+      loadMarket();
+
+    }
+
   },
-  REFRESH_MS
+  60000
 );
 
 </script>
