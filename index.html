@@ -99,7 +99,7 @@ border-radius:14px;padding:7px;box-shadow:0 15px 40px rgba(0,0,0,.45);backdrop-f
   <div class="header-top">
     <div class="brand">
       <div class="brand-icon">◈</div>
-      <div><h1>Noventra Signal</h1><span>TON · Fast Scan · AI Signals</span></div>
+      <div><h1>Noventra Signal</h1><span>TON · Guardian Gateway · AI Signals <span class="scan-badge">● GUARDIAN</span></span></div>
     </div>
     <div class="header-actions">
       <button class="icon-btn" id="languageBtn" title="Language">🌐</button>
@@ -210,23 +210,15 @@ let isLoading=false, alertTarget=null, currentLanguage="en";
    CONFIG — FAST + WIDE
 ========================= */
 const MIN_VOL=500, MIN_LIQ=250, HIGH_VOL=20000, REFRESH_MS=60000, MAX_RESULTS=150;
-const SEARCH_CONCURRENCY=10, REQUEST_TIMEOUT=6500;
 
 /*
-  DexScreener search is used only as a discovery layer.
-  More focused queries + TON-only normalization = wider discovery
-  without putting non-TON pairs into the app.
+  NOVENTRA GUARDIAN
+  Signal never calls DexScreener directly.
+  Guardian is the single market-data gateway.
 */
-const QUERIES=[
-  "TON","USDT","USDC","STON","DeDust","TONCOIN","GRAM","NOT","DOGS","HMSTR","CATI","MAJOR",
-  "SCALE","ANON","FISH","REDO","DUST","KINGY","JETTON","ARBUZ","LAVE","BOLT","STORM","ORACLE",
-  "GEMS","PUFF","WOLF","MOON","PEPE","DOGE","SHIB","CAT","DOG","FROG","BEAR","INU","MEME",
-  "AI","PUNK","DEGEN","ALPHA","HODL","APE","NFT","DAO","WALL","COFFEE","TIME","PROXY","LUNA",
-  "GOLD","DIAMOND","BULL","BEER","TINU","MAGA","TRUMP","TGRAM","WEB3","GAME","GAMING","BOT",
-  "PAY","BANK","SWAP","DEX","FINANCE","FUND","META","VERSE","STAR","SPACE","ROCKET","ROCK",
-  "FIRE","WHALE","SHARK","FROG","MONKEY","RAT","BIRD","PANDA","TIGER","DRAGON","PIXEL","AI",
-  "CHAIN","LINK","DAO","LAB","X","FX","NOVA","NOVENTRA"
-];
+const GUARDIAN_BASE="https://noventraguardian.aytekinm099.workers.dev";
+const GUARDIAN_MARKET_ENDPOINT="/api/market";
+const GUARDIAN_TIMEOUT=9000;
 
 /* =========================
    I18N
@@ -237,7 +229,7 @@ tr:{
 market:"Piyasa",favorites:"Favoriler",alerts:"Alarmlar",gainers:"Yükselen",losers:"Düşen",volume:"Hacim",signals:"Sinyal",
 hour1:"1 Saat",hour6:"6 Saat",hour24:"24 Saat",all:"Tüm",highVolume:"Yüksek Hacim",dedust:"DeDust",
 preparing:"Hazırlanıyor...",scanning:"TON piyasası taranıyor...",scanned:"Hızlı tarama...",updated:"Güncelleme",pairs:"çift",
-noResults:"Bu filtrede sonuç yok.",refreshOrFilter:"Yenile veya filtre değiştir.",dataError:"Veri alınamadı — yenile",
+noResults:"Bu filtrede sonuç yok.",refreshOrFilter:"Yenile veya filtre değiştir.",dataError:"Guardian verisi alınamadı — yenile",
 noFavorites:"Henüz favori yok.",addFavorite:"Piyasa sekmesinden ★ ile ekle.",noAlerts:"Aktif alarm yok.",setAlertShort:"Kartlardaki 🔔 ile kur.",
 alertSet:"Alarm Kur",alertType:"Alarm Tipi",percentUp:"Yüzde yükselince (%)",percentDown:"Yüzde düşünce (%)",priceAbove:"Fiyat üstüne çıkınca ($)",priceBelow:"Fiyat altına inince ($)",
 value:"Değer",example:"Örn: 10 veya 0.05",cancel:"İptal",save:"Kaydet",saved:"Alarm Kaydedildi",alertCreated:"için alarm oluşturuldu.",invalidValue:"Geçerli bir değer gir.",triggered:"alarmı tetiklendi!",
@@ -260,7 +252,7 @@ liquidityStrong:"Güçlü likidite",liquidityEnough:"Yeterli likidite",liquidity
 en:{
 market:"Market",favorites:"Favorites",alerts:"Alerts",gainers:"Gainers",losers:"Losers",volume:"Volume",signals:"Signals",
 hour1:"1 Hour",hour6:"6 Hours",hour24:"24 Hours",all:"All",highVolume:"High Volume",dedust:"DeDust",preparing:"Preparing...",scanning:"Scanning TON market...",scanned:"Fast scan...",updated:"Updated",pairs:"pairs",
-noResults:"No results for this filter.",refreshOrFilter:"Refresh or change the filter.",dataError:"Failed to load data — refresh",noFavorites:"No favorites yet.",addFavorite:"Add one with ★ from the Market tab.",noAlerts:"No active alerts.",setAlertShort:"Set one with 🔔.",
+noResults:"No results for this filter.",refreshOrFilter:"Refresh or change the filter.",dataError:"Guardian data unavailable — refresh",noFavorites:"No favorites yet.",addFavorite:"Add one with ★ from the Market tab.",noAlerts:"No active alerts.",setAlertShort:"Set one with 🔔.",
 alertSet:"Set Alert",alertType:"Alert Type",percentUp:"When percentage rises (%)",percentDown:"When percentage falls (%)",priceAbove:"When price rises above ($)",priceBelow:"When price falls below ($)",value:"Value",example:"e.g. 10 or 0.05",cancel:"Cancel",save:"Save",saved:"Alert Saved",alertCreated:"alert created for",invalidValue:"Enter a valid value.",triggered:"alert triggered!",
 aiAnalysis:"AI Analysis",ok:"OK",tokenDataMissing:"Token data not found.",tokenNotListed:"This token is not currently listed.",delete:"Delete",now:"Now",liquidity:"liq",vol:"vol",score:"Noventra Score",
 strongBuy:"STRONG BUY",buy:"BUY",strongSell:"STRONG SELL",sell:"SELL",unknownToken:"Unknown Token",neutral:"Neutral",technical:"Technical",general:"Overview",timeframe:"Timeframes",confidence:"Confidence",warnings:"Warnings",risks:"Risks",summary:"Summary",
@@ -335,52 +327,136 @@ function locale(){return({tr:"tr-TR",ru:"ru-RU",zh:"zh-CN",ja:"ja-JP",ko:"ko-KR"
 function setStatus(s){document.getElementById("statusText").textContent=s}
 
 /* =========================
-   FAST DISCOVERY
+   NOVENTRA GUARDIAN MARKET
 ========================= */
-async function fetchQuery(q,attempt=0){
+async function guardianFetch(path, options={}){
   const controller=new AbortController();
-  const timer=setTimeout(()=>controller.abort(),REQUEST_TIMEOUT);
+  const timer=setTimeout(()=>controller.abort(),GUARDIAN_TIMEOUT);
   try{
-    const r=await fetch("https://api.dexscreener.com/latest/dex/search?q="+encodeURIComponent(q),{
-      cache:"no-store",signal:controller.signal
+    const r=await fetch(GUARDIAN_BASE+path,{
+      cache:"no-store",
+      signal:controller.signal,
+      headers:{
+        "Accept":"application/json",
+        ...(options.headers||{})
+      }
     });
     clearTimeout(timer);
-    if(r.status===429&&attempt<2){await sleep(700*(attempt+1));return fetchQuery(q,attempt+1)}
-    if(!r.ok)return[];
-    const d=await r.json();
-    return Array.isArray(d.pairs)?d.pairs:[];
-  }catch(_){clearTimeout(timer);return[]}
+    if(!r.ok) throw new Error("Guardian HTTP "+r.status);
+    return await r.json();
+  }catch(e){
+    clearTimeout(timer);
+    throw e;
+  }
 }
 
-async function fetchWide(){
-  const out=[];
-  for(let i=0;i<QUERIES.length;i+=SEARCH_CONCURRENCY){
-    const batch=QUERIES.slice(i,i+SEARCH_CONCURRENCY);
-    const results=await Promise.all(batch.map(fetchQuery));
-    results.forEach(x=>out.push(...x));
-    setStatus(t("scanned")+" "+Math.min(i+batch.length,QUERIES.length)+"/"+QUERIES.length);
-    if(i+SEARCH_CONCURRENCY<QUERIES.length) await sleep(45);
-  }
-  return out;
+function extractGuardianMarkets(payload){
+  if(Array.isArray(payload)) return payload;
+  if(Array.isArray(payload?.markets)) return payload.markets;
+  if(Array.isArray(payload?.pairs)) return payload.pairs;
+  if(Array.isArray(payload?.data)) return payload.data;
+  if(Array.isArray(payload?.data?.markets)) return payload.data.markets;
+  if(Array.isArray(payload?.data?.pairs)) return payload.data.pairs;
+  if(Array.isArray(payload?.result)) return payload.result;
+  if(Array.isArray(payload?.result?.markets)) return payload.result.markets;
+  if(Array.isArray(payload?.result?.pairs)) return payload.result.pairs;
+  return [];
+}
+
+async function fetchGuardianMarket(){
+  setStatus(t("scanning"));
+  const payload=await guardianFetch(GUARDIAN_MARKET_ENDPOINT);
+  const markets=extractGuardianMarkets(payload);
+  if(!markets.length) throw new Error("Guardian market response contains no markets");
+  setStatus(t("scanned")+" "+markets.length);
+  return markets;
 }
 
 /* =========================
    NORMALIZE + SIGNAL ENGINE
 ========================= */
 function normalizePair(p){
-  if(!p||p.chainId!=="ton"||!p.pairAddress)return null;
-  const volume=Number(p.volume?.h24||0), liquidity=Number(p.liquidity?.usd||0);
+  if(!p)return null;
+
+  const chain=String(p.chainId||p.chain||p.network||"ton").toLowerCase();
+  if(chain!=="ton")return null;
+
+  const pairAddress=String(p.pairAddress||p.address||p.marketAddress||p.pair?.address||"");
+  if(!pairAddress)return null;
+
+  const base=p.baseToken||p.base||p.token||{};
+  const quote=p.quoteToken||p.quote||{};
+  const changeSource=p.priceChange||p.change||p.changes||{};
+  const volumeSource=p.volume||{};
+  const liquiditySource=p.liquidity||{};
+
+  const volume=Number(
+    volumeSource?.h24 ??
+    volumeSource?.["24h"] ??
+    volumeSource?.usd24h ??
+    p.volume24h ??
+    p.vol24h ??
+    0
+  );
+
+  const liquidity=Number(
+    liquiditySource?.usd ??
+    liquiditySource?.value ??
+    p.liquidityUsd ??
+    p.liquidityUSD ??
+    p.liquidity24h ??
+    0
+  );
+
   if(volume<MIN_VOL||liquidity<MIN_LIQ)return null;
-  const dex=String(p.dexId||"").toLowerCase();
-  const name=String(p.baseToken?.name||p.baseToken?.symbol||"Unknown Token").trim().slice(0,32);
-  const symbol=String(p.baseToken?.symbol||p.baseToken?.name||"???").trim().slice(0,15);
+
+  const dex=String(
+    p.dexId||p.dex||p.exchange||p.source||"Unknown"
+  ).toLowerCase();
+
+  const name=String(
+    base?.name||p.baseName||p.tokenName||base?.symbol||"Unknown Token"
+  ).trim().slice(0,32);
+
+  const symbol=String(
+    base?.symbol||p.baseSymbol||p.symbol||base?.name||"???"
+  ).trim().slice(0,15);
+
+  const address=String(
+    base?.address||p.baseAddress||p.tokenAddress||""
+  );
+
+  const quoteSymbol=String(
+    quote?.symbol||p.quoteSymbol||""
+  ).trim().slice(0,12);
+
   return{
-    pairAddress:p.pairAddress,url:p.url||"",dexId:p.dexId||"Unknown",isDedust:dex.includes("dedust"),isSton:dex.includes("ston"),
-    baseName:name,baseSymbol:symbol,baseAddress:String(p.baseToken?.address||""),quoteSymbol:String(p.quoteToken?.symbol||"").trim().slice(0,12),
-    priceUsd:Number(p.priceUsd||0),
-    change:{m5:Number(p.priceChange?.m5||0),h1:Number(p.priceChange?.h1||0),h6:Number(p.priceChange?.h6||0),h24:Number(p.priceChange?.h24||0)},
-    volume:{h24:volume},liquidity,txns:Number(p.txns?.h24?.buys||0)+Number(p.txns?.h24?.sells||0)
-  }
+    pairAddress,
+    url:p.url||p.dexUrl||p.pairUrl||"",
+    dexId:p.dexId||p.dex||p.exchange||p.source||"Unknown",
+    isDedust:dex.includes("dedust"),
+    isSton:dex.includes("ston"),
+    baseName:name,
+    baseSymbol:symbol,
+    baseAddress:address,
+    quoteSymbol,
+    priceUsd:Number(p.priceUsd??p.price??p.priceUSD??0),
+    change:{
+      m5:Number(changeSource?.m5??changeSource?.["5m"]??p.m5??0),
+      h1:Number(changeSource?.h1??changeSource?.["1h"]??p.h1??0),
+      h6:Number(changeSource?.h6??changeSource?.["6h"]??p.h6??0),
+      h24:Number(changeSource?.h24??changeSource?.["24h"]??p.h24??0)
+    },
+    volume:{h24:volume},
+    liquidity,
+    txns:Number(
+      p.txns?.h24?.buys ??
+      p.txns?.h24?.sells ??
+      p.txns24h ??
+      p.transactions24h ??
+      0
+    )
+  };
 }
 
 function calculateSignal(p){
@@ -425,7 +501,7 @@ async function loadData(){
   document.getElementById("refreshBtn").classList.add("spin");
   setStatus(t("scanning"));
   try{
-    const raw=await fetchWide(), seen=new Set(), collected=[];
+    const raw=await fetchGuardianMarket(), seen=new Set(), collected=[];
     for(const rp of raw){
       const p=normalizePair(rp);if(!p||seen.has(p.pairAddress))continue;
       seen.add(p.pairAddress);
