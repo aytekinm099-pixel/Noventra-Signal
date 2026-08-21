@@ -1,47 +1,3657 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#070b14"><title>Noventra Signal</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#070b14">
+<meta name="description" content="Noventra Signal — TON market intelligence with Guardian AI">
+<title>Noventra Signal</title>
+
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 <style>
-:root{--bg:#070b14;--card:#101827;--card2:#151f30;--text:#e8eef7;--muted:#73819a;--blue:#3b82f6;--cyan:#22d3ee;--green:#10b981;--red:#f43f5e;--orange:#f59e0b;--border:rgba(59,130,246,.14)}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:radial-gradient(circle at 50% -20%,rgba(37,99,235,.18),transparent 42%),var(--bg);color:var(--text);font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding-bottom:72px}.header{position:sticky;top:0;z-index:20;padding:13px;background:rgba(7,11,20,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}.top{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;gap:10px;align-items:center}.logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1d4ed8,#7c3aed);display:grid;place-items:center;font-size:20px}.brand b{display:block;font-size:16px}.brand small{color:var(--muted);font-size:10px}.actions{display:flex;gap:6px}.icon{width:36px;height:36px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text)}.tabs{display:flex;gap:4px;margin-top:11px;background:var(--card);padding:3px;border-radius:12px}.tab{flex:1;text-align:center;padding:8px 2px;border-radius:9px;color:var(--muted);font-size:11px;font-weight:700}.tab.on{background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:white}.filters{display:flex;gap:6px;overflow:auto;padding:10px 12px 4px}.chip{white-space:nowrap;border:1px solid var(--border);background:var(--card);color:var(--muted);border-radius:20px;padding:6px 10px;font-size:11px}.chip.on{color:#bfdbfe;border-color:#3b82f6;background:rgba(59,130,246,.16)}.status{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;padding:5px 13px}.list{padding:5px 12px 18px;display:grid;gap:8px}.card{background:linear-gradient(145deg,#101827,#0d1522);border:1px solid var(--border);border-radius:14px;padding:12px}.row{display:flex;align-items:center;gap:9px}.rank{width:24px;height:24px;border-radius:7px;background:#182235;color:var(--muted);display:grid;place-items:center;font-size:10px;font-weight:800}.info{flex:1;min-width:0}.name{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sym{font-size:10px;color:var(--muted);margin-left:5px}.meta{color:var(--muted);font-size:9px;margin-top:3px}.right{text-align:right}.chg{font-size:15px;font-weight:800}.up{color:var(--green)}.down{color:var(--red)}.neutral{color:var(--muted)}.badges{display:flex;gap:4px;margin-top:5px;justify-content:flex-end}.badge{font-size:8px;padding:3px 5px;border-radius:5px;background:rgba(255,255,255,.06);color:var(--muted)}.buy{background:rgba(16,185,129,.15);color:#34d399}.sell{background:rgba(244,63,94,.15);color:#fb7185}.buttons{display:flex;gap:4px;margin-top:8px}.btn{flex:1;border:1px solid var(--border);background:var(--card2);color:var(--muted);border-radius:8px;padding:7px;font-size:11px}.btn.ai{color:#93c5fd;border-color:rgba(59,130,246,.3)}.tf{display:flex;gap:4px;margin-top:9px}.tf div{flex:1;background:rgba(255,255,255,.025);border-radius:7px;padding:5px 2px;text-align:center;font-size:9px}.tf small{display:block;color:var(--muted);font-size:8px}.score{margin-top:7px;color:var(--muted);font-size:9px;display:flex;justify-content:space-between}.bar{height:3px;background:rgba(255,255,255,.05);border-radius:2px;margin-top:3px;overflow:hidden}.bar i{display:block;height:100%;background:var(--blue)}.bottom{position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(12,18,32,.97);border-top:1px solid var(--border);display:flex;padding:6px 8px}.nav{flex:1;text-align:center;color:var(--muted);font-size:10px;padding:5px}.nav.on{color:#93c5fd}.nav span{display:block;font-size:16px}.empty,.loading{text-align:center;color:var(--muted);padding:50px 20px}.spin{display:inline-block;width:24px;height:24px;border:2px solid rgba(255,255,255,.1);border-top-color:var(--blue);border-radius:50%;animation:s .7s linear infinite}@keyframes s{to{transform:rotate(360deg)}}.modalbg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:none;align-items:flex-end}.modalbg.show{display:flex}.modal{width:100%;max-width:520px;margin:auto auto 0;background:#111827;border-radius:18px 18px 0 0;padding:18px 16px 28px;max-height:88vh;overflow:auto;border-top:1px solid var(--border)}.modal h3{margin:0 0 12px;display:flex;justify-content:space-between}.ai{font-size:13px;line-height:1.55;color:#dbe4f5}.ai h4{margin:14px 0 5px;color:#93c5fd}.pill{display:inline-block;padding:4px 7px;border-radius:6px;background:rgba(59,130,246,.14);color:#93c5fd;font-size:10px;margin:2px}.danger{color:#fb7185}.good{color:#34d399}.language{position:fixed;right:10px;top:62px;z-index:50;background:#111827;border:1px solid var(--border);border-radius:12px;padding:6px;display:none}.language.show{display:block}.language button{display:block;width:160px;border:0;background:none;color:var(--text);text-align:left;padding:9px;border-radius:8px}
-</style></head>
+:root{
+  --bg:#070b14;
+  --card:#101827;
+  --card2:#151f30;
+  --text:#e8eef7;
+  --muted:#73819a;
+  --blue:#3b82f6;
+  --cyan:#22d3ee;
+  --green:#10b981;
+  --red:#f43f5e;
+  --orange:#f59e0b;
+  --border:rgba(59,130,246,.14)
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 50% -20%,rgba(37,99,235,.18),transparent 42%),
+    var(--bg);
+  color:var(--text);
+  font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  padding-bottom:76px
+}
+
+button,input,select{font:inherit}
+button{cursor:pointer}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  padding:13px;
+  background:rgba(7,11,20,.96);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border)
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+.brand{
+  display:flex;
+  gap:10px;
+  align-items:center
+}
+
+.logo{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#1d4ed8,#7c3aed);
+  display:grid;
+  place-items:center;
+  font-size:20px
+}
+
+.brand b{
+  display:block;
+  font-size:16px
+}
+
+.brand small{
+  color:var(--muted);
+  font-size:10px
+}
+
+.actions{
+  display:flex;
+  gap:6px
+}
+
+.icon{
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text)
+}
+
+.icon.spin{
+  animation:spin .7s linear infinite
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+.tabs{
+  display:flex;
+  gap:4px;
+  margin-top:11px;
+  background:var(--card);
+  padding:3px;
+  border-radius:12px
+}
+
+.tab{
+  flex:1;
+  text-align:center;
+  padding:8px 2px;
+  border-radius:9px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:700
+}
+
+.tab.on{
+  background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+  color:#fff
+}
+
+.filters{
+  display:flex;
+  gap:6px;
+  overflow:auto;
+  padding:10px 12px 4px;
+  scrollbar-width:none
+}
+
+.filters::-webkit-scrollbar{display:none}
+
+.chip{
+  white-space:nowrap;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--muted);
+  border-radius:20px;
+  padding:6px 10px;
+  font-size:11px
+}
+
+.chip.on{
+  color:#bfdbfe;
+  border-color:#3b82f6;
+  background:rgba(59,130,246,.16)
+}
+
+.status{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:10px;
+  padding:5px 13px
+}
+
+.list{
+  padding:5px 12px 18px;
+  display:grid;
+  gap:8px
+}
+
+.card{
+  background:linear-gradient(145deg,#101827,#0d1522);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px
+}
+
+.card.favorite{
+  border-color:rgba(129,140,248,.45)
+}
+
+.card.alert-hit{
+  border-color:var(--orange);
+  box-shadow:0 0 15px rgba(245,158,11,.16)
+}
+
+.row{
+  display:flex;
+  align-items:center;
+  gap:9px
+}
+
+.rank{
+  width:24px;
+  height:24px;
+  border-radius:7px;
+  background:#182235;
+  color:var(--muted);
+  display:grid;
+  place-items:center;
+  font-size:10px;
+  font-weight:800;
+  flex-shrink:0
+}
+
+.info{
+  flex:1;
+  min-width:0
+}
+
+.name{
+  font-weight:800;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis
+}
+
+.sym{
+  font-size:10px;
+  color:var(--muted);
+  margin-left:5px
+}
+
+.meta{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:3px
+}
+
+.right{
+  text-align:right;
+  min-width:82px
+}
+
+.chg{
+  font-size:15px;
+  font-weight:800
+}
+
+.up{color:var(--green)}
+.down{color:var(--red)}
+.neutral{color:var(--muted)}
+
+.badges{
+  display:flex;
+  gap:4px;
+  margin-top:5px;
+  justify-content:flex-end
+}
+
+.badge{
+  font-size:8px;
+  padding:3px 5px;
+  border-radius:5px;
+  background:rgba(255,255,255,.06);
+  color:var(--muted)
+}
+
+.buy{
+  background:rgba(16,185,129,.15);
+  color:#34d399
+}
+
+.sell{
+  background:rgba(244,63,94,.15);
+  color:#fb7185
+}
+
+.watch{
+  background:rgba(245,158,11,.12);
+  color:#fbbf24
+}
+
+.buttons{
+  display:flex;
+  gap:4px;
+  margin-top:8px
+}
+
+.btn{
+  flex:1;
+  border:1px solid var(--border);
+  background:var(--card2);
+  color:var(--muted);
+  border-radius:8px;
+  padding:7px 4px;
+  font-size:10px
+}
+
+.btn.ai{
+  color:#93c5fd;
+  border-color:rgba(59,130,246,.3)
+}
+
+.btn.favorite-on{
+  color:#a5b4fc;
+  border-color:#6366f1
+}
+
+.btn.alert-on{
+  color:#fbbf24;
+  border-color:#f59e0b
+}
+
+.tf{
+  display:flex;
+  gap:4px;
+  margin-top:9px
+}
+
+.tf div{
+  flex:1;
+  background:rgba(255,255,255,.025);
+  border-radius:7px;
+  padding:5px 2px;
+  text-align:center;
+  font-size:9px
+}
+
+.tf small{
+  display:block;
+  color:var(--muted);
+  font-size:8px
+}
+
+.score{
+  margin-top:7px;
+  color:var(--muted);
+  font-size:9px;
+  display:flex;
+  justify-content:space-between
+}
+
+.score b{
+  color:#93c5fd
+}
+
+.bar{
+  height:3px;
+  background:rgba(255,255,255,.05);
+  border-radius:2px;
+  margin-top:3px;
+  overflow:hidden
+}
+
+.bar i{
+  display:block;
+  height:100%;
+  background:var(--blue)
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:30;
+  background:rgba(12,18,32,.97);
+  border-top:1px solid var(--border);
+  display:flex;
+  padding:6px 8px
+}
+
+.nav{
+  flex:1;
+  text-align:center;
+  color:var(--muted);
+  font-size:10px;
+  padding:5px
+}
+
+.nav.on{
+  color:#93c5fd
+}
+
+.nav span{
+  display:block;
+  font-size:16px
+}
+
+.empty,.loading{
+  text-align:center;
+  color:var(--muted);
+  padding:50px 20px
+}
+
+.spin{
+  display:inline-block;
+  width:24px;
+  height:24px;
+  border:2px solid rgba(255,255,255,.1);
+  border-top-color:var(--blue);
+  border-radius:50%;
+  animation:spin .7s linear infinite
+}
+
+.modalbg{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  z-index:100;
+  display:none;
+  align-items:flex-end
+}
+
+.modalbg.show{
+  display:flex
+}
+
+.modal{
+  width:100%;
+  max-width:520px;
+  margin:auto auto 0;
+  background:#111827;
+  border-radius:18px 18px 0 0;
+  padding:18px 16px 28px;
+  max-height:90vh;
+  overflow:auto;
+  border-top:1px solid var(--border)
+}
+
+.modal h3{
+  margin:0 0 12px;
+  display:flex;
+  justify-content:space-between
+}
+
+.ai{
+  font-size:13px;
+  line-height:1.55;
+  color:#dbe4f5
+}
+
+.ai h4{
+  margin:14px 0 5px;
+  color:#93c5fd
+}
+
+.ai ul{
+  padding-left:20px
+}
+
+.ai li{
+  margin-bottom:5px
+}
+
+.pill{
+  display:inline-block;
+  padding:4px 7px;
+  border-radius:6px;
+  background:rgba(59,130,246,.14);
+  color:#93c5fd;
+  font-size:10px;
+  margin:2px
+}
+
+.pill.good{
+  background:rgba(16,185,129,.14);
+  color:#34d399
+}
+
+.pill.warn{
+  background:rgba(245,158,11,.14);
+  color:#fbbf24
+}
+
+.pill.bad{
+  background:rgba(244,63,94,.14);
+  color:#fb7185
+}
+
+.danger{color:#fb7185}
+.good{color:#34d399}
+
+.language{
+  position:fixed;
+  right:10px;
+  top:62px;
+  z-index:80;
+  background:#111827;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:6px;
+  display:none
+}
+
+.language.show{
+  display:block
+}
+
+.language button{
+  display:block;
+  width:160px;
+  border:0;
+  background:none;
+  color:var(--text);
+  text-align:left;
+  padding:9px;
+  border-radius:8px
+}
+
+.language button:hover{
+  background:rgba(59,130,246,.12)
+}
+
+.alert-list{
+  padding:12px
+}
+
+.alert-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:8px
+}
+
+.alert-card strong{
+  color:#e8eef7
+}
+
+.alert-card small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px
+}
+
+.alert-delete{
+  margin-top:8px;
+  border:1px solid rgba(244,63,94,.3);
+  background:rgba(244,63,94,.1);
+  color:#fb7185;
+  border-radius:7px;
+  padding:6px 10px;
+  font-size:10px
+}
+
+.form-group{
+  margin-top:10px
+}
+
+.form-group label{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:5px
+}
+
+.form-group input,
+.form-group select{
+  width:100%;
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:10px
+}
+
+.modal-actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px
+}
+
+.modal-actions button{
+  flex:1;
+  border:0;
+  border-radius:9px;
+  padding:11px
+}
+
+.primary{
+  background:#2563eb;
+  color:#fff
+}
+
+.secondary{
+  background:var(--card);
+  color:var(--muted);
+  border:1px solid var(--border)!important
+}
+
+.ai-error{
+  color:#fb7185;
+  background:rgba(244,63,94,.08);
+  border:1px solid rgba(244,63,94,.2);
+  border-radius:10px;
+  padding:12px
+}
+</style>
+</head>
+
 <body>
-<header class="header"><div class="top"><div class="brand"><div class="logo">◈</div><div><b>Noventra Signal</b><small>TON · Guardian AI · Gemini</small></div></div><div class="actions"><button class="icon" id="lang">🌐</button><button class="icon" id="refresh">↻</button></div></div><div class="tabs"><div class="tab on" data-tab="gainers">Gainers</div><div class="tab" data-tab="losers">Losers</div><div class="tab" data-tab="volume">Volume</div><div class="tab" data-tab="signals">Signals</div></div></header>
-<div class="filters"><button class="chip on" data-tf="h1">1 Hour</button><button class="chip" data-tf="h6">6 Hours</button><button class="chip" data-tf="h24">24 Hours</button><button class="chip on" data-vol="all">All</button><button class="chip" data-vol="high">High Volume</button><button class="chip" data-vol="dedust">DeDust</button></div>
-<div class="status"><span id="status">Preparing...</span><span id="count"></span></div><main id="content"><div class="loading"><i class="spin"></i><br>Scanning TON market...</div></main>
-<nav class="bottom"><div class="nav on" data-page="market"><span>📊</span>Market</div><div class="nav" data-page="favorites"><span>★</span>Favorites</div><div class="nav" data-page="alerts"><span>🔔</span>Alerts</div></nav>
-<div class="language" id="language"><button data-l="en">🇬🇧 English</button><button data-l="tr">🇹🇷 Türkçe</button><button data-l="ru">🇷🇺 Русский</button><button data-l="zh">🇨🇳 中文</button><button data-l="ja">🇯🇵 日本語</button><button data-l="ko">🇰🇷 한국어</button></div>
-<div class="modalbg" id="modal"><div class="modal"><h3><span>🤖 Noventra Guardian AI</span><span id="close" style="cursor:pointer">✕</span></h3><div id="ai" class="ai"><div class="loading"><i class="spin"></i><br>Guardian AI is analyzing...</div></div></div></div>
+
+<header class="header">
+
+  <div class="top">
+
+    <div class="brand">
+      <div class="logo">◈</div>
+
+      <div>
+        <b>Noventra Signal</b>
+        <small>TON · Guardian AI · Gemini</small>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="icon" id="lang">🌐</button>
+      <button class="icon" id="refresh">↻</button>
+    </div>
+
+  </div>
+
+  <div class="tabs">
+
+    <div class="tab on" data-tab="gainers">
+      Gainers
+    </div>
+
+    <div class="tab" data-tab="losers">
+      Losers
+    </div>
+
+    <div class="tab" data-tab="volume">
+      Volume
+    </div>
+
+    <div class="tab" data-tab="signals">
+      Signals
+    </div>
+
+  </div>
+
+</header>
+
+<div class="filters">
+
+  <button class="chip on" data-tf="h1">
+    1 Hour
+  </button>
+
+  <button class="chip" data-tf="h6">
+    6 Hours
+  </button>
+
+  <button class="chip" data-tf="h24">
+    24 Hours
+  </button>
+
+  <button class="chip on" data-vol="all">
+    All
+  </button>
+
+  <button class="chip" data-vol="high">
+    High Volume
+  </button>
+
+  <button class="chip" data-vol="dedust">
+    DeDust
+  </button>
+
+</div>
+
+<div class="status">
+  <span id="status">Preparing...</span>
+  <span id="count"></span>
+</div>
+
+<main id="content">
+
+  <div class="loading">
+    <i class="spin"></i>
+    <br>
+    Scanning TON market...
+  </div>
+
+</main>
+
+<nav class="bottom">
+
+  <div class="nav on" data-page="market">
+    <span>📊</span>
+    Market
+  </div>
+
+  <div class="nav" data-page="favorites">
+    <span>★</span>
+    Favorites
+  </div>
+
+  <div class="nav" data-page="alerts">
+    <span>🔔</span>
+    Alerts
+  </div>
+
+</nav>
+
+<div class="language" id="language">
+
+  <button data-l="en">🇬🇧 English</button>
+  <button data-l="tr">🇹🇷 Türkçe</button>
+  <button data-l="ru">🇷🇺 Русский</button>
+  <button data-l="zh">🇨🇳 中文</button>
+  <button data-l="ja">🇯🇵 日本語</button>
+  <button data-l="ko">🇰🇷 한국어</button>
+
+</div>
+
+<!-- AI MODAL -->
+
+<div class="modalbg" id="modal">
+
+  <div class="modal">
+
+    <h3>
+      <span>🤖 Noventra Guardian AI</span>
+      <span id="close" style="cursor:pointer">✕</span>
+    </h3>
+
+    <div id="ai" class="ai"></div>
+
+  </div>
+
+</div>
+
+<!-- ALERT MODAL -->
+
+<div class="modalbg" id="alertModal">
+
+  <div class="modal">
+
+    <h3>
+      <span>🔔 Set Alert</span>
+      <span id="alertClose" style="cursor:pointer">✕</span>
+    </h3>
+
+    <div id="alertToken" style="color:#22d3ee;font-size:12px"></div>
+
+    <div class="form-group">
+
+      <label>Alert Type</label>
+
+      <select id="alertType">
+
+        <option value="pct_up">
+          When 1h rises above %
+        </option>
+
+        <option value="pct_down">
+          When 1h falls below %
+        </option>
+
+        <option value="price_above">
+          Price rises above $
+        </option>
+
+        <option value="price_below">
+          Price falls below $
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Value</label>
+
+      <input
+        id="alertValue"
+        type="number"
+        step="any"
+        inputmode="decimal"
+        placeholder="Example: 10"
+      >
+
+    </div>
+
+    <div class="modal-actions">
+
+      <button
+        class="secondary"
+        id="alertCancel">
+        Cancel
+      </button>
+
+      <button
+        class="primary"
+        id="alertSave">
+        Save
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
 <script>
 "use strict";
-const tg=window.Telegram?.WebApp||null;if(tg){tg.ready();tg.expand()}
-const API="https://noventrasignal.aytekinm099.workers.dev";
-const FAV="noventra_signal_favs_v9",ALERT="noventra_signal_alerts_v9",LANG="noventra_signal_lang_v3";
-let pairs=[],tab="gainers",tf="h1",vol="all",page="market",loading=false,lang=localStorage.getItem(LANG)||"en";
-const $=id=>document.getElementById(id),num=v=>Number.isFinite(Number(v))?Number(v):0,esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
-const money=v=>{v=num(v);if(v>=1e9)return"$"+(v/1e9).toFixed(1)+"B";if(v>=1e6)return"$"+(v/1e6).toFixed(1)+"M";if(v>=1e3)return"$"+(v/1e3).toFixed(1)+"K";return"$"+Math.round(v)};
-const pct=v=>{v=num(v);return(v>0?"+":"")+v.toFixed(1)+"%"};
-const fmt=v=>{v=num(v);if(v<1e-6&&v>0)return v.toExponential(2);if(v<.01&&v>0)return v.toFixed(6);if(v<1&&v>0)return v.toFixed(4);return v.toFixed(v<100?3:2)};
-const cls=v=>v>.25?"up":v<-.25?"down":"neutral";
-const getJSON=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch{return d}};
-let favorites=getJSON(FAV,[]),alerts=getJSON(ALERT,[]);
-const TX={en:{market:"Market",favorites:"Favorites",alerts:"Alerts",gainers:"Gainers",losers:"Losers",volume:"Volume",signals:"Signals",scan:"Scanning TON market...",updated:"Updated",no:"No results",ai:"Guardian AI",analyzing:"Guardian AI is analyzing...",confidence:"Confidence",reason:"Reasoning",risks:"Risk flags",bull:"Bull case",bear:"Bear case",action:"Action",summary:"Summary",liquidity:"Liquidity",volume24:"24h Volume",watch:"WATCH",buy:"BUY",sell:"SELL",strongbuy:"STRONG BUY",strongsell:"STRONG SELL"},tr:{market:"Piyasa",favorites:"Favoriler",alerts:"Alarmlar",gainers:"Yükselen",losers:"Düşen",volume:"Hacim",signals:"Sinyaller",scan:"TON piyasası taranıyor...",updated:"Güncellendi",no:"Sonuç yok",ai:"Guardian AI",analyzing:"Guardian AI analiz ediyor...",confidence:"Güven",reason:"Nedenler",risks:"Riskler",bull:"Yükseliş senaryosu",bear:"Düşüş senaryosu",action:"Aksiyon",summary:"Özet",liquidity:"Likidite",volume24:"24s Hacim",watch:"İZLE",buy:"AL",sell:"SAT",strongbuy:"GÜÇLÜ AL",strongsell:"GÜÇLÜ SAT"},ru:{market:"Рынок",favorites:"Избранное",alerts:"Оповещения",gainers:"Рост",losers:"Падение",volume:"Объём",signals:"Сигналы",scan:"Сканирование TON...",updated:"Обновлено",no:"Нет результатов",ai:"Guardian AI",analyzing:"Guardian AI анализирует...",confidence:"Уверенность",reason:"Причины",risks:"Риски",bull:"Бычий сценарий",bear:"Медвежий сценарий",action:"Действие",summary:"Итог",liquidity:"Ликвидность",volume24:"Объём 24ч",watch:"НАБЛЮДАТЬ",buy:"ПОКУПКА",sell:"ПРОДАЖА",strongbuy:"СИЛЬНАЯ ПОКУПКА",strongsell:"СИЛЬНАЯ ПРОДАЖА"},zh:{market:"市场",favorites:"收藏",alerts:"提醒",gainers:"上涨",losers:"下跌",volume:"成交量",signals:"信号",scan:"正在扫描 TON 市场...",updated:"更新",no:"没有结果",ai:"Guardian AI",analyzing:"Guardian AI 正在分析...",confidence:"置信度",reason:"原因",risks:"风险",bull:"看涨情景",bear:"看跌情景",action:"行动",summary:"总结",liquidity:"流动性",volume24:"24小时成交量",watch:"观察",buy:"买入",sell:"卖出",strongbuy:"强力买入",strongsell:"强力卖出"},ja:{market:"市場",favorites:"お気に入り",alerts:"アラート",gainers:"上昇",losers:"下落",volume:"出来高",signals:"シグナル",scan:"TON市場をスキャン中...",updated:"更新",no:"結果なし",ai:"Guardian AI",analyzing:"Guardian AI が分析中...",confidence:"信頼度",reason:"理由",risks:"リスク",bull:"強気シナリオ",bear:"弱気シナリオ",action:"アクション",summary:"概要",liquidity:"流動性",volume24:"24h出来高",watch:"監視",buy:"買い",sell:"売り",strongbuy:"強い買い",strongsell:"強い売り"},ko:{market:"시장",favorites:"즐겨찾기",alerts:"알림",gainers:"상승",losers:"하락",volume:"거래량",signals:"시그널",scan:"TON 시장 스캔 중...",updated:"업데이트",no:"결과 없음",ai:"Guardian AI",analyzing:"Guardian AI 분석 중...",confidence:"신뢰도",reason:"이유",risks:"위험",bull:"상승 시나리오",bear:"하락 시나리오",action:"액션",summary:"요약",liquidity:"유동성",volume24:"24시간 거래량",watch:"관찰",buy:"매수",sell:"매도",strongbuy:"강력 매수",strongsell:"강력 매도"}};
-const t=k=>(TX[lang]||TX.en)[k]||TX.en[k]||k;
-function setStatus(x){$("status").textContent=x}
-async function get(path,opts={}){const r=await fetch(API+path,{...opts,headers:{Accept:"application/json",...(opts.headers||{})}});const d=await r.json().catch(()=>({ok:false,error:"Invalid JSON"}));if(!r.ok||d.ok===false)throw new Error(d.error||"Request failed");return d}
-function normalize(p){return{...p,change:p.change||{},volume:p.volume||{h24:0},liquidity:num(p.liquidity),score:num(p.score),confidence:num(p.confidence)}}
-async function load(){if(loading)return;loading=true;setStatus(t("scan"));try{const d=await get("/api/market");pairs=(d.pairs||[]).map(normalize);$("count").textContent=pairs.length+" pairs";setStatus(t("updated")+": "+new Date().toLocaleTimeString());render()}catch(e){console.error(e);setStatus("Market API error");$("content").innerHTML='<div class="empty">Unable to load TON market.<br><small>'+esc(e.message)+'</small></div>'}finally{loading=false}}
-function filtered(){let a=[...pairs];if(vol==="high")a=a.filter(p=>num(p.volume.h24)>=20000);if(vol==="dedust")a=a.filter(p=>p.isDedust);if(tab==="gainers")a=a.filter(p=>num(p.change[tf])>1).sort((a,b)=>num(b.change[tf])-num(a.change[tf]));else if(tab==="losers")a=a.filter(p=>num(p.change[tf])<-1).sort((a,b)=>num(a.change[tf])-num(b.change[tf]));else if(tab==="volume")a.sort((a,b)=>num(b.volume.h24)-num(a.volume.h24));else a=a.filter(p=>p.signal&&p.signal!=="neutral").sort((a,b)=>Math.abs(num(b.score))-Math.abs(num(a.score)));return a.slice(0,150)}
-function fav(a){return favorites.some(x=>x.pairAddress===a)}
-function toggleFav(p){favorites=fav(p.pairAddress)?favorites.filter(x=>x.pairAddress!==p.pairAddress):[...favorites,{pairAddress:p.pairAddress,symbol:p.baseToken?.symbol,name:p.baseToken?.name,url:p.url}];localStorage.setItem(FAV,JSON.stringify(favorites));render()}
-function signalText(s){return s==="strong-buy"?t("strongbuy"):s==="buy"?t("buy"):s==="strong-sell"?t("strongsell"):s==="sell"?t("sell"):"WATCH"}
-function card(p,i){const c=num(p.change[tf]),s=num(p.score),sig=p.signal||"neutral";return `<div class="card"><div class="row"><div class="rank">${i+1}</div><div class="info"><div class="name">${esc(p.baseToken?.name||"Unknown Token")} <span class="sym">${esc(p.baseToken?.symbol||"???")}</span></div><div class="meta">${esc(p.dexId||"DEX")} · ${money(p.liquidity)} ${t("liquidity")} · ${money(p.volume?.h24)} ${t("volume24")}</div></div><div class="right"><div class="chg ${cls(c)}">${pct(c)}</div><div class="badges"><span class="badge ${sig.includes("buy")?"buy":sig.includes("sell")?"sell":""}">${esc(signalText(sig))}</span></div></div></div><div class="tf"><div><small>5m</small><span class="${cls(p.change?.m5)}">${pct(p.change?.m5)}</span></div><div><small>1h</small><span class="${cls(p.change?.h1)}">${pct(p.change?.h1)}</span></div><div><small>6h</small><span class="${cls(p.change?.h6)}">${pct(p.change?.h6)}</span></div><div><small>24h</small><span class="${cls(p.change?.h24)}">${pct(p.change?.h24)}</span></div></div><div class="score"><span>Noventra Score</span><b>${s>0?"+":""}${s.toFixed(0)} · ${num(p.confidence).toFixed(0)}%</b></div><div class="bar"><i style="width:${Math.min(100,Math.abs(s))}%"></i></div><div class="buttons"><button class="btn" onclick="toggleFav(pairs[${pairs.indexOf(p)}])">${fav(p.pairAddress)?"★":"☆"} Favorite</button><button class="btn ai" onclick="openAI(${pairs.indexOf(p)})">🤖 ${t("ai")}</button><button class="btn" onclick="openPair('${esc(p.url||"")}')">↗ DEX</button></div></div>`}
-function render(){if(page!=="market")return;const a=filtered();$("content").innerHTML=a.length?'<div class="list">'+a.map(card).join("")+"</div>":'<div class="empty">'+t("no")+'</div>'}
-function openPair(u){if(!u)return;try{tg?.openLink?tg.openLink(u):window.open(u,"_blank")}catch{window.open(u,"_blank")}}
-async function openAI(i){const p=pairs[i];if(!p)return;$("modal").classList.add("show");$("ai").innerHTML='<div class="loading"><i class="spin"></i><br>'+t("analyzing")+'</div>';try{let guardian={};try{guardian=await get("/api/guardian/"+encodeURIComponent(p.baseToken?.address||p.pairAddress))}catch(e){guardian={error:e.message}}const body={token:{name:p.baseToken?.name,symbol:p.baseToken?.symbol,address:p.baseToken?.address,priceUsd:p.priceUsd},market:{pairAddress:p.pairAddress,dex:p.dexId,priceUsd:p.priceUsd,change:p.change,volume24h:p.volume?.h24,liquidityUsd:p.liquidity,score:p.score,signal:p.signal,confidence:p.confidence},guardian};const d=await get("/api/ai",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});showAI(d.analysis,p)}catch(e){$("ai").innerHTML='<div class="empty">AI analysis failed.<br><small>'+esc(e.message)+'</small></div>'}}
-function showAI(a,p){const arr=x=>Array.isArray(x)?x:[];$("ai").innerHTML=`<div><span class="pill">${esc(a.signal||"WATCH")}</span><span class="pill">${t("confidence")}: ${num(a.confidence)}%</span></div><h4>${esc(a.headline||p.baseToken?.name||"Token")}</h4><p>${esc(a.marketState||"")}</p><h4>${t("reason")}</h4><ul>${arr(a.reasoning).map(x=>"<li>"+esc(x)+"</li>").join("")}</ul><h4>Timeframes</h4><p><b>Short:</b> ${esc(a.timeframes?.short||"—")}</p><p><b>Medium:</b> ${esc(a.timeframes?.medium||"—")}</p><p><b>Long:</b> ${esc(a.timeframes?.long||"—")}</p><h4>${t("liquidity")}</h4><p>${esc(a.liquidityView||"—")}</p><h4>${t("volume24")}</h4><p>${esc(a.volumeView||"—")}</p><h4>${t("risks")}</h4><ul>${arr(a.riskFlags).map(x=>"<li class=\"danger\">"+esc(x)+"</li>").join("")||"<li>—</li>"}</ul><h4>${t("bull")}</h4><p>${esc(a.bullCase||"—")}</p><h4>${t("bear")}</h4><p>${esc(a.bearCase||"—")}</p><h4>${t("action")}</h4><p><span class="pill">${esc(a.action||"WATCH")}</span></p><h4>${t("summary")}</h4><p>${esc(a.summary||"—")}</p>`}
-function applyLang(){document.documentElement.lang=lang;document.querySelectorAll("[data-tab]").forEach(x=>x.textContent=t(x.dataset.tab));document.querySelectorAll(".nav").forEach(x=>{const k=x.dataset.page;x.innerHTML=x.querySelector("span")?.outerHTML+(t(k)||k)});document.querySelectorAll("[data-l]").forEach(x=>x.classList.toggle("on",x.dataset.l===lang));render()}
-document.querySelectorAll("[data-tab]").forEach(x=>x.onclick=()=>{document.querySelectorAll(".tab").forEach(y=>y.classList.remove("on"));x.classList.add("on");tab=x.dataset.tab;render()});document.querySelectorAll("[data-tf]").forEach(x=>x.onclick=()=>{document.querySelectorAll("[data-tf]").forEach(y=>y.classList.remove("on"));x.classList.add("on");tf=x.dataset.tf;render()});document.querySelectorAll("[data-vol]").forEach(x=>x.onclick=()=>{document.querySelectorAll("[data-vol]").forEach(y=>y.classList.remove("on"));x.classList.add("on");vol=x.dataset.vol;render()});$("refresh").onclick=load;$("close").onclick=()=>$("modal").classList.remove("show");$("modal").onclick=e=>{if(e.target.id==="modal")$("modal").classList.remove("show")};$("lang").onclick=()=>$("language").classList.toggle("show");document.querySelectorAll("[data-l]").forEach(x=>x.onclick=()=>{lang=x.dataset.l;localStorage.setItem(LANG,lang);$("language").classList.remove("show");applyLang()});document.querySelectorAll(".nav").forEach(x=>x.onclick=()=>{document.querySelectorAll(".nav").forEach(y=>y.classList.remove("on"));x.classList.add("on");page=x.dataset.page;if(page!=="market"){$("content").innerHTML='<div class="empty">'+(page==="favorites"?"★ Favorites":"🔔 Alerts")+'<br><small>Use the Market tab to manage them.</small></div>'}else render()});applyLang();load();setInterval(()=>{if(!loading)load()},60000);
-</script></body></html>
-stron
+
+/* =========================================================
+   TELEGRAM
+========================================================= */
+
+const tg =
+  window.Telegram?.WebApp || null;
+
+if(tg){
+
+  tg.ready();
+  tg.expand();
+
+}
+
+
+/* =========================================================
+   CONFIG
+========================================================= */
+
+const API =
+  "https://noventrasignal.aytekinm099.workers.dev";
+
+const FAV_KEY =
+  "noventra_signal_favs_final_v1";
+
+const ALERT_KEY =
+  "noventra_signal_alerts_final_v1";
+
+const LANG_KEY =
+  "noventra_signal_lang_final_v1";
+
+const REFRESH_MS =
+  60000;
+
+
+/*
+ TON-SPECIFIC LIQUIDITY MODEL
+
+ We intentionally do NOT use EVM-style
+ liquidity thresholds.
+
+ TON early-stage pairs can legitimately
+ have much lower liquidity.
+*/
+
+const TON_LIQUIDITY = {
+
+  VERY_THIN: 1000,
+
+  THIN: 3000,
+
+  EARLY: 10000,
+
+  GOOD: 25000,
+
+  STRONG: 100000
+
+};
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let pairs = [];
+
+let tab =
+  "gainers";
+
+let tf =
+  "h1";
+
+let volumeFilter =
+  "all";
+
+let page =
+  "market";
+
+let loading =
+  false;
+
+let currentAlertPair =
+  null;
+
+let lang =
+  localStorage.getItem(
+    LANG_KEY
+  ) || "en";
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $ =
+  id => document.getElementById(id);
+
+
+function num(v){
+
+  const n =
+    Number(v);
+
+  return Number.isFinite(n)
+    ? n
+    : 0;
+
+}
+
+
+function esc(v){
+
+  return String(
+    v ?? ""
+  ).replace(
+    /[&<>"']/g,
+    m => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      "\"":"&quot;",
+      "'":"&#039;"
+    }[m])
+  );
+
+}
+
+
+function money(v){
+
+  v =
+    num(v);
+
+  if(v >= 1e9)
+    return "$"+(v/1e9).toFixed(1)+"B";
+
+  if(v >= 1e6)
+    return "$"+(v/1e6).toFixed(1)+"M";
+
+  if(v >= 1e3)
+    return "$"+(v/1e3).toFixed(1)+"K";
+
+  if(v > 0)
+    return "$"+v.toFixed(0);
+
+  return "$0";
+
+}
+
+
+function pct(v){
+
+  v =
+    num(v);
+
+  return (
+    v > 0
+      ? "+"
+      : ""
+  ) + v.toFixed(1) + "%";
+
+}
+
+
+function price(v){
+
+  v =
+    num(v);
+
+  if(!v)
+    return "0";
+
+  if(v < 0.000001)
+    return v.toExponential(2);
+
+  if(v < 0.01)
+    return v.toFixed(6);
+
+  if(v < 1)
+    return v.toFixed(5);
+
+  if(v < 100)
+    return v.toFixed(3);
+
+  return v.toFixed(2);
+
+}
+
+
+function cls(v){
+
+  v =
+    num(v);
+
+  if(v > 0.25)
+    return "up";
+
+  if(v < -0.25)
+    return "down";
+
+  return "neutral";
+
+}
+
+
+function setStatus(text){
+
+  $("status").textContent =
+    text;
+
+}
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+function loadJSON(
+  key,
+  fallback
+){
+
+  try{
+
+    const value =
+      JSON.parse(
+        localStorage.getItem(key)
+      );
+
+    return Array.isArray(value)
+      ? value
+      : fallback;
+
+  }catch{
+
+    return fallback;
+
+  }
+
+}
+
+
+function saveJSON(
+  key,
+  value
+){
+
+  try{
+
+    localStorage.setItem(
+      key,
+      JSON.stringify(value)
+    );
+
+  }catch{}
+
+}
+
+
+let favorites =
+  loadJSON(
+    FAV_KEY,
+    []
+  );
+
+let alerts =
+  loadJSON(
+    ALERT_KEY,
+    []
+  );
+
+
+/* =========================================================
+   I18N
+========================================================= */
+
+const TX = {
+
+en:{
+
+market:"Market",
+favorites:"Favorites",
+alerts:"Alerts",
+gainers:"Gainers",
+losers:"Losers",
+volume:"Volume",
+signals:"Signals",
+
+scan:"Scanning TON market...",
+updated:"Updated",
+pairs:"pairs",
+
+no:"No results",
+
+ai:"Guardian AI",
+analyzing:"Guardian AI is analyzing...",
+
+confidence:"Confidence",
+reason:"Reasoning",
+risks:"Risk Flags",
+bull:"Bull Case",
+bear:"Bear Case",
+action:"Action",
+summary:"Summary",
+
+liquidity:"Liquidity",
+volume24:"24h Volume",
+
+watch:"WATCH",
+buy:"BUY",
+sell:"SELL",
+strongbuy:"STRONG BUY",
+strongsell:"STRONG SELL",
+
+favorite:"Favorite",
+dex:"DEX",
+alert:"Alert",
+
+veryThin:"Very thin",
+thin:"Thin",
+early:"Early TON",
+good:"Good",
+strong:"Strong",
+
+cancel:"Cancel",
+save:"Save",
+
+noFavorites:"No favorites yet.",
+noAlerts:"No active alerts.",
+
+alertCreated:"Alert created.",
+alertTriggered:"Alert triggered.",
+
+error:"Error",
+
+short:"Short",
+medium:"Medium",
+long:"Long",
+
+bullish:"Bullish",
+bearish:"Bearish",
+
+tonContext:
+"TON liquidity context",
+
+volumeRatio:
+"Volume / Liquidity",
+
+risk:
+"Risk",
+
+security:
+"Guardian Security"
+
+},
+
+tr:{
+
+market:"Piyasa",
+favorites:"Favoriler",
+alerts:"Alarmlar",
+gainers:"Yükselen",
+losers:"Düşen",
+volume:"Hacim",
+signals:"Sinyaller",
+
+scan:"TON piyasası taranıyor...",
+updated:"Güncellendi",
+pairs:"çift",
+
+no:"Sonuç yok",
+
+ai:"Guardian AI",
+analyzing:"Guardian AI analiz ediyor...",
+
+confidence:"Güven",
+reason:"Nedenler",
+risks:"Riskler",
+bull:"Yükseliş Senaryosu",
+bear:"Düşüş Senaryosu",
+action:"Aksiyon",
+summary:"Özet",
+
+liquidity:"Likidite",
+volume24:"24s Hacim",
+
+watch:"İZLE",
+buy:"AL",
+sell:"SAT",
+strongbuy:"GÜÇLÜ AL",
+strongsell:"GÜÇLÜ SAT",
+
+favorite:"Favori",
+dex:"DEX",
+alert:"Alarm",
+
+veryThin:"Çok sığ",
+thin:"Düşük",
+early:"Erken TON",
+good:"İyi",
+strong:"Güçlü",
+
+cancel:"İptal",
+save:"Kaydet",
+
+noFavorites:"Henüz favori yok.",
+noAlerts:"Aktif alarm yok.",
+
+alertCreated:"Alarm oluşturuldu.",
+alertTriggered:"Alarm tetiklendi.",
+
+error:"Hata",
+
+short:"Kısa",
+medium:"Orta",
+long:"Uzun",
+
+bullish:"Yükseliş",
+bearish:"Düşüş",
+
+tonContext:
+"TON likidite durumu",
+
+volumeRatio:
+"Hacim / Likidite",
+
+risk:
+"Risk",
+
+security:
+"Guardian Güvenliği"
+
+},
+
+ru:{
+
+market:"Рынок",
+favorites:"Избранное",
+alerts:"Оповещения",
+gainers:"Рост",
+losers:"Падение",
+volume:"Объём",
+signals:"Сигналы",
+scan:"Сканирование TON...",
+updated:"Обновлено",
+pairs:"пар",
+no:"Нет результатов",
+ai:"Guardian AI",
+analyzing:"Guardian AI анализирует...",
+confidence:"Уверенность",
+reason:"Причины",
+risks:"Риски",
+bull:"Бычий сценарий",
+bear:"Медвежий сценарий",
+action:"Действие",
+summary:"Итог",
+liquidity:"Ликвидность",
+volume24:"Объём 24ч",
+watch:"НАБЛЮДАТЬ",
+buy:"ПОКУПКА",
+sell:"ПРОДАЖА",
+strongbuy:"СИЛЬНАЯ ПОКУПКА",
+strongsell:"СИЛЬНАЯ ПРОДАЖА",
+favorite:"Избранное",
+dex:"DEX",
+alert:"Оповещение",
+veryThin:"Очень низкая",
+thin:"Низкая",
+early:"Ранняя TON",
+good:"Хорошая",
+strong:"Сильная",
+cancel:"Отмена",
+save:"Сохранить",
+noFavorites:"Избранного пока нет.",
+noAlerts:"Нет активных оповещений.",
+alertCreated:"Оповещение создано.",
+alertTriggered:"Оповещение сработало.",
+error:"Ошибка",
+short:"Краткосрочно",
+medium:"Среднесрочно",
+long:"Долгосрочно",
+bullish:"Рост",
+bearish:"Падение",
+tonContext:"Ликвидность TON",
+volumeRatio:"Объём / Ликвидность",
+risk:"Риск",
+security:"Безопасность Guardian"
+
+},
+
+zh:{
+
+market:"市场",
+favorites:"收藏",
+alerts:"提醒",
+gainers:"上涨",
+losers:"下跌",
+volume:"成交量",
+signals:"信号",
+scan:"正在扫描 TON 市场...",
+updated:"更新",
+pairs:"交易对",
+no:"没有结果",
+ai:"Guardian AI",
+analyzing:"Guardian AI 正在分析...",
+confidence:"置信度",
+reason:"原因",
+risks:"风险",
+bull:"看涨情景",
+bear:"看跌情景",
+action:"行动",
+summary:"总结",
+liquidity:"流动性",
+volume24:"24小时成交量",
+watch:"观察",
+buy:"买入",
+sell:"卖出",
+strongbuy:"强力买入",
+strongsell:"强力卖出",
+favorite:"收藏",
+dex:"DEX",
+alert:"提醒",
+veryThin:"极低",
+thin:"较低",
+early:"TON早期",
+good:"良好",
+strong:"强",
+cancel:"取消",
+save:"保存",
+noFavorites:"暂无收藏。",
+noAlerts:"暂无活跃提醒。",
+alertCreated:"提醒已创建。",
+alertTriggered:"提醒已触发。",
+error:"错误",
+short:"短期",
+medium:"中期",
+long:"长期",
+bullish:"上涨",
+bearish:"下跌",
+tonContext:"TON流动性",
+volumeRatio:"成交量 / 流动性",
+risk:"风险",
+security:"Guardian安全"
+
+},
+
+ja:{
+
+market:"市場",
+favorites:"お気に入り",
+alerts:"アラート",
+gainers:"上昇",
+losers:"下落",
+volume:"出来高",
+signals:"シグナル",
+scan:"TON市場をスキャン中...",
+updated:"更新",
+pairs:"ペア",
+no:"結果なし",
+ai:"Guardian AI",
+analyzing:"Guardian AI が分析中...",
+confidence:"信頼度",
+reason:"理由",
+risks:"リスク",
+bull:"強気シナリオ",
+bear:"弱気シナリオ",
+action:"アクション",
+summary:"概要",
+liquidity:"流動性",
+volume24:"24時間出来高",
+watch:"監視",
+buy:"買い",
+sell:"売り",
+strongbuy:"強い買い",
+strongsell:"強い売り",
+favorite:"お気に入り",
+dex:"DEX",
+alert:"アラート",
+veryThin:"非常に薄い",
+thin:"薄い",
+early:"TON初期",
+good:"良好",
+strong:"強い",
+cancel:"キャンセル",
+save:"保存",
+noFavorites:"お気に入りはありません。",
+noAlerts:"アクティブなアラートはありません。",
+alertCreated:"アラートを作成しました。",
+alertTriggered:"アラートが発生しました。",
+error:"エラー",
+short:"短期",
+medium:"中期",
+long:"長期",
+bullish:"上昇",
+bearish:"下落",
+tonContext:"TON流動性",
+volumeRatio:"出来高 / 流動性",
+risk:"リスク",
+security:"Guardianセキュリティ"
+
+},
+
+ko:{
+
+market:"시장",
+favorites:"즐겨찾기",
+alerts:"알림",
+gainers:"상승",
+losers:"하락",
+volume:"거래량",
+signals:"시그널",
+scan:"TON 시장 스캔 중...",
+updated:"업데이트",
+pairs:"페어",
+no:"결과 없음",
+ai:"Guardian AI",
+analyzing:"Guardian AI 분석 중...",
+confidence:"신뢰도",
+reason:"이유",
+risks:"위험",
+bull:"상승 시나리오",
+bear:"하락 시나리오",
+action:"액션",
+summary:"요약",
+liquidity:"유동성",
+volume24:"24시간 거래량",
+watch:"관찰",
+buy:"매수",
+sell:"매도",
+strongbuy:"강력 매수",
+strongsell:"강력 매도",
+favorite:"즐겨찾기",
+dex:"DEX",
+alert:"알림",
+veryThin:"매우 낮음",
+thin:"낮음",
+early:"TON 초기",
+good:"좋음",
+strong:"강함",
+cancel:"취소",
+save:"저장",
+noFavorites:"즐겨찾기가 없습니다.",
+noAlerts:"활성 알림이 없습니다.",
+alertCreated:"알림이 생성되었습니다.",
+alertTriggered:"알림이 발생했습니다.",
+error:"오류",
+short:"단기",
+medium:"중기",
+long:"장기",
+bullish:"상승",
+bearish:"하락",
+tonContext:"TON 유동성",
+volumeRatio:"거래량 / 유동성",
+risk:"위험",
+security:"Guardian 보안"
+
+}
+
+};
+
+
+function t(key){
+
+  return (
+    TX[lang]?.[key] ||
+    TX.en[key] ||
+    key
+  );
+
+}
+
+
+/* =========================================================
+   API
+========================================================= */
+
+async function get(
+  path,
+  options={}
+){
+
+  const response =
+    await fetch(
+      API + path,
+      {
+        cache:"no-store",
+        ...options,
+
+        headers:{
+          Accept:"application/json",
+          ...(options.headers||{})
+        }
+      }
+    );
+
+
+  const data =
+    await response
+      .json()
+      .catch(
+        () => ({
+          ok:false,
+          error:"Invalid JSON"
+        })
+      );
+
+
+  if(
+    !response.ok ||
+    data.ok === false
+  ){
+
+    throw new Error(
+      data.error ||
+      data.message ||
+      "Request failed"
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+/* =========================================================
+   NORMALIZE MARKET DATA
+========================================================= */
+
+function normalize(p){
+
+  return {
+
+    ...p,
+
+    baseToken:
+      p.baseToken || {},
+
+    change:
+      p.change || {},
+
+    volume:
+      p.volume || {
+        h24:0
+      },
+
+    liquidity:
+      num(p.liquidity),
+
+    score:
+      num(p.score),
+
+    confidence:
+      num(p.confidence)
+
+  };
+
+}
+
+
+/* =========================================================
+   TON LIQUIDITY INTELLIGENCE
+========================================================= */
+
+function tonLiquidity(
+  liquidity
+){
+
+  liquidity =
+    num(liquidity);
+
+
+  if(
+    liquidity <
+    TON_LIQUIDITY.VERY_THIN
+  ){
+
+    return {
+      level:"very-thin",
+      label:t("veryThin"),
+      className:"bad",
+      description:
+        "Very shallow TON pool."
+    };
+
+  }
+
+
+  if(
+    liquidity <
+    TON_LIQUIDITY.THIN
+  ){
+
+    return {
+      level:"thin",
+      label:t("thin"),
+      className:"warn",
+      description:
+        "Thin TON liquidity; price impact can be significant."
+    };
+
+  }
+
+
+  if(
+    liquidity <
+    TON_LIQUIDITY.EARLY
+  ){
+
+    return {
+      level:"early",
+      label:t("early"),
+      className:"warn",
+      description:
+        "Acceptable for an early-stage TON market."
+    };
+
+  }
+
+
+  if(
+    liquidity <
+    TON_LIQUIDITY.GOOD
+  ){
+
+    return {
+      level:"good",
+      label:t("good"),
+      className:"good",
+      description:
+        "Good liquidity for a TON market."
+    };
+
+  }
+
+
+  return {
+    level:"strong",
+    label:t("strong"),
+    className:"good",
+    description:
+      "Strong liquidity for TON."
+  };
+
+}
+
+
+function volumeLiquidityRatio(
+  volume,
+  liquidity
+){
+
+  volume =
+    num(volume);
+
+  liquidity =
+    num(liquidity);
+
+  if(
+    liquidity <= 0
+  )
+    return 0;
+
+  return volume / liquidity;
+
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function isFavorite(
+  address
+){
+
+  return favorites.some(
+    x =>
+      x.pairAddress ===
+      address
+  );
+
+}
+
+
+function toggleFavorite(
+  pair
+){
+
+  if(
+    isFavorite(
+      pair.pairAddress
+    )
+  ){
+
+    favorites =
+      favorites.filter(
+        x =>
+          x.pairAddress !==
+          pair.pairAddress
+      );
+
+  }else{
+
+    favorites.push({
+
+      pairAddress:
+        pair.pairAddress,
+
+      symbol:
+        pair.baseToken?.symbol ||
+        "???",
+
+      name:
+        pair.baseToken?.name ||
+        "Unknown Token",
+
+      url:
+        pair.url || "",
+
+      baseAddress:
+        pair.baseToken?.address ||
+        ""
+
+    });
+
+  }
+
+
+  saveJSON(
+    FAV_KEY,
+    favorites
+  );
+
+  render();
+
+}
+
+
+/* =========================================================
+   ALERTS
+========================================================= */
+
+function hasAlert(
+  address
+){
+
+  return alerts.some(
+    x =>
+      x.pairAddress ===
+      address
+  );
+
+}
+
+
+function openAlert(
+  index
+){
+
+  const pair =
+    pairs[index];
+
+  if(!pair)
+    return;
+
+  currentAlertPair =
+    pair;
+
+  $("alertToken").textContent =
+    `${pair.baseToken?.name || "Unknown"} (${pair.baseToken?.symbol || "???"}) · $${price(pair.priceUsd)}`;
+
+  $("alertValue").value =
+    "";
+
+  $("alertModal")
+    .classList
+    .add("show");
+
+}
+
+
+function closeAlert(){
+
+  $("alertModal")
+    .classList
+    .remove("show");
+
+  currentAlertPair =
+    null;
+
+}
+
+
+function saveAlert(){
+
+  if(!currentAlertPair)
+    return;
+
+
+  const type =
+    $("alertType").value;
+
+  const value =
+    parseFloat(
+      $("alertValue").value
+    );
+
+
+  if(
+    !Number.isFinite(value) ||
+    value <= 0
+  ){
+
+    alert(
+      "Enter a valid value."
+    );
+
+    return;
+
+  }
+
+
+  alerts =
+    alerts.filter(
+      x =>
+        !(
+          x.pairAddress ===
+          currentAlertPair.pairAddress &&
+          x.type === type
+        )
+    );
+
+
+  alerts.push({
+
+    id:
+      Date.now().toString(36),
+
+    pairAddress:
+      currentAlertPair.pairAddress,
+
+    symbol:
+      currentAlertPair.baseToken?.symbol ||
+      "???",
+
+    name:
+      currentAlertPair.baseToken?.name ||
+      "Unknown Token",
+
+    type,
+
+    value,
+
+    created:
+      Date.now()
+
+  });
+
+
+  saveJSON(
+    ALERT_KEY,
+    alerts
+  );
+
+  closeAlert();
+
+  render();
+
+}
+
+
+function removeAlert(
+  id
+){
+
+  alerts =
+    alerts.filter(
+      x =>
+        x.id !== id
+    );
+
+  saveJSON(
+    ALERT_KEY,
+    alerts
+  );
+
+  renderAlerts();
+
+  render();
+
+}
+
+
+function checkAlerts(){
+
+  const triggered =
+    [];
+
+  for(
+    const alertItem
+    of alerts
+  ){
+
+    const pair =
+      pairs.find(
+        p =>
+          p.pairAddress ===
+          alertItem.pairAddress
+      );
+
+    if(!pair)
+      continue;
+
+
+    const h1 =
+      num(pair.change?.h1);
+
+    const currentPrice =
+      num(pair.priceUsd);
+
+
+    let hit =
+      false;
+
+
+    if(
+      alertItem.type ===
+      "pct_up"
+    ){
+
+      hit =
+        h1 >=
+        alertItem.value;
+
+    }
+
+
+    if(
+      alertItem.type ===
+      "pct_down"
+    ){
+
+      hit =
+        h1 <=
+        -alertItem.value;
+
+    }
+
+
+    if(
+      alertItem.type ===
+      "price_above"
+    ){
+
+      hit =
+        currentPrice >=
+        alertItem.value;
+
+    }
+
+
+    if(
+      alertItem.type ===
+      "price_below"
+    ){
+
+      hit =
+        currentPrice <=
+        alertItem.value;
+
+    }
+
+
+    if(hit)
+      triggered.push(
+        alertItem
+      );
+
+  }
+
+
+  if(
+    triggered.length
+  ){
+
+    try{
+      tg?.HapticFeedback
+        ?.notificationOccurred(
+          "warning"
+        );
+    }catch{}
+
+  }
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function filtered(){
+
+  let result =
+    [...pairs];
+
+
+  if(
+    volumeFilter ===
+    "high"
+  ){
+
+    result =
+      result.filter(
+        p =>
+          num(p.volume?.h24) >=
+          20000
+      );
+
+  }
+
+
+  if(
+    volumeFilter ===
+    "dedust"
+  ){
+
+    result =
+      result.filter(
+        p =>
+          p.isDedust === true ||
+          String(
+            p.dexId || ""
+          )
+          .toLowerCase()
+          .includes(
+            "dedust"
+          )
+      );
+
+  }
+
+
+  if(
+    tab ===
+    "gainers"
+  ){
+
+    result =
+      result
+        .filter(
+          p =>
+            num(
+              p.change?.[tf]
+            ) > 1
+        )
+        .sort(
+          (a,b) =>
+            num(b.change?.[tf]) -
+            num(a.change?.[tf])
+        );
+
+  }
+
+
+  else if(
+    tab ===
+    "losers"
+  ){
+
+    result =
+      result
+        .filter(
+          p =>
+            num(
+              p.change?.[tf]
+            ) < -1
+        )
+        .sort(
+          (a,b) =>
+            num(a.change?.[tf]) -
+            num(b.change?.[tf])
+        );
+
+  }
+
+
+  else if(
+    tab ===
+    "volume"
+  ){
+
+    result =
+      result.sort(
+        (a,b) =>
+          num(b.volume?.h24) -
+          num(a.volume?.h24)
+      );
+
+  }
+
+
+  else{
+
+    result =
+      result
+        .filter(
+          p =>
+            p.signal &&
+            p.signal !==
+            "neutral"
+        )
+        .sort(
+          (a,b) =>
+            Math.abs(
+              num(b.score)
+            ) -
+            Math.abs(
+              num(a.score)
+            )
+        );
+
+  }
+
+
+  return result.slice(
+    0,
+    150
+  );
+
+}
+
+
+/* =========================================================
+   SIGNAL TEXT
+========================================================= */
+
+function signalText(
+  signal
+){
+
+  if(
+    signal ===
+    "strong-buy"
+  )
+    return t("strongbuy");
+
+  if(
+    signal ===
+    "buy"
+  )
+    return t("buy");
+
+  if(
+    signal ===
+    "strong-sell"
+  )
+    return t("strongsell");
+
+  if(
+    signal ===
+    "sell"
+  )
+    return t("sell");
+
+  return t("watch");
+
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+function card(
+  pair,
+  index
+){
+
+  const change =
+    num(
+      pair.change?.[tf]
+    );
+
+  const score =
+    num(pair.score);
+
+  const signal =
+    pair.signal ||
+    "neutral";
+
+  const favorite =
+    isFavorite(
+      pair.pairAddress
+    );
+
+  const alert =
+    hasAlert(
+      pair.pairAddress
+    );
+
+  const liquidityInfo =
+    tonLiquidity(
+      pair.liquidity
+    );
+
+
+  let signalClass =
+    "";
+
+  if(
+    signal.includes("buy")
+  )
+    signalClass =
+      "buy";
+
+  else if(
+    signal.includes("sell")
+  )
+    signalClass =
+      "sell";
+
+  else
+    signalClass =
+      "watch";
+
+
+  const volumeRatio =
+    volumeLiquidityRatio(
+      pair.volume?.h24,
+      pair.liquidity
+    );
+
+
+  return `
+
+  <div class="card ${favorite?"favorite":""}">
+
+    <div class="row">
+
+      <div class="rank">
+        ${index+1}
+      </div>
+
+      <div class="info">
+
+        <div class="name">
+
+          ${esc(
+            pair.baseToken?.name ||
+            "Unknown Token"
+          )}
+
+          <span class="sym">
+            ${esc(
+              pair.baseToken?.symbol ||
+              "???"
+            )}
+          </span>
+
+        </div>
+
+        <div class="meta">
+
+          ${esc(
+            pair.dexId ||
+            "DEX"
+          )}
+
+          ·
+
+          ${money(pair.liquidity)}
+          ${t("liquidity")}
+
+          ·
+
+          ${money(pair.volume?.h24)}
+          ${t("volume24")}
+
+        </div>
+
+      </div>
+
+      <div class="right">
+
+        <div class="chg ${cls(change)}">
+          ${pct(change)}
+        </div>
+
+        <div class="badges">
+
+          <span class="badge ${signalClass}">
+            ${esc(
+              signalText(signal)
+            )}
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="tf">
+
+      <div>
+        <small>5m</small>
+        <span class="${cls(pair.change?.m5)}">
+          ${pct(pair.change?.m5)}
+        </span>
+      </div>
+
+      <div>
+        <small>1h</small>
+        <span class="${cls(pair.change?.h1)}">
+          ${pct(pair.change?.h1)}
+        </span>
+      </div>
+
+      <div>
+        <small>6h</small>
+        <span class="${cls(pair.change?.h6)}">
+          ${pct(pair.change?.h6)}
+        </span>
+      </div>
+
+      <div>
+        <small>24h</small>
+        <span class="${cls(pair.change?.h24)}">
+          ${pct(pair.change?.h24)}
+        </span>
+      </div>
+
+    </div>
+
+
+    <div class="score">
+
+      <span>
+        Noventra Score
+      </span>
+
+      <b>
+        ${score > 0 ? "+" : ""}
+        ${score.toFixed(0)}
+        ·
+        ${num(pair.confidence).toFixed(0)}%
+      </b>
+
+    </div>
+
+
+    <div class="bar">
+      <i
+        style="
+          width:${Math.min(
+            100,
+            Math.abs(score)
+          )}%
+        "
+      ></i>
+    </div>
+
+
+    <div
+      class="meta"
+      style="margin-top:7px"
+    >
+
+      🟢 ${esc(
+        liquidityInfo.label
+      )}
+
+      ·
+
+      ${t("volumeRatio")}:
+      ${volumeRatio
+        ? volumeRatio.toFixed(1)+"x"
+        : "—"
+      }
+
+    </div>
+
+
+    <div class="buttons">
+
+      <button
+        class="btn ${favorite?"favorite-on":""}"
+        onclick="toggleFavorite(pairs[${pairs.indexOf(pair)}])"
+      >
+        ${favorite?"★":"☆"}
+        ${t("favorite")}
+      </button>
+
+
+      <button
+        class="btn ${alert?"alert-on":""}"
+        onclick="openAlert(${pairs.indexOf(pair)})"
+      >
+        🔔
+        ${t("alert")}
+      </button>
+
+
+      <button
+        class="btn ai"
+        onclick="openAI(${pairs.indexOf(pair)})"
+      >
+        🤖
+        ${t("ai")}
+      </button>
+
+
+      <button
+        class="btn"
+        onclick="openPair('${esc(pair.url || "")}')"
+      >
+        ↗
+        ${t("dex")}
+      </button>
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   RENDER MARKET
+========================================================= */
+
+function render(){
+
+  if(
+    page !==
+    "market"
+  )
+    return;
+
+
+  const result =
+    filtered();
+
+
+  if(
+    !result.length
+  ){
+
+    $("content").innerHTML =
+      `<div class="empty">
+        ${t("no")}
+      </div>`;
+
+    return;
+
+  }
+
+
+  $("content").innerHTML =
+    `<div class="list">
+      ${
+        result
+          .map(card)
+          .join("")
+      }
+    </div>`;
+
+}
+
+
+/* =========================================================
+   RENDER FAVORITES
+========================================================= */
+
+function renderFavorites(){
+
+  if(
+    !favorites.length
+  ){
+
+    $("content").innerHTML =
+      `<div class="empty">
+        ⭐<br>
+        ${t("noFavorites")}
+      </div>`;
+
+    return;
+
+  }
+
+
+  const favoritePairs =
+    favorites.map(
+      favorite =>
+        pairs.find(
+          p =>
+            p.pairAddress ===
+            favorite.pairAddress
+        ) ||
+        {
+
+          pairAddress:
+            favorite.pairAddress,
+
+          baseToken:{
+            name:
+              favorite.name,
+
+            symbol:
+              favorite.symbol,
+
+            address:
+              favorite.baseAddress
+          },
+
+          url:
+            favorite.url,
+
+          change:{
+            m5:0,
+            h1:0,
+            h6:0,
+            h24:0
+          },
+
+          volume:{
+            h24:0
+          },
+
+          liquidity:0,
+          score:0,
+          confidence:0,
+          signal:"neutral"
+
+        }
+    );
+
+
+  $("content").innerHTML =
+    `<div class="list">
+      ${
+        favoritePairs
+          .map(card)
+          .join("")
+      }
+    </div>`;
+
+}
+
+
+/* =========================================================
+   RENDER ALERTS
+========================================================= */
+
+function renderAlerts(){
+
+  if(
+    !alerts.length
+  ){
+
+    $("content").innerHTML =
+      `<div class="empty">
+        🔔<br>
+        ${t("noAlerts")}
+      </div>`;
+
+    return;
+
+  }
+
+
+  $("content").innerHTML =
+    `<div class="alert-list">
+
+      ${
+        alerts.map(
+          alertItem => {
+
+            const pair =
+              pairs.find(
+                p =>
+                  p.pairAddress ===
+                  alertItem.pairAddress
+              );
+
+
+            let description =
+              "";
+
+            if(
+              alertItem.type ===
+              "pct_up"
+            )
+              description =
+                `1h ≥ ${alertItem.value}%`;
+
+            if(
+              alertItem.type ===
+              "pct_down"
+            )
+              description =
+                `1h ≤ -${alertItem.value}%`;
+
+            if(
+              alertItem.type ===
+              "price_above"
+            )
+              description =
+                `Price ≥ $${alertItem.value}`;
+
+            if(
+              alertItem.type ===
+              "price_below"
+            )
+              description =
+                `Price ≤ $${alertItem.value}`;
+
+
+            return `
+
+              <div class="alert-card">
+
+                <strong>
+                  ${esc(
+                    alertItem.name ||
+                    alertItem.symbol
+                  )}
+                  (${esc(
+                    alertItem.symbol
+                  )})
+                </strong>
+
+                <small>
+                  ${description}
+                  ${
+                    pair
+                      ? " · Current: $" +
+                        price(pair.priceUsd)
+                      : ""
+                  }
+                </small>
+
+                <button
+                  class="alert-delete"
+                  onclick="removeAlert('${esc(alertItem.id)}')"
+                >
+                  Delete
+                </button>
+
+              </div>
+
+            `;
+
+          }
+        ).join("")
+
+      }
+
+    </div>`;
+
+}
+
+
+/* =========================================================
+   AI
+========================================================= */
+
+async function openAI(
+  index
+){
+
+  const pair =
+    pairs[index];
+
+  if(!pair)
+    return;
+
+
+  $("modal")
+    .classList
+    .add("show");
+
+
+  $("ai").innerHTML =
+    `<div class="loading">
+      <i class="spin"></i>
+      <br>
+      ${t("analyzing")}
+    </div>`;
+
+
+  try{
+
+    /*
+      Guardian data is requested
+      using the Jetton master address.
+    */
+
+    let guardian = {};
+
+
+    try{
+
+      guardian =
+        await get(
+          "/api/guardian/" +
+          encodeURIComponent(
+            pair.baseToken?.address ||
+            pair.pairAddress
+          )
+        );
+
+    }catch(error){
+
+      guardian = {
+        ok:false,
+        error:
+          error.message
+      };
+
+    }
+
+
+    const liquidity =
+      tonLiquidity(
+        pair.liquidity
+      );
+
+
+    const ratio =
+      volumeLiquidityRatio(
+        pair.volume?.h24,
+        pair.liquidity
+      );
+
+
+    /*
+      AI receives explicit TON context.
+    */
+
+    const body = {
+
+      token:{
+
+        name:
+          pair.baseToken?.name,
+
+        symbol:
+          pair.baseToken?.symbol,
+
+        address:
+          pair.baseToken?.address,
+
+        priceUsd:
+          pair.priceUsd
+
+      },
+
+      market:{
+
+        network:
+          "TON Mainnet",
+
+        pairAddress:
+          pair.pairAddress,
+
+        dex:
+          pair.dexId,
+
+        priceUsd:
+          pair.priceUsd,
+
+        change:
+          pair.change,
+
+        volume24h:
+          pair.volume?.h24,
+
+        liquidityUsd:
+          pair.liquidity,
+
+        volumeLiquidityRatio:
+          ratio,
+
+        tonLiquidityLevel:
+          liquidity.level,
+
+        tonLiquidityLabel:
+          liquidity.label,
+
+        tonLiquidityDescription:
+          liquidity.description,
+
+        score:
+          pair.score,
+
+        signal:
+          pair.signal,
+
+        confidence:
+          pair.confidence
+
+      },
+
+      guardian
+
+    };
+
+
+    const response =
+      await get(
+        "/api/ai",
+        {
+
+          method:
+            "POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:
+            JSON.stringify(
+              body
+            )
+
+        }
+      );
+
+
+    showAI(
+      response.analysis,
+      pair,
+      liquidity,
+      ratio
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Guardian AI:",
+      error
+    );
+
+
+    $("ai").innerHTML =
+      `<div class="ai-error">
+
+        <b>
+          ${t("error")}
+        </b>
+
+        <br><br>
+
+        ${esc(
+          error.message
+        )}
+
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   AI RESULT
+========================================================= */
+
+function showAI(
+  analysis,
+  pair,
+  liquidity,
+  ratio
+){
+
+  const a =
+    analysis || {};
+
+
+  const array =
+    value =>
+      Array.isArray(value)
+        ? value
+        : [];
+
+
+  let signalClass =
+    "watch";
+
+
+  if(
+    String(
+      a.signal || ""
+    )
+      .toUpperCase()
+      .includes("BUY")
+  )
+    signalClass =
+      "good";
+
+
+  if(
+    String(
+      a.signal || ""
+    )
+      .toUpperCase()
+      .includes("SELL")
+  )
+    signalClass =
+      "bad";
+
+
+  $("ai").innerHTML = `
+
+    <div>
+
+      <span class="pill ${signalClass}">
+        ${esc(
+          a.signal ||
+          "WATCH"
+        )}
+      </span>
+
+      <span class="pill">
+        ${t("confidence")}:
+        ${num(a.confidence)}%
+      </span>
+
+      <span class="pill">
+        ${esc(
+          a.action ||
+          "WATCH"
+        )}
+      </span>
+
+    </div>
+
+
+    <h4>
+      ${esc(
+        a.headline ||
+        pair.baseToken?.name ||
+        "Token"
+      )}
+    </h4>
+
+
+    <p>
+      ${esc(
+        a.marketState ||
+        ""
+      )}
+    </p>
+
+
+    <h4>
+      ${t("reason")}
+    </h4>
+
+    <ul>
+
+      ${
+        array(
+          a.reasoning
+        )
+        .map(
+          x =>
+            `<li>${esc(x)}</li>`
+        )
+        .join("")
+      }
+
+    </ul>
+
+
+    <h4>
+      ${t("tonContext")}
+    </h4>
+
+    <p>
+
+      ${esc(
+        liquidity.description
+      )}
+
+      <br><br>
+
+      <span class="pill">
+        ${esc(
+          liquidity.label
+        )}
+      </span>
+
+      <span class="pill">
+        ${t("volumeRatio")}:
+        ${
+          ratio
+            ? ratio.toFixed(1)+"x"
+            : "—"
+        }
+      </span>
+
+    </p>
+
+
+    <h4>
+      ${t("short")} / ${t("medium")} / ${t("long")}
+    </h4>
+
+    <p>
+      <b>${t("short")}:</b>
+      ${esc(
+        a.timeframes?.short ||
+        "—"
+      )}
+    </p>
+
+    <p>
+      <b>${t("medium")}:</b>
+      ${esc(
+        a.timeframes?.medium ||
+        "—"
+      )}
+    </p>
+
+    <p>
+      <b>${t("long")}:</b>
+      ${esc(
+        a.timeframes?.long ||
+        "—"
+      )}
+    </p>
+
+
+    <h4>
+      ${t("liquidity")}
+    </h4>
+
+    <p>
+      ${esc(
+        a.liquidityView ||
+        "—"
+      )}
+    </p>
+
+
+    <h4>
+      ${t("volume24")}
+    </h4>
+
+    <p>
+      ${esc(
+        a.volumeView ||
+        "—"
+      )}
+    </p>
+
+
+    <h4>
+      ${t("risks")}
+    </h4>
+
+    ${
+      array(
+        a.riskFlags
+      ).length
+      ?
+
+      `<ul>
+        ${
+          array(
+            a.riskFlags
+          )
+          .map(
+            x =>
+              `<li class="danger">
+                ${esc(x)}
+              </li>`
+          )
+          .join("")
+        }
+      </ul>`
+
+      :
+
+      "<p>—</p>"
+    }
+
+
+    <h4>
+      ${t("bull")}
+    </h4>
+
+    <p>
+      ${esc(
+        a.bullCase ||
+        "—"
+      )}
+    </p>
+
+
+    <h4>
+      ${t("bear")}
+    </h4>
+
+    <p>
+      ${esc(
+        a.bearCase ||
+        "—"
+      )}
+    </p>
+
+
+    <h4>
+      ${t("summary")}
+    </h4>
+
+    <p>
+      ${esc(
+        a.summary ||
+        "—"
+      )}
+    </p>
+
+
+    <p
+      style="
+        margin-top:18px;
+        color:var(--muted);
+        font-size:10px
+      "
+    >
+      Noventra Guardian AI analyzes
+      observable market and security data.
+      It is not financial advice.
+    </p>
+
+  `;
+
+}
+
+
+/* =========================================================
+   DEX
+========================================================= */
+
+function openPair(
+  url
+){
+
+  if(!url)
+    return;
+
+
+  try{
+
+    if(
+      tg?.openLink
+    ){
+
+      tg.openLink(
+        url
+      );
+
+    }else{
+
+      window.open(
+        url,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+    }
+
+  }catch{
+
+    window.open(
+      url,
+      "_blank"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   MARKET LOAD
+========================================================= */
+
+async function load(){
+
+  if(loading)
+    return;
+
+
+  loading =
+    true;
+
+
+  $("refresh")
+    .classList
+    .add("spin");
+
+
+  setStatus(
+    t("scan")
+  );
+
+
+  try{
+
+    const data =
+      await get(
+        "/api/market"
+      );
+
+
+    pairs =
+      (
+        data.pairs ||
+        []
+      )
+      .map(
+        normalize
+      );
+
+
+    $("count").textContent =
+      pairs.length +
+      " " +
+      t("pairs");
+
+
+    setStatus(
+      t("updated") +
+      ": " +
+      new Date()
+        .toLocaleTimeString()
+    );
+
+
+    checkAlerts();
+
+
+    render();
+
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+
+    setStatus(
+      "Market API error"
+    );
+
+
+    $("content").innerHTML =
+      `<div class="empty">
+
+        Unable to load TON market.
+
+        <br><br>
+
+        <small>
+          ${esc(
+            error.message
+          )}
+        </small>
+
+      </div>`;
+
+  }finally{
+
+    loading =
+      false;
+
+    $("refresh")
+      .classList
+      .remove("spin");
+
+  }
+
+}
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+function applyLanguage(){
+
+  document.documentElement.lang =
+    lang;
+
+
+  document.querySelectorAll(
+    "[data-tab]"
+  ).forEach(
+    element => {
+
+      element.textContent =
+        t(
+          element.dataset.tab
+        );
+
+    }
+  );
+
+
+  document.querySelectorAll(
+    ".nav"
+  ).forEach(
+    element => {
+
+      const icon =
+        element.querySelector(
+          "span"
+        );
+
+      const iconHTML =
+        icon
+          ? icon.outerHTML
+          : "";
+
+      element.innerHTML =
+        iconHTML +
+        t(
+          element.dataset.page
+        );
+
+    }
+  );
+
+
+  render();
+
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+document
+  .querySelectorAll(
+    "[data-tab]"
+  )
+  .forEach(
+    element => {
+
+      element.onclick =
+        () => {
+
+          document
+            .querySelectorAll(
+              ".tab"
+            )
+            .forEach(
+              x =>
+                x.classList
+                 .remove("on")
+            );
+
+
+          element.classList
+            .add("on");
+
+
+          tab =
+            element.dataset.tab;
+
+
+          page =
+            "market";
+
+
+          render();
+
+        };
+
+    }
+  );
+
+
+document
+  .querySelectorAll(
+    "[data-tf]"
+  )
+  .forEach(
+    element => {
+
+      element.onclick =
+        () => {
+
+          document
+            .querySelectorAll(
+              "[data-tf]"
+            )
+            .forEach(
+              x =>
+                x.classList
+                 .remove("on")
+            );
+
+
+          element.classList
+            .add("on");
+
+
+          tf =
+            element.dataset.tf;
+
+
+          render();
+
+        };
+
+    }
+  );
+
+
+document
+  .querySelectorAll(
+    "[data-vol]"
+  )
+  .forEach(
+    element => {
+
+      element.onclick =
+        () => {
+
+          document
+            .querySelectorAll(
+              "[data-vol]"
+            )
+            .forEach(
+              x =>
+                x.classList
+                 .remove("on")
+            );
+
+
+          element.classList
+            .add("on");
+
+
+          volumeFilter =
+            element.dataset.vol;
+
+
+          render();
+
+        };
+
+    }
+  );
+
+
+$("refresh").onclick =
+  load;
+
+
+$("lang").onclick =
+  () =>
+    $("language")
+      .classList
+      .toggle("show");
+
+
+document
+  .querySelectorAll(
+    "[data-l]"
+  )
+  .forEach(
+    element => {
+
+      element.onclick =
+        () => {
+
+          lang =
+            element.dataset.l;
+
+          localStorage.setItem(
+            LANG_KEY,
+            lang
+          );
+
+          $("language")
+            .classList
+            .remove("show");
+
+          applyLanguage();
+
+        };
+
+    }
+  );
+
+
+$("close").onclick =
+  () =>
+    $("modal")
+      .classList
+      .remove("show");
+
+
+$("modal").onclick =
+  event => {
+
+    if(
+      event.target.id ===
+      "modal"
+    ){
+
+      $("modal")
+        .classList
+        .remove("show");
+
+    }
+
+  };
+
+
+$("alertClose").onclick =
+  closeAlert;
+
+
+$("alertCancel").onclick =
+  closeAlert;
+
+
+$("alertSave").onclick =
+  saveAlert;
+
+
+$("alertModal").onclick =
+  event => {
+
+    if(
+      event.target.id ===
+      "alertModal"
+    ){
+
+      closeAlert();
+
+    }
+
+  };
+
+
+document
+  .querySelectorAll(
+    ".nav"
+  )
+  .forEach(
+    element => {
+
+      element.onclick =
+        () => {
+
+          document
+            .querySelectorAll(
+              ".nav"
+            )
+            .forEach(
+              x =>
+                x.classList
+                 .remove("on")
+            );
+
+
+          element.classList
+            .add("on");
+
+
+          page =
+            element.dataset.page;
+
+
+          if(
+            page ===
+            "market"
+          ){
+
+            render();
+
+          }
+
+          else if(
+            page ===
+            "favorites"
+          ){
+
+            renderFavorites();
+
+          }
+
+          else if(
+            page ===
+            "alerts"
+          ){
+
+            renderAlerts();
+
+          }
+
+        };
+
+    }
+  );
+
+
+/* =========================================================
+   START
+========================================================= */
+
+applyLanguage();
+
+load();
+
+
+setInterval(
+  () => {
+
+    if(
+      !loading
+    ){
+
+      load();
+
+    }
+
+  },
+  REFRESH_MS
+);
+
+</script>
+
+</body>
+</html>
